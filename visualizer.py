@@ -15,7 +15,7 @@ DATA_DIR = os.path.join(BASE_DIR, "data")
 OUTPUT_DIR = os.path.join(BASE_DIR, "output")
 os.makedirs(OUTPUT_DIR, exist_ok=True)
 
-RESULT_COLORS = {"H": "#ff4d4f", "D": "#faad14", "A": "#1890ff"}
+RESULT_COLORS = {"H": "#ef4444", "D": "#f59e0b", "A": "#3b82f6"}
 RESULT_NAMES = {"H": "主胜", "D": "平局", "A": "客胜"}
 
 
@@ -217,16 +217,16 @@ def generate_dashboard(data):
                 elif conf >= 0.40: bet = f"小额娱乐{row['pred_label']}"
                 else: bet = "不推荐，置信度偏低"
                 color = RESULT_COLORS.get(pred_r, "#888")
-                bet_color = "#52c41a" if kelly > 0.08 else "#faad14" if kelly > 0 else "#888"
+                bet_color = "#22c55e" if kelly > 0.08 else "#f59e0b" if kelly > 0 else "#5b6380"
                 rows_html.append(
                     f'<tr><td>{str(row["date"])[:10]}</td>'
-                    f'<td style="font-weight:bold">{home}</td>'
-                    f'<td style="font-weight:bold">{away}</td>'
-                    f'<td style="color:{color};font-weight:bold">{row["pred_label"]}</td>'
+                    f'<td style="font-weight:600">{home}</td>'
+                    f'<td style="font-weight:600">{away}</td>'
+                    f'<td style="color:{color};font-weight:600">{row["pred_label"]}</td>'
                     f'<td>{conf*100:.0f}%</td>'
-                    f'<td style="font-size:10px">{oH:.2f}/{oD:.2f}/{oA:.2f}</td>'
-                    f'<td style="font-size:10px;max-width:180px">{"；".join(reasons)}</td>'
-                    f'<td style="font-size:11px;color:{bet_color}">{bet}</td></tr>'
+                    f'<td>{oH:.2f}/{oD:.2f}/{oA:.2f}</td>'
+                    f'<td class="reason-cell">{"；".join(reasons)}</td>'
+                    f'<td class="bet-cell" style="color:{bet_color}">{bet}</td></tr>'
                 )
             matchday_html_rows = "\n".join(rows_html)
 
@@ -285,59 +285,139 @@ def generate_dashboard(data):
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>🏆 世界杯2026预测系统 | {today_str}</title>
+<title>世界杯2026预测系统 | {today_str}</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
 <style>
+:root{{
+  --bg:#090b14;--bg2:#0f111b;--card:rgba(20,23,36,.75);--card-hover:rgba(26,30,48,.85);
+  --border:rgba(255,255,255,.05);--border-hover:rgba(255,255,255,.1);
+  --text:#e2e8f0;--text2:#94a3b8;--text3:#4a5270;
+  --accent:#f59e0b;--accent2:#fbbf24;
+  --home:#ef4444;--draw:#f59e0b;--away:#3b82f6;--green:#22c55e;
+  --r:12px;--rs:8px;
+}}
 *{{margin:0;padding:0;box-sizing:border-box}}
-body{{background:#0a0e1a;color:#e0e0e0;font-family:'PingFang SC','Microsoft YaHei',sans-serif;padding:16px;max-width:1300px;margin:0 auto}}
-h1{{background:linear-gradient(135deg,#ffd700,#ff6b35);-webkit-background-clip:text;-webkit-text-fill-color:transparent;font-size:28px;text-align:center;margin-bottom:2px;padding-top:8px}}
-.sub{{color:#888;text-align:center;font-size:12px;margin-bottom:16px}}
-.wc-badge{{text-align:center;font-size:11px;color:#ffd700;margin-bottom:16px;letter-spacing:2px}}
-.grid4{{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:16px}}
-.stat-card{{background:linear-gradient(135deg,#1a1a3e,#0f1a2e);border-radius:10px;padding:14px;text-align:center;border:1px solid #2a2a5e}}
-.stat-card .v{{font-size:22px;font-weight:bold;margin-bottom:2px}}
-.stat-card .l{{font-size:11px;color:#888}}
-.card{{background:linear-gradient(135deg,#1a1a3e,#0f1a2e);border-radius:10px;padding:14px;border:1px solid #2a2a5e;margin-bottom:14px}}
-.card h2{{color:#ffd700;font-size:14px;margin-bottom:8px;display:flex;align-items:center;gap:6px}}
-.chart{{width:100%;height:300px}}
-.chart-sm{{width:100%;height:220px}}
-.pick-grid{{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:8px}}
-.pick-card{{background:linear-gradient(135deg,#1a1a4e,#12122a);border-radius:8px;padding:10px;border:1px solid #2a2a5e;position:relative}}
-.pick-card .date-tag{{position:absolute;top:6px;right:8px;font-size:10px;padding:1px 5px;border-radius:3px;background:#2a2a5e;color:#888}}
-.pick-card .teams{{font-size:14px;font-weight:bold;color:#ffd700;margin-bottom:4px}}
-.pick-card .prediction{{font-size:18px;font-weight:bold;margin:6px 0}}
-.pick-card .probs{{display:flex;gap:6px;margin:4px 0}}
-.pick-card .prob{{flex:1;text-align:center;font-size:11px;padding:3px;border-radius:4px;background:#0a0e1a}}
-.pick-card .prob .pct{{font-size:13px;font-weight:bold}}
-.pick-card .prob .lbl{{color:#888}}
-.pick-card .odds{{font-size:11px;color:#888;margin-top:2px}}
-table{{width:100%;border-collapse:collapse;font-size:11px}}
-th{{background:#2a2a5e;color:#ffd700;padding:5px 6px;text-align:left}}
-td{{padding:4px 6px;border-bottom:1px solid #1a1a3e}}
-.tag-H{{color:#ff4d4f;font-weight:bold}}
-.tag-D{{color:#faad14;font-weight:bold}}
-.tag-A{{color:#1890ff;font-weight:bold}}
-.analysis-grid{{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:8px}}
-.analysis-card{{background:#1a1a4e;border-radius:8px;padding:10px;border:1px solid #2a2a5e}}
-.analysis-card .aname{{font-weight:bold;color:#ffd700;font-size:13px;margin-bottom:4px}}
-.analysis-card .aval{{font-size:11px;color:#aaa;line-height:1.6}}
-.bar-container{{height:6px;background:#0a0e1a;border-radius:3px;margin:2px 0;overflow:hidden}}
-.bar{{height:100%;border-radius:3px;transition:width 0.5s}}
-@media(max-width:600px){{.grid4{{grid-template-columns:repeat(2,1fr)}}}}
-.highlight-row{{animation:fadeIn 0.5s}}
-@keyframes fadeIn{{from{{opacity:0}}to{{opacity:1}}}}
+body{{background:var(--bg);color:var(--text);font-family:Inter,'PingFang SC','Microsoft YaHei',system-ui,sans-serif;padding:24px;max-width:1340px;margin:0 auto;line-height:1.6;font-size:14px;-webkit-font-smoothing:antialiased}}
+
+/* Header */
+.hd{{display:flex;align-items:center;justify-content:space-between;padding:16px 0 12px;margin-bottom:20px;border-bottom:1px solid var(--border)}}
+.hd-l{{display:flex;align-items:center;gap:12px}}
+.hd-icon{{width:38px;height:38px;background:linear-gradient(135deg,var(--accent),#d97706);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}}
+.hd-t{{font-size:20px;font-weight:700;background:linear-gradient(135deg,var(--accent2),var(--accent));-webkit-background-clip:text;-webkit-text-fill-color:transparent;letter-spacing:-.3px}}
+.hd-r{{text-align:right;font-size:11px;color:var(--text3);line-height:1.5}}
+.hd-r strong{{color:var(--text2);font-weight:500}}
+
+/* Stats */
+.st{{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:20px}}
+.st-c{{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:16px 12px;text-align:center;backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);transition:all .25s;position:relative;overflow:hidden}}
+.st-c:hover{{border-color:var(--border-hover);transform:translateY(-2px)}}
+.st-c::before{{content:'';position:absolute;top:0;left:25%;right:25%;height:1px;background:linear-gradient(90deg,transparent,var(--accent),transparent);opacity:0;transition:opacity .3s}}
+.st-c:hover::before{{opacity:1}}
+.st-v{{font-size:26px;font-weight:700;line-height:1.2;letter-spacing:-.5px}}
+.st-l{{font-size:10px;color:var(--text3);text-transform:uppercase;letter-spacing:.6px;margin-top:4px}}
+
+/* Cards */
+.cd{{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:20px;margin-bottom:18px;backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);transition:border-color .25s}}
+.cd:hover{{border-color:var(--border-hover)}}
+.cd-h{{display:flex;align-items:center;gap:10px;margin-bottom:14px;padding-bottom:12px;border-bottom:1px solid var(--border)}}
+.cd-h-dot{{width:5px;height:5px;border-radius:50%;background:var(--accent);flex-shrink:0}}
+.cd-h h2{{font-size:11px;font-weight:600;color:var(--text2);letter-spacing:.4px;text-transform:uppercase}}
+.cd-h-b{{margin-left:auto;font-size:9px;padding:2px 8px;border-radius:8px;background:rgba(255,255,255,.04);color:var(--text3);letter-spacing:.3px}}
+
+/* Matchday card */
+.cd-md{{border-color:rgba(245,158,11,.2) !important}}
+.cd-md:hover{{border-color:rgba(245,158,11,.35) !important}}
+.cd-md .cd-h{{border-bottom-color:rgba(245,158,11,.1)}}
+.cd-md .cd-h-dot{{background:#22c55e}}
+
+/* Predictions Grid */
+.pg{{display:grid;grid-template-columns:repeat(auto-fill,minmax(275px,1fr));gap:10px}}
+.pc{{background:var(--bg2);border:1px solid var(--border);border-radius:var(--rs);padding:16px;position:relative;transition:all .25s}}
+.pc:hover{{border-color:var(--border-hover);transform:translateY(-2px)}}
+.pc-d{{position:absolute;top:8px;right:10px;font-size:9px;padding:2px 7px;border-radius:4px;background:var(--border);color:var(--text3);letter-spacing:.2px}}
+.pc-t{{font-size:14px;font-weight:600;color:var(--text);margin-bottom:4px;letter-spacing:-.2px}}
+.pc-vs{{font-size:11px;color:var(--text3);margin-bottom:8px}}
+.pc-pr{{font-size:22px;font-weight:700;margin:6px 0 10px}}
+.pc-pr span{{font-size:11px;font-weight:400;color:var(--text3);margin-left:4px}}
+.pc-prb{{display:flex;gap:6px;margin-bottom:8px}}
+.pc-prb-b{{flex:1;text-align:center;padding:7px 4px 5px;border-radius:6px;background:var(--card)}}
+.pc-prb-b .p{{font-size:15px;font-weight:600}}
+.pc-prb-b .l{{font-size:9px;color:var(--text3);margin-top:1px}}
+.pc-prb-b .o{{font-size:9px;color:var(--text3);margin-top:1px}}
+.pc-cb{{height:3px;background:var(--border);border-radius:2px;overflow:hidden;margin-top:2px}}
+.pc-cb .f{{height:100%;border-radius:2px;transition:width .6s ease}}
+
+/* Tables */
+.tw{{overflow-x:auto}}
+table{{width:100%;border-collapse:collapse;font-size:12px}}
+th{{padding:8px 10px;text-align:left;font-weight:500;color:var(--text3);font-size:9px;text-transform:uppercase;letter-spacing:.6px;border-bottom:1px solid var(--border)}}
+td{{padding:7px 10px;border-bottom:1px solid var(--border);color:var(--text2)}}
+tr:last-child td{{border-bottom:none}}
+tr:hover td{{background:rgba(255,255,255,.015)}}
+.reason-cell{{font-size:11px;max-width:170px;color:var(--text3)}}
+.bet-cell{{font-size:11px;white-space:nowrap}}
+
+/* Charts */
+.ch{{width:100%;height:300px}}
+.ch-sm{{width:100%;height:220px}}
+
+/* Analysis Grid */
+.ag{{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:10px}}
+.ac{{background:var(--bg2);border:1px solid var(--border);border-radius:var(--rs);padding:14px;transition:all .2s}}
+.ac:hover{{border-color:var(--border-hover)}}
+.ac-n{{font-weight:600;color:var(--text);font-size:13px;margin-bottom:6px}}
+.ac-v{{font-size:11px;color:var(--text3);line-height:1.8}}
+.bc{{height:5px;background:var(--border);border-radius:3px;margin:4px 0;overflow:hidden}}
+.bc .b{{height:100%;border-radius:3px;transition:width .5s}}
+
+/* Tags */
+.th{{color:var(--home)}} .td{{color:var(--draw)}} .ta{{color:var(--away)}}
+
+/* Layout helpers */
+.l2{{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:18px}}
+
+/* Footer */
+.ft{{text-align:center;font-size:10px;color:var(--text3);padding:20px 0 4px;border-top:1px solid var(--border);margin-top:12px;line-height:1.8}}
+
+/* Responsive */
+@media(max-width:768px){{.st{{grid-template-columns:repeat(2,1fr)}}.pg{{grid-template-columns:1fr}}.l2{{grid-template-columns:1fr}}.hd{{flex-direction:column;align-items:flex-start;gap:8px}}}}
+
+/* Animations */
+@keyframes fi{{from{{opacity:0;transform:translateY(6px)}}to{{opacity:1;transform:translateY(0)}}}}
+.cd,.st-c,.pc,.ac{{animation:fi .45s ease-out both}}
+.pc:nth-child(2){{animation-delay:.05s}}
+.pc:nth-child(3){{animation-delay:.1s}}
+.pc:nth-child(4){{animation-delay:.15s}}
+.st-c:nth-child(2){{animation-delay:.05s}}
+.st-c:nth-child(3){{animation-delay:.1s}}
+.st-c:nth-child(4){{animation-delay:.15s}}
 </style>
 </head>
 <body>
 
-<h1>🏆 世界杯2026预测系统</h1>
-<p class="wc-badge">⚽ 2026年6月11日 · 美国/加拿大/墨西哥 · 48支球队 · 104场比赛</p>
-<p class="sub">{today_str} | 基于FIFA排名+历史世界杯数据+集成学习模型 | 媒体情感·社交热度·赔率分析</p>
+<!-- Header -->
+<header class="hd">
+  <div class="hd-l">
+    <div class="hd-icon">⚽</div>
+    <div class="hd-t">世界杯2026预测系统</div>
+  </div>
+  <div class="hd-r">
+    <strong>{today_str}</strong><br>
+    48支球队 · 104场比赛 · FIFA排名+ML模型
+  </div>
+</header>
 
-<!-- 最新比赛日 -->
-<div class="card" style="border-color:#ffd700;margin-bottom:16px">
-  <h2>⚡ 最新比赛日 · {matchday_date_str}</h2>
-  <div style="overflow-x:auto">
+<!-- Latest Matchday -->
+<div class="cd cd-md">
+  <div class="cd-h">
+    <span class="cd-h-dot"></span>
+    <h2>最新比赛日 · {matchday_date_str}</h2>
+    <span class="cd-h-b">MATCHDAY</span>
+  </div>
+  <div class="tw">
   <table>
     <tr><th>时间</th><th>主队</th><th>客队</th><th>预测</th><th>概率</th><th>赔率(主/平/客)</th><th>推荐理由</th><th>投注建议</th></tr>
     {matchday_html_rows}
@@ -345,197 +425,237 @@ td{{padding:4px 6px;border-bottom:1px solid #1a1a3e}}
   </div>
 </div>
 
-<div class="grid4">
-  <div class="stat-card"><div class="v" style="color:#ffd700">{avg_acc:.1%}</div><div class="l">模型回测准确率</div></div>
-  <div class="stat-card"><div class="v" style="color:#1890ff">{n_matches}</div><div class="l">历史训练场次</div></div>
-  <div class="stat-card"><div class="v" style="color:#52c41a">{len(high_conf_picks)}</div><div class="l">待预测比赛</div></div>
-  <div class="stat-card"><div class="v" style="color:#ff6b35">2026.06.11</div><div class="l">开幕倒计时</div></div>
-</div>
-
-<!-- 预测结果 -->
-<div class="card">
-  <h2>🔮 比赛预测 (高置信度)</h2>
-  <div id="picksContainer" class="pick-grid"></div>
-</div>
-
-<div class="card">
-  <h2>📊 模型回测收益曲线</h2>
-  <div id="backtestChart" class="chart"></div>
-</div>
-
-<div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px">
-  <div class="card">
-    <h2>📰 媒体情感分析</h2>
-    <div id="mediaChart" class="chart-sm"></div>
+<!-- Stats -->
+<div class="st">
+  <div class="st-c">
+    <div class="st-v" style="color:var(--accent2)">{avg_acc:.1%}</div>
+    <div class="st-l">回测准确率</div>
   </div>
-  <div class="card">
-    <h2>🔥 社交媒体热度</h2>
-    <div id="socialChart" class="chart-sm"></div>
+  <div class="st-c">
+    <div class="st-v" style="color:var(--away)">{n_matches}</div>
+    <div class="st-l">历史训练场次</div>
+  </div>
+  <div class="st-c">
+    <div class="st-v" style="color:var(--green)">{len(high_conf_picks)}</div>
+    <div class="st-l">待预测比赛</div>
+  </div>
+  <div class="st-c">
+    <div class="st-v" style="font-size:22px;color:var(--accent)">2026.06.11</div>
+    <div class="st-l">开幕日</div>
   </div>
 </div>
 
-<div class="card">
-  <h2>💰 赔率对比分析 (实力悬殊最大的15场)</h2>
-  <div id="oddsChart" class="chart"></div>
+<!-- High Confidence Predictions -->
+<div class="cd">
+  <div class="cd-h">
+    <span class="cd-h-dot"></span>
+    <h2>高置信度预测</h2>
+    <span class="cd-h-b">{len(high_conf_picks)} MATCHES</span>
+  </div>
+  <div id="picksContainer" class="pg"></div>
 </div>
 
-<div class="card">
-  <h2>🏟️ 球队综合分析</h2>
-  <div id="teamAnalysis" class="analysis-grid"></div>
+<!-- Backtest Chart -->
+<div class="cd">
+  <div class="cd-h">
+    <span class="cd-h-dot"></span>
+    <h2>模型回测收益曲线</h2>
+  </div>
+  <div id="backtestChart" class="ch"></div>
 </div>
 
-<div class="card">
-  <h2>📋 全部预测详情</h2>
-  <div id="allPredictionsTable" style="max-height:500px;overflow-y:auto"></div>
+<!-- Media + Social -->
+<div class="l2">
+  <div class="cd">
+    <div class="cd-h">
+      <span class="cd-h-dot"></span>
+      <h2>媒体情感分析</h2>
+    </div>
+    <div id="mediaChart" class="ch-sm"></div>
+  </div>
+  <div class="cd">
+    <div class="cd-h">
+      <span class="cd-h-dot"></span>
+      <h2>社交媒体热度</h2>
+    </div>
+    <div id="socialChart" class="ch-sm"></div>
+  </div>
 </div>
 
-<p class="sub" style="margin-top:20px;font-size:10px">
-⚠️ 预测仅供参考 | 数据来源: football-data.org + FIFA Rankings | 模型: RandomForest+GradientBoosting+ExtraTrees+Logistic Ensemble
-</p>
+<!-- Odds Comparison -->
+<div class="cd">
+  <div class="cd-h">
+    <span class="cd-h-dot"></span>
+    <h2>赔率对比分析</h2>
+    <span class="cd-h-b">实力悬殊最大15场</span>
+  </div>
+  <div id="oddsChart" class="ch"></div>
+</div>
+
+<!-- Team Analysis -->
+<div class="cd">
+  <div class="cd-h">
+    <span class="cd-h-dot"></span>
+    <h2>球队综合分析</h2>
+    <span class="cd-h-b">媒体情感 + 社交热度</span>
+  </div>
+  <div id="teamAnalysis" class="ag"></div>
+</div>
+
+<!-- All Predictions -->
+<div class="cd">
+  <div class="cd-h">
+    <span class="cd-h-dot"></span>
+    <h2>全部预测详情</h2>
+    <span class="cd-h-b">{len(high_conf_picks)} MATCHES</span>
+  </div>
+  <div class="tw" id="allPredictionsTable" style="max-height:480px;overflow-y:auto"></div>
+</div>
+
+<!-- Footer -->
+<div class="ft">
+  预测仅供参考 · 数据来源: football-data.org + FIFA Rankings · 模型: RandomForest + GradientBoosting + ExtraTrees + Logistic Ensemble
+</div>
 
 <script>
-// ===== 预测卡片 =====
+// ===== Prediction Cards =====
 var picks = {json.dumps(high_conf_picks, ensure_ascii=False)};
 var ph = document.getElementById('picksContainer');
 if (picks.length === 0) {{
-  ph.innerHTML = '<div style="text-align:center;padding:20px;color:#888;font-size:13px">暂无预测数据，请先运行主流程</div>';
+  ph.innerHTML = '<div style="text-align:center;padding:30px;color:var(--text3);font-size:13px">暂无预测数据，请先运行主流程</div>';
 }} else {{
   picks.forEach(function(p){{
-    var predColor = p.pred_r === 'H' ? '#ff4d4f' : p.pred_r === 'D' ? '#faad14' : '#1890ff';
-    var div = document.createElement('div');
-    div.className = 'pick-card';
-    var probsHtml = '<div class="probs">' +
-      '<div class="prob"><div class="pct" '+(parseFloat(p.pH)>40?'style="color:#ff4d4f;font-weight:bold"':'')+'>'+p.pH+'%</div><div class="lbl">主胜</div><div class="odds">@'+p.oH+'</div></div>' +
-      '<div class="prob"><div class="pct" '+(parseFloat(p.pD)>35?'style="color:#faad14;font-weight:bold"':'')+'>'+p.pD+'%</div><div class="lbl">平局</div><div class="odds">@'+p.oD+'</div></div>' +
-      '<div class="prob"><div class="pct" '+(parseFloat(p.pA)>40?'style="color:#1890ff;font-weight:bold"':'')+'>'+p.pA+'%</div><div class="lbl">客胜</div><div class="odds">@'+p.oA+'</div></div>' +
+    var c = p.pred_r === 'H' ? 'var(--home)' : p.pred_r === 'D' ? 'var(--draw)' : 'var(--away)';
+    var d = document.createElement('div'); d.className = 'pc';
+    var pb = '<div class="pc-prb">' +
+      '<div class="pc-prb-b"><div class="p" '+(parseFloat(p.pH)>40?'style="color:var(--home);font-weight:600"':'')+'>'+p.pH+'%</div><div class="l">主胜</div><div class="o">@'+p.oH+'</div></div>' +
+      '<div class="pc-prb-b"><div class="p" '+(parseFloat(p.pD)>35?'style="color:var(--draw);font-weight:600"':'')+'>'+p.pD+'%</div><div class="l">平局</div><div class="o">@'+p.oD+'</div></div>' +
+      '<div class="pc-prb-b"><div class="p" '+(parseFloat(p.pA)>40?'style="color:var(--away);font-weight:600"':'')+'>'+p.pA+'%</div><div class="l">客胜</div><div class="o">@'+p.oA+'</div></div>' +
       '</div>';
-    div.innerHTML = '<span class="date-tag">'+p.date+'</span>' +
-      '<div class="teams">'+p.home+' vs '+p.away+'</div>' +
-      '<div class="prediction" style="color:'+predColor+'">🏆 '+p.pred+'</div>' +
-      probsHtml +
-      '<div style="font-size:10px;color:#888;margin-top:2px">置信度: '+p.conf+'%</div>';
-    ph.appendChild(div);
+    var confPct = parseFloat(p.conf);
+    var confColor = confPct >= 50 ? 'var(--green)' : confPct >= 40 ? 'var(--draw)' : 'var(--text3)';
+    d.innerHTML = '<span class="pc-d">'+p.date+'</span>' +
+      '<div class="pc-t">'+p.home+'<span style="color:var(--text3)"> vs </span>'+p.away+'</div>' +
+      '<div class="pc-pr" style="color:'+c+'">'+p.pred+' <span>'+p.conf+'% 置信度</span></div>' +
+      pb +
+      '<div class="pc-cb"><div class="f" style="width:'+p.conf+'%;background:'+confColor+'"></div></div>';
+    ph.appendChild(d);
   }});
 }}
 
-// ===== 回测收益曲线 =====
+// ===== Backtest Curve =====
 var cumRet = {cum_ret_str};
 var bc = echarts.init(document.getElementById('backtestChart'));
 bc.setOption({{
   backgroundColor:'transparent',
-  tooltip:{{trigger:'axis',formatter:function(p){{return '<b>投注 #'+p[0].axisValue+'</b><br/>'+p[0].marker+' 累计收益: ¥'+p[0].value.toFixed(0);}}}},
-  grid:{{left:'10%',right:'5%',top:'10%',bottom:'12%'}},
-  xAxis:{{type:'category',data:Array.from({{length:cumRet.length}},(_,i)=>'#'+(i+1)),axisLabel:{{fontSize:9,color:'#ccc',show:false}},axisLine:{{lineStyle:{{color:'#333'}}}}}},
-  yAxis:{{type:'value',name:'累计盈亏 (¥)',nameTextStyle:{{color:'#888'}},splitLine:{{lineStyle:{{color:'#1a1a3e'}}}},axisLabel:{{color:'#888',formatter:'¥{{value}}'}}}},
+  tooltip:{{trigger:'axis',formatter:function(p){{return '<b>#'+p[0].axisValue+'</b><br/>'+p[0].marker+' 累计收益: ¥'+p[0].value.toFixed(0);}}}},
+  grid:{{left:'8%',right:'4%',top:'8%',bottom:'10%'}},
+  xAxis:{{type:'category',data:Array.from({{length:cumRet.length}},(_,i)=>'#'+(i+1)),axisLabel:{{fontSize:9,color:'#4a5270',show:false}},axisLine:{{lineStyle:{{color:'#1a1d2e'}}}},axisTick:{{show:false}}}},
+  yAxis:{{type:'value',name:'累计盈亏 (¥)',nameTextStyle:{{color:'#4a5270',fontSize:10}},splitLine:{{lineStyle:{{color:'#1a1d2e'}}}},axisLabel:{{color:'#4a5270',fontSize:10,formatter:'¥{{value}}'}}}},
   series:[{{
     name:'策略收益',type:'line',data:cumRet,smooth:true,
-    lineStyle:{{width:2.5,color:'#ffd700'}},
-    areaStyle:{{color:{{type:'linear',x:0,y:0,x2:0,y2:1,colorStops:[{{offset:0,color:'#ffd70044'}},{{offset:1,color:'#ffd70000'}}]}}}},
-    markLine:{{data:[{{yAxis:0,lineStyle:{{color:'#555',type:'dashed'}},label:{{formatter:'盈亏平衡',color:'#888'}}}}]}}
+    lineStyle:{{width:2,color:'#f59e0b'}},
+    areaStyle:{{color:{{type:'linear',x:0,y:0,x2:0,y2:1,colorStops:[{{offset:0,color:'rgba(245,158,11,.25)'}},{{offset:1,color:'rgba(245,158,11,0)'}}]}}}},
+    markLine:{{silent:true,data:[{{yAxis:0,lineStyle:{{color:'#2a2d42',type:'dashed',width:1}},label:{{formatter:'盈亏平衡',color:'#4a5270',fontSize:10}}}}]}}
   }}]
 }});
 
-// ===== 媒体情感 =====
+// ===== Media Sentiment =====
 var mediaData = {media_str};
 var topMedia = mediaData.slice().sort(function(a,b){{return b.sentiment_score - a.sentiment_score}}).slice(0,15);
 var mc = echarts.init(document.getElementById('mediaChart'));
 mc.setOption({{
   backgroundColor:'transparent',
   tooltip:{{trigger:'axis',formatter:function(p){{return p[0].name+'<br/>'+p[0].marker+' 情感得分: '+(p[0].value*100).toFixed(0)+'%'}}}},
-  grid:{{left:'20%',right:'5%',top:'5%',bottom:'15%'}},
-  xAxis:{{type:'value',max:0.9,axisLabel:{{color:'#888',formatter:'{{value}}'}},splitLine:{{lineStyle:{{color:'#1a1a3e'}}}}}},
-  yAxis:{{type:'category',data:topMedia.map(function(d){{return d.team}}),axisLabel:{{color:'#ccc',fontSize:10}},axisLine:{{lineStyle:{{color:'#333'}}}}}},
+  grid:{{left:'22%',right:'6%',top:'6%',bottom:'10%'}},
+  xAxis:{{type:'value',max:0.9,axisLabel:{{color:'#4a5270',fontSize:9,formatter:'{{value}}'}},splitLine:{{lineStyle:{{color:'#1a1d2e'}}}}}},
+  yAxis:{{type:'category',data:topMedia.map(function(d){{return d.team}}),axisLabel:{{color:'#94a3b8',fontSize:9}},axisLine:{{lineStyle:{{color:'#1a1d2e'}}}},axisTick:{{show:false}}}},
   series:[{{
     type:'bar',data:topMedia.map(function(d){{return d.sentiment_score}}),
-    barWidth:'50%',
-    itemStyle:{{color:function(p){{return p.value>0.5?'#52c41a':'#ff4d4f'}}}},
-    label:{{show:true,position:'right',color:'#ffd700',fontSize:10,formatter:function(p){{return (p.value*100).toFixed(0)+'%'}}}}
+    barWidth:'55%',
+    itemStyle:{{color:function(p){{return p.value>0.5?'#22c55e':'#ef4444'}},borderRadius:[0,3,3,0]}},
+    label:{{show:true,position:'right',color:'#94a3b8',fontSize:9,formatter:function(p){{return (p.value*100).toFixed(0)+'%'}}}}
   }}]
 }});
 
-// ===== 社交热度 =====
+// ===== Social Heat =====
 var socialData = {social_str};
 var sc = echarts.init(document.getElementById('socialChart'));
 sc.setOption({{
   backgroundColor:'transparent',
   tooltip:{{trigger:'axis'}},
-  grid:{{left:'20%',right:'5%',top:'5%',bottom:'15%'}},
-  xAxis:{{type:'value',max:1.0,axisLabel:{{color:'#888',formatter:'{{value}}'}},splitLine:{{lineStyle:{{color:'#1a1a3e'}}}}}},
-  yAxis:{{type:'category',data:socialData.map(function(d){{return d.team}}),axisLabel:{{color:'#ccc',fontSize:10}},axisLine:{{lineStyle:{{color:'#333'}}}}}},
+  grid:{{left:'22%',right:'6%',top:'6%',bottom:'10%'}},
+  xAxis:{{type:'value',max:1.0,axisLabel:{{color:'#4a5270',fontSize:9,formatter:'{{value}}'}},splitLine:{{lineStyle:{{color:'#1a1d2e'}}}}}},
+  yAxis:{{type:'category',data:socialData.map(function(d){{return d.team}}),axisLabel:{{color:'#94a3b8',fontSize:9}},axisLine:{{lineStyle:{{color:'#1a1d2e'}}}},axisTick:{{show:false}}}},
   series:[{{
     type:'bar',data:socialData.map(function(d){{return d.heat_score}}),
-    barWidth:'40%',
-    itemStyle:{{color:{{type:'linear',x:0,y:0,x2:1,y2:0,colorStops:[{{offset:0,color:'#ff6b35'}},{{offset:1,color:'#ffd700'}}]}}}},
-    label:{{show:true,position:'right',color:'#fff',fontSize:10,formatter:function(p){{return (p.value*100).toFixed(0)+'%'}}}}
+    barWidth:'45%',
+    itemStyle:{{color:{{type:'linear',x:0,y:0,x2:1,y2:0,colorStops:[{{offset:0,color:'#f97316'}},{{offset:1,color:'#f59e0b'}}]}},borderRadius:[0,3,3,0]}},
+    label:{{show:true,position:'right',color:'#94a3b8',fontSize:9,formatter:function(p){{return (p.value*100).toFixed(0)+'%'}}}}
   }}]
 }});
 
-// ===== 赔率对比 =====
+// ===== Odds Comparison =====
 var oddsData = {odds_str};
 if (oddsData.length > 0) {{
   var oc = echarts.init(document.getElementById('oddsChart'));
   oc.setOption({{
     backgroundColor:'transparent',
     tooltip:{{trigger:'axis'}},
-    legend:{{data:['主胜赔率','平局赔率','客胜赔率'],textStyle:{{color:'#ccc'}},top:0}},
-    grid:{{left:'8%',right:'5%',top:'15%',bottom:'15%'}},
-    xAxis:{{type:'category',data:oddsData.map(function(d){{return d.home+' vs '+d.away}}),axisLabel:{{fontSize:9,color:'#ccc',rotate:30}},axisLine:{{lineStyle:{{color:'#333'}}}}}},
-    yAxis:{{type:'value',name:'赔率',nameTextStyle:{{color:'#888'}},splitLine:{{lineStyle:{{color:'#1a1a3e'}}}},axisLabel:{{color:'#888'}}}},
+    legend:{{data:['主胜赔率','平局赔率','客胜赔率'],textStyle:{{color:'#94a3b8',fontSize:10}},top:0}},
+    grid:{{left:'8%',right:'4%',top:'18%',bottom:'14%'}},
+    xAxis:{{type:'category',data:oddsData.map(function(d){{return d.home+' vs '+d.away}}),axisLabel:{{fontSize:9,color:'#94a3b8',rotate:30}},axisLine:{{lineStyle:{{color:'#1a1d2e'}}}}}},
+    yAxis:{{type:'value',name:'赔率',nameTextStyle:{{color:'#4a5270',fontSize:10}},splitLine:{{lineStyle:{{color:'#1a1d2e'}}}},axisLabel:{{color:'#4a5270',fontSize:9}}}},
     series:[
-      {{name:'主胜赔率',type:'bar',data:oddsData.map(function(d){{return d.oH}}),barWidth:'20%',itemStyle:{{color:'#ff4d4f'}},label:{{show:true,position:'top',fontSize:9,color:'#ff4d4f',formatter:'{{c}}'}}}},
-      {{name:'平局赔率',type:'bar',data:oddsData.map(function(d){{return d.oD}}),barWidth:'20%',itemStyle:{{color:'#faad14'}},label:{{show:true,position:'top',fontSize:9,color:'#faad14',formatter:'{{c}}'}}}},
-      {{name:'客胜赔率',type:'bar',data:oddsData.map(function(d){{return d.oA}}),barWidth:'20%',itemStyle:{{color:'#1890ff'}},label:{{show:true,position:'top',fontSize:9,color:'#1890ff',formatter:'{{c}}'}}}}
+      {{name:'主胜赔率',type:'bar',data:oddsData.map(function(d){{return d.oH}}),barWidth:'20%',itemStyle:{{color:'#ef4444',borderRadius:[3,3,0,0]}},label:{{show:true,position:'top',fontSize:9,color:'#ef4444',formatter:'{{c}}'}}}},
+      {{name:'平局赔率',type:'bar',data:oddsData.map(function(d){{return d.oD}}),barWidth:'20%',itemStyle:{{color:'#f59e0b',borderRadius:[3,3,0,0]}},label:{{show:true,position:'top',fontSize:9,color:'#f59e0b',formatter:'{{c}}'}}}},
+      {{name:'客胜赔率',type:'bar',data:oddsData.map(function(d){{return d.oA}}),barWidth:'20%',itemStyle:{{color:'#3b82f6',borderRadius:[3,3,0,0]}},label:{{show:true,position:'top',fontSize:9,color:'#3b82f6',formatter:'{{c}}'}}}}
     ]
   }});
 }}
 
-// ===== 球队综合分析 =====
-var teamData = mediaData.concat(socialData).reduce(function(acc, item) {{
-  var t = item.team || item.team;
-  if (!acc[t]) {{
-    acc[t] = {{team:t, sentiment:0.5, heat:0.5, volume:0}};
-  }}
-  if (item.sentiment_score !== undefined) acc[t].sentiment = item.sentiment_score;
-  if (item.heat_score !== undefined) acc[t].heat = item.heat_score;
-  if (item.news_volume !== undefined) acc[t].volume = item.news_volume;
-  if (item.active_users_24h !== undefined) acc[t].volume = item.active_users_24h;
-  return acc;
+// ===== Team Analysis =====
+var td = mediaData.concat(socialData).reduce(function(a, i) {{
+  var t = i.team;
+  if (!a[t]) a[t] = {{team:t, sentiment:0.5, heat:0.5}};
+  if (i.sentiment_score !== undefined) a[t].sentiment = i.sentiment_score;
+  if (i.heat_score !== undefined) a[t].heat = i.heat_score;
+  return a;
 }}, {{}});
-var teams = Object.values(teamData).sort(function(a,b){{return (b.sentiment+b.heat) - (a.sentiment+a.heat)}}).slice(0,20);
+var tarr = Object.values(td).sort(function(a,b){{return (b.sentiment+b.heat) - (a.sentiment+a.heat)}}).slice(0,20);
 var tc = document.getElementById('teamAnalysis');
-if (teams.length > 0) {{
-  teams.forEach(function(t){{
+if (tarr.length > 0) {{
+  tarr.forEach(function(t){{
     var score = (t.sentiment + t.heat) / 2 * 100;
-    var div = document.createElement('div');
-    div.className = 'analysis-card';
-    div.innerHTML = '<div class="aname">'+t.team+'</div>' +
-      '<div class="aval">媒体情感: '+(t.sentiment*100).toFixed(0)+'%</div>' +
-      '<div class="bar-container"><div class="bar" style="width:'+(t.sentiment*100)+'%;background:'+(t.sentiment>0.5?'#52c41a':'#ff4d4f')+'"></div></div>' +
-      '<div class="aval">社交热度: '+(t.heat*100).toFixed(0)+'%</div>' +
-      '<div class="bar-container"><div class="bar" style="width:'+(t.heat*100)+'%;background:linear-gradient(90deg,#ff6b35,#ffd700)"></div></div>' +
-      '<div class="aval">综合评分: '+score.toFixed(0)+'/100</div>';
-    tc.appendChild(div);
+    var d = document.createElement('div'); d.className = 'ac';
+    d.innerHTML = '<div class="ac-n">'+t.team+'</div>' +
+      '<div class="ac-v">媒体情感: '+(t.sentiment*100).toFixed(0)+'%</div>' +
+      '<div class="bc"><div class="b" style="width:'+(t.sentiment*100)+'%;background:'+(t.sentiment>0.5?'#22c55e':'#ef4444')+'"></div></div>' +
+      '<div class="ac-v">社交热度: '+(t.heat*100).toFixed(0)+'%</div>' +
+      '<div class="bc"><div class="b" style="width:'+(t.heat*100)+'%;background:linear-gradient(90deg,#f97316,#f59e0b)"></div></div>' +
+      '<div class="ac-v" style="color:var(--text2);font-weight:500;margin-top:2px">综合评分: '+score.toFixed(0)+'/100</div>';
+    tc.appendChild(d);
   }});
 }} else {{
-  tc.innerHTML = '<div style="text-align:center;padding:20px;color:#888;font-size:13px">暂无分析数据</div>';
+  tc.innerHTML = '<div style="text-align:center;padding:30px;color:var(--text3);font-size:13px">暂无分析数据</div>';
 }}
 
-// ===== 全部预测详情 =====
+// ===== All Predictions Table =====
 var predData = [{pred_rows}];
 var at = document.getElementById('allPredictionsTable');
 if (predData.length > 0) {{
-  var html = '<table><tr><th>日期</th><th>主队</th><th>客队</th><th>预测</th><th>主胜</th><th>平局</th><th>客胜</th><th>置信度</th><th>主胜赔</th><th>平赔</th><th>客胜赔</th></tr>';
+  var h = '<table><tr><th>日期</th><th>主队</th><th>客队</th><th>预测</th><th>主胜</th><th>平局</th><th>客胜</th><th>置信度</th><th>主胜赔</th><th>平赔</th><th>客胜赔</th></tr>';
   predData.forEach(function(r){{
-    var predColor = r.pred_r === 'H' ? '#ff4d4f' : r.pred_r === 'D' ? '#faad14' : '#1890ff';
-    html += '<tr><td>'+r.date+'</td><td>'+r.home+'</td><td>'+r.away+'</td>' +
-      '<td style="color:'+predColor+';font-weight:bold">'+r.pred+'</td>' +
+    var pc = r.pred_r === 'H' ? 'var(--home)' : r.pred_r === 'D' ? 'var(--draw)' : 'var(--away)';
+    h += '<tr><td>'+r.date+'</td><td>'+r.home+'</td><td>'+r.away+'</td>' +
+      '<td style="color:'+pc+';font-weight:600">'+r.pred+'</td>' +
       '<td>'+r.ph+'%</td><td>'+r.pd+'%</td><td>'+r.pa+'%</td>' +
       '<td>'+r.conf+'%</td><td>'+r.oh+'</td><td>'+r.od+'</td><td>'+r.oa+'</td></tr>';
   }});
-  html += '</table>';
-  at.innerHTML = html;
+  h += '</table>';
+  at.innerHTML = h;
 }} else {{
-  at.innerHTML = '<div style="text-align:center;padding:20px;color:#888">暂无预测数据</div>';
+  at.innerHTML = '<div style="text-align:center;padding:30px;color:var(--text3);font-size:13px">暂无预测数据</div>';
 }}
 
 window.addEventListener('resize', function(){{ bc.resize(); if(typeof mc !== 'undefined'){{mc.resize();}} if(typeof sc !== 'undefined'){{sc.resize();}} }});
@@ -551,7 +671,7 @@ window.addEventListener('resize', function(){{ bc.resize(); if(typeof mc !== 'un
     with open(latest_path, "w", encoding="utf-8") as f:
         f.write(html)
 
-    log.info(f"✅ 仪表盘已生成: {path}")
+    log.info(f"仪表盘已生成: {path}")
     return path
 
 
