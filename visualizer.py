@@ -164,6 +164,72 @@ def generate_dashboard(data):
                     "color": RESULT_COLORS.get(row.get("pred_result", ""), "#888"),
                 })
 
+    # === 最新比赛日分析 ===
+    matchday_date_str = ""
+    matchday_html_rows = ""
+    if predictions is not None and len(predictions) > 0:
+        unfinished = predictions[predictions["is_finished"] == False].copy()
+        dates = pd.to_datetime(unfinished["date"])
+        today = pd.Timestamp.now().normalize()
+        upcoming = unfinished[dates >= today].sort_values("date")
+        if len(upcoming) > 0:
+            md_date = upcoming["date"].iloc[0]
+            md_matches = upcoming[upcoming["date"] == md_date]
+            matchday_date_str = str(md_date)[:10]
+            rank_path = os.path.join(DATA_DIR, "fifa_rankings.csv")
+            rankings_df = None
+            if os.path.exists(rank_path):
+                rankings_df = pd.read_csv(rank_path)
+            rows_html = []
+            for _, row in md_matches.iterrows():
+                home, away = row["home_team"], row["away_team"]
+                pred_r = row["pred_result"]
+                conf = float(row["confidence"])
+                pred_h, pred_d, pred_a = float(row["pred_H"]), float(row["pred_D"]), float(row["pred_A"])
+                oH = float(row.get("fair_odds_H", 2.0))
+                oD = float(row.get("fair_odds_D", 3.0))
+                oA = float(row.get("fair_odds_A", 3.0))
+                reasons = []
+                if conf >= 0.50: reasons.append(f"高置信度({conf*100:.0f}%)")
+                elif conf >= 0.40: reasons.append(f"模型倾向({conf*100:.0f}%)")
+                elif conf >= 0.35: reasons.append("置信度一般")
+                else: reasons.append("不确定性强")
+                if rankings_df is not None:
+                    h_rank = rankings_df[rankings_df["Team"] == home]
+                    a_rank = rankings_df[rankings_df["Team"] == away]
+                    if len(h_rank) > 0 and len(a_rank) > 0:
+                        hr, ar = int(h_rank["Rank"].values[0]), int(a_rank["Rank"].values[0])
+                        diff = abs(hr - ar)
+                        if diff >= 30: reasons.append(f"排名差距{diff}位")
+                        better = home if hr < ar else away
+                        reasons.append(f"{better}排名占优")
+                if pred_r == "H" and oH > 1:
+                    if pred_h > 1.0/oH + 0.05: reasons.append("主胜赔率有空间")
+                elif pred_r == "A" and oA > 1:
+                    if pred_a > 1.0/oA + 0.05: reasons.append("客胜赔率有空间")
+                if pred_r == "H": kelly = (pred_h * oH - 1) / (oH - 1) if oH > 1 else 0
+                elif pred_r == "A": kelly = (pred_a * oA - 1) / (oA - 1) if oA > 1 else 0
+                else: kelly = (pred_d * oD - 1) / (oD - 1) if oD > 1 else 0
+                kelly = max(0, kelly)
+                if kelly > 0.15: bet = f"推荐{row['pred_label']}，仓位10-15%"
+                elif kelly > 0.08: bet = f"可投{row['pred_label']}，仓位5-10%"
+                elif kelly > 0.03: bet = f"小注{row['pred_label']}，仓位3-5%"
+                elif conf >= 0.40: bet = f"小额娱乐{row['pred_label']}"
+                else: bet = "不推荐，置信度偏低"
+                color = RESULT_COLORS.get(pred_r, "#888")
+                bet_color = "#52c41a" if kelly > 0.08 else "#faad14" if kelly > 0 else "#888"
+                rows_html.append(
+                    f'<tr><td>{str(row["date"])[:10]}</td>'
+                    f'<td style="font-weight:bold">{home}</td>'
+                    f'<td style="font-weight:bold">{away}</td>'
+                    f'<td style="color:{color};font-weight:bold">{row["pred_label"]}</td>'
+                    f'<td>{conf*100:.0f}%</td>'
+                    f'<td style="font-size:10px">{oH:.2f}/{oD:.2f}/{oA:.2f}</td>'
+                    f'<td style="font-size:10px;max-width:180px">{"；".join(reasons)}</td>'
+                    f'<td style="font-size:11px;color:{bet_color}">{bet}</td></tr>'
+                )
+            matchday_html_rows = "\n".join(rows_html)
+
     # 媒体情感
     media_json = []
     if media_df is not None and len(media_df) > 0:
@@ -267,6 +333,17 @@ td{{padding:4px 6px;border-bottom:1px solid #1a1a3e}}
 <h1>🏆 世界杯2026预测系统</h1>
 <p class="wc-badge">⚽ 2026年6月11日 · 美国/加拿大/墨西哥 · 48支球队 · 104场比赛</p>
 <p class="sub">{today_str} | 基于FIFA排名+历史世界杯数据+集成学习模型 | 媒体情感·社交热度·赔率分析</p>
+
+<!-- 最新比赛日 -->
+<div class="card" style="border-color:#ffd700;margin-bottom:16px">
+  <h2>⚡ 最新比赛日 · {matchday_date_str}</h2>
+  <div style="overflow-x:auto">
+  <table>
+    <tr><th>时间</th><th>主队</th><th>客队</th><th>预测</th><th>概率</th><th>赔率(主/平/客)</th><th>推荐理由</th><th>投注建议</th></tr>
+    {matchday_html_rows}
+  </table>
+  </div>
+</div>
 
 <div class="grid4">
   <div class="stat-card"><div class="v" style="color:#ffd700">{avg_acc:.1%}</div><div class="l">模型回测准确率</div></div>
