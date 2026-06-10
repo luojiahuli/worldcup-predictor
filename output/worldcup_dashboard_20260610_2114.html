@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>🏆 世界杯2026预测系统 | 2026-06-10 21:14</title>
+<script src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#0a0e1a;color:#e0e0e0;font-family:'PingFang SC','Microsoft YaHei',sans-serif;padding:16px;max-width:1300px;margin:0 auto}
+h1{background:linear-gradient(135deg,#ffd700,#ff6b35);-webkit-background-clip:text;-webkit-text-fill-color:transparent;font-size:28px;text-align:center;margin-bottom:2px;padding-top:8px}
+.sub{color:#888;text-align:center;font-size:12px;margin-bottom:16px}
+.wc-badge{text-align:center;font-size:11px;color:#ffd700;margin-bottom:16px;letter-spacing:2px}
+.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:16px}
+.stat-card{background:linear-gradient(135deg,#1a1a3e,#0f1a2e);border-radius:10px;padding:14px;text-align:center;border:1px solid #2a2a5e}
+.stat-card .v{font-size:22px;font-weight:bold;margin-bottom:2px}
+.stat-card .l{font-size:11px;color:#888}
+.card{background:linear-gradient(135deg,#1a1a3e,#0f1a2e);border-radius:10px;padding:14px;border:1px solid #2a2a5e;margin-bottom:14px}
+.card h2{color:#ffd700;font-size:14px;margin-bottom:8px;display:flex;align-items:center;gap:6px}
+.chart{width:100%;height:300px}
+.chart-sm{width:100%;height:220px}
+.pick-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:8px}
+.pick-card{background:linear-gradient(135deg,#1a1a4e,#12122a);border-radius:8px;padding:10px;border:1px solid #2a2a5e;position:relative}
+.pick-card .date-tag{position:absolute;top:6px;right:8px;font-size:10px;padding:1px 5px;border-radius:3px;background:#2a2a5e;color:#888}
+.pick-card .teams{font-size:14px;font-weight:bold;color:#ffd700;margin-bottom:4px}
+.pick-card .prediction{font-size:18px;font-weight:bold;margin:6px 0}
+.pick-card .probs{display:flex;gap:6px;margin:4px 0}
+.pick-card .prob{flex:1;text-align:center;font-size:11px;padding:3px;border-radius:4px;background:#0a0e1a}
+.pick-card .prob .pct{font-size:13px;font-weight:bold}
+.pick-card .prob .lbl{color:#888}
+.pick-card .odds{font-size:11px;color:#888;margin-top:2px}
+table{width:100%;border-collapse:collapse;font-size:11px}
+th{background:#2a2a5e;color:#ffd700;padding:5px 6px;text-align:left}
+td{padding:4px 6px;border-bottom:1px solid #1a1a3e}
+.tag-H{color:#ff4d4f;font-weight:bold}
+.tag-D{color:#faad14;font-weight:bold}
+.tag-A{color:#1890ff;font-weight:bold}
+.analysis-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:8px}
+.analysis-card{background:#1a1a4e;border-radius:8px;padding:10px;border:1px solid #2a2a5e}
+.analysis-card .aname{font-weight:bold;color:#ffd700;font-size:13px;margin-bottom:4px}
+.analysis-card .aval{font-size:11px;color:#aaa;line-height:1.6}
+.bar-container{height:6px;background:#0a0e1a;border-radius:3px;margin:2px 0;overflow:hidden}
+.bar{height:100%;border-radius:3px;transition:width 0.5s}
+@media(max-width:600px){.grid4{grid-template-columns:repeat(2,1fr)}}
+.highlight-row{animation:fadeIn 0.5s}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+</style>
+</head>
+<body>
+
+<h1>🏆 世界杯2026预测系统</h1>
+<p class="wc-badge">⚽ 2026年6月11日 · 美国/加拿大/墨西哥 · 48支球队 · 104场比赛</p>
+<p class="sub">2026-06-10 21:14 | 基于FIFA排名+历史世界杯数据+集成学习模型 | 媒体情感·社交热度·赔率分析</p>
+
+<div class="grid4">
+  <div class="stat-card"><div class="v" style="color:#ffd700">0.0%</div><div class="l">模型回测准确率</div></div>
+  <div class="stat-card"><div class="v" style="color:#1890ff">0</div><div class="l">历史训练场次</div></div>
+  <div class="stat-card"><div class="v" style="color:#52c41a">20</div><div class="l">待预测比赛</div></div>
+  <div class="stat-card"><div class="v" style="color:#ff6b35">2026.06.11</div><div class="l">开幕倒计时</div></div>
+</div>
+
+<!-- 预测结果 -->
+<div class="card">
+  <h2>🔮 比赛预测 (高置信度)</h2>
+  <div id="picksContainer" class="pick-grid"></div>
+</div>
+
+<div class="card">
+  <h2>📊 模型回测收益曲线</h2>
+  <div id="backtestChart" class="chart"></div>
+</div>
+
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px">
+  <div class="card">
+    <h2>📰 媒体情感分析</h2>
+    <div id="mediaChart" class="chart-sm"></div>
+  </div>
+  <div class="card">
+    <h2>🔥 社交媒体热度</h2>
+    <div id="socialChart" class="chart-sm"></div>
+  </div>
+</div>
+
+<div class="card">
+  <h2>💰 赔率对比分析 (实力悬殊最大的15场)</h2>
+  <div id="oddsChart" class="chart"></div>
+</div>
+
+<div class="card">
+  <h2>🏟️ 球队综合分析</h2>
+  <div id="teamAnalysis" class="analysis-grid"></div>
+</div>
+
+<div class="card">
+  <h2>📋 全部预测详情</h2>
+  <div id="allPredictionsTable" style="max-height:500px;overflow-y:auto"></div>
+</div>
+
+<p class="sub" style="margin-top:20px;font-size:10px">
+⚠️ 预测仅供参考 | 数据来源: football-data.org + FIFA Rankings | 模型: RandomForest+GradientBoosting+ExtraTrees+Logistic Ensemble
+</p>
+
+<script>
+// ===== 预测卡片 =====
+var picks = [{"date": "2026-06-28", "home": "Jordan", "away": "Argentina", "pred": "客胜", "pred_r": "A", "pH": "7.6", "pD": "33.1", "pA": "59.4", "conf": "59.4", "oH": "13.22", "oD": "3.03", "oA": "1.68", "color": "#1890ff"}, {"date": "2026-06-22", "home": "France", "away": "Iraq", "pred": "主胜", "pred_r": "H", "pH": "58.6", "pD": "33.4", "pA": "8.0", "conf": "58.6", "oH": "1.71", "oD": "3.00", "oA": "12.44", "color": "#ff4d4f"}, {"date": "2026-06-20", "home": "Brazil", "away": "Haiti", "pred": "主胜", "pred_r": "H", "pH": "57.9", "pD": "33.7", "pA": "8.5", "conf": "57.9", "oH": "1.73", "oD": "2.97", "oA": "11.81", "color": "#ff4d4f"}, {"date": "2026-06-23", "home": "Portugal", "away": "Uzbekistan", "pred": "主胜", "pred_r": "H", "pH": "54.8", "pD": "34.8", "pA": "10.4", "conf": "54.8", "oH": "1.83", "oD": "2.87", "oA": "9.58", "color": "#ff4d4f"}, {"date": "2026-06-15", "home": "Spain", "away": "Cape Verde Islands", "pred": "主胜", "pred_r": "H", "pH": "53.0", "pD": "35.0", "pA": "12.0", "conf": "53.0", "oH": "1.89", "oD": "2.86", "oA": "8.33", "color": "#ff4d4f"}, {"date": "2026-06-22", "home": "Argentina", "away": "Austria", "pred": "主胜", "pred_r": "H", "pH": "52.3", "pD": "35.0", "pA": "12.7", "conf": "52.3", "oH": "1.91", "oD": "2.86", "oA": "7.88", "color": "#ff4d4f"}, {"date": "2026-06-14", "home": "Germany", "away": "Curaçao", "pred": "主胜", "pred_r": "H", "pH": "52.2", "pD": "35.0", "pA": "12.8", "conf": "52.2", "oH": "1.91", "oD": "2.86", "oA": "7.84", "color": "#ff4d4f"}, {"date": "2026-06-17", "home": "Argentina", "away": "Algeria", "pred": "主胜", "pred_r": "H", "pH": "51.1", "pD": "35.0", "pA": "13.9", "conf": "51.1", "oH": "1.96", "oD": "2.86", "oA": "7.19", "color": "#ff4d4f"}, {"date": "2026-06-26", "home": "Norway", "away": "France", "pred": "客胜", "pred_r": "A", "pH": "14.1", "pD": "35.0", "pA": "50.9", "conf": "50.9", "oH": "7.09", "oD": "2.86", "oA": "1.96", "color": "#1890ff"}, {"date": "2026-06-24", "home": "Scotland", "away": "Brazil", "pred": "客胜", "pred_r": "A", "pH": "14.5", "pD": "35.0", "pA": "50.5", "conf": "50.5", "oH": "6.87", "oD": "2.86", "oA": "1.98", "color": "#1890ff"}, {"date": "2026-06-25", "home": "Czechia", "away": "Mexico", "pred": "客胜", "pred_r": "A", "pH": "14.6", "pD": "35.0", "pA": "50.4", "conf": "50.4", "oH": "6.84", "oD": "2.86", "oA": "1.98", "color": "#1890ff"}, {"date": "2026-06-27", "home": "New Zealand", "away": "Belgium", "pred": "客胜", "pred_r": "A", "pH": "14.6", "pD": "35.0", "pA": "50.4", "conf": "50.4", "oH": "6.84", "oD": "2.86", "oA": "1.98", "color": "#1890ff"}, {"date": "2026-06-21", "home": "Uruguay", "away": "Cape Verde Islands", "pred": "主胜", "pred_r": "H", "pH": "50.2", "pD": "35.0", "pA": "14.8", "conf": "50.2", "oH": "1.99", "oD": "2.86", "oA": "6.75", "color": "#ff4d4f"}, {"date": "2026-06-18", "home": "Uzbekistan", "away": "Colombia", "pred": "客胜", "pred_r": "A", "pH": "15.1", "pD": "35.0", "pA": "49.9", "conf": "49.9", "oH": "6.63", "oD": "2.86", "oA": "2.00", "color": "#1890ff"}, {"date": "2026-06-18", "home": "Switzerland", "away": "Bosnia-Herzegovina", "pred": "主胜", "pred_r": "H", "pH": "49.2", "pD": "35.0", "pA": "15.8", "conf": "49.2", "oH": "2.03", "oD": "2.86", "oA": "6.35", "color": "#ff4d4f"}, {"date": "2026-06-24", "home": "Morocco", "away": "Haiti", "pred": "主胜", "pred_r": "H", "pH": "48.8", "pD": "35.0", "pA": "16.2", "conf": "48.8", "oH": "2.05", "oD": "2.86", "oA": "6.18", "color": "#ff4d4f"}, {"date": "2026-06-26", "home": "Senegal", "away": "Iraq", "pred": "主胜", "pred_r": "H", "pH": "48.5", "pD": "35.0", "pA": "16.5", "conf": "48.5", "oH": "2.06", "oD": "2.86", "oA": "6.08", "color": "#ff4d4f"}, {"date": "2026-06-12", "home": "South Korea", "away": "Czechia", "pred": "主胜", "pred_r": "H", "pH": "48.1", "pD": "35.0", "pA": "16.9", "conf": "48.1", "oH": "2.08", "oD": "2.86", "oA": "5.92", "color": "#ff4d4f"}, {"date": "2026-06-19", "home": "United States", "away": "Australia", "pred": "客胜", "pred_r": "A", "pH": "17.2", "pD": "35.0", "pA": "47.8", "conf": "47.8", "oH": "5.82", "oD": "2.86", "oA": "2.09", "color": "#1890ff"}, {"date": "2026-06-27", "home": "Cape Verde Islands", "away": "Saudi Arabia", "pred": "客胜", "pred_r": "A", "pH": "17.4", "pD": "35.0", "pA": "47.6", "conf": "47.6", "oH": "5.75", "oD": "2.86", "oA": "2.10", "color": "#1890ff"}];
+var ph = document.getElementById('picksContainer');
+if (picks.length === 0) {
+  ph.innerHTML = '<div style="text-align:center;padding:20px;color:#888;font-size:13px">暂无预测数据，请先运行主流程</div>';
+} else {
+  picks.forEach(function(p){
+    var predColor = p.pred_r === 'H' ? '#ff4d4f' : p.pred_r === 'D' ? '#faad14' : '#1890ff';
+    var div = document.createElement('div');
+    div.className = 'pick-card';
+    var probsHtml = '<div class="probs">' +
+      '<div class="prob"><div class="pct" '+(parseFloat(p.pH)>40?'style="color:#ff4d4f;font-weight:bold"':'')+'>'+p.pH+'%</div><div class="lbl">主胜</div><div class="odds">@'+p.oH+'</div></div>' +
+      '<div class="prob"><div class="pct" '+(parseFloat(p.pD)>35?'style="color:#faad14;font-weight:bold"':'')+'>'+p.pD+'%</div><div class="lbl">平局</div><div class="odds">@'+p.oD+'</div></div>' +
+      '<div class="prob"><div class="pct" '+(parseFloat(p.pA)>40?'style="color:#1890ff;font-weight:bold"':'')+'>'+p.pA+'%</div><div class="lbl">客胜</div><div class="odds">@'+p.oA+'</div></div>' +
+      '</div>';
+    div.innerHTML = '<span class="date-tag">'+p.date+'</span>' +
+      '<div class="teams">'+p.home+' vs '+p.away+'</div>' +
+      '<div class="prediction" style="color:'+predColor+'">🏆 '+p.pred+'</div>' +
+      probsHtml +
+      '<div style="font-size:10px;color:#888;margin-top:2px">置信度: '+p.conf+'%</div>';
+    ph.appendChild(div);
+  });
+}
+
+// ===== 回测收益曲线 =====
+var cumRet = [];
+var bc = echarts.init(document.getElementById('backtestChart'));
+bc.setOption({
+  backgroundColor:'transparent',
+  tooltip:{trigger:'axis',formatter:function(p){return '<b>投注 #'+p[0].axisValue+'</b><br/>'+p[0].marker+' 累计收益: ¥'+p[0].value.toFixed(0);}},
+  grid:{left:'10%',right:'5%',top:'10%',bottom:'12%'},
+  xAxis:{type:'category',data:Array.from({length:cumRet.length},(_,i)=>'#'+(i+1)),axisLabel:{fontSize:9,color:'#ccc',show:false},axisLine:{lineStyle:{color:'#333'}}},
+  yAxis:{type:'value',name:'累计盈亏 (¥)',nameTextStyle:{color:'#888'},splitLine:{lineStyle:{color:'#1a1a3e'}},axisLabel:{color:'#888',formatter:'¥{value}'}},
+  series:[{
+    name:'策略收益',type:'line',data:cumRet,smooth:true,
+    lineStyle:{width:2.5,color:'#ffd700'},
+    areaStyle:{color:{type:'linear',x:0,y:0,x2:0,y2:1,colorStops:[{offset:0,color:'#ffd70044'},{offset:1,color:'#ffd70000'}]}},
+    markLine:{data:[{yAxis:0,lineStyle:{color:'#555',type:'dashed'},label:{formatter:'盈亏平衡',color:'#888'}}]}
+  }]
+});
+
+// ===== 媒体情感 =====
+var mediaData = [{"team": "Algeria", "sentiment_score": 0.436, "news_volume": 18, "positive_ratio": 0.476, "negative_ratio": 0.5, "trending": "down", "hotness": 0.6, "sample_count": 18}, {"team": "Argentina", "sentiment_score": 0.85, "news_volume": 29, "positive_ratio": 0.791, "negative_ratio": 0.115, "trending": "up", "hotness": 0.967, "sample_count": 29}, {"team": "Australia", "sentiment_score": 0.666, "news_volume": 23, "positive_ratio": 0.59, "negative_ratio": 0.335, "trending": "up", "hotness": 0.767, "sample_count": 23}, {"team": "Austria", "sentiment_score": 0.396, "news_volume": 14, "positive_ratio": 0.407, "negative_ratio": 0.5, "trending": "down", "hotness": 0.467, "sample_count": 14}, {"team": "Belgium", "sentiment_score": 0.591, "news_volume": 28, "positive_ratio": 0.537, "negative_ratio": 0.371, "trending": "up", "hotness": 0.933, "sample_count": 28}, {"team": "Bosnia-Herzegovina", "sentiment_score": 0.661, "news_volume": 9, "positive_ratio": 0.718, "negative_ratio": 0.365, "trending": "up", "hotness": 0.3, "sample_count": 9}, {"team": "Brazil", "sentiment_score": 0.85, "news_volume": 29, "positive_ratio": 0.8, "negative_ratio": 0.119, "trending": "up", "hotness": 0.967, "sample_count": 29}, {"team": "Canada", "sentiment_score": 0.491, "news_volume": 22, "positive_ratio": 0.419, "negative_ratio": 0.465, "trending": "down", "hotness": 0.733, "sample_count": 22}, {"team": "Cape Verde Islands", "sentiment_score": 0.443, "news_volume": 7, "positive_ratio": 0.375, "negative_ratio": 0.5, "trending": "down", "hotness": 0.233, "sample_count": 7}, {"team": "Colombia", "sentiment_score": 0.517, "news_volume": 25, "positive_ratio": 0.476, "negative_ratio": 0.486, "trending": "up", "hotness": 0.833, "sample_count": 25}, {"team": "Congo DR", "sentiment_score": 0.604, "news_volume": 15, "positive_ratio": 0.579, "negative_ratio": 0.438, "trending": "up", "hotness": 0.5, "sample_count": 15}, {"team": "Croatia", "sentiment_score": 0.558, "news_volume": 26, "positive_ratio": 0.543, "negative_ratio": 0.432, "trending": "up", "hotness": 0.867, "sample_count": 26}, {"team": "Curaçao", "sentiment_score": 0.381, "news_volume": 6, "positive_ratio": 0.289, "negative_ratio": 0.5, "trending": "down", "hotness": 0.2, "sample_count": 6}, {"team": "Czechia", "sentiment_score": 0.591, "news_volume": 23, "positive_ratio": 0.55, "negative_ratio": 0.456, "trending": "up", "hotness": 0.767, "sample_count": 23}, {"team": "Ecuador", "sentiment_score": 0.633, "news_volume": 21, "positive_ratio": 0.692, "negative_ratio": 0.339, "trending": "up", "hotness": 0.7, "sample_count": 21}, {"team": "Egypt", "sentiment_score": 0.721, "news_volume": 18, "positive_ratio": 0.686, "negative_ratio": 0.267, "trending": "up", "hotness": 0.6, "sample_count": 18}, {"team": "England", "sentiment_score": 0.502, "news_volume": 28, "positive_ratio": 0.537, "negative_ratio": 0.5, "trending": "up", "hotness": 0.933, "sample_count": 28}, {"team": "France", "sentiment_score": 0.418, "news_volume": 29, "positive_ratio": 0.392, "negative_ratio": 0.5, "trending": "down", "hotness": 0.967, "sample_count": 29}, {"team": "Germany", "sentiment_score": 0.669, "news_volume": 27, "positive_ratio": 0.713, "negative_ratio": 0.287, "trending": "up", "hotness": 0.9, "sample_count": 27}, {"team": "Ghana", "sentiment_score": 0.657, "news_volume": 19, "positive_ratio": 0.629, "negative_ratio": 0.38, "trending": "up", "hotness": 0.633, "sample_count": 19}, {"team": "Haiti", "sentiment_score": 0.574, "news_volume": 17, "positive_ratio": 0.496, "negative_ratio": 0.396, "trending": "up", "hotness": 0.567, "sample_count": 17}, {"team": "Iran", "sentiment_score": 0.701, "news_volume": 23, "positive_ratio": 0.646, "negative_ratio": 0.317, "trending": "up", "hotness": 0.767, "sample_count": 23}, {"team": "Iraq", "sentiment_score": 0.488, "news_volume": 19, "positive_ratio": 0.471, "negative_ratio": 0.486, "trending": "down", "hotness": 0.633, "sample_count": 19}, {"team": "Ivory Coast", "sentiment_score": 0.499, "news_volume": 17, "positive_ratio": 0.464, "negative_ratio": 0.482, "trending": "down", "hotness": 0.567, "sample_count": 17}, {"team": "Japan", "sentiment_score": 0.85, "news_volume": 24, "positive_ratio": 0.8, "negative_ratio": 0.131, "trending": "up", "hotness": 0.8, "sample_count": 24}, {"team": "Jordan", "sentiment_score": 0.621, "news_volume": 11, "positive_ratio": 0.641, "negative_ratio": 0.348, "trending": "up", "hotness": 0.367, "sample_count": 11}, {"team": "Mexico", "sentiment_score": 0.721, "news_volume": 26, "positive_ratio": 0.759, "negative_ratio": 0.307, "trending": "up", "hotness": 0.867, "sample_count": 26}, {"team": "Morocco", "sentiment_score": 0.533, "news_volume": 24, "positive_ratio": 0.436, "negative_ratio": 0.469, "trending": "up", "hotness": 0.8, "sample_count": 24}, {"team": "Netherlands", "sentiment_score": 0.6, "news_volume": 27, "positive_ratio": 0.561, "negative_ratio": 0.38, "trending": "up", "hotness": 0.9, "sample_count": 27}, {"team": "New Zealand", "sentiment_score": 0.526, "news_volume": 13, "positive_ratio": 0.529, "negative_ratio": 0.5, "trending": "up", "hotness": 0.433, "sample_count": 13}, {"team": "Norway", "sentiment_score": 0.44, "news_volume": 16, "positive_ratio": 0.501, "negative_ratio": 0.5, "trending": "down", "hotness": 0.533, "sample_count": 16}, {"team": "Panama", "sentiment_score": 0.636, "news_volume": 20, "positive_ratio": 0.703, "negative_ratio": 0.405, "trending": "up", "hotness": 0.667, "sample_count": 20}, {"team": "Paraguay", "sentiment_score": 0.463, "news_volume": 21, "positive_ratio": 0.485, "negative_ratio": 0.5, "trending": "down", "hotness": 0.7, "sample_count": 21}, {"team": "Portugal", "sentiment_score": 0.7, "news_volume": 28, "positive_ratio": 0.778, "negative_ratio": 0.34, "trending": "up", "hotness": 0.933, "sample_count": 28}, {"team": "Qatar", "sentiment_score": 0.531, "news_volume": 13, "positive_ratio": 0.587, "negative_ratio": 0.5, "trending": "up", "hotness": 0.433, "sample_count": 13}, {"team": "Saudi Arabia", "sentiment_score": 0.684, "news_volume": 22, "positive_ratio": 0.729, "negative_ratio": 0.303, "trending": "up", "hotness": 0.733, "sample_count": 22}, {"team": "Scotland", "sentiment_score": 0.663, "news_volume": 15, "positive_ratio": 0.623, "negative_ratio": 0.34, "trending": "up", "hotness": 0.5, "sample_count": 15}, {"team": "Senegal", "sentiment_score": 0.574, "news_volume": 24, "positive_ratio": 0.62, "negative_ratio": 0.419, "trending": "up", "hotness": 0.8, "sample_count": 24}, {"team": "South Africa", "sentiment_score": 0.791, "news_volume": 15, "positive_ratio": 0.8, "negative_ratio": 0.201, "trending": "up", "hotness": 0.5, "sample_count": 15}, {"team": "South Korea", "sentiment_score": 0.464, "news_volume": 23, "positive_ratio": 0.562, "negative_ratio": 0.5, "trending": "down", "hotness": 0.767, "sample_count": 23}, {"team": "Spain", "sentiment_score": 0.85, "news_volume": 27, "positive_ratio": 0.792, "negative_ratio": 0.177, "trending": "up", "hotness": 0.9, "sample_count": 27}, {"team": "Sweden", "sentiment_score": 0.449, "news_volume": 17, "positive_ratio": 0.423, "negative_ratio": 0.5, "trending": "down", "hotness": 0.567, "sample_count": 17}, {"team": "Switzerland", "sentiment_score": 0.533, "news_volume": 24, "positive_ratio": 0.547, "negative_ratio": 0.459, "trending": "up", "hotness": 0.8, "sample_count": 24}, {"team": "Tunisia", "sentiment_score": 0.588, "news_volume": 18, "positive_ratio": 0.572, "negative_ratio": 0.427, "trending": "up", "hotness": 0.6, "sample_count": 18}, {"team": "Turkey", "sentiment_score": 0.519, "news_volume": 14, "positive_ratio": 0.565, "negative_ratio": 0.461, "trending": "up", "hotness": 0.467, "sample_count": 14}, {"team": "United States", "sentiment_score": 0.589, "news_volume": 8, "positive_ratio": 0.657, "negative_ratio": 0.457, "trending": "up", "hotness": 0.267, "sample_count": 8}, {"team": "Uruguay", "sentiment_score": 0.85, "news_volume": 25, "positive_ratio": 0.8, "negative_ratio": 0.157, "trending": "up", "hotness": 0.833, "sample_count": 25}, {"team": "Uzbekistan", "sentiment_score": 0.343, "news_volume": 16, "positive_ratio": 0.404, "negative_ratio": 0.5, "trending": "down", "hotness": 0.533, "sample_count": 16}];
+var topMedia = mediaData.slice().sort(function(a,b){return b.sentiment_score - a.sentiment_score}).slice(0,15);
+var mc = echarts.init(document.getElementById('mediaChart'));
+mc.setOption({
+  backgroundColor:'transparent',
+  tooltip:{trigger:'axis',formatter:function(p){return p[0].name+'<br/>'+p[0].marker+' 情感得分: '+(p[0].value*100).toFixed(0)+'%'}},
+  grid:{left:'20%',right:'5%',top:'5%',bottom:'15%'},
+  xAxis:{type:'value',max:0.9,axisLabel:{color:'#888',formatter:'{value}'},splitLine:{lineStyle:{color:'#1a1a3e'}}},
+  yAxis:{type:'category',data:topMedia.map(function(d){return d.team}),axisLabel:{color:'#ccc',fontSize:10},axisLine:{lineStyle:{color:'#333'}}},
+  series:[{
+    type:'bar',data:topMedia.map(function(d){return d.sentiment_score}),
+    barWidth:'50%',
+    itemStyle:{color:function(p){return p.value>0.5?'#52c41a':'#ff4d4f'}},
+    label:{show:true,position:'right',color:'#ffd700',fontSize:10,formatter:function(p){return (p.value*100).toFixed(0)+'%'}}
+  }]
+});
+
+// ===== 社交热度 =====
+var socialData = [{"team": "England", "heat_score": 1.0, "heat_change": 0.055, "heat_direction": "up", "base_popularity": 94, "active_users_24h": 983452, "trend_7d": "[0.945, 0.976, 1.0, 0.982, 1.0, 1.0, 1.0]", "mention_count": 767200, "sentiment_ratio": 0.61}, {"team": "Brazil", "heat_score": 1.0, "heat_change": 0.01, "heat_direction": "up", "base_popularity": 98, "active_users_24h": 1232264, "trend_7d": "[0.99, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0]", "mention_count": 2236973, "sentiment_ratio": 0.52}, {"team": "Spain", "heat_score": 1.0, "heat_change": 0.1, "heat_direction": "up", "base_popularity": 89, "active_users_24h": 980174, "trend_7d": "[0.9, 0.922, 0.923, 0.92, 0.97, 0.991, 1.0]", "mention_count": 1894029, "sentiment_ratio": 0.7}, {"team": "Argentina", "heat_score": 1.0, "heat_change": 0.028, "heat_direction": "up", "base_popularity": 97, "active_users_24h": 1211781, "trend_7d": "[0.972, 0.985, 1.0, 1.0, 1.0, 1.0, 1.0]", "mention_count": 2235535, "sentiment_ratio": 0.556}, {"team": "Germany", "heat_score": 1.0, "heat_change": 0.079, "heat_direction": "up", "base_popularity": 92, "active_users_24h": 320149, "trend_7d": "[0.921, 0.951, 0.96, 0.984, 1.0, 1.0, 1.0]", "mention_count": 415107, "sentiment_ratio": 0.658}, {"team": "France", "heat_score": 1.0, "heat_change": 0.051, "heat_direction": "up", "base_popularity": 95, "active_users_24h": 449244, "trend_7d": "[0.949, 0.991, 0.966, 1.0, 1.0, 1.0, 1.0]", "mention_count": 605518, "sentiment_ratio": 0.602}, {"team": "Belgium", "heat_score": 0.995, "heat_change": 0.109, "heat_direction": "up", "base_popularity": 85, "active_users_24h": 183077, "trend_7d": "[0.886, 0.816, 0.893, 0.933, 0.945, 0.977, 0.995]", "mention_count": 171312, "sentiment_ratio": 0.718}, {"team": "Netherlands", "heat_score": 0.983, "heat_change": 0.142, "heat_direction": "up", "base_popularity": 87, "active_users_24h": 254967, "trend_7d": "[0.841, 0.895, 0.886, 0.899, 0.964, 1.0, 0.983]", "mention_count": 303918, "sentiment_ratio": 0.784}, {"team": "Portugal", "heat_score": 0.983, "heat_change": 0.102, "heat_direction": "up", "base_popularity": 88, "active_users_24h": 593558, "trend_7d": "[0.881, 0.857, 0.904, 0.938, 0.976, 0.942, 0.983]", "mention_count": 725393, "sentiment_ratio": 0.704}, {"team": "Mexico", "heat_score": 0.963, "heat_change": 0.106, "heat_direction": "up", "base_popularity": 84, "active_users_24h": 633565, "trend_7d": "[0.857, 0.862, 0.899, 0.935, 0.938, 0.96, 0.963]", "mention_count": 1256936, "sentiment_ratio": 0.712}, {"team": "Uruguay", "heat_score": 0.916, "heat_change": 0.122, "heat_direction": "up", "base_popularity": 80, "active_users_24h": 382839, "trend_7d": "[0.794, 0.814, 0.845, 0.898, 0.881, 0.927, 0.916]", "mention_count": 445947, "sentiment_ratio": 0.744}, {"team": "South Korea", "heat_score": 0.913, "heat_change": 0.137, "heat_direction": "up", "base_popularity": 77, "active_users_24h": 137546, "trend_7d": "[0.776, 0.818, 0.791, 0.844, 0.869, 0.909, 0.913]", "mention_count": 159105, "sentiment_ratio": 0.774}, {"team": "Colombia", "heat_score": 0.901, "heat_change": 0.144, "heat_direction": "up", "base_popularity": 79, "active_users_24h": 853136, "trend_7d": "[0.757, 0.811, 0.846, 0.836, 0.905, 0.857, 0.901]", "mention_count": 509593, "sentiment_ratio": 0.788}, {"team": "Morocco", "heat_score": 0.871, "heat_change": 0.078, "heat_direction": "up", "base_popularity": 75, "active_users_24h": 724877, "trend_7d": "[0.793, 0.759, 0.769, 0.798, 0.821, 0.861, 0.871]", "mention_count": 372804, "sentiment_ratio": 0.656}, {"team": "Egypt", "heat_score": 0.866, "heat_change": 0.134, "heat_direction": "up", "base_popularity": 70, "active_users_24h": 823127, "trend_7d": "[0.732, 0.681, 0.779, 0.746, 0.818, 0.83, 0.866]", "mention_count": 833757, "sentiment_ratio": 0.768}, {"team": "Japan", "heat_score": 0.863, "heat_change": 0.089, "heat_direction": "up", "base_popularity": 78, "active_users_24h": 107585, "trend_7d": "[0.774, 0.792, 0.813, 0.861, 0.904, 0.864, 0.863]", "mention_count": 211459, "sentiment_ratio": 0.678}, {"team": "Senegal", "heat_score": 0.858, "heat_change": 0.166, "heat_direction": "up", "base_popularity": 73, "active_users_24h": 519453, "trend_7d": "[0.692, 0.773, 0.79, 0.811, 0.846, 0.859, 0.858]", "mention_count": 268831, "sentiment_ratio": 0.8}, {"team": "Croatia", "heat_score": 0.853, "heat_change": 0.118, "heat_direction": "up", "base_popularity": 72, "active_users_24h": 602603, "trend_7d": "[0.735, 0.716, 0.759, 0.801, 0.812, 0.841, 0.853]", "mention_count": 1155373, "sentiment_ratio": 0.736}, {"team": "Curaçao", "heat_score": 0.797, "heat_change": 0.105, "heat_direction": "up", "base_popularity": 67, "active_users_24h": 194173, "trend_7d": "[0.692, 0.683, 0.715, 0.759, 0.752, 0.776, 0.797]", "mention_count": 307338, "sentiment_ratio": 0.71}, {"team": "Haiti", "heat_score": 0.789, "heat_change": 0.105, "heat_direction": "up", "base_popularity": 69, "active_users_24h": 825980, "trend_7d": "[0.684, 0.726, 0.76, 0.714, 0.758, 0.796, 0.789]", "mention_count": 758827, "sentiment_ratio": 0.71}];
+var sc = echarts.init(document.getElementById('socialChart'));
+sc.setOption({
+  backgroundColor:'transparent',
+  tooltip:{trigger:'axis'},
+  grid:{left:'20%',right:'5%',top:'5%',bottom:'15%'},
+  xAxis:{type:'value',max:1.0,axisLabel:{color:'#888',formatter:'{value}'},splitLine:{lineStyle:{color:'#1a1a3e'}}},
+  yAxis:{type:'category',data:socialData.map(function(d){return d.team}),axisLabel:{color:'#ccc',fontSize:10},axisLine:{lineStyle:{color:'#333'}}},
+  series:[{
+    type:'bar',data:socialData.map(function(d){return d.heat_score}),
+    barWidth:'40%',
+    itemStyle:{color:{type:'linear',x:0,y:0,x2:1,y2:0,colorStops:[{offset:0,color:'#ff6b35'},{offset:1,color:'#ffd700'}]}},
+    label:{show:true,position:'right',color:'#fff',fontSize:10,formatter:function(p){return (p.value*100).toFixed(0)+'%'}}
+  }]
+});
+
+// ===== 赔率对比 =====
+var oddsData = [{"home": "Jordan", "away": "Argentina", "oH": 11.73, "oD": 5.3, "oA": 1.46}, {"home": "France", "away": "Iraq", "oH": 1.51, "oD": 5.3, "oA": 9.05}, {"home": "Brazil", "away": "Haiti", "oH": 1.52, "oD": 5.3, "oA": 8.57}, {"home": "Portugal", "away": "Uzbekistan", "oH": 1.58, "oD": 5.3, "oA": 6.89}, {"home": "Norway", "away": "France", "oH": 6.11, "oD": 5.3, "oA": 1.62}, {"home": "Spain", "away": "Cape Verde Islands", "oH": 1.63, "oD": 5.3, "oA": 6.01}, {"home": "Scotland", "away": "Brazil", "oH": 5.92, "oD": 5.3, "oA": 1.63}, {"home": "Czechia", "away": "Mexico", "oH": 5.89, "oD": 5.3, "oA": 1.63}, {"home": "New Zealand", "away": "Belgium", "oH": 5.89, "oD": 5.3, "oA": 1.63}, {"home": "Uzbekistan", "away": "Colombia", "oH": 5.71, "oD": 5.3, "oA": 1.65}, {"home": "Argentina", "away": "Austria", "oH": 1.65, "oD": 5.3, "oA": 5.69}, {"home": "Germany", "away": "Curaçao", "oH": 1.65, "oD": 5.3, "oA": 5.67}, {"home": "Argentina", "away": "Algeria", "oH": 1.69, "oD": 5.3, "oA": 5.22}, {"home": "United States", "away": "Australia", "oH": 5.02, "oD": 5.3, "oA": 1.71}, {"home": "Cape Verde Islands", "away": "Saudi Arabia", "oH": 4.95, "oD": 5.3, "oA": 1.71}];
+if (oddsData.length > 0) {
+  var oc = echarts.init(document.getElementById('oddsChart'));
+  oc.setOption({
+    backgroundColor:'transparent',
+    tooltip:{trigger:'axis'},
+    legend:{data:['主胜赔率','平局赔率','客胜赔率'],textStyle:{color:'#ccc'},top:0},
+    grid:{left:'8%',right:'5%',top:'15%',bottom:'15%'},
+    xAxis:{type:'category',data:oddsData.map(function(d){return d.home+' vs '+d.away}),axisLabel:{fontSize:9,color:'#ccc',rotate:30},axisLine:{lineStyle:{color:'#333'}}},
+    yAxis:{type:'value',name:'赔率',nameTextStyle:{color:'#888'},splitLine:{lineStyle:{color:'#1a1a3e'}},axisLabel:{color:'#888'}},
+    series:[
+      {name:'主胜赔率',type:'bar',data:oddsData.map(function(d){return d.oH}),barWidth:'20%',itemStyle:{color:'#ff4d4f'},label:{show:true,position:'top',fontSize:9,color:'#ff4d4f',formatter:'{c}'}},
+      {name:'平局赔率',type:'bar',data:oddsData.map(function(d){return d.oD}),barWidth:'20%',itemStyle:{color:'#faad14'},label:{show:true,position:'top',fontSize:9,color:'#faad14',formatter:'{c}'}},
+      {name:'客胜赔率',type:'bar',data:oddsData.map(function(d){return d.oA}),barWidth:'20%',itemStyle:{color:'#1890ff'},label:{show:true,position:'top',fontSize:9,color:'#1890ff',formatter:'{c}'}}
+    ]
+  });
+}
+
+// ===== 球队综合分析 =====
+var teamData = mediaData.concat(socialData).reduce(function(acc, item) {
+  var t = item.team || item.team;
+  if (!acc[t]) {
+    acc[t] = {team:t, sentiment:0.5, heat:0.5, volume:0};
+  }
+  if (item.sentiment_score !== undefined) acc[t].sentiment = item.sentiment_score;
+  if (item.heat_score !== undefined) acc[t].heat = item.heat_score;
+  if (item.news_volume !== undefined) acc[t].volume = item.news_volume;
+  if (item.active_users_24h !== undefined) acc[t].volume = item.active_users_24h;
+  return acc;
+}, {});
+var teams = Object.values(teamData).sort(function(a,b){return (b.sentiment+b.heat) - (a.sentiment+a.heat)}).slice(0,20);
+var tc = document.getElementById('teamAnalysis');
+if (teams.length > 0) {
+  teams.forEach(function(t){
+    var score = (t.sentiment + t.heat) / 2 * 100;
+    var div = document.createElement('div');
+    div.className = 'analysis-card';
+    div.innerHTML = '<div class="aname">'+t.team+'</div>' +
+      '<div class="aval">媒体情感: '+(t.sentiment*100).toFixed(0)+'%</div>' +
+      '<div class="bar-container"><div class="bar" style="width:'+(t.sentiment*100)+'%;background:'+(t.sentiment>0.5?'#52c41a':'#ff4d4f')+'"></div></div>' +
+      '<div class="aval">社交热度: '+(t.heat*100).toFixed(0)+'%</div>' +
+      '<div class="bar-container"><div class="bar" style="width:'+(t.heat*100)+'%;background:linear-gradient(90deg,#ff6b35,#ffd700)"></div></div>' +
+      '<div class="aval">综合评分: '+score.toFixed(0)+'/100</div>';
+    tc.appendChild(div);
+  });
+} else {
+  tc.innerHTML = '<div style="text-align:center;padding:20px;color:#888;font-size:13px">暂无分析数据</div>';
+}
+
+// ===== 全部预测详情 =====
+var predData = [{"date": "2026-06-11", "home": "Mexico", "away": "South Africa", "pred": "主胜", "pred_r": "H", "ph": 41.9, "pd": 35.0, "pa": 23.1, "conf": 41.9, "oh": 2.39, "od": 2.86, "oa": 4.32},
+{"date": "2026-06-12", "home": "South Korea", "away": "Czechia", "pred": "主胜", "pred_r": "H", "ph": 48.1, "pd": 35.0, "pa": 16.9, "conf": 48.1, "oh": 2.08, "od": 2.86, "oa": 5.92},
+{"date": "2026-06-12", "home": "Canada", "away": "Bosnia-Herzegovina", "pred": "主胜", "pred_r": "H", "ph": 47.1, "pd": 35.0, "pa": 17.9, "conf": 47.1, "oh": 2.12, "od": 2.86, "oa": 5.59},
+{"date": "2026-06-13", "home": "United States", "away": "Paraguay", "pred": "客胜", "pred_r": "A", "ph": 18.9, "pd": 35.0, "pa": 46.1, "conf": 46.1, "oh": 5.29, "od": 2.86, "oa": 2.17},
+{"date": "2026-06-13", "home": "Qatar", "away": "Switzerland", "pred": "客胜", "pred_r": "A", "ph": 21.5, "pd": 35.0, "pa": 43.5, "conf": 43.5, "oh": 4.66, "od": 2.86, "oa": 2.3},
+{"date": "2026-06-13", "home": "Brazil", "away": "Morocco", "pred": "主胜", "pred_r": "H", "ph": 45.1, "pd": 35.0, "pa": 19.9, "conf": 45.1, "oh": 2.22, "od": 2.86, "oa": 5.02},
+{"date": "2026-06-14", "home": "Haiti", "away": "Scotland", "pred": "客胜", "pred_r": "A", "ph": 21.9, "pd": 35.0, "pa": 43.1, "conf": 43.1, "oh": 4.57, "od": 2.86, "oa": 2.32},
+{"date": "2026-06-14", "home": "Australia", "away": "Turkey", "pred": "平局", "pred_r": "H", "ph": 39.0, "pd": 35.0, "pa": 26.0, "conf": 39.0, "oh": 2.57, "od": 2.86, "oa": 3.84},
+{"date": "2026-06-14", "home": "Germany", "away": "Curaçao", "pred": "主胜", "pred_r": "H", "ph": 52.2, "pd": 35.0, "pa": 12.8, "conf": 52.2, "oh": 1.91, "od": 2.86, "oa": 7.84},
+{"date": "2026-06-14", "home": "Netherlands", "away": "Japan", "pred": "平局", "pred_r": "H", "ph": 39.0, "pd": 35.0, "pa": 26.0, "conf": 39.0, "oh": 2.57, "od": 2.86, "oa": 3.84},
+{"date": "2026-06-14", "home": "Ivory Coast", "away": "Ecuador", "pred": "平局", "pred_r": "A", "ph": 28.8, "pd": 35.0, "pa": 36.2, "conf": 36.2, "oh": 3.48, "od": 2.86, "oa": 2.76},
+{"date": "2026-06-15", "home": "Sweden", "away": "Tunisia", "pred": "平局", "pred_r": "D", "ph": 31.6, "pd": 35.0, "pa": 33.4, "conf": 35.0, "oh": 3.17, "od": 2.86, "oa": 2.99},
+{"date": "2026-06-15", "home": "Spain", "away": "Cape Verde Islands", "pred": "主胜", "pred_r": "H", "ph": 53.0, "pd": 35.0, "pa": 12.0, "conf": 53.0, "oh": 1.89, "od": 2.86, "oa": 8.33},
+{"date": "2026-06-15", "home": "Belgium", "away": "Egypt", "pred": "主胜", "pred_r": "H", "ph": 47.0, "pd": 35.0, "pa": 18.0, "conf": 47.0, "oh": 2.13, "od": 2.86, "oa": 5.56},
+{"date": "2026-06-15", "home": "Saudi Arabia", "away": "Uruguay", "pred": "平局", "pred_r": "A", "ph": 29.1, "pd": 35.0, "pa": 35.9, "conf": 35.9, "oh": 3.44, "od": 2.86, "oa": 2.78},
+{"date": "2026-06-16", "home": "Iran", "away": "New Zealand", "pred": "主胜", "pred_r": "H", "ph": 42.0, "pd": 35.0, "pa": 23.0, "conf": 42.0, "oh": 2.38, "od": 2.86, "oa": 4.35},
+{"date": "2026-06-16", "home": "France", "away": "Senegal", "pred": "主胜", "pred_r": "H", "ph": 46.3, "pd": 35.0, "pa": 18.7, "conf": 46.3, "oh": 2.16, "od": 2.86, "oa": 5.34},
+{"date": "2026-06-16", "home": "Iraq", "away": "Norway", "pred": "客胜", "pred_r": "A", "ph": 21.5, "pd": 35.0, "pa": 43.5, "conf": 43.5, "oh": 4.64, "od": 2.86, "oa": 2.3},
+{"date": "2026-06-17", "home": "Argentina", "away": "Algeria", "pred": "主胜", "pred_r": "H", "ph": 51.1, "pd": 35.0, "pa": 13.9, "conf": 51.1, "oh": 1.96, "od": 2.86, "oa": 7.19},
+{"date": "2026-06-17", "home": "Austria", "away": "Jordan", "pred": "主胜", "pred_r": "H", "ph": 42.6, "pd": 35.0, "pa": 22.4, "conf": 42.6, "oh": 2.35, "od": 2.86, "oa": 4.47},
+{"date": "2026-06-17", "home": "Portugal", "away": "Congo DR", "pred": "主胜", "pred_r": "H", "ph": 47.5, "pd": 35.0, "pa": 17.5, "conf": 47.5, "oh": 2.11, "od": 2.86, "oa": 5.7},
+{"date": "2026-06-17", "home": "England", "away": "Croatia", "pred": "主胜", "pred_r": "H", "ph": 40.2, "pd": 35.0, "pa": 24.8, "conf": 40.2, "oh": 2.49, "od": 2.86, "oa": 4.03},
+{"date": "2026-06-17", "home": "Ghana", "away": "Panama", "pred": "平局", "pred_r": "D", "ph": 31.6, "pd": 35.0, "pa": 33.4, "conf": 35.0, "oh": 3.17, "od": 2.86, "oa": 2.99},
+{"date": "2026-06-18", "home": "Uzbekistan", "away": "Colombia", "pred": "客胜", "pred_r": "A", "ph": 15.1, "pd": 35.0, "pa": 49.9, "conf": 49.9, "oh": 6.63, "od": 2.86, "oa": 2.0},
+{"date": "2026-06-18", "home": "Czechia", "away": "South Africa", "pred": "客胜", "pred_r": "A", "ph": 22.4, "pd": 35.0, "pa": 42.6, "conf": 42.6, "oh": 4.47, "od": 2.86, "oa": 2.35},
+{"date": "2026-06-18", "home": "Switzerland", "away": "Bosnia-Herzegovina", "pred": "主胜", "pred_r": "H", "ph": 49.2, "pd": 35.0, "pa": 15.8, "conf": 49.2, "oh": 2.03, "od": 2.86, "oa": 6.35},
+{"date": "2026-06-18", "home": "Canada", "away": "Qatar", "pred": "主胜", "pred_r": "H", "ph": 41.0, "pd": 35.0, "pa": 24.0, "conf": 41.0, "oh": 2.44, "od": 2.86, "oa": 4.17},
+{"date": "2026-06-19", "home": "Mexico", "away": "South Korea", "pred": "平局", "pred_r": "H", "ph": 35.6, "pd": 35.0, "pa": 29.4, "conf": 35.6, "oh": 2.81, "od": 2.86, "oa": 3.4},
+{"date": "2026-06-19", "home": "United States", "away": "Australia", "pred": "客胜", "pred_r": "A", "ph": 17.2, "pd": 35.0, "pa": 47.8, "conf": 47.8, "oh": 5.82, "od": 2.86, "oa": 2.09},
+{"date": "2026-06-19", "home": "Scotland", "away": "Morocco", "pred": "平局", "pred_r": "A", "ph": 25.7, "pd": 35.0, "pa": 39.3, "conf": 39.3, "oh": 3.89, "od": 2.86, "oa": 2.54},
+{"date": "2026-06-20", "home": "Brazil", "away": "Haiti", "pred": "主胜", "pred_r": "H", "ph": 57.9, "pd": 33.7, "pa": 8.5, "conf": 57.9, "oh": 1.73, "od": 2.97, "oa": 11.81},
+{"date": "2026-06-20", "home": "Turkey", "away": "Paraguay", "pred": "平局", "pred_r": "A", "ph": 28.1, "pd": 35.0, "pa": 36.9, "conf": 36.9, "oh": 3.55, "od": 2.86, "oa": 2.71},
+{"date": "2026-06-20", "home": "Netherlands", "away": "Sweden", "pred": "主胜", "pred_r": "H", "ph": 44.9, "pd": 35.0, "pa": 20.1, "conf": 44.9, "oh": 2.23, "od": 2.86, "oa": 4.98},
+{"date": "2026-06-20", "home": "Germany", "away": "Ivory Coast", "pred": "主胜", "pred_r": "H", "ph": 43.3, "pd": 35.0, "pa": 21.7, "conf": 43.3, "oh": 2.31, "od": 2.86, "oa": 4.61},
+{"date": "2026-06-21", "home": "Ecuador", "away": "Curaçao", "pred": "主胜", "pred_r": "H", "ph": 46.9, "pd": 35.0, "pa": 18.1, "conf": 46.9, "oh": 2.13, "od": 2.86, "oa": 5.52},
+{"date": "2026-06-21", "home": "Tunisia", "away": "Japan", "pred": "平局", "pred_r": "A", "ph": 26.9, "pd": 35.0, "pa": 38.1, "conf": 38.1, "oh": 3.71, "od": 2.86, "oa": 2.63},
+{"date": "2026-06-21", "home": "Spain", "away": "Saudi Arabia", "pred": "主胜", "pred_r": "H", "ph": 40.1, "pd": 35.0, "pa": 24.9, "conf": 40.1, "oh": 2.49, "od": 2.86, "oa": 4.02},
+{"date": "2026-06-21", "home": "Belgium", "away": "Iran", "pred": "主胜", "pred_r": "H", "ph": 42.5, "pd": 35.0, "pa": 22.5, "conf": 42.5, "oh": 2.36, "od": 2.86, "oa": 4.44},
+{"date": "2026-06-21", "home": "Uruguay", "away": "Cape Verde Islands", "pred": "主胜", "pred_r": "H", "ph": 50.2, "pd": 35.0, "pa": 14.8, "conf": 50.2, "oh": 1.99, "od": 2.86, "oa": 6.75},
+{"date": "2026-06-22", "home": "New Zealand", "away": "Egypt", "pred": "平局", "pred_r": "A", "ph": 28.0, "pd": 35.0, "pa": 37.0, "conf": 37.0, "oh": 3.57, "od": 2.86, "oa": 2.71},
+{"date": "2026-06-22", "home": "Argentina", "away": "Austria", "pred": "主胜", "pred_r": "H", "ph": 52.3, "pd": 35.0, "pa": 12.7, "conf": 52.3, "oh": 1.91, "od": 2.86, "oa": 7.88},
+{"date": "2026-06-22", "home": "France", "away": "Iraq", "pred": "主胜", "pred_r": "H", "ph": 58.6, "pd": 33.4, "pa": 8.0, "conf": 58.6, "oh": 1.71, "od": 3.0, "oa": 12.44},
+{"date": "2026-06-23", "home": "Norway", "away": "Senegal", "pred": "平局", "pred_r": "A", "ph": 26.4, "pd": 35.0, "pa": 38.6, "conf": 38.6, "oh": 3.79, "od": 2.86, "oa": 2.59},
+{"date": "2026-06-23", "home": "Jordan", "away": "Algeria", "pred": "客胜", "pred_r": "A", "ph": 20.7, "pd": 35.0, "pa": 44.3, "conf": 44.3, "oh": 4.83, "od": 2.86, "oa": 2.26},
+{"date": "2026-06-23", "home": "Portugal", "away": "Uzbekistan", "pred": "主胜", "pred_r": "H", "ph": 54.8, "pd": 34.8, "pa": 10.4, "conf": 54.8, "oh": 1.83, "od": 2.87, "oa": 9.58},
+{"date": "2026-06-23", "home": "England", "away": "Ghana", "pred": "主胜", "pred_r": "H", "ph": 47.5, "pd": 35.0, "pa": 17.5, "conf": 47.5, "oh": 2.1, "od": 2.86, "oa": 5.73},
+{"date": "2026-06-23", "home": "Panama", "away": "Croatia", "pred": "平局", "pred_r": "A", "ph": 25.1, "pd": 35.0, "pa": 39.9, "conf": 39.9, "oh": 3.98, "od": 2.86, "oa": 2.51},
+{"date": "2026-06-24", "home": "Colombia", "away": "Congo DR", "pred": "主胜", "pred_r": "H", "ph": 41.0, "pd": 35.0, "pa": 24.0, "conf": 41.0, "oh": 2.44, "od": 2.86, "oa": 4.17},
+{"date": "2026-06-24", "home": "Switzerland", "away": "Canada", "pred": "平局", "pred_r": "H", "ph": 35.3, "pd": 35.0, "pa": 29.7, "conf": 35.3, "oh": 2.83, "od": 2.86, "oa": 3.37},
+{"date": "2026-06-24", "home": "Bosnia-Herzegovina", "away": "Qatar", "pred": "平局", "pred_r": "A", "ph": 25.6, "pd": 35.0, "pa": 39.4, "conf": 39.4, "oh": 3.91, "od": 2.86, "oa": 2.54},
+{"date": "2026-06-24", "home": "Scotland", "away": "Brazil", "pred": "客胜", "pred_r": "A", "ph": 14.5, "pd": 35.0, "pa": 50.5, "conf": 50.5, "oh": 6.87, "od": 2.86, "oa": 1.98},
+{"date": "2026-06-24", "home": "Morocco", "away": "Haiti", "pred": "主胜", "pred_r": "H", "ph": 48.8, "pd": 35.0, "pa": 16.2, "conf": 48.8, "oh": 2.05, "od": 2.86, "oa": 6.18},
+{"date": "2026-06-25", "home": "Czechia", "away": "Mexico", "pred": "客胜", "pred_r": "A", "ph": 14.6, "pd": 35.0, "pa": 50.4, "conf": 50.4, "oh": 6.84, "od": 2.86, "oa": 1.98},
+{"date": "2026-06-25", "home": "South Africa", "away": "South Korea", "pred": "平局", "pred_r": "A", "ph": 26.0, "pd": 35.0, "pa": 39.0, "conf": 39.0, "oh": 3.84, "od": 2.86, "oa": 2.57},
+{"date": "2026-06-25", "home": "Ecuador", "away": "Germany", "pred": "平局", "pred_r": "A", "ph": 25.1, "pd": 35.0, "pa": 39.9, "conf": 39.9, "oh": 3.98, "od": 2.86, "oa": 2.51},
+{"date": "2026-06-25", "home": "Curaçao", "away": "Ivory Coast", "pred": "客胜", "pred_r": "A", "ph": 21.3, "pd": 35.0, "pa": 43.7, "conf": 43.7, "oh": 4.7, "od": 2.86, "oa": 2.29},
+{"date": "2026-06-25", "home": "Tunisia", "away": "Netherlands", "pred": "客胜", "pred_r": "A", "ph": 20.9, "pd": 35.0, "pa": 44.1, "conf": 44.1, "oh": 4.79, "od": 2.86, "oa": 2.27},
+{"date": "2026-06-25", "home": "Japan", "away": "Sweden", "pred": "平局", "pred_r": "H", "ph": 39.0, "pd": 35.0, "pa": 26.0, "conf": 39.0, "oh": 2.57, "od": 2.86, "oa": 3.84},
+{"date": "2026-06-26", "home": "Turkey", "away": "United States", "pred": "主胜", "pred_r": "H", "ph": 42.3, "pd": 35.0, "pa": 22.7, "conf": 42.3, "oh": 2.36, "od": 2.86, "oa": 4.4},
+{"date": "2026-06-26", "home": "Paraguay", "away": "Australia", "pred": "平局", "pred_r": "D", "ph": 30.4, "pd": 35.0, "pa": 34.6, "conf": 35.0, "oh": 3.29, "od": 2.86, "oa": 2.89},
+{"date": "2026-06-26", "home": "Norway", "away": "France", "pred": "客胜", "pred_r": "A", "ph": 14.1, "pd": 35.0, "pa": 50.9, "conf": 50.9, "oh": 7.09, "od": 2.86, "oa": 1.96},
+{"date": "2026-06-26", "home": "Senegal", "away": "Iraq", "pred": "主胜", "pred_r": "H", "ph": 48.5, "pd": 35.0, "pa": 16.5, "conf": 48.5, "oh": 2.06, "od": 2.86, "oa": 6.08},
+{"date": "2026-06-27", "home": "Cape Verde Islands", "away": "Saudi Arabia", "pred": "客胜", "pred_r": "A", "ph": 17.4, "pd": 35.0, "pa": 47.6, "conf": 47.6, "oh": 5.75, "od": 2.86, "oa": 2.1},
+{"date": "2026-06-27", "home": "Uruguay", "away": "Spain", "pred": "平局", "pred_r": "A", "ph": 28.2, "pd": 35.0, "pa": 36.8, "conf": 36.8, "oh": 3.54, "od": 2.86, "oa": 2.72},
+{"date": "2026-06-27", "home": "New Zealand", "away": "Belgium", "pred": "客胜", "pred_r": "A", "ph": 14.6, "pd": 35.0, "pa": 50.4, "conf": 50.4, "oh": 6.84, "od": 2.86, "oa": 1.98},
+{"date": "2026-06-27", "home": "Egypt", "away": "Iran", "pred": "平局", "pred_r": "A", "ph": 27.2, "pd": 35.0, "pa": 37.8, "conf": 37.8, "oh": 3.67, "od": 2.86, "oa": 2.65},
+{"date": "2026-06-27", "home": "Panama", "away": "England", "pred": "客胜", "pred_r": "A", "ph": 18.2, "pd": 35.0, "pa": 46.8, "conf": 46.8, "oh": 5.49, "od": 2.86, "oa": 2.14},
+{"date": "2026-06-27", "home": "Croatia", "away": "Ghana", "pred": "主胜", "pred_r": "H", "ph": 40.7, "pd": 35.0, "pa": 24.3, "conf": 40.7, "oh": 2.45, "od": 2.86, "oa": 4.12},
+{"date": "2026-06-27", "home": "Colombia", "away": "Portugal", "pred": "平局", "pred_r": "A", "ph": 25.1, "pd": 35.0, "pa": 39.9, "conf": 39.9, "oh": 3.98, "od": 2.86, "oa": 2.51},
+{"date": "2026-06-27", "home": "Congo DR", "away": "Uzbekistan", "pred": "主胜", "pred_r": "H", "ph": 42.9, "pd": 35.0, "pa": 22.1, "conf": 42.9, "oh": 2.33, "od": 2.86, "oa": 4.52},
+{"date": "2026-06-28", "home": "Jordan", "away": "Argentina", "pred": "客胜", "pred_r": "A", "ph": 7.6, "pd": 33.1, "pa": 59.4, "conf": 59.4, "oh": 13.22, "od": 3.03, "oa": 1.68},
+{"date": "2026-06-28", "home": "Algeria", "away": "Austria", "pred": "平局", "pred_r": "D", "ph": 34.4, "pd": 35.0, "pa": 30.6, "conf": 35.0, "oh": 2.91, "od": 2.86, "oa": 3.26}];
+var at = document.getElementById('allPredictionsTable');
+if (predData.length > 0) {
+  var html = '<table><tr><th>日期</th><th>主队</th><th>客队</th><th>预测</th><th>主胜</th><th>平局</th><th>客胜</th><th>置信度</th><th>主胜赔</th><th>平赔</th><th>客胜赔</th></tr>';
+  predData.forEach(function(r){
+    var predColor = r.pred_r === 'H' ? '#ff4d4f' : r.pred_r === 'D' ? '#faad14' : '#1890ff';
+    html += '<tr><td>'+r.date+'</td><td>'+r.home+'</td><td>'+r.away+'</td>' +
+      '<td style="color:'+predColor+';font-weight:bold">'+r.pred+'</td>' +
+      '<td>'+r.ph+'%</td><td>'+r.pd+'%</td><td>'+r.pa+'%</td>' +
+      '<td>'+r.conf+'%</td><td>'+r.oh+'</td><td>'+r.od+'</td><td>'+r.oa+'</td></tr>';
+  });
+  html += '</table>';
+  at.innerHTML = html;
+} else {
+  at.innerHTML = '<div style="text-align:center;padding:20px;color:#888">暂无预测数据</div>';
+}
+
+window.addEventListener('resize', function(){ bc.resize(); if(typeof mc !== 'undefined'){mc.resize();} if(typeof sc !== 'undefined'){sc.resize();} });
+</script>
+</body>
+</html>
