@@ -537,6 +537,31 @@ tr:hover td{{background:rgba(255,255,255,.015)}}
   </div>
 </div>
 
+<!-- Agent PK Debate + Leaderboard -->
+<div class="l2">
+  <div class="cd">
+    <div class="cd-h">
+      <span class="cd-h-dot"></span>
+      <h2>智能体PK辩论 · {matchday_date_str}</h2>
+      <span class="cd-h-b">5 AGENTS</span>
+    </div>
+    {agent_pk_html if agent_pk_html else '<div style="text-align:center;padding:20px;color:var(--text3);font-size:12px">暂无智能体预测数据，请先运行 agents.py</div>'}
+  </div>
+  <div class="cd">
+    <div class="cd-h">
+      <span class="cd-h-dot"></span>
+      <h2>智能体业绩排行榜</h2>
+      <span class="cd-h-b">LEADERBOARD</span>
+    </div>
+    <div class="lb-w">
+      <table>
+        <tr><th>排名</th><th>智能体</th><th>结果分布</th><th>平均置信度</th><th>多样性</th><th>总分</th></tr>
+        {agent_leaderboard_rows if agent_leaderboard_rows else '<tr><td colspan="6" style="text-align:center;color:var(--text3);padding:20px">暂无排行榜数据</td></tr>'}
+      </table>
+    </div>
+  </div>
+</div>
+
 <!-- Stats -->
 <div class="st">
   <div class="st-c">
@@ -574,31 +599,6 @@ tr:hover td{{background:rgba(255,255,255,.015)}}
     <h2>模型回测收益曲线</h2>
   </div>
   <div id="backtestChart" class="ch"></div>
-</div>
-
-<!-- Agent PK Debate + Leaderboard -->
-<div class="l2">
-  <div class="cd">
-    <div class="cd-h">
-      <span class="cd-h-dot"></span>
-      <h2>智能体PK辩论 · {matchday_date_str}</h2>
-      <span class="cd-h-b">5 AGENTS</span>
-    </div>
-    {agent_pk_html if agent_pk_html else '<div style="text-align:center;padding:20px;color:var(--text3);font-size:12px">暂无智能体预测数据，请先运行 agents.py</div>'}
-  </div>
-  <div class="cd">
-    <div class="cd-h">
-      <span class="cd-h-dot"></span>
-      <h2>智能体业绩排行榜</h2>
-      <span class="cd-h-b">LEADERBOARD</span>
-    </div>
-    <div class="lb-w">
-      <table>
-        <tr><th>排名</th><th>智能体</th><th>结果分布</th><th>平均置信度</th><th>多样性</th><th>总分</th></tr>
-        {agent_leaderboard_rows if agent_leaderboard_rows else '<tr><td colspan="6" style="text-align:center;color:var(--text3);padding:20px">暂无排行榜数据</td></tr>'}
-      </table>
-    </div>
-  </div>
 </div>
 
 <!-- Media + Social -->
