@@ -17,7 +17,7 @@ os.makedirs(OUTPUT_DIR, exist_ok=True)
 
 RESULT_COLORS = {"H": "#ef4444", "D": "#f59e0b", "A": "#3b82f6"}
 RESULT_NAMES = {"H": "主胜", "D": "平局", "A": "客胜"}
-AGENT_COLORS = {"稳健派": "#22c55e", "激进派": "#ef4444", "价值派": "#3b82f6", "防守派": "#8b5cf6", "数据派": "#f59e0b"}
+AGENT_COLORS = {"稳健派": "#22c55e", "激进派": "#ef4444", "价值派": "#3b82f6", "防守派": "#8b5cf6", "数据派": "#f59e0b", "爆冷派": "#ec4899"}
 
 
 def load_all_data():
@@ -74,6 +74,12 @@ def load_all_data():
     if os.path.exists(lb_path):
         with open(lb_path, "r") as f:
             data["agent_leaderboard"] = json.load(f)
+
+    # 真实赔率
+    real_odds_path = os.path.join(DATA_DIR, "real_odds.json")
+    if os.path.exists(real_odds_path):
+        with open(real_odds_path, "r") as f:
+            data["real_odds"] = json.load(f)
 
     return data
 
@@ -146,6 +152,8 @@ def generate_dashboard(data):
     odds_df = data.get("odds")
     odds_history = data.get("odds_history", {})
     social_trends = data.get("social_trends", {})
+    real_odds_data = data.get("real_odds", {})
+    real_odds_matches = real_odds_data.get("matches", {}) if real_odds_data else {}
 
     # === 计算指标 ===
     avg_acc = 0
@@ -231,13 +239,20 @@ def generate_dashboard(data):
                 else: bet = "不推荐，置信度偏低"
                 color = RESULT_COLORS.get(pred_r, "#888")
                 bet_color = "#22c55e" if kelly > 0.08 else "#f59e0b" if kelly > 0 else "#5b6380"
+                # 真实赔率对比
+                match_key = f"{home}_vs_{away}"
+                real = real_odds_matches.get(match_key)
+                odds_display = f"{oH:.2f}/{oD:.2f}/{oA:.2f}"
+                if real:
+                    rH, rD, rA = real["odds_H"], real["odds_D"], real["odds_A"]
+                    odds_display = f"模型{oH:.2f}/{oD:.2f}/{oA:.2f}<br><span style=font-size:9px;color:var(--accent2)>市场{rH:.2f}/{rD:.2f}/{rA:.2f}</span>"
                 rows_html.append(
                     f'<tr><td>{str(row["date"])[:10]}</td>'
                     f'<td style="font-weight:600">{home}</td>'
                     f'<td style="font-weight:600">{away}</td>'
                     f'<td style="color:{color};font-weight:600">{row["pred_label"]}</td>'
                     f'<td>{conf*100:.0f}%</td>'
-                    f'<td>{oH:.2f}/{oD:.2f}/{oA:.2f}</td>'
+                    f'<td>{odds_display}</td>'
                     f'<td class="reason-cell">{"；".join(reasons)}</td>'
                     f'<td class="bet-cell" style="color:{bet_color}">{bet}</td></tr>'
                 )
@@ -283,7 +298,7 @@ def generate_dashboard(data):
                 agreement = consensus.get("agreement_pct", 0)
 
                 agent_rows = ""
-                for agent_name in ["稳健派", "激进派", "价值派", "防守派", "数据派"]:
+                for agent_name in ["稳健派", "激进派", "价值派", "防守派", "数据派", "爆冷派"]:
                     if agent_name not in agents:
                         continue
                     a = agents[agent_name]

@@ -4,7 +4,7 @@ data_collector.py - 世界杯2026数据采集器
 """
 import pandas as pd
 import numpy as np
-import os, pickle, time, logging, requests
+import os, pickle, time, logging, requests, json
 
 logging.basicConfig(level=logging.INFO, format='[%(asctime)s] %(message)s')
 log = logging.getLogger(__name__)
@@ -13,7 +13,7 @@ BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 DATA_DIR = os.path.join(BASE_DIR, "data")
 os.makedirs(DATA_DIR, exist_ok=True)
 
-API_TOKEN = "fc2bdc810c27460ca24fd3dcbfcbbb81"
+API_TOKEN = os.environ.get("FOOTBALL_DATA_API_TOKEN", "")
 API_HEADERS = {"X-Auth-Token": API_TOKEN}
 API_BASE = "https://api.football-data.org/v4"
 
@@ -269,6 +269,129 @@ def get_wc_2026_matches():
             df = pickle.load(f)
             return df[df["status"] != "FINISHED"] if "status" in df.columns else df
     return None
+
+
+# === The Odds API 集成 ===
+ODDS_API_KEY = os.environ.get("ODDS_API_KEY", "")
+ODDS_API_BASE = "https://api.the-odds-api.com/v4"
+
+# The Odds API 到本地 team name 映射
+ODDS_TEAM_MAP = {
+    "Bosnia & Herzegovina": "Bosnia-Herzegovina",
+    "Cape Verde": "Cape Verde Islands",
+    "DR Congo": "Congo DR",
+    "USA": "United States",
+    "Czech Republic": "Czechia",
+    "Czech Rep": "Czechia",
+}
+
+
+def fetch_real_odds():
+    """从 The Odds API 获取 2026 世界杯真实赔率"""
+    log.info("=" * 50)
+    log.info("获取实时赔率 (The Odds API)...")
+    log.info("=" * 50)
+
+    url = f"{ODDS_API_BASE}/sports/soccer_fifa_world_cup/odds"
+    params = {
+        "apiKey": ODDS_API_KEY,
+        "regions": "us,uk,eu",
+        "markets": "h2h,totals",
+    }
+    try:
+        resp = requests.get(url, params=params, timeout=20)
+        if resp.status_code != 200:
+            log.warning(f"赔率API: HTTP {resp.status_code}")
+            return None
+        data = resp.json()
+        log.info(f"获取到 {len(data)} 场比赛赔率")
+
+        results = {}
+        for m in data:
+            api_home = m["home_team"]
+            api_away = m["away_team"]
+            home = ODDS_TEAM_MAP.get(api_home, api_home)
+            away = ODDS_TEAM_MAP.get(api_away, api_away)
+            key = f"{home}_vs_{away}"
+
+            # 收集所有 bookmaker 的 h2h 赔率
+            h_odds, d_odds, a_odds = [], [], []
+            over_odds, under_odds = [], []
+            for bk in m.get("bookmakers", []):
+                for market in bk.get("markets", []):
+                    outcomes = {o["name"]: o["price"] for o in market.get("outcomes", [])}
+                    if market["key"] == "h2h":
+                        # 用 API 原始名匹配 outcomes，部分博彩使用 "Home"/"Away"
+                        h_val = outcomes.get(api_home) or outcomes.get("Home")
+                        a_val = outcomes.get(api_away) or outcomes.get("Away")
+                        d_val = outcomes.get("Draw")
+                        if h_val and d_val and a_val:
+                            h_odds.append(h_val)
+                            d_odds.append(d_val)
+                            a_odds.append(a_val)
+                    elif market["key"] == "totals":
+                        over_odds.append(outcomes.get("Over", 0))
+                        under_odds.append(outcomes.get("Under", 0))
+
+            if h_odds:
+                # 去掉最高最低后取平均（去掉异常值）
+                if len(h_odds) >= 3:
+                    h_odds.sort()
+                    d_odds.sort()
+                    a_odds.sort()
+                    avg_h = sum(h_odds[1:-1]) / (len(h_odds) - 2) if len(h_odds) > 2 else h_odds[0]
+                    avg_d = sum(d_odds[1:-1]) / (len(d_odds) - 2) if len(d_odds) > 2 else d_odds[0]
+                    avg_a = sum(a_odds[1:-1]) / (len(a_odds) - 2) if len(a_odds) > 2 else a_odds[0]
+                else:
+                    avg_h = sum(h_odds) / len(h_odds)
+                    avg_d = sum(d_odds) / len(d_odds)
+                    avg_a = sum(a_odds) / len(a_odds)
+
+                avg_over = sum(over_odds) / len(over_odds) if over_odds else None
+                avg_under = sum(under_odds) / len(under_odds) if under_odds else None
+
+                # 转换为隐含概率
+                imp_h = 1.0 / avg_h
+                imp_d = 1.0 / avg_d
+                imp_a = 1.0 / avg_a
+                total_imp = imp_h + imp_d + imp_a
+                # 去掉水钱 (vig)
+                vig = total_imp - 1.0
+                fair_h = imp_h / total_imp if total_imp > 0 else imp_h
+                fair_d = imp_d / total_imp if total_imp > 0 else imp_d
+                fair_a = imp_a / total_imp if total_imp > 0 else imp_a
+
+                results[key] = {
+                    "home": home, "away": away,
+                    "odds_H": round(avg_h, 2), "odds_D": round(avg_d, 2), "odds_A": round(avg_a, 2),
+                    "fair_prob_H": round(fair_h, 4), "fair_prob_D": round(fair_d, 4), "fair_prob_A": round(fair_a, 4),
+                    "over_odds": round(avg_over, 2) if avg_over else None,
+                    "under_odds": round(avg_under, 2) if avg_under else None,
+                    "vig": round(vig, 3),
+                    "num_bookmakers": len(h_odds),
+                }
+
+        # 保存
+        path = os.path.join(DATA_DIR, "real_odds.json")
+        with open(path, "w", encoding="utf-8") as f:
+            json.dump({"source": "the-odds-api.com", "matches": results, "count": len(results)},
+                      f, ensure_ascii=False, indent=2)
+        log.info(f"赔率已保存: {len(results)} 场比赛 (来自 {len(h_odds)} 家博彩公司)")
+        return results
+
+    except Exception as e:
+        log.warning(f"获取赔率失败: {e}")
+        return None
+
+
+def load_real_odds():
+    """加载缓存的真实赔率"""
+    path = os.path.join(DATA_DIR, "real_odds.json")
+    if os.path.exists(path):
+        with open(path, "r", encoding="utf-8") as f:
+            data = json.load(f)
+        return data.get("matches", {})
+    return {}
 
 
 if __name__ == "__main__":

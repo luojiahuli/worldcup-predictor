@@ -80,14 +80,32 @@
             "A": 0.15777799501550976
           },
           "score_prob": 0.126
+        },
+        "爆冷派": {
+          "result": "A",
+          "home_score": 1,
+          "away_score": 2,
+          "confidence": 0.08,
+          "reasoning": "历史数据表明赔率>3.0时爆冷概率17%；市场隐含概率与模型存在分歧；实力悬殊(103分差距)增加冷门可能；天气因素高海拔利好Mexico·降雨增加平局概率，爆冷选择客胜(1-2)",
+          "probs": {
+            "H": 0.45222200498449017,
+            "D": 0.38999999999999996,
+            "A": 0.15777799501550976
+          },
+          "is_upset": true,
+          "real_odds": [
+            1.41,
+            4.51,
+            8.51
+          ]
         }
       },
       "consensus": {
         "H": 3,
         "D": 2,
-        "A": 0,
+        "A": 1,
         "consensus": "H",
-        "agreement_pct": 0.6
+        "agreement_pct": 0.5
       }
     },
     "South Korea_vs_Czechia": {
@@ -170,14 +188,32 @@
             "A": 0.16878652731536029
           },
           "score_prob": 0.111
+        },
+        "爆冷派": {
+          "result": "A",
+          "home_score": 1,
+          "away_score": 2,
+          "confidence": 0.348,
+          "reasoning": "历史数据表明赔率>3.0时爆冷概率14%；市场隐含概率与模型存在分歧；实力悬殊(182分差距)增加冷门可能，爆冷选择客胜(1-2)",
+          "probs": {
+            "H": 0.48121347268463976,
+            "D": 0.35,
+            "A": 0.16878652731536029
+          },
+          "is_upset": true,
+          "real_odds": [
+            2.66,
+            3.05,
+            2.91
+          ]
         }
       },
       "consensus": {
         "H": 4,
         "D": 1,
-        "A": 0,
+        "A": 1,
         "consensus": "H",
-        "agreement_pct": 0.8
+        "agreement_pct": 0.6666666666666666
       }
     },
     "Canada_vs_Bosnia-Herzegovina": {
@@ -260,14 +296,32 @@
             "A": 0.16905014215235156
           },
           "score_prob": 0.117
+        },
+        "爆冷派": {
+          "result": "A",
+          "home_score": 1,
+          "away_score": 2,
+          "confidence": 0.17,
+          "reasoning": "历史数据表明赔率>3.0时爆冷概率14%；市场隐含概率与模型存在分歧；实力悬殊(168分差距)增加冷门可能；天气因素降雨增加平局概率，爆冷选择客胜(1-2)",
+          "probs": {
+            "H": 0.46094985784764847,
+            "D": 0.37,
+            "A": 0.16905014215235156
+          },
+          "is_upset": true,
+          "real_odds": [
+            1.82,
+            3.52,
+            4.6
+          ]
         }
       },
       "consensus": {
         "H": 4,
         "D": 1,
-        "A": 0,
+        "A": 1,
         "consensus": "H",
-        "agreement_pct": 0.8
+        "agreement_pct": 0.6666666666666666
       }
     },
     "United States_vs_Paraguay": {
@@ -350,14 +404,32 @@
             "A": 0.4610805098891962
           },
           "score_prob": 0.113
+        },
+        "爆冷派": {
+          "result": "A",
+          "home_score": 0,
+          "away_score": 1,
+          "confidence": 0.17,
+          "reasoning": "历史数据表明赔率>3.0时爆冷概率30%；市场隐含概率与模型存在分歧；实力悬殊(155分差距)增加冷门可能，爆冷选择客胜(0-1)",
+          "probs": {
+            "H": 0.18891949011080383,
+            "D": 0.35,
+            "A": 0.4610805098891962
+          },
+          "is_upset": true,
+          "real_odds": [
+            1.93,
+            3.41,
+            4.2
+          ]
         }
       },
       "consensus": {
         "H": 0,
         "D": 1,
-        "A": 4,
+        "A": 5,
         "consensus": "A",
-        "agreement_pct": 0.8
+        "agreement_pct": 0.8333333333333334
       }
     },
     "Qatar_vs_Switzerland": {
@@ -440,14 +512,27 @@
             "A": 0.4354798590372641
           },
           "score_prob": 0.116
+        },
+        "爆冷派": {
+          "result": "A",
+          "home_score": 1,
+          "away_score": 2,
+          "confidence": 0.435,
+          "reasoning": "本场未发现明显冷门机会，跟随模型判断",
+          "probs": {
+            "H": 0.21452014096273597,
+            "D": 0.35,
+            "A": 0.4354798590372641
+          },
+          "is_upset": false
         }
       },
       "consensus": {
         "H": 0,
         "D": 1,
-        "A": 4,
+        "A": 5,
         "consensus": "A",
-        "agreement_pct": 0.8
+        "agreement_pct": 0.8333333333333334
       }
     },
     "Brazil_vs_Morocco": {
@@ -530,14 +615,32 @@
             "A": 0.19910285432572247
           },
           "score_prob": 0.114
+        },
+        "爆冷派": {
+          "result": "A",
+          "home_score": 1,
+          "away_score": 2,
+          "confidence": 0.14,
+          "reasoning": "历史数据表明赔率>3.0时爆冷概率14%；市场隐含概率与模型存在分歧；实力悬殊(142分差距)增加冷门可能，爆冷选择客胜(1-2)",
+          "probs": {
+            "H": 0.4508971456742775,
+            "D": 0.35,
+            "A": 0.19910285432572247
+          },
+          "is_upset": true,
+          "real_odds": [
+            1.66,
+            3.77,
+            5.5
+          ]
         }
       },
       "consensus": {
         "H": 4,
         "D": 1,
-        "A": 0,
+        "A": 1,
         "consensus": "H",
-        "agreement_pct": 0.8
+        "agreement_pct": 0.6666666666666666
       }
     },
     "Haiti_vs_Scotland": {
@@ -620,14 +723,32 @@
             "A": 0.37132316372684204
           },
           "score_prob": 0.135
+        },
+        "爆冷派": {
+          "result": "H",
+          "home_score": 2,
+          "away_score": 1,
+          "confidence": 0.14,
+          "reasoning": "历史数据表明赔率>3.0时爆冷概率17%；市场隐含概率与模型存在分歧；实力悬殊(118分差距)增加冷门可能；天气因素炎热利好Haiti·降雨增加平局概率，爆冷选择主胜(2-1)",
+          "probs": {
+            "H": 0.21867683627315795,
+            "D": 0.41,
+            "A": 0.37132316372684204
+          },
+          "is_upset": true,
+          "real_odds": [
+            5.94,
+            4.23,
+            1.55
+          ]
         }
       },
       "consensus": {
-        "H": 0,
+        "H": 1,
         "D": 4,
         "A": 1,
         "consensus": "D",
-        "agreement_pct": 0.8
+        "agreement_pct": 0.6666666666666666
       }
     },
     "Australia_vs_Turkey": {
@@ -710,14 +831,32 @@
             "A": 0.26039208213898307
           },
           "score_prob": 0.118
+        },
+        "爆冷派": {
+          "result": "H",
+          "home_score": 2,
+          "away_score": 1,
+          "confidence": 0.14,
+          "reasoning": "历史数据表明赔率>3.0时爆冷概率30%；市场隐含概率与模型存在分歧，爆冷选择主胜(2-1)",
+          "probs": {
+            "H": 0.38960791786101695,
+            "D": 0.35,
+            "A": 0.26039208213898307
+          },
+          "is_upset": true,
+          "real_odds": [
+            5.17,
+            3.74,
+            1.7
+          ]
         }
       },
       "consensus": {
-        "H": 4,
+        "H": 5,
         "D": 1,
         "A": 0,
         "consensus": "H",
-        "agreement_pct": 0.8
+        "agreement_pct": 0.8333333333333334
       }
     },
     "Germany_vs_Curaçao": {
@@ -800,14 +939,27 @@
             "A": 0.11751796237395525
           },
           "score_prob": 0.128
+        },
+        "爆冷派": {
+          "result": "H",
+          "home_score": 2,
+          "away_score": 1,
+          "confidence": 0.512,
+          "reasoning": "本场未发现明显冷门机会，跟随模型判断",
+          "probs": {
+            "H": 0.5124820376260448,
+            "D": 0.37,
+            "A": 0.11751796237395525
+          },
+          "is_upset": false
         }
       },
       "consensus": {
-        "H": 4,
+        "H": 5,
         "D": 1,
         "A": 0,
         "consensus": "H",
-        "agreement_pct": 0.8
+        "agreement_pct": 0.8333333333333334
       }
     },
     "Netherlands_vs_Japan": {
@@ -890,14 +1042,32 @@
             "A": 0.25039208213898306
           },
           "score_prob": 0.123
+        },
+        "爆冷派": {
+          "result": "A",
+          "home_score": 1,
+          "away_score": 2,
+          "confidence": 0.22,
+          "reasoning": "历史数据表明赔率>3.0时爆冷概率22%；市场隐含概率与模型存在分歧；天气因素降雨增加平局概率，爆冷选择客胜(1-2)",
+          "probs": {
+            "H": 0.37960791786101694,
+            "D": 0.37,
+            "A": 0.25039208213898306
+          },
+          "is_upset": true,
+          "real_odds": [
+            2.03,
+            3.53,
+            3.66
+          ]
         }
       },
       "consensus": {
         "H": 4,
         "D": 1,
-        "A": 0,
+        "A": 1,
         "consensus": "H",
-        "agreement_pct": 0.8
+        "agreement_pct": 0.6666666666666666
       }
     },
     "Ivory Coast_vs_Ecuador": {
@@ -980,14 +1150,32 @@
             "A": 0.3622525619454903
           },
           "score_prob": 0.119
+        },
+        "爆冷派": {
+          "result": "H",
+          "home_score": 1,
+          "away_score": 0,
+          "confidence": 0.22,
+          "reasoning": "历史数据表明赔率>3.0时爆冷概率22%；市场隐含概率与模型存在分歧，爆冷选择主胜(1-0)",
+          "probs": {
+            "H": 0.2877474380545097,
+            "D": 0.35,
+            "A": 0.3622525619454903
+          },
+          "is_upset": true,
+          "real_odds": [
+            3.57,
+            2.81,
+            2.41
+          ]
         }
       },
       "consensus": {
-        "H": 0,
+        "H": 1,
         "D": 1,
         "A": 4,
         "consensus": "A",
-        "agreement_pct": 0.8
+        "agreement_pct": 0.6666666666666666
       }
     },
     "Sweden_vs_Tunisia": {
@@ -1070,14 +1258,32 @@
             "A": 0.3243516697078992
           },
           "score_prob": 0.125
+        },
+        "爆冷派": {
+          "result": "A",
+          "home_score": 0,
+          "away_score": 1,
+          "confidence": 0.17,
+          "reasoning": "历史数据表明赔率>3.0时爆冷概率30%；市场隐含概率与模型存在分歧；天气因素降雨增加平局概率，爆冷选择客胜(0-1)",
+          "probs": {
+            "H": 0.30564833029210087,
+            "D": 0.37,
+            "A": 0.3243516697078992
+          },
+          "is_upset": true,
+          "real_odds": [
+            1.91,
+            3.41,
+            4.28
+          ]
         }
       },
       "consensus": {
         "H": 0,
         "D": 4,
-        "A": 1,
+        "A": 2,
         "consensus": "D",
-        "agreement_pct": 0.8
+        "agreement_pct": 0.6666666666666666
       }
     },
     "Spain_vs_Cape Verde Islands": {
@@ -1160,14 +1366,27 @@
             "A": 0.11002132006585465
           },
           "score_prob": 0.13
+        },
+        "爆冷派": {
+          "result": "H",
+          "home_score": 2,
+          "away_score": 1,
+          "confidence": 0.52,
+          "reasoning": "本场未发现明显冷门机会，跟随模型判断",
+          "probs": {
+            "H": 0.5199786799341454,
+            "D": 0.37,
+            "A": 0.11002132006585465
+          },
+          "is_upset": false
         }
       },
       "consensus": {
-        "H": 4,
+        "H": 5,
         "D": 1,
         "A": 0,
         "consensus": "H",
-        "agreement_pct": 0.8
+        "agreement_pct": 0.8333333333333334
       }
     },
     "Belgium_vs_Egypt": {
@@ -1250,14 +1469,32 @@
             "A": 0.16979788486453914
           },
           "score_prob": 0.117
+        },
+        "爆冷派": {
+          "result": "A",
+          "home_score": 0,
+          "away_score": 1,
+          "confidence": 0.14,
+          "reasoning": "历史数据表明赔率>3.0时爆冷概率14%；市场隐含概率与模型存在分歧；实力悬殊(167分差距)增加冷门可能；天气因素降雨增加平局概率，爆冷选择客胜(0-1)",
+          "probs": {
+            "H": 0.4602021151354609,
+            "D": 0.37,
+            "A": 0.16979788486453914
+          },
+          "is_upset": true,
+          "real_odds": [
+            1.65,
+            3.86,
+            5.45
+          ]
         }
       },
       "consensus": {
         "H": 4,
         "D": 1,
-        "A": 0,
+        "A": 1,
         "consensus": "H",
-        "agreement_pct": 0.8
+        "agreement_pct": 0.6666666666666666
       }
     },
     "Saudi Arabia_vs_Uruguay": {
@@ -1340,14 +1577,32 @@
             "A": 0.35948048186015064
           },
           "score_prob": 0.119
+        },
+        "爆冷派": {
+          "result": "H",
+          "home_score": 2,
+          "away_score": 1,
+          "confidence": 0.1,
+          "reasoning": "历史数据表明赔率>3.0时爆冷概率22%；市场隐含概率与模型存在分歧，爆冷选择主胜(2-1)",
+          "probs": {
+            "H": 0.2905195181398494,
+            "D": 0.35,
+            "A": 0.35948048186015064
+          },
+          "is_upset": true,
+          "real_odds": [
+            7.65,
+            4.41,
+            1.44
+          ]
         }
       },
       "consensus": {
-        "H": 0,
+        "H": 1,
         "D": 2,
         "A": 3,
         "consensus": "A",
-        "agreement_pct": 0.6
+        "agreement_pct": 0.5
       }
     },
     "Iran_vs_New Zealand": {
@@ -1430,14 +1685,32 @@
             "A": 0.21966525248835048
           },
           "score_prob": 0.122
+        },
+        "爆冷派": {
+          "result": "A",
+          "home_score": 1,
+          "away_score": 2,
+          "confidence": 0.17,
+          "reasoning": "历史数据表明赔率>3.0时爆冷概率17%；市场隐含概率与模型存在分歧；实力悬殊(105分差距)增加冷门可能；天气因素降雨增加平局概率，爆冷选择客胜(1-2)",
+          "probs": {
+            "H": 0.4103347475116495,
+            "D": 0.37,
+            "A": 0.21966525248835048
+          },
+          "is_upset": true,
+          "real_odds": [
+            1.83,
+            3.48,
+            4.59
+          ]
         }
       },
       "consensus": {
         "H": 4,
         "D": 1,
-        "A": 0,
+        "A": 1,
         "consensus": "H",
-        "agreement_pct": 0.8
+        "agreement_pct": 0.6666666666666666
       }
     },
     "France_vs_Senegal": {
@@ -1520,14 +1793,32 @@
             "A": 0.17738035917720907
           },
           "score_prob": 0.118
+        },
+        "爆冷派": {
+          "result": "A",
+          "home_score": 0,
+          "away_score": 1,
+          "confidence": 0.1,
+          "reasoning": "历史数据表明赔率>3.0时爆冷概率14%；市场隐含概率与模型存在分歧；实力悬殊(157分差距)增加冷门可能；天气因素降雨增加平局概率，爆冷选择客胜(0-1)",
+          "probs": {
+            "H": 0.45261964082279094,
+            "D": 0.37,
+            "A": 0.17738035917720907
+          },
+          "is_upset": true,
+          "real_odds": [
+            1.46,
+            4.4,
+            7.28
+          ]
         }
       },
       "consensus": {
         "H": 4,
         "D": 1,
-        "A": 0,
+        "A": 1,
         "consensus": "H",
-        "agreement_pct": 0.8
+        "agreement_pct": 0.6666666666666666
       }
     },
     "Iraq_vs_Norway": {
@@ -1610,14 +1901,27 @@
             "A": 0.4346517215997656
           },
           "score_prob": 0.116
+        },
+        "爆冷派": {
+          "result": "A",
+          "home_score": 1,
+          "away_score": 2,
+          "confidence": 0.435,
+          "reasoning": "本场未发现明显冷门机会，跟随模型判断",
+          "probs": {
+            "H": 0.21534827840023443,
+            "D": 0.35,
+            "A": 0.4346517215997656
+          },
+          "is_upset": false
         }
       },
       "consensus": {
         "H": 0,
         "D": 2,
-        "A": 3,
+        "A": 4,
         "consensus": "A",
-        "agreement_pct": 0.6
+        "agreement_pct": 0.6666666666666666
       }
     },
     "Argentina_vs_Algeria": {
@@ -1700,14 +2004,32 @@
             "A": 0.13910220851659763
           },
           "score_prob": 0.113
+        },
+        "爆冷派": {
+          "result": "A",
+          "home_score": 0,
+          "away_score": 1,
+          "confidence": 0.08,
+          "reasoning": "历史数据表明赔率>3.0时爆冷概率10%；市场隐含概率与模型存在分歧；实力悬殊(226分差距)增加冷门可能，爆冷选择客胜(0-1)",
+          "probs": {
+            "H": 0.5108977914834024,
+            "D": 0.35,
+            "A": 0.13910220851659763
+          },
+          "is_upset": true,
+          "real_odds": [
+            1.38,
+            4.63,
+            8.95
+          ]
         }
       },
       "consensus": {
         "H": 4,
         "D": 1,
-        "A": 0,
+        "A": 1,
         "consensus": "H",
-        "agreement_pct": 0.8
+        "agreement_pct": 0.6666666666666666
       }
     },
     "Austria_vs_Jordan": {
@@ -1790,14 +2112,32 @@
             "A": 0.23621667115694325
           },
           "score_prob": 0.121
+        },
+        "爆冷派": {
+          "result": "A",
+          "home_score": 0,
+          "away_score": 1,
+          "confidence": 0.08,
+          "reasoning": "历史数据表明赔率>3.0时爆冷概率17%；市场隐含概率与模型存在分歧；实力悬殊(112分差距)增加冷门可能；天气因素炎热利好客队·降雨增加平局概率，爆冷选择客胜(0-1)",
+          "probs": {
+            "H": 0.3937833288430568,
+            "D": 0.37,
+            "A": 0.23621667115694325
+          },
+          "is_upset": true,
+          "real_odds": [
+            1.32,
+            5.48,
+            9.37
+          ]
         }
       },
       "consensus": {
         "H": 4,
         "D": 1,
-        "A": 0,
+        "A": 1,
         "consensus": "H",
-        "agreement_pct": 0.8
+        "agreement_pct": 0.6666666666666666
       }
     },
     "Portugal_vs_Congo DR": {
@@ -1880,14 +2220,27 @@
             "A": 0.1653404813566744
           },
           "score_prob": 0.118
+        },
+        "爆冷派": {
+          "result": "H",
+          "home_score": 2,
+          "away_score": 1,
+          "confidence": 0.465,
+          "reasoning": "本场未发现明显冷门机会，跟随模型判断",
+          "probs": {
+            "H": 0.4646595186433256,
+            "D": 0.37,
+            "A": 0.1653404813566744
+          },
+          "is_upset": false
         }
       },
       "consensus": {
-        "H": 4,
+        "H": 5,
         "D": 1,
         "A": 0,
         "consensus": "H",
-        "agreement_pct": 0.8
+        "agreement_pct": 0.8333333333333334
       }
     },
     "England_vs_Croatia": {
@@ -1970,14 +2323,32 @@
             "A": 0.23792032064213003
           },
           "score_prob": 0.123
+        },
+        "爆冷派": {
+          "result": "A",
+          "home_score": 0,
+          "away_score": 1,
+          "confidence": 0.17,
+          "reasoning": "历史数据表明赔率>3.0时爆冷概率17%；市场隐含概率与模型存在分歧；天气因素降雨增加平局概率，爆冷选择客胜(0-1)",
+          "probs": {
+            "H": 0.39207967935787,
+            "D": 0.37000000000000005,
+            "A": 0.23792032064213003
+          },
+          "is_upset": true,
+          "real_odds": [
+            1.72,
+            3.77,
+            4.89
+          ]
         }
       },
       "consensus": {
         "H": 4,
         "D": 1,
-        "A": 0,
+        "A": 1,
         "consensus": "H",
-        "agreement_pct": 0.8
+        "agreement_pct": 0.6666666666666666
       }
     },
     "Ghana_vs_Panama": {
@@ -2060,14 +2431,32 @@
             "A": 0.3343516697078992
           },
           "score_prob": 0.119
+        },
+        "爆冷派": {
+          "result": "A",
+          "home_score": 0,
+          "away_score": 1,
+          "confidence": 0.22,
+          "reasoning": "历史数据表明赔率>3.0时爆冷概率30%；市场隐含概率与模型存在分歧，爆冷选择客胜(0-1)",
+          "probs": {
+            "H": 0.3156483302921009,
+            "D": 0.35,
+            "A": 0.3343516697078992
+          },
+          "is_upset": true,
+          "real_odds": [
+            2.12,
+            3.41,
+            3.5
+          ]
         }
       },
       "consensus": {
         "H": 0,
         "D": 4,
-        "A": 1,
+        "A": 2,
         "consensus": "D",
-        "agreement_pct": 0.8
+        "agreement_pct": 0.6666666666666666
       }
     },
     "Uzbekistan_vs_Colombia": {
@@ -2150,14 +2539,32 @@
             "A": 0.49923380205892964
           },
           "score_prob": 0.11
+        },
+        "爆冷派": {
+          "result": "H",
+          "home_score": 2,
+          "away_score": 1,
+          "confidence": 0.08,
+          "reasoning": "历史数据表明赔率>3.0时爆冷概率12%；市场隐含概率与模型存在分歧；实力悬殊(208分差距)增加冷门可能，爆冷选择主胜(2-1)",
+          "probs": {
+            "H": 0.1507661979410704,
+            "D": 0.35,
+            "A": 0.49923380205892964
+          },
+          "is_upset": true,
+          "real_odds": [
+            8.75,
+            4.67,
+            1.38
+          ]
         }
       },
       "consensus": {
-        "H": 0,
+        "H": 1,
         "D": 1,
         "A": 4,
         "consensus": "A",
-        "agreement_pct": 0.8
+        "agreement_pct": 0.6666666666666666
       }
     },
     "Czechia_vs_South Africa": {
@@ -2240,14 +2647,32 @@
             "A": 0.4262833288430568
           },
           "score_prob": 0.116
+        },
+        "爆冷派": {
+          "result": "A",
+          "home_score": 1,
+          "away_score": 2,
+          "confidence": 0.17,
+          "reasoning": "历史数据表明赔率>3.0时爆冷概率30%；市场隐含概率与模型存在分歧；实力悬殊(112分差距)增加冷门可能，爆冷选择客胜(1-2)",
+          "probs": {
+            "H": 0.22371667115694327,
+            "D": 0.35,
+            "A": 0.4262833288430568
+          },
+          "is_upset": true,
+          "real_odds": [
+            1.96,
+            3.32,
+            4.11
+          ]
         }
       },
       "consensus": {
         "H": 0,
         "D": 2,
-        "A": 3,
+        "A": 4,
         "consensus": "A",
-        "agreement_pct": 0.6
+        "agreement_pct": 0.6666666666666666
       }
     },
     "Switzerland_vs_Bosnia-Herzegovina": {
@@ -2330,14 +2755,32 @@
             "A": 0.1575345363395364
           },
           "score_prob": 0.11
+        },
+        "爆冷派": {
+          "result": "A",
+          "home_score": 0,
+          "away_score": 1,
+          "confidence": 0.14,
+          "reasoning": "历史数据表明赔率>3.0时爆冷概率12%；市场隐含概率与模型存在分歧；实力悬殊(198分差距)增加冷门可能，爆冷选择客胜(0-1)",
+          "probs": {
+            "H": 0.4924654636604637,
+            "D": 0.35,
+            "A": 0.1575345363395364
+          },
+          "is_upset": true,
+          "real_odds": [
+            1.58,
+            3.97,
+            5.77
+          ]
         }
       },
       "consensus": {
         "H": 4,
         "D": 1,
-        "A": 0,
+        "A": 1,
         "consensus": "H",
-        "agreement_pct": 0.8
+        "agreement_pct": 0.6666666666666666
       }
     },
     "Canada_vs_Qatar": {
@@ -2420,14 +2863,27 @@
             "A": 0.23002531239946855
           },
           "score_prob": 0.122
+        },
+        "爆冷派": {
+          "result": "H",
+          "home_score": 1,
+          "away_score": 1,
+          "confidence": 0.4,
+          "reasoning": "本场未发现明显冷门机会，跟随模型判断",
+          "probs": {
+            "H": 0.3999746876005315,
+            "D": 0.37,
+            "A": 0.23002531239946855
+          },
+          "is_upset": false
         }
       },
       "consensus": {
-        "H": 4,
+        "H": 5,
         "D": 1,
         "A": 0,
         "consensus": "H",
-        "agreement_pct": 0.8
+        "agreement_pct": 0.8333333333333334
       }
     },
     "Mexico_vs_South Korea": {
@@ -2510,14 +2966,32 @@
             "A": 0.191823463270188
           },
           "score_prob": 0.129
+        },
+        "爆冷派": {
+          "result": "A",
+          "home_score": 1,
+          "away_score": 2,
+          "confidence": 0.17,
+          "reasoning": "历史数据表明赔率>3.0时爆冷概率22%；市场隐含概率与模型存在分歧；天气因素高海拔利好Mexico·降雨增加平局概率，爆冷选择客胜(1-2)",
+          "probs": {
+            "H": 0.41817653672981203,
+            "D": 0.38999999999999996,
+            "A": 0.191823463270188
+          },
+          "is_upset": true,
+          "real_odds": [
+            1.8,
+            3.53,
+            4.63
+          ]
         }
       },
       "consensus": {
         "H": 3,
         "D": 2,
-        "A": 0,
+        "A": 1,
         "consensus": "H",
-        "agreement_pct": 0.6
+        "agreement_pct": 0.5
       }
     },
     "United States_vs_Australia": {
@@ -2600,14 +3074,32 @@
             "A": 0.47832033866595963
           },
           "score_prob": 0.111
+        },
+        "爆冷派": {
+          "result": "A",
+          "home_score": 0,
+          "away_score": 1,
+          "confidence": 0.17,
+          "reasoning": "历史数据表明赔率>3.0时爆冷概率30%；市场隐含概率与模型存在分歧；实力悬殊(178分差距)增加冷门可能，爆冷选择客胜(0-1)",
+          "probs": {
+            "H": 0.17167966133404036,
+            "D": 0.35,
+            "A": 0.47832033866595963
+          },
+          "is_upset": true,
+          "real_odds": [
+            1.75,
+            3.78,
+            4.52
+          ]
         }
       },
       "consensus": {
         "H": 0,
         "D": 1,
-        "A": 4,
+        "A": 5,
         "consensus": "A",
-        "agreement_pct": 0.8
+        "agreement_pct": 0.8333333333333334
       }
     },
     "Scotland_vs_Morocco": {
@@ -2690,14 +3182,32 @@
             "A": 0.38319338630517197
           },
           "score_prob": 0.123
+        },
+        "爆冷派": {
+          "result": "H",
+          "home_score": 1,
+          "away_score": 0,
+          "confidence": 0.17,
+          "reasoning": "历史数据表明赔率>3.0时爆冷概率22%；市场隐含概率与模型存在分歧；天气因素降雨增加平局概率，爆冷选择主胜(1-0)",
+          "probs": {
+            "H": 0.2468066136948281,
+            "D": 0.37,
+            "A": 0.38319338630517197
+          },
+          "is_upset": true,
+          "real_odds": [
+            4.09,
+            3.29,
+            1.97
+          ]
         }
       },
       "consensus": {
-        "H": 0,
+        "H": 1,
         "D": 1,
         "A": 4,
         "consensus": "A",
-        "agreement_pct": 0.8
+        "agreement_pct": 0.6666666666666666
       }
     },
     "Brazil_vs_Haiti": {
@@ -2780,14 +3290,27 @@
             "A": 0.08463964048767338
           },
           "score_prob": 0.13
+        },
+        "爆冷派": {
+          "result": "H",
+          "home_score": 2,
+          "away_score": 1,
+          "confidence": 0.579,
+          "reasoning": "本场未发现明显冷门机会，跟随模型判断",
+          "probs": {
+            "H": 0.5788603595123266,
+            "D": 0.3365,
+            "A": 0.08463964048767338
+          },
+          "is_upset": false
         }
       },
       "consensus": {
-        "H": 4,
+        "H": 5,
         "D": 1,
         "A": 0,
         "consensus": "H",
-        "agreement_pct": 0.8
+        "agreement_pct": 0.8333333333333334
       }
     },
     "Turkey_vs_Paraguay": {
@@ -2870,14 +3393,32 @@
             "A": 0.3586987488229189
           },
           "score_prob": 0.124
+        },
+        "爆冷派": {
+          "result": "A",
+          "home_score": 0,
+          "away_score": 1,
+          "confidence": 0.22,
+          "reasoning": "历史数据表明赔率>3.0时爆冷概率30%；市场隐含概率与模型存在分歧；天气因素降雨增加平局概率，爆冷选择客胜(0-1)",
+          "probs": {
+            "H": 0.2713012511770811,
+            "D": 0.37,
+            "A": 0.3586987488229189
+          },
+          "is_upset": true,
+          "real_odds": [
+            2.22,
+            3.18,
+            3.4
+          ]
         }
       },
       "consensus": {
         "H": 0,
         "D": 2,
-        "A": 3,
+        "A": 4,
         "consensus": "A",
-        "agreement_pct": 0.6
+        "agreement_pct": 0.6666666666666666
       }
     },
     "Netherlands_vs_Sweden": {
@@ -2960,14 +3501,32 @@
             "A": 0.19069650093040405
           },
           "score_prob": 0.12
+        },
+        "爆冷派": {
+          "result": "A",
+          "home_score": 0,
+          "away_score": 1,
+          "confidence": 0.14,
+          "reasoning": "历史数据表明赔率>3.0时爆冷概率17%；市场隐含概率与模型存在分歧；实力悬殊(140分差距)增加冷门可能；天气因素降雨增加平局概率，爆冷选择客胜(0-1)",
+          "probs": {
+            "H": 0.4393034990695959,
+            "D": 0.37,
+            "A": 0.19069650093040405
+          },
+          "is_upset": true,
+          "real_odds": [
+            1.64,
+            3.97,
+            5.16
+          ]
         }
       },
       "consensus": {
         "H": 4,
         "D": 1,
-        "A": 0,
+        "A": 1,
         "consensus": "H",
-        "agreement_pct": 0.8
+        "agreement_pct": 0.6666666666666666
       }
     },
     "Germany_vs_Ivory Coast": {
@@ -3050,14 +3609,32 @@
             "A": 0.20700937402097064
           },
           "score_prob": 0.121
+        },
+        "爆冷派": {
+          "result": "A",
+          "home_score": 1,
+          "away_score": 2,
+          "confidence": 0.14,
+          "reasoning": "历史数据表明赔率>3.0时爆冷概率17%；市场隐含概率与模型存在分歧；实力悬殊(120分差距)增加冷门可能；天气因素降雨增加平局概率，爆冷选择客胜(1-2)",
+          "probs": {
+            "H": 0.4229906259790294,
+            "D": 0.37,
+            "A": 0.20700937402097064
+          },
+          "is_upset": true,
+          "real_odds": [
+            1.55,
+            4.22,
+            5.61
+          ]
         }
       },
       "consensus": {
         "H": 4,
         "D": 1,
-        "A": 0,
+        "A": 1,
         "consensus": "H",
-        "agreement_pct": 0.8
+        "agreement_pct": 0.6666666666666666
       }
     },
     "Ecuador_vs_Curaçao": {
@@ -3140,14 +3717,27 @@
             "A": 0.18129914192158594
           },
           "score_prob": 0.113
+        },
+        "爆冷派": {
+          "result": "H",
+          "home_score": 2,
+          "away_score": 1,
+          "confidence": 0.469,
+          "reasoning": "本场未发现明显冷门机会，跟随模型判断",
+          "probs": {
+            "H": 0.46870085807841405,
+            "D": 0.35,
+            "A": 0.18129914192158594
+          },
+          "is_upset": false
         }
       },
       "consensus": {
-        "H": 4,
+        "H": 5,
         "D": 1,
         "A": 0,
         "consensus": "H",
-        "agreement_pct": 0.8
+        "agreement_pct": 0.8333333333333334
       }
     },
     "Tunisia_vs_Japan": {
@@ -3230,14 +3820,32 @@
             "A": 0.3805741411366762
           },
           "score_prob": 0.118
+        },
+        "爆冷派": {
+          "result": "H",
+          "home_score": 2,
+          "away_score": 1,
+          "confidence": 0.14,
+          "reasoning": "历史数据表明赔率>3.0时爆冷概率22%；市场隐含概率与模型存在分歧，爆冷选择主胜(2-1)",
+          "probs": {
+            "H": 0.2694258588633238,
+            "D": 0.35,
+            "A": 0.3805741411366762
+          },
+          "is_upset": true,
+          "real_odds": [
+            5.23,
+            3.55,
+            1.71
+          ]
         }
       },
       "consensus": {
-        "H": 0,
+        "H": 1,
         "D": 1,
         "A": 4,
         "consensus": "A",
-        "agreement_pct": 0.8
+        "agreement_pct": 0.6666666666666666
       }
     },
     "Spain_vs_Saudi Arabia": {
@@ -3320,14 +3928,27 @@
             "A": 0.23880372991178486
           },
           "score_prob": 0.123
+        },
+        "爆冷派": {
+          "result": "H",
+          "home_score": 1,
+          "away_score": 1,
+          "confidence": 0.391,
+          "reasoning": "本场未发现明显冷门机会，跟随模型判断",
+          "probs": {
+            "H": 0.3911962700882151,
+            "D": 0.37,
+            "A": 0.23880372991178486
+          },
+          "is_upset": false
         }
       },
       "consensus": {
-        "H": 4,
+        "H": 5,
         "D": 1,
         "A": 0,
         "consensus": "H",
-        "agreement_pct": 0.8
+        "agreement_pct": 0.8333333333333334
       }
     },
     "Belgium_vs_Iran": {
@@ -3410,14 +4031,32 @@
             "A": 0.21540884130773466
           },
           "score_prob": 0.122
+        },
+        "爆冷派": {
+          "result": "A",
+          "home_score": 1,
+          "away_score": 2,
+          "confidence": 0.08,
+          "reasoning": "历史数据表明赔率>3.0时爆冷概率17%；市场隐含概率与模型存在分歧；实力悬殊(110分差距)增加冷门可能；天气因素降雨增加平局概率，爆冷选择客胜(1-2)",
+          "probs": {
+            "H": 0.41459115869226537,
+            "D": 0.37,
+            "A": 0.21540884130773466
+          },
+          "is_upset": true,
+          "real_odds": [
+            1.4,
+            4.65,
+            8.02
+          ]
         }
       },
       "consensus": {
         "H": 4,
         "D": 1,
-        "A": 0,
+        "A": 1,
         "consensus": "H",
-        "agreement_pct": 0.8
+        "agreement_pct": 0.6666666666666666
       }
     },
     "Uruguay_vs_Cape Verde Islands": {
@@ -3500,14 +4139,32 @@
             "A": 0.1391163622454205
           },
           "score_prob": 0.151
+        },
+        "爆冷派": {
+          "result": "A",
+          "home_score": 1,
+          "away_score": 2,
+          "confidence": 0.1,
+          "reasoning": "历史数据表明赔率>3.0时爆冷概率12%；市场隐含概率与模型存在分歧；实力悬殊(212分差距)增加冷门可能；天气因素炎热利好客队·降雨增加平局概率，爆冷选择客胜(1-2)",
+          "probs": {
+            "H": 0.45088363775457957,
+            "D": 0.41000000000000003,
+            "A": 0.1391163622454205
+          },
+          "is_upset": true,
+          "real_odds": [
+            1.43,
+            4.43,
+            7.39
+          ]
         }
       },
       "consensus": {
         "H": 3,
         "D": 2,
-        "A": 0,
+        "A": 1,
         "consensus": "H",
-        "agreement_pct": 0.6
+        "agreement_pct": 0.5
       }
     },
     "New Zealand_vs_Egypt": {
@@ -3590,14 +4247,32 @@
             "A": 0.369616904724384
           },
           "score_prob": 0.119
+        },
+        "爆冷派": {
+          "result": "H",
+          "home_score": 2,
+          "away_score": 1,
+          "confidence": 0.17,
+          "reasoning": "历史数据表明赔率>3.0时爆冷概率22%；市场隐含概率与模型存在分歧，爆冷选择主胜(2-1)",
+          "probs": {
+            "H": 0.28038309527561606,
+            "D": 0.35,
+            "A": 0.369616904724384
+          },
+          "is_upset": true,
+          "real_odds": [
+            4.83,
+            3.65,
+            1.73
+          ]
         }
       },
       "consensus": {
-        "H": 0,
+        "H": 1,
         "D": 1,
         "A": 4,
         "consensus": "A",
-        "agreement_pct": 0.8
+        "agreement_pct": 0.6666666666666666
       }
     },
     "Argentina_vs_Austria": {
@@ -3680,14 +4355,32 @@
             "A": 0.12692894922548137
           },
           "score_prob": 0.115
+        },
+        "爆冷派": {
+          "result": "A",
+          "home_score": 1,
+          "away_score": 2,
+          "confidence": 0.14,
+          "reasoning": "历史数据表明赔率>3.0时爆冷概率10%；市场隐含概率与模型存在分歧；实力悬殊(246分差距)增加冷门可能，爆冷选择客胜(1-2)",
+          "probs": {
+            "H": 0.5230710507745187,
+            "D": 0.35,
+            "A": 0.12692894922548137
+          },
+          "is_upset": true,
+          "real_odds": [
+            1.64,
+            3.8,
+            5.39
+          ]
         }
       },
       "consensus": {
         "H": 4,
         "D": 1,
-        "A": 0,
+        "A": 1,
         "consensus": "H",
-        "agreement_pct": 0.8
+        "agreement_pct": 0.6666666666666666
       }
     },
     "France_vs_Iraq": {
@@ -3770,14 +4463,27 @@
             "A": 0.07040494651126726
           },
           "score_prob": 0.141
+        },
+        "爆冷派": {
+          "result": "H",
+          "home_score": 2,
+          "away_score": 1,
+          "confidence": 0.576,
+          "reasoning": "本场未发现明显冷门机会，跟随模型判断",
+          "probs": {
+            "H": 0.5758450534887327,
+            "D": 0.35375,
+            "A": 0.07040494651126726
+          },
+          "is_upset": false
         }
       },
       "consensus": {
-        "H": 4,
+        "H": 5,
         "D": 1,
         "A": 0,
         "consensus": "H",
-        "agreement_pct": 0.8
+        "agreement_pct": 0.8333333333333334
       }
     },
     "Norway_vs_Senegal": {
@@ -3860,14 +4566,32 @@
             "A": 0.3760060004035156
           },
           "score_prob": 0.123
+        },
+        "爆冷派": {
+          "result": "D",
+          "home_score": 1,
+          "away_score": 1,
+          "confidence": 0.22,
+          "reasoning": "历史数据表明赔率>3.0时爆冷概率30%；市场隐含概率与模型存在分歧；天气因素降雨增加平局概率，爆冷选择平局(1-1)",
+          "probs": {
+            "H": 0.25399399959648444,
+            "D": 0.37,
+            "A": 0.3760060004035156
+          },
+          "is_upset": true,
+          "real_odds": [
+            2.13,
+            3.44,
+            3.34
+          ]
         }
       },
       "consensus": {
         "H": 0,
-        "D": 1,
+        "D": 2,
         "A": 4,
         "consensus": "A",
-        "agreement_pct": 0.8
+        "agreement_pct": 0.6666666666666666
       }
     },
     "Jordan_vs_Algeria": {
@@ -3950,14 +4674,32 @@
             "A": 0.4428591928581559
           },
           "score_prob": 0.115
+        },
+        "爆冷派": {
+          "result": "H",
+          "home_score": 1,
+          "away_score": 0,
+          "confidence": 0.12,
+          "reasoning": "历史数据表明赔率>3.0时爆冷概率17%；市场隐含概率与模型存在分歧；实力悬殊(132分差距)增加冷门可能，爆冷选择主胜(1-0)",
+          "probs": {
+            "H": 0.2071408071418441,
+            "D": 0.35,
+            "A": 0.4428591928581559
+          },
+          "is_upset": true,
+          "real_odds": [
+            6.34,
+            4.15,
+            1.51
+          ]
         }
       },
       "consensus": {
-        "H": 0,
+        "H": 1,
         "D": 1,
         "A": 4,
         "consensus": "A",
-        "agreement_pct": 0.8
+        "agreement_pct": 0.6666666666666666
       }
     },
     "Portugal_vs_Uzbekistan": {
@@ -4040,14 +4782,27 @@
             "A": 0.09435214709814077
           },
           "score_prob": 0.134
+        },
+        "爆冷派": {
+          "result": "H",
+          "home_score": 2,
+          "away_score": 1,
+          "confidence": 0.538,
+          "reasoning": "本场未发现明显冷门机会，跟随模型判断",
+          "probs": {
+            "H": 0.5376478529018592,
+            "D": 0.368,
+            "A": 0.09435214709814077
+          },
+          "is_upset": false
         }
       },
       "consensus": {
-        "H": 4,
+        "H": 5,
         "D": 1,
         "A": 0,
         "consensus": "H",
-        "agreement_pct": 0.8
+        "agreement_pct": 0.8333333333333334
       }
     },
     "England_vs_Ghana": {
@@ -4130,14 +4885,32 @@
             "A": 0.16460439240439761
           },
           "score_prob": 0.118
+        },
+        "爆冷派": {
+          "result": "A",
+          "home_score": 0,
+          "away_score": 1,
+          "confidence": 0.08,
+          "reasoning": "历史数据表明赔率>3.0时爆冷概率14%；市场隐含概率与模型存在分歧；实力悬殊(174分差距)增加冷门可能；天气因素降雨增加平局概率，爆冷选择客胜(0-1)",
+          "probs": {
+            "H": 0.4653956075956024,
+            "D": 0.37,
+            "A": 0.16460439240439761
+          },
+          "is_upset": true,
+          "real_odds": [
+            1.32,
+            5.2,
+            9.43
+          ]
         }
       },
       "consensus": {
         "H": 4,
         "D": 1,
-        "A": 0,
+        "A": 1,
         "consensus": "H",
-        "agreement_pct": 0.8
+        "agreement_pct": 0.6666666666666666
       }
     },
     "Panama_vs_Croatia": {
@@ -4220,14 +4993,32 @@
             "A": 0.347538933099543
           },
           "score_prob": 0.131
+        },
+        "爆冷派": {
+          "result": "H",
+          "home_score": 2,
+          "away_score": 1,
+          "confidence": 0.12,
+          "reasoning": "历史数据表明赔率>3.0时爆冷概率22%；市场隐含概率与模型存在分歧；天气因素炎热利好Panama·降雨增加平局概率，爆冷选择主胜(2-1)",
+          "probs": {
+            "H": 0.24246106690045702,
+            "D": 0.41,
+            "A": 0.347538933099543
+          },
+          "is_upset": true,
+          "real_odds": [
+            6.46,
+            3.89,
+            1.54
+          ]
         }
       },
       "consensus": {
-        "H": 0,
+        "H": 1,
         "D": 3,
         "A": 2,
         "consensus": "D",
-        "agreement_pct": 0.6
+        "agreement_pct": 0.5
       }
     },
     "Colombia_vs_Congo DR": {
@@ -4310,14 +5101,32 @@
             "A": 0.2100253123994685
           },
           "score_prob": 0.131
+        },
+        "爆冷派": {
+          "result": "A",
+          "home_score": 1,
+          "away_score": 2,
+          "confidence": 0.1,
+          "reasoning": "历史数据表明赔率>3.0时爆冷概率17%；市场隐含概率与模型存在分歧；天气因素降雨增加平局概率，爆冷选择客胜(1-2)",
+          "probs": {
+            "H": 0.37997468760053144,
+            "D": 0.40999999999999986,
+            "A": 0.2100253123994685
+          },
+          "is_upset": true,
+          "real_odds": [
+            1.47,
+            4.13,
+            7.3
+          ]
         }
       },
       "consensus": {
         "H": 2,
         "D": 3,
-        "A": 0,
+        "A": 1,
         "consensus": "D",
-        "agreement_pct": 0.6
+        "agreement_pct": 0.5
       }
     },
     "Switzerland_vs_Canada": {
@@ -4400,14 +5209,32 @@
             "A": 0.2970067801855623
           },
           "score_prob": 0.119
+        },
+        "爆冷派": {
+          "result": "A",
+          "home_score": 0,
+          "away_score": 1,
+          "confidence": 0.22,
+          "reasoning": "历史数据表明赔率>3.0时爆冷概率22%；市场隐含概率与模型存在分歧，爆冷选择客胜(0-1)",
+          "probs": {
+            "H": 0.35299321981443776,
+            "D": 0.35,
+            "A": 0.2970067801855623
+          },
+          "is_upset": true,
+          "real_odds": [
+            2.11,
+            3.28,
+            3.49
+          ]
         }
       },
       "consensus": {
         "H": 3,
         "D": 2,
-        "A": 0,
+        "A": 1,
         "consensus": "H",
-        "agreement_pct": 0.6
+        "agreement_pct": 0.5
       }
     },
     "Bosnia-Herzegovina_vs_Qatar": {
@@ -4490,14 +5317,32 @@
             "A": 0.39408708546052834
           },
           "score_prob": 0.118
+        },
+        "爆冷派": {
+          "result": "A",
+          "home_score": 0,
+          "away_score": 1,
+          "confidence": 0.14,
+          "reasoning": "历史数据表明赔率>3.0时爆冷概率30%；市场隐含概率与模型存在分歧，爆冷选择客胜(0-1)",
+          "probs": {
+            "H": 0.2559129145394717,
+            "D": 0.35,
+            "A": 0.39408708546052834
+          },
+          "is_upset": true,
+          "real_odds": [
+            1.59,
+            3.78,
+            5.82
+          ]
         }
       },
       "consensus": {
         "H": 0,
         "D": 1,
-        "A": 4,
+        "A": 5,
         "consensus": "A",
-        "agreement_pct": 0.8
+        "agreement_pct": 0.8333333333333334
       }
     },
     "Scotland_vs_Brazil": {
@@ -4580,14 +5425,32 @@
             "A": 0.49450047397219
           },
           "score_prob": 0.124
+        },
+        "爆冷派": {
+          "result": "H",
+          "home_score": 2,
+          "away_score": 1,
+          "confidence": 0.12,
+          "reasoning": "历史数据表明赔率>3.0时爆冷概率12%；市场隐含概率与模型存在分歧；实力悬殊(216分差距)增加冷门可能；天气因素降雨增加平局概率，爆冷选择主胜(2-1)",
+          "probs": {
+            "H": 0.13549952602781004,
+            "D": 0.37,
+            "A": 0.49450047397219
+          },
+          "is_upset": true,
+          "real_odds": [
+            6.7,
+            4.46,
+            1.45
+          ]
         }
       },
       "consensus": {
-        "H": 0,
+        "H": 1,
         "D": 1,
         "A": 4,
         "consensus": "A",
-        "agreement_pct": 0.8
+        "agreement_pct": 0.6666666666666666
       }
     },
     "Morocco_vs_Haiti": {
@@ -4670,14 +5533,32 @@
             "A": 0.16169348420308807
           },
           "score_prob": 0.11
+        },
+        "爆冷派": {
+          "result": "A",
+          "home_score": 0,
+          "away_score": 1,
+          "confidence": 0.08,
+          "reasoning": "历史数据表明赔率>3.0时爆冷概率12%；市场隐含概率与模型存在分歧；实力悬殊(192分差距)增加冷门可能，爆冷选择客胜(0-1)",
+          "probs": {
+            "H": 0.488306515796912,
+            "D": 0.35000000000000003,
+            "A": 0.16169348420308807
+          },
+          "is_upset": true,
+          "real_odds": [
+            1.32,
+            5.06,
+            9.56
+          ]
         }
       },
       "consensus": {
         "H": 4,
         "D": 1,
-        "A": 0,
+        "A": 1,
         "consensus": "H",
-        "agreement_pct": 0.8
+        "agreement_pct": 0.6666666666666666
       }
     },
     "Czechia_vs_Mexico": {
@@ -4760,14 +5641,32 @@
             "A": 0.5038493626722947
           },
           "score_prob": 0.111
+        },
+        "爆冷派": {
+          "result": "H",
+          "home_score": 1,
+          "away_score": 0,
+          "confidence": 0.188,
+          "reasoning": "历史数据表明赔率>3.0时爆冷概率12%；市场隐含概率与模型存在分歧；实力悬殊(215分差距)增加冷门可能，爆冷选择主胜(1-0)",
+          "probs": {
+            "H": 0.14615063732770534,
+            "D": 0.35,
+            "A": 0.5038493626722947
+          },
+          "is_upset": true,
+          "real_odds": [
+            4.55,
+            3.48,
+            1.79
+          ]
         }
       },
       "consensus": {
-        "H": 0,
+        "H": 1,
         "D": 1,
         "A": 4,
         "consensus": "A",
-        "agreement_pct": 0.8
+        "agreement_pct": 0.6666666666666666
       }
     },
     "South Africa_vs_South Korea": {
@@ -4850,14 +5749,32 @@
             "A": 0.3631079178610169
           },
           "score_prob": 0.123
+        },
+        "爆冷派": {
+          "result": "H",
+          "home_score": 2,
+          "away_score": 1,
+          "confidence": 0.22,
+          "reasoning": "历史数据表明赔率>3.0时爆冷概率22%；市场隐含概率与模型存在分歧；天气因素炎热利好South Africa·降雨增加平局概率，爆冷选择主胜(2-1)",
+          "probs": {
+            "H": 0.2668920821389831,
+            "D": 0.37,
+            "A": 0.3631079178610169
+          },
+          "is_upset": true,
+          "real_odds": [
+            3.99,
+            3.37,
+            1.94
+          ]
         }
       },
       "consensus": {
-        "H": 0,
+        "H": 1,
         "D": 2,
         "A": 3,
         "consensus": "A",
-        "agreement_pct": 0.6
+        "agreement_pct": 0.5
       }
     },
     "Ecuador_vs_Germany": {
@@ -4940,14 +5857,32 @@
             "A": 0.398538933099543
           },
           "score_prob": 0.118
+        },
+        "爆冷派": {
+          "result": "H",
+          "home_score": 1,
+          "away_score": 0,
+          "confidence": 0.17,
+          "reasoning": "历史数据表明赔率>3.0时爆冷概率22%；市场隐含概率与模型存在分歧，爆冷选择主胜(1-0)",
+          "probs": {
+            "H": 0.251461066900457,
+            "D": 0.35,
+            "A": 0.398538933099543
+          },
+          "is_upset": true,
+          "real_odds": [
+            4.77,
+            3.75,
+            1.71
+          ]
         }
       },
       "consensus": {
-        "H": 0,
+        "H": 1,
         "D": 1,
         "A": 4,
         "consensus": "A",
-        "agreement_pct": 0.8
+        "agreement_pct": 0.6666666666666666
       }
     },
     "Curaçao_vs_Ivory Coast": {
@@ -5030,14 +5965,27 @@
             "A": 0.40713126816774026
           },
           "score_prob": 0.136
+        },
+        "爆冷派": {
+          "result": "D",
+          "home_score": 1,
+          "away_score": 1,
+          "confidence": 0.41,
+          "reasoning": "本场未发现明显冷门机会，跟随模型判断",
+          "probs": {
+            "H": 0.18286873183225974,
+            "D": 0.41,
+            "A": 0.40713126816774026
+          },
+          "is_upset": false
         }
       },
       "consensus": {
         "H": 0,
-        "D": 4,
+        "D": 5,
         "A": 1,
         "consensus": "D",
-        "agreement_pct": 0.8
+        "agreement_pct": 0.8333333333333334
       }
     },
     "Tunisia_vs_Netherlands": {
@@ -5120,14 +6068,32 @@
             "A": 0.44123099786659187
           },
           "score_prob": 0.115
+        },
+        "爆冷派": {
+          "result": "H",
+          "home_score": 2,
+          "away_score": 1,
+          "confidence": 0.12,
+          "reasoning": "历史数据表明赔率>3.0时爆冷概率17%；市场隐含概率与模型存在分歧；实力悬殊(130分差距)增加冷门可能，爆冷选择主胜(2-1)",
+          "probs": {
+            "H": 0.2087690021334082,
+            "D": 0.35,
+            "A": 0.44123099786659187
+          },
+          "is_upset": true,
+          "real_odds": [
+            6.42,
+            4.2,
+            1.49
+          ]
         }
       },
       "consensus": {
-        "H": 0,
+        "H": 1,
         "D": 1,
         "A": 4,
         "consensus": "A",
-        "agreement_pct": 0.8
+        "agreement_pct": 0.6666666666666666
       }
     },
     "Japan_vs_Sweden": {
@@ -5210,14 +6176,32 @@
             "A": 0.26039208213898307
           },
           "score_prob": 0.118
+        },
+        "爆冷派": {
+          "result": "A",
+          "home_score": 1,
+          "away_score": 2,
+          "confidence": 0.22,
+          "reasoning": "历史数据表明赔率>3.0时爆冷概率22%；市场隐含概率与模型存在分歧，爆冷选择客胜(1-2)",
+          "probs": {
+            "H": 0.38960791786101695,
+            "D": 0.35,
+            "A": 0.26039208213898307
+          },
+          "is_upset": true,
+          "real_odds": [
+            2.07,
+            3.37,
+            3.53
+          ]
         }
       },
       "consensus": {
         "H": 4,
         "D": 1,
-        "A": 0,
+        "A": 1,
         "consensus": "H",
-        "agreement_pct": 0.8
+        "agreement_pct": 0.6666666666666666
       }
     },
     "Turkey_vs_United States": {
@@ -5300,14 +6284,32 @@
             "A": 0.21710699184298285
           },
           "score_prob": 0.122
+        },
+        "爆冷派": {
+          "result": "A",
+          "home_score": 1,
+          "away_score": 2,
+          "confidence": 0.347,
+          "reasoning": "历史数据表明赔率>3.0时爆冷概率17%；市场隐含概率与模型存在分歧；实力悬殊(108分差距)增加冷门可能；天气因素降雨增加平局概率，爆冷选择客胜(1-2)",
+          "probs": {
+            "H": 0.4128930081570171,
+            "D": 0.37,
+            "A": 0.21710699184298285
+          },
+          "is_upset": true,
+          "real_odds": [
+            2.66,
+            3.42,
+            2.52
+          ]
         }
       },
       "consensus": {
         "H": 4,
         "D": 1,
-        "A": 0,
+        "A": 1,
         "consensus": "H",
-        "agreement_pct": 0.8
+        "agreement_pct": 0.6666666666666666
       }
     },
     "Paraguay_vs_Australia": {
@@ -5390,14 +6392,32 @@
             "A": 0.34648340602488675
           },
           "score_prob": 0.119
+        },
+        "爆冷派": {
+          "result": "A",
+          "home_score": 1,
+          "away_score": 2,
+          "confidence": 0.22,
+          "reasoning": "历史数据表明赔率>3.0时爆冷概率30%；市场隐含概率与模型存在分歧，爆冷选择客胜(1-2)",
+          "probs": {
+            "H": 0.3035165939751133,
+            "D": 0.35,
+            "A": 0.34648340602488675
+          },
+          "is_upset": true,
+          "real_odds": [
+            2.16,
+            3.21,
+            3.47
+          ]
         }
       },
       "consensus": {
         "H": 0,
         "D": 4,
-        "A": 1,
+        "A": 2,
         "consensus": "D",
-        "agreement_pct": 0.8
+        "agreement_pct": 0.6666666666666666
       }
     },
     "Norway_vs_France": {
@@ -5480,14 +6500,32 @@
             "A": 0.49900033821628953
           },
           "score_prob": 0.125
+        },
+        "爆冷派": {
+          "result": "H",
+          "home_score": 2,
+          "away_score": 1,
+          "confidence": 0.197,
+          "reasoning": "历史数据表明赔率>3.0时爆冷概率10%；市场隐含概率与模型存在分歧；实力悬殊(223分差距)增加冷门可能；天气因素降雨增加平局概率，爆冷选择主胜(2-1)",
+          "probs": {
+            "H": 0.13099966178371053,
+            "D": 0.37,
+            "A": 0.49900033821628953
+          },
+          "is_upset": true,
+          "real_odds": [
+            4.26,
+            3.58,
+            1.82
+          ]
         }
       },
       "consensus": {
-        "H": 0,
+        "H": 1,
         "D": 1,
         "A": 4,
         "consensus": "A",
-        "agreement_pct": 0.8
+        "agreement_pct": 0.6666666666666666
       }
     },
     "Senegal_vs_Iraq": {
@@ -5570,14 +6608,32 @@
             "A": 0.16450660107118692
           },
           "score_prob": 0.111
+        },
+        "爆冷派": {
+          "result": "A",
+          "home_score": 1,
+          "away_score": 2,
+          "confidence": 0.1,
+          "reasoning": "历史数据表明赔率>3.0时爆冷概率12%；市场隐含概率与模型存在分歧；实力悬殊(188分差距)增加冷门可能，爆冷选择客胜(1-2)",
+          "probs": {
+            "H": 0.48549339892881305,
+            "D": 0.35,
+            "A": 0.16450660107118692
+          },
+          "is_upset": true,
+          "real_odds": [
+            1.41,
+            4.4,
+            7.6
+          ]
         }
       },
       "consensus": {
         "H": 4,
         "D": 1,
-        "A": 0,
+        "A": 1,
         "consensus": "H",
-        "agreement_pct": 0.8
+        "agreement_pct": 0.6666666666666666
       }
     },
     "Cape Verde Islands_vs_Saudi Arabia": {
@@ -5660,14 +6716,32 @@
             "A": 0.47612973834118394
           },
           "score_prob": 0.112
+        },
+        "爆冷派": {
+          "result": "H",
+          "home_score": 2,
+          "away_score": 1,
+          "confidence": 0.358,
+          "reasoning": "历史数据表明赔率>3.0时爆冷概率14%；市场隐含概率与模型存在分歧；实力悬殊(175分差距)增加冷门可能，爆冷选择主胜(2-1)",
+          "probs": {
+            "H": 0.17387026165881608,
+            "D": 0.35,
+            "A": 0.47612973834118394
+          },
+          "is_upset": true,
+          "real_odds": [
+            2.55,
+            3.27,
+            2.73
+          ]
         }
       },
       "consensus": {
-        "H": 0,
+        "H": 1,
         "D": 1,
         "A": 4,
         "consensus": "A",
-        "agreement_pct": 0.8
+        "agreement_pct": 0.6666666666666666
       }
     },
     "Uruguay_vs_Spain": {
@@ -5750,14 +6824,32 @@
             "A": 0.33777988199500164
           },
           "score_prob": 0.132
+        },
+        "爆冷派": {
+          "result": "H",
+          "home_score": 2,
+          "away_score": 1,
+          "confidence": 0.14,
+          "reasoning": "历史数据表明赔率>3.0时爆冷概率22%；市场隐含概率与模型存在分歧；天气因素降雨增加平局概率，爆冷选择主胜(2-1)",
+          "probs": {
+            "H": 0.25222011800499844,
+            "D": 0.41,
+            "A": 0.33777988199500164
+          },
+          "is_upset": true,
+          "real_odds": [
+            5.29,
+            3.84,
+            1.63
+          ]
         }
       },
       "consensus": {
-        "H": 0,
+        "H": 1,
         "D": 3,
         "A": 2,
         "consensus": "D",
-        "agreement_pct": 0.6
+        "agreement_pct": 0.5
       }
     },
     "New Zealand_vs_Belgium": {
@@ -5840,14 +6932,32 @@
             "A": 0.5038493626722947
           },
           "score_prob": 0.111
+        },
+        "爆冷派": {
+          "result": "H",
+          "home_score": 2,
+          "away_score": 1,
+          "confidence": 0.08,
+          "reasoning": "历史数据表明赔率>3.0时爆冷概率12%；市场隐含概率与模型存在分歧；实力悬殊(215分差距)增加冷门可能，爆冷选择主胜(2-1)",
+          "probs": {
+            "H": 0.14615063732770534,
+            "D": 0.35,
+            "A": 0.5038493626722947
+          },
+          "is_upset": true,
+          "real_odds": [
+            9.77,
+            5.52,
+            1.28
+          ]
         }
       },
       "consensus": {
-        "H": 0,
+        "H": 1,
         "D": 1,
         "A": 4,
         "consensus": "A",
-        "agreement_pct": 0.8
+        "agreement_pct": 0.6666666666666666
       }
     },
     "Egypt_vs_Iran": {
@@ -5930,14 +7040,32 @@
             "A": 0.36784596093979477
           },
           "score_prob": 0.124
+        },
+        "爆冷派": {
+          "result": "A",
+          "home_score": 1,
+          "away_score": 2,
+          "confidence": 0.22,
+          "reasoning": "历史数据表明赔率>3.0时爆冷概率30%；市场隐含概率与模型存在分歧；天气因素降雨增加平局概率，爆冷选择客胜(1-2)",
+          "probs": {
+            "H": 0.2621540390602053,
+            "D": 0.37,
+            "A": 0.36784596093979477
+          },
+          "is_upset": true,
+          "real_odds": [
+            2.22,
+            3.03,
+            3.53
+          ]
         }
       },
       "consensus": {
         "H": 0,
         "D": 2,
-        "A": 3,
+        "A": 4,
         "consensus": "A",
-        "agreement_pct": 0.6
+        "agreement_pct": 0.6666666666666666
       }
     },
     "Panama_vs_England": {
@@ -6020,14 +7148,32 @@
             "A": 0.40794735386564873
           },
           "score_prob": 0.143
+        },
+        "爆冷派": {
+          "result": "H",
+          "home_score": 1,
+          "away_score": 0,
+          "confidence": 0.08,
+          "reasoning": "历史数据表明赔率>3.0时爆冷概率14%；市场隐含概率与模型存在分歧；实力悬殊(164分差距)增加冷门可能；天气因素炎热利好Panama·降雨增加平局概率，爆冷选择主胜(1-0)",
+          "probs": {
+            "H": 0.18205264613435126,
+            "D": 0.41,
+            "A": 0.40794735386564873
+          },
+          "is_upset": true,
+          "real_odds": [
+            9.7,
+            5.72,
+            1.27
+          ]
         }
       },
       "consensus": {
-        "H": 0,
+        "H": 1,
         "D": 4,
         "A": 1,
         "consensus": "D",
-        "agreement_pct": 0.8
+        "agreement_pct": 0.6666666666666666
       }
     },
     "Croatia_vs_Ghana": {
@@ -6110,14 +7256,32 @@
             "A": 0.2536455969166242
           },
           "score_prob": 0.123
+        },
+        "爆冷派": {
+          "result": "A",
+          "home_score": 1,
+          "away_score": 2,
+          "confidence": 0.14,
+          "reasoning": "历史数据表明赔率>3.0时爆冷概率17%；市场隐含概率与模型存在分歧；天气因素炎热利好客队·降雨增加平局概率，爆冷选择客胜(1-2)",
+          "probs": {
+            "H": 0.3763544030833758,
+            "D": 0.37,
+            "A": 0.2536455969166242
+          },
+          "is_upset": true,
+          "real_odds": [
+            1.64,
+            3.74,
+            5.45
+          ]
         }
       },
       "consensus": {
         "H": 4,
         "D": 1,
-        "A": 0,
+        "A": 1,
         "consensus": "H",
-        "agreement_pct": 0.8
+        "agreement_pct": 0.6666666666666666
       }
     },
     "Colombia_vs_Portugal": {
@@ -6200,14 +7364,32 @@
             "A": 0.368538933099543
           },
           "score_prob": 0.131
+        },
+        "爆冷派": {
+          "result": "H",
+          "home_score": 1,
+          "away_score": 0,
+          "confidence": 0.22,
+          "reasoning": "历史数据表明赔率>3.0时爆冷概率22%；市场隐含概率与模型存在分歧；天气因素降雨增加平局概率，爆冷选择主胜(1-0)",
+          "probs": {
+            "H": 0.221461066900457,
+            "D": 0.41,
+            "A": 0.368538933099543
+          },
+          "is_upset": true,
+          "real_odds": [
+            3.48,
+            3.28,
+            2.11
+          ]
         }
       },
       "consensus": {
-        "H": 0,
+        "H": 1,
         "D": 3,
         "A": 2,
         "consensus": "D",
-        "agreement_pct": 0.6
+        "agreement_pct": 0.5
       }
     },
     "Congo DR_vs_Uzbekistan": {
@@ -6290,14 +7472,32 @@
             "A": 0.22118980380591377
           },
           "score_prob": 0.116
+        },
+        "爆冷派": {
+          "result": "A",
+          "home_score": 0,
+          "away_score": 1,
+          "confidence": 0.244,
+          "reasoning": "历史数据表明赔率>3.0时爆冷概率17%；市场隐含概率与模型存在分歧；实力悬殊(115分差距)增加冷门可能，爆冷选择客胜(0-1)",
+          "probs": {
+            "H": 0.4288101961940863,
+            "D": 0.35,
+            "A": 0.22118980380591377
+          },
+          "is_upset": true,
+          "real_odds": [
+            2.32,
+            3.22,
+            3.11
+          ]
         }
       },
       "consensus": {
         "H": 4,
         "D": 1,
-        "A": 0,
+        "A": 1,
         "consensus": "H",
-        "agreement_pct": 0.8
+        "agreement_pct": 0.6666666666666666
       }
     },
     "Jordan_vs_Argentina": {
@@ -6380,14 +7580,27 @@
             "A": 0.5938704191489195
           },
           "score_prob": 0.136
+        },
+        "爆冷派": {
+          "result": "A",
+          "home_score": 1,
+          "away_score": 2,
+          "confidence": 0.594,
+          "reasoning": "本场未发现明显冷门机会，跟随模型判断",
+          "probs": {
+            "H": 0.07562958085108053,
+            "D": 0.3305,
+            "A": 0.5938704191489195
+          },
+          "is_upset": false
         }
       },
       "consensus": {
         "H": 0,
         "D": 1,
-        "A": 4,
+        "A": 5,
         "consensus": "A",
-        "agreement_pct": 0.8
+        "agreement_pct": 0.8333333333333334
       }
     },
     "Algeria_vs_Austria": {
@@ -6470,14 +7683,32 @@
             "A": 0.2963121334700254
           },
           "score_prob": 0.124
+        },
+        "爆冷派": {
+          "result": "H",
+          "home_score": 2,
+          "away_score": 1,
+          "confidence": 0.22,
+          "reasoning": "历史数据表明赔率>3.0时爆冷概率30%；市场隐含概率与模型存在分歧；天气因素降雨增加平局概率，爆冷选择主胜(2-1)",
+          "probs": {
+            "H": 0.3336878665299746,
+            "D": 0.37,
+            "A": 0.2963121334700254
+          },
+          "is_upset": true,
+          "real_odds": [
+            3.53,
+            3.17,
+            2.14
+          ]
         }
       },
       "consensus": {
-        "H": 1,
+        "H": 2,
         "D": 4,
         "A": 0,
         "consensus": "D",
-        "agreement_pct": 0.8
+        "agreement_pct": 0.6666666666666666
       }
     }
   },
@@ -6538,6 +7769,17 @@
       "reasoning": "ELO模型计算：Mexico胜率45%/South Africa胜率16%/平局39%；FIFA排名：Mexico=1715分/South Africa=1612分；最可能比分1-1(概率12.6%) [高海拔利好Mexico·降雨增加平局概率]"
     },
     {
+      "date": "2026-06-11",
+      "home": "Mexico",
+      "away": "South Africa",
+      "agent": "爆冷派",
+      "result": "A",
+      "home_score": 1,
+      "away_score": 2,
+      "confidence": 0.08,
+      "reasoning": "历史数据表明赔率>3.0时爆冷概率17%；市场隐含概率与模型存在分歧；实力悬殊(103分差距)增加冷门可能；天气因素高海拔利好Mexico·降雨增加平局概率，爆冷选择客胜(1-2)"
+    },
+    {
       "date": "2026-06-12",
       "home": "South Korea",
       "away": "Czechia",
@@ -6594,6 +7836,17 @@
     },
     {
       "date": "2026-06-12",
+      "home": "South Korea",
+      "away": "Czechia",
+      "agent": "爆冷派",
+      "result": "A",
+      "home_score": 1,
+      "away_score": 2,
+      "confidence": 0.348,
+      "reasoning": "历史数据表明赔率>3.0时爆冷概率14%；市场隐含概率与模型存在分歧；实力悬殊(182分差距)增加冷门可能，爆冷选择客胜(1-2)"
+    },
+    {
+      "date": "2026-06-12",
       "home": "Canada",
       "away": "Bosnia-Herzegovina",
       "agent": "稳健派",
@@ -6646,6 +7899,17 @@
       "away_score": 1,
       "confidence": 0.358,
       "reasoning": "ELO模型计算：Canada胜率46%/Bosnia-Herzegovina胜率17%/平局37%；FIFA排名：Canada=1668分/Bosnia-Herzegovina=1500分；最可能比分1-1(概率11.7%) [降雨增加平局概率]"
+    },
+    {
+      "date": "2026-06-12",
+      "home": "Canada",
+      "away": "Bosnia-Herzegovina",
+      "agent": "爆冷派",
+      "result": "A",
+      "home_score": 1,
+      "away_score": 2,
+      "confidence": 0.17,
+      "reasoning": "历史数据表明赔率>3.0时爆冷概率14%；市场隐含概率与模型存在分歧；实力悬殊(168分差距)增加冷门可能；天气因素降雨增加平局概率，爆冷选择客胜(1-2)"
     },
     {
       "date": "2026-06-13",
@@ -6704,6 +7968,17 @@
     },
     {
       "date": "2026-06-13",
+      "home": "United States",
+      "away": "Paraguay",
+      "agent": "爆冷派",
+      "result": "A",
+      "home_score": 0,
+      "away_score": 1,
+      "confidence": 0.17,
+      "reasoning": "历史数据表明赔率>3.0时爆冷概率30%；市场隐含概率与模型存在分歧；实力悬殊(155分差距)增加冷门可能，爆冷选择客胜(0-1)"
+    },
+    {
+      "date": "2026-06-13",
       "home": "Qatar",
       "away": "Switzerland",
       "agent": "稳健派",
@@ -6759,6 +8034,17 @@
     },
     {
       "date": "2026-06-13",
+      "home": "Qatar",
+      "away": "Switzerland",
+      "agent": "爆冷派",
+      "result": "A",
+      "home_score": 1,
+      "away_score": 2,
+      "confidence": 0.435,
+      "reasoning": "本场未发现明显冷门机会，跟随模型判断"
+    },
+    {
+      "date": "2026-06-13",
       "home": "Brazil",
       "away": "Morocco",
       "agent": "稳健派",
@@ -6811,6 +8097,17 @@
       "away_score": 1,
       "confidence": 0.35,
       "reasoning": "ELO模型计算：Brazil胜率45%/Morocco胜率20%/平局35%；FIFA排名：Brazil=1834分/Morocco=1692分；最可能比分1-1(概率11.4%)"
+    },
+    {
+      "date": "2026-06-13",
+      "home": "Brazil",
+      "away": "Morocco",
+      "agent": "爆冷派",
+      "result": "A",
+      "home_score": 1,
+      "away_score": 2,
+      "confidence": 0.14,
+      "reasoning": "历史数据表明赔率>3.0时爆冷概率14%；市场隐含概率与模型存在分歧；实力悬殊(142分差距)增加冷门可能，爆冷选择客胜(1-2)"
     },
     {
       "date": "2026-06-14",
@@ -6869,6 +8166,17 @@
     },
     {
       "date": "2026-06-14",
+      "home": "Haiti",
+      "away": "Scotland",
+      "agent": "爆冷派",
+      "result": "H",
+      "home_score": 2,
+      "away_score": 1,
+      "confidence": 0.14,
+      "reasoning": "历史数据表明赔率>3.0时爆冷概率17%；市场隐含概率与模型存在分歧；实力悬殊(118分差距)增加冷门可能；天气因素炎热利好Haiti·降雨增加平局概率，爆冷选择主胜(2-1)"
+    },
+    {
+      "date": "2026-06-14",
       "home": "Australia",
       "away": "Turkey",
       "agent": "稳健派",
@@ -6921,6 +8229,17 @@
       "away_score": 1,
       "confidence": 0.308,
       "reasoning": "ELO模型计算：Australia胜率39%/Turkey胜率26%/平局35%；FIFA排名：Australia=1678分/Turkey=1608分；最可能比分1-1(概率11.8%)"
+    },
+    {
+      "date": "2026-06-14",
+      "home": "Australia",
+      "away": "Turkey",
+      "agent": "爆冷派",
+      "result": "H",
+      "home_score": 2,
+      "away_score": 1,
+      "confidence": 0.14,
+      "reasoning": "历史数据表明赔率>3.0时爆冷概率30%；市场隐含概率与模型存在分歧，爆冷选择主胜(2-1)"
     },
     {
       "date": "2026-06-14",
@@ -6979,6 +8298,17 @@
     },
     {
       "date": "2026-06-14",
+      "home": "Germany",
+      "away": "Curaçao",
+      "agent": "爆冷派",
+      "result": "H",
+      "home_score": 2,
+      "away_score": 1,
+      "confidence": 0.512,
+      "reasoning": "本场未发现明显冷门机会，跟随模型判断"
+    },
+    {
+      "date": "2026-06-14",
       "home": "Netherlands",
       "away": "Japan",
       "agent": "稳健派",
@@ -7034,6 +8364,17 @@
     },
     {
       "date": "2026-06-14",
+      "home": "Netherlands",
+      "away": "Japan",
+      "agent": "爆冷派",
+      "result": "A",
+      "home_score": 1,
+      "away_score": 2,
+      "confidence": 0.22,
+      "reasoning": "历史数据表明赔率>3.0时爆冷概率22%；市场隐含概率与模型存在分歧；天气因素降雨增加平局概率，爆冷选择客胜(1-2)"
+    },
+    {
+      "date": "2026-06-14",
       "home": "Ivory Coast",
       "away": "Ecuador",
       "agent": "稳健派",
@@ -7086,6 +8427,17 @@
       "away_score": 1,
       "confidence": 0.289,
       "reasoning": "ELO模型计算：Ivory Coast胜率29%/Ecuador胜率36%/平局35%；FIFA排名：Ivory Coast=1625分/Ecuador=1665分；最可能比分1-1(概率11.9%)"
+    },
+    {
+      "date": "2026-06-14",
+      "home": "Ivory Coast",
+      "away": "Ecuador",
+      "agent": "爆冷派",
+      "result": "H",
+      "home_score": 1,
+      "away_score": 0,
+      "confidence": 0.22,
+      "reasoning": "历史数据表明赔率>3.0时爆冷概率22%；市场隐含概率与模型存在分歧，爆冷选择主胜(1-0)"
     },
     {
       "date": "2026-06-15",
@@ -7144,6 +8496,17 @@
     },
     {
       "date": "2026-06-15",
+      "home": "Sweden",
+      "away": "Tunisia",
+      "agent": "爆冷派",
+      "result": "A",
+      "home_score": 0,
+      "away_score": 1,
+      "confidence": 0.17,
+      "reasoning": "历史数据表明赔率>3.0时爆冷概率30%；市场隐含概率与模型存在分歧；天气因素降雨增加平局概率，爆冷选择客胜(0-1)"
+    },
+    {
+      "date": "2026-06-15",
       "home": "Spain",
       "away": "Cape Verde Islands",
       "agent": "稳健派",
@@ -7196,6 +8559,17 @@
       "away_score": 0,
       "confidence": 0.403,
       "reasoning": "ELO模型计算：Spain胜率52%/Cape Verde Islands胜率11%/平局37%；FIFA排名：Spain=1758分/Cape Verde Islands=1500分；最可能比分1-0(概率13.0%) [降雨增加平局概率]"
+    },
+    {
+      "date": "2026-06-15",
+      "home": "Spain",
+      "away": "Cape Verde Islands",
+      "agent": "爆冷派",
+      "result": "H",
+      "home_score": 2,
+      "away_score": 1,
+      "confidence": 0.52,
+      "reasoning": "本场未发现明显冷门机会，跟随模型判断"
     },
     {
       "date": "2026-06-15",
@@ -7254,6 +8628,17 @@
     },
     {
       "date": "2026-06-15",
+      "home": "Belgium",
+      "away": "Egypt",
+      "agent": "爆冷派",
+      "result": "A",
+      "home_score": 0,
+      "away_score": 1,
+      "confidence": 0.14,
+      "reasoning": "历史数据表明赔率>3.0时爆冷概率14%；市场隐含概率与模型存在分歧；实力悬殊(167分差距)增加冷门可能；天气因素降雨增加平局概率，爆冷选择客胜(0-1)"
+    },
+    {
+      "date": "2026-06-15",
       "home": "Saudi Arabia",
       "away": "Uruguay",
       "agent": "稳健派",
@@ -7306,6 +8691,17 @@
       "away_score": 1,
       "confidence": 0.287,
       "reasoning": "ELO模型计算：Saudi Arabia胜率29%/Uruguay胜率36%/平局35%；FIFA排名：Saudi Arabia=1675分/Uruguay=1712分；最可能比分1-1(概率11.9%)"
+    },
+    {
+      "date": "2026-06-15",
+      "home": "Saudi Arabia",
+      "away": "Uruguay",
+      "agent": "爆冷派",
+      "result": "H",
+      "home_score": 2,
+      "away_score": 1,
+      "confidence": 0.1,
+      "reasoning": "历史数据表明赔率>3.0时爆冷概率22%；市场隐含概率与模型存在分歧，爆冷选择主胜(2-1)"
     },
     {
       "date": "2026-06-16",
@@ -7364,6 +8760,17 @@
     },
     {
       "date": "2026-06-16",
+      "home": "Iran",
+      "away": "New Zealand",
+      "agent": "爆冷派",
+      "result": "A",
+      "home_score": 1,
+      "away_score": 2,
+      "confidence": 0.17,
+      "reasoning": "历史数据表明赔率>3.0时爆冷概率17%；市场隐含概率与模型存在分歧；实力悬殊(105分差距)增加冷门可能；天气因素降雨增加平局概率，爆冷选择客胜(1-2)"
+    },
+    {
+      "date": "2026-06-16",
       "home": "France",
       "away": "Senegal",
       "agent": "稳健派",
@@ -7419,6 +8826,17 @@
     },
     {
       "date": "2026-06-16",
+      "home": "France",
+      "away": "Senegal",
+      "agent": "爆冷派",
+      "result": "A",
+      "home_score": 0,
+      "away_score": 1,
+      "confidence": 0.1,
+      "reasoning": "历史数据表明赔率>3.0时爆冷概率14%；市场隐含概率与模型存在分歧；实力悬殊(157分差距)增加冷门可能；天气因素降雨增加平局概率，爆冷选择客胜(0-1)"
+    },
+    {
+      "date": "2026-06-16",
       "home": "Iraq",
       "away": "Norway",
       "agent": "稳健派",
@@ -7471,6 +8889,17 @@
       "away_score": 1,
       "confidence": 0.339,
       "reasoning": "ELO模型计算：Iraq胜率22%/Norway胜率43%/平局35%；FIFA排名：Iraq=1500分/Norway=1622分；最可能比分1-1(概率11.6%)"
+    },
+    {
+      "date": "2026-06-16",
+      "home": "Iraq",
+      "away": "Norway",
+      "agent": "爆冷派",
+      "result": "A",
+      "home_score": 1,
+      "away_score": 2,
+      "confidence": 0.435,
+      "reasoning": "本场未发现明显冷门机会，跟随模型判断"
     },
     {
       "date": "2026-06-17",
@@ -7529,6 +8958,17 @@
     },
     {
       "date": "2026-06-17",
+      "home": "Argentina",
+      "away": "Algeria",
+      "agent": "爆冷派",
+      "result": "A",
+      "home_score": 0,
+      "away_score": 1,
+      "confidence": 0.08,
+      "reasoning": "历史数据表明赔率>3.0时爆冷概率10%；市场隐含概率与模型存在分歧；实力悬殊(226分差距)增加冷门可能，爆冷选择客胜(0-1)"
+    },
+    {
+      "date": "2026-06-17",
       "home": "Austria",
       "away": "Jordan",
       "agent": "稳健派",
@@ -7581,6 +9021,17 @@
       "away_score": 1,
       "confidence": 0.312,
       "reasoning": "ELO模型计算：Austria胜率39%/Jordan胜率24%/平局37%；FIFA排名：Austria=1612分/Jordan=1500分；最可能比分1-1(概率12.1%) [炎热利好客队·降雨增加平局概率]"
+    },
+    {
+      "date": "2026-06-17",
+      "home": "Austria",
+      "away": "Jordan",
+      "agent": "爆冷派",
+      "result": "A",
+      "home_score": 0,
+      "away_score": 1,
+      "confidence": 0.08,
+      "reasoning": "历史数据表明赔率>3.0时爆冷概率17%；市场隐含概率与模型存在分歧；实力悬殊(112分差距)增加冷门可能；天气因素炎热利好客队·降雨增加平局概率，爆冷选择客胜(0-1)"
     },
     {
       "date": "2026-06-17",
@@ -7639,6 +9090,17 @@
     },
     {
       "date": "2026-06-17",
+      "home": "Portugal",
+      "away": "Congo DR",
+      "agent": "爆冷派",
+      "result": "H",
+      "home_score": 2,
+      "away_score": 1,
+      "confidence": 0.465,
+      "reasoning": "本场未发现明显冷门机会，跟随模型判断"
+    },
+    {
+      "date": "2026-06-17",
       "home": "England",
       "away": "Croatia",
       "agent": "稳健派",
@@ -7694,6 +9156,17 @@
     },
     {
       "date": "2026-06-17",
+      "home": "England",
+      "away": "Croatia",
+      "agent": "爆冷派",
+      "result": "A",
+      "home_score": 0,
+      "away_score": 1,
+      "confidence": 0.17,
+      "reasoning": "历史数据表明赔率>3.0时爆冷概率17%；市场隐含概率与模型存在分歧；天气因素降雨增加平局概率，爆冷选择客胜(0-1)"
+    },
+    {
+      "date": "2026-06-17",
       "home": "Ghana",
       "away": "Panama",
       "agent": "稳健派",
@@ -7746,6 +9219,17 @@
       "away_score": 1,
       "confidence": 0.281,
       "reasoning": "ELO模型计算：Ghana胜率32%/Panama胜率33%/平局35%；FIFA排名：Ghana=1638分/Panama=1648分；最可能比分1-1(概率11.9%)"
+    },
+    {
+      "date": "2026-06-17",
+      "home": "Ghana",
+      "away": "Panama",
+      "agent": "爆冷派",
+      "result": "A",
+      "home_score": 0,
+      "away_score": 1,
+      "confidence": 0.22,
+      "reasoning": "历史数据表明赔率>3.0时爆冷概率30%；市场隐含概率与模型存在分歧，爆冷选择客胜(0-1)"
     },
     {
       "date": "2026-06-18",
@@ -7804,6 +9288,17 @@
     },
     {
       "date": "2026-06-18",
+      "home": "Uzbekistan",
+      "away": "Colombia",
+      "agent": "爆冷派",
+      "result": "H",
+      "home_score": 2,
+      "away_score": 1,
+      "confidence": 0.08,
+      "reasoning": "历史数据表明赔率>3.0时爆冷概率12%；市场隐含概率与模型存在分歧；实力悬殊(208分差距)增加冷门可能，爆冷选择主胜(2-1)"
+    },
+    {
+      "date": "2026-06-18",
       "home": "Czechia",
       "away": "South Africa",
       "agent": "稳健派",
@@ -7856,6 +9351,17 @@
       "away_score": 1,
       "confidence": 0.333,
       "reasoning": "ELO模型计算：Czechia胜率22%/South Africa胜率43%/平局35%；FIFA排名：Czechia=1500分/South Africa=1612分；最可能比分1-1(概率11.6%)"
+    },
+    {
+      "date": "2026-06-18",
+      "home": "Czechia",
+      "away": "South Africa",
+      "agent": "爆冷派",
+      "result": "A",
+      "home_score": 1,
+      "away_score": 2,
+      "confidence": 0.17,
+      "reasoning": "历史数据表明赔率>3.0时爆冷概率30%；市场隐含概率与模型存在分歧；实力悬殊(112分差距)增加冷门可能，爆冷选择客胜(1-2)"
     },
     {
       "date": "2026-06-18",
@@ -7914,6 +9420,17 @@
     },
     {
       "date": "2026-06-18",
+      "home": "Switzerland",
+      "away": "Bosnia-Herzegovina",
+      "agent": "爆冷派",
+      "result": "A",
+      "home_score": 0,
+      "away_score": 1,
+      "confidence": 0.14,
+      "reasoning": "历史数据表明赔率>3.0时爆冷概率12%；市场隐含概率与模型存在分歧；实力悬殊(198分差距)增加冷门可能，爆冷选择客胜(0-1)"
+    },
+    {
+      "date": "2026-06-18",
       "home": "Canada",
       "away": "Qatar",
       "agent": "稳健派",
@@ -7966,6 +9483,17 @@
       "away_score": 1,
       "confidence": 0.317,
       "reasoning": "ELO模型计算：Canada胜率40%/Qatar胜率23%/平局37%；FIFA排名：Canada=1668分/Qatar=1575分；最可能比分1-1(概率12.2%) [降雨增加平局概率]"
+    },
+    {
+      "date": "2026-06-18",
+      "home": "Canada",
+      "away": "Qatar",
+      "agent": "爆冷派",
+      "result": "H",
+      "home_score": 1,
+      "away_score": 1,
+      "confidence": 0.4,
+      "reasoning": "本场未发现明显冷门机会，跟随模型判断"
     },
     {
       "date": "2026-06-19",
@@ -8024,6 +9552,17 @@
     },
     {
       "date": "2026-06-19",
+      "home": "Mexico",
+      "away": "South Korea",
+      "agent": "爆冷派",
+      "result": "A",
+      "home_score": 1,
+      "away_score": 2,
+      "confidence": 0.17,
+      "reasoning": "历史数据表明赔率>3.0时爆冷概率22%；市场隐含概率与模型存在分歧；天气因素高海拔利好Mexico·降雨增加平局概率，爆冷选择客胜(1-2)"
+    },
+    {
+      "date": "2026-06-19",
       "home": "United States",
       "away": "Australia",
       "agent": "稳健派",
@@ -8079,6 +9618,17 @@
     },
     {
       "date": "2026-06-19",
+      "home": "United States",
+      "away": "Australia",
+      "agent": "爆冷派",
+      "result": "A",
+      "home_score": 0,
+      "away_score": 1,
+      "confidence": 0.17,
+      "reasoning": "历史数据表明赔率>3.0时爆冷概率30%；市场隐含概率与模型存在分歧；实力悬殊(178分差距)增加冷门可能，爆冷选择客胜(0-1)"
+    },
+    {
+      "date": "2026-06-19",
       "home": "Scotland",
       "away": "Morocco",
       "agent": "稳健派",
@@ -8131,6 +9681,17 @@
       "away_score": 1,
       "confidence": 0.305,
       "reasoning": "ELO模型计算：Scotland胜率25%/Morocco胜率38%/平局37%；FIFA排名：Scotland=1618分/Morocco=1692分；最可能比分1-1(概率12.3%) [降雨增加平局概率]"
+    },
+    {
+      "date": "2026-06-19",
+      "home": "Scotland",
+      "away": "Morocco",
+      "agent": "爆冷派",
+      "result": "H",
+      "home_score": 1,
+      "away_score": 0,
+      "confidence": 0.17,
+      "reasoning": "历史数据表明赔率>3.0时爆冷概率22%；市场隐含概率与模型存在分歧；天气因素降雨增加平局概率，爆冷选择主胜(1-0)"
     },
     {
       "date": "2026-06-20",
@@ -8189,6 +9750,17 @@
     },
     {
       "date": "2026-06-20",
+      "home": "Brazil",
+      "away": "Haiti",
+      "agent": "爆冷派",
+      "result": "H",
+      "home_score": 2,
+      "away_score": 1,
+      "confidence": 0.579,
+      "reasoning": "本场未发现明显冷门机会，跟随模型判断"
+    },
+    {
+      "date": "2026-06-20",
       "home": "Turkey",
       "away": "Paraguay",
       "agent": "稳健派",
@@ -8241,6 +9813,17 @@
       "away_score": 1,
       "confidence": 0.296,
       "reasoning": "ELO模型计算：Turkey胜率27%/Paraguay胜率36%/平局37%；FIFA排名：Turkey=1608分/Paraguay=1655分；最可能比分1-1(概率12.4%) [降雨增加平局概率]"
+    },
+    {
+      "date": "2026-06-20",
+      "home": "Turkey",
+      "away": "Paraguay",
+      "agent": "爆冷派",
+      "result": "A",
+      "home_score": 0,
+      "away_score": 1,
+      "confidence": 0.22,
+      "reasoning": "历史数据表明赔率>3.0时爆冷概率30%；市场隐含概率与模型存在分歧；天气因素降雨增加平局概率，爆冷选择客胜(0-1)"
     },
     {
       "date": "2026-06-20",
@@ -8299,6 +9882,17 @@
     },
     {
       "date": "2026-06-20",
+      "home": "Netherlands",
+      "away": "Sweden",
+      "agent": "爆冷派",
+      "result": "A",
+      "home_score": 0,
+      "away_score": 1,
+      "confidence": 0.14,
+      "reasoning": "历史数据表明赔率>3.0时爆冷概率17%；市场隐含概率与模型存在分歧；实力悬殊(140分差距)增加冷门可能；天气因素降雨增加平局概率，爆冷选择客胜(0-1)"
+    },
+    {
+      "date": "2026-06-20",
       "home": "Germany",
       "away": "Ivory Coast",
       "agent": "稳健派",
@@ -8351,6 +9945,17 @@
       "away_score": 1,
       "confidence": 0.332,
       "reasoning": "ELO模型计算：Germany胜率42%/Ivory Coast胜率21%/平局37%；FIFA排名：Germany=1745分/Ivory Coast=1625分；最可能比分1-1(概率12.1%) [降雨增加平局概率]"
+    },
+    {
+      "date": "2026-06-20",
+      "home": "Germany",
+      "away": "Ivory Coast",
+      "agent": "爆冷派",
+      "result": "A",
+      "home_score": 1,
+      "away_score": 2,
+      "confidence": 0.14,
+      "reasoning": "历史数据表明赔率>3.0时爆冷概率17%；市场隐含概率与模型存在分歧；实力悬殊(120分差距)增加冷门可能；天气因素降雨增加平局概率，爆冷选择客胜(1-2)"
     },
     {
       "date": "2026-06-21",
@@ -8409,6 +10014,17 @@
     },
     {
       "date": "2026-06-21",
+      "home": "Ecuador",
+      "away": "Curaçao",
+      "agent": "爆冷派",
+      "result": "H",
+      "home_score": 2,
+      "away_score": 1,
+      "confidence": 0.469,
+      "reasoning": "本场未发现明显冷门机会，跟随模型判断"
+    },
+    {
+      "date": "2026-06-21",
       "home": "Tunisia",
       "away": "Japan",
       "agent": "稳健派",
@@ -8461,6 +10077,17 @@
       "away_score": 1,
       "confidence": 0.302,
       "reasoning": "ELO模型计算：Tunisia胜率27%/Japan胜率38%/平局35%；FIFA排名：Tunisia=1635分/Japan=1695分；最可能比分1-1(概率11.8%)"
+    },
+    {
+      "date": "2026-06-21",
+      "home": "Tunisia",
+      "away": "Japan",
+      "agent": "爆冷派",
+      "result": "H",
+      "home_score": 2,
+      "away_score": 1,
+      "confidence": 0.14,
+      "reasoning": "历史数据表明赔率>3.0时爆冷概率22%；市场隐含概率与模型存在分歧，爆冷选择主胜(2-1)"
     },
     {
       "date": "2026-06-21",
@@ -8519,6 +10146,17 @@
     },
     {
       "date": "2026-06-21",
+      "home": "Spain",
+      "away": "Saudi Arabia",
+      "agent": "爆冷派",
+      "result": "H",
+      "home_score": 1,
+      "away_score": 1,
+      "confidence": 0.391,
+      "reasoning": "本场未发现明显冷门机会，跟随模型判断"
+    },
+    {
+      "date": "2026-06-21",
       "home": "Belgium",
       "away": "Iran",
       "agent": "稳健派",
@@ -8574,6 +10212,17 @@
     },
     {
       "date": "2026-06-21",
+      "home": "Belgium",
+      "away": "Iran",
+      "agent": "爆冷派",
+      "result": "A",
+      "home_score": 1,
+      "away_score": 2,
+      "confidence": 0.08,
+      "reasoning": "历史数据表明赔率>3.0时爆冷概率17%；市场隐含概率与模型存在分歧；实力悬殊(110分差距)增加冷门可能；天气因素降雨增加平局概率，爆冷选择客胜(1-2)"
+    },
+    {
+      "date": "2026-06-21",
       "home": "Uruguay",
       "away": "Cape Verde Islands",
       "agent": "稳健派",
@@ -8626,6 +10275,17 @@
       "away_score": 0,
       "confidence": 0.361,
       "reasoning": "ELO模型计算：Uruguay胜率45%/Cape Verde Islands胜率14%/平局41%；FIFA排名：Uruguay=1712分/Cape Verde Islands=1500分；最可能比分1-0(概率15.1%) [炎热利好客队·降雨增加平局概率]"
+    },
+    {
+      "date": "2026-06-21",
+      "home": "Uruguay",
+      "away": "Cape Verde Islands",
+      "agent": "爆冷派",
+      "result": "A",
+      "home_score": 1,
+      "away_score": 2,
+      "confidence": 0.1,
+      "reasoning": "历史数据表明赔率>3.0时爆冷概率12%；市场隐含概率与模型存在分歧；实力悬殊(212分差距)增加冷门可能；天气因素炎热利好客队·降雨增加平局概率，爆冷选择客胜(1-2)"
     },
     {
       "date": "2026-06-22",
@@ -8684,6 +10344,17 @@
     },
     {
       "date": "2026-06-22",
+      "home": "New Zealand",
+      "away": "Egypt",
+      "agent": "爆冷派",
+      "result": "H",
+      "home_score": 2,
+      "away_score": 1,
+      "confidence": 0.17,
+      "reasoning": "历史数据表明赔率>3.0时爆冷概率22%；市场隐含概率与模型存在分歧，爆冷选择主胜(2-1)"
+    },
+    {
+      "date": "2026-06-22",
       "home": "Argentina",
       "away": "Austria",
       "agent": "稳健派",
@@ -8739,6 +10410,17 @@
     },
     {
       "date": "2026-06-22",
+      "home": "Argentina",
+      "away": "Austria",
+      "agent": "爆冷派",
+      "result": "A",
+      "home_score": 1,
+      "away_score": 2,
+      "confidence": 0.14,
+      "reasoning": "历史数据表明赔率>3.0时爆冷概率10%；市场隐含概率与模型存在分歧；实力悬殊(246分差距)增加冷门可能，爆冷选择客胜(1-2)"
+    },
+    {
+      "date": "2026-06-22",
       "home": "France",
       "away": "Iraq",
       "agent": "稳健派",
@@ -8791,6 +10473,17 @@
       "away_score": 0,
       "confidence": 0.445,
       "reasoning": "ELO模型计算：France胜率58%/Iraq胜率7%/平局35%；FIFA排名：France=1845分/Iraq=1500分；最可能比分1-0(概率14.1%) [降雨增加平局概率]"
+    },
+    {
+      "date": "2026-06-22",
+      "home": "France",
+      "away": "Iraq",
+      "agent": "爆冷派",
+      "result": "H",
+      "home_score": 2,
+      "away_score": 1,
+      "confidence": 0.576,
+      "reasoning": "本场未发现明显冷门机会，跟随模型判断"
     },
     {
       "date": "2026-06-23",
@@ -8849,6 +10542,17 @@
     },
     {
       "date": "2026-06-23",
+      "home": "Norway",
+      "away": "Senegal",
+      "agent": "爆冷派",
+      "result": "D",
+      "home_score": 1,
+      "away_score": 1,
+      "confidence": 0.22,
+      "reasoning": "历史数据表明赔率>3.0时爆冷概率30%；市场隐含概率与模型存在分歧；天气因素降雨增加平局概率，爆冷选择平局(1-1)"
+    },
+    {
+      "date": "2026-06-23",
       "home": "Jordan",
       "away": "Algeria",
       "agent": "稳健派",
@@ -8901,6 +10605,17 @@
       "away_score": 1,
       "confidence": 0.344,
       "reasoning": "ELO模型计算：Jordan胜率21%/Algeria胜率44%/平局35%；FIFA排名：Jordan=1500分/Algeria=1632分；最可能比分1-1(概率11.5%)"
+    },
+    {
+      "date": "2026-06-23",
+      "home": "Jordan",
+      "away": "Algeria",
+      "agent": "爆冷派",
+      "result": "H",
+      "home_score": 1,
+      "away_score": 0,
+      "confidence": 0.12,
+      "reasoning": "历史数据表明赔率>3.0时爆冷概率17%；市场隐含概率与模型存在分歧；实力悬殊(132分差距)增加冷门可能，爆冷选择主胜(1-0)"
     },
     {
       "date": "2026-06-23",
@@ -8959,6 +10674,17 @@
     },
     {
       "date": "2026-06-23",
+      "home": "Portugal",
+      "away": "Uzbekistan",
+      "agent": "爆冷派",
+      "result": "H",
+      "home_score": 2,
+      "away_score": 1,
+      "confidence": 0.538,
+      "reasoning": "本场未发现明显冷门机会，跟随模型判断"
+    },
+    {
+      "date": "2026-06-23",
       "home": "England",
       "away": "Ghana",
       "agent": "稳健派",
@@ -9014,6 +10740,17 @@
     },
     {
       "date": "2026-06-23",
+      "home": "England",
+      "away": "Ghana",
+      "agent": "爆冷派",
+      "result": "A",
+      "home_score": 0,
+      "away_score": 1,
+      "confidence": 0.08,
+      "reasoning": "历史数据表明赔率>3.0时爆冷概率14%；市场隐含概率与模型存在分歧；实力悬殊(174分差距)增加冷门可能；天气因素降雨增加平局概率，爆冷选择客胜(0-1)"
+    },
+    {
+      "date": "2026-06-23",
       "home": "Panama",
       "away": "Croatia",
       "agent": "稳健派",
@@ -9066,6 +10803,17 @@
       "away_score": 1,
       "confidence": 0.326,
       "reasoning": "ELO模型计算：Panama胜率24%/Croatia胜率35%/平局41%；FIFA排名：Panama=1648分/Croatia=1728分；最可能比分1-1(概率13.1%) [炎热利好Panama·降雨增加平局概率]"
+    },
+    {
+      "date": "2026-06-23",
+      "home": "Panama",
+      "away": "Croatia",
+      "agent": "爆冷派",
+      "result": "H",
+      "home_score": 2,
+      "away_score": 1,
+      "confidence": 0.12,
+      "reasoning": "历史数据表明赔率>3.0时爆冷概率22%；市场隐含概率与模型存在分歧；天气因素炎热利好Panama·降雨增加平局概率，爆冷选择主胜(2-1)"
     },
     {
       "date": "2026-06-24",
@@ -9124,6 +10872,17 @@
     },
     {
       "date": "2026-06-24",
+      "home": "Colombia",
+      "away": "Congo DR",
+      "agent": "爆冷派",
+      "result": "A",
+      "home_score": 1,
+      "away_score": 2,
+      "confidence": 0.1,
+      "reasoning": "历史数据表明赔率>3.0时爆冷概率17%；市场隐含概率与模型存在分歧；天气因素降雨增加平局概率，爆冷选择客胜(1-2)"
+    },
+    {
+      "date": "2026-06-24",
       "home": "Switzerland",
       "away": "Canada",
       "agent": "稳健派",
@@ -9176,6 +10935,17 @@
       "away_score": 1,
       "confidence": 0.283,
       "reasoning": "ELO模型计算：Switzerland胜率35%/Canada胜率30%/平局35%；FIFA排名：Switzerland=1698分/Canada=1668分；最可能比分1-1(概率11.9%)"
+    },
+    {
+      "date": "2026-06-24",
+      "home": "Switzerland",
+      "away": "Canada",
+      "agent": "爆冷派",
+      "result": "A",
+      "home_score": 0,
+      "away_score": 1,
+      "confidence": 0.22,
+      "reasoning": "历史数据表明赔率>3.0时爆冷概率22%；市场隐含概率与模型存在分歧，爆冷选择客胜(0-1)"
     },
     {
       "date": "2026-06-24",
@@ -9234,6 +11004,17 @@
     },
     {
       "date": "2026-06-24",
+      "home": "Bosnia-Herzegovina",
+      "away": "Qatar",
+      "agent": "爆冷派",
+      "result": "A",
+      "home_score": 0,
+      "away_score": 1,
+      "confidence": 0.14,
+      "reasoning": "历史数据表明赔率>3.0时爆冷概率30%；市场隐含概率与模型存在分歧，爆冷选择客胜(0-1)"
+    },
+    {
+      "date": "2026-06-24",
       "home": "Scotland",
       "away": "Brazil",
       "agent": "稳健派",
@@ -9289,6 +11070,17 @@
     },
     {
       "date": "2026-06-24",
+      "home": "Scotland",
+      "away": "Brazil",
+      "agent": "爆冷派",
+      "result": "H",
+      "home_score": 2,
+      "away_score": 1,
+      "confidence": 0.12,
+      "reasoning": "历史数据表明赔率>3.0时爆冷概率12%；市场隐含概率与模型存在分歧；实力悬殊(216分差距)增加冷门可能；天气因素降雨增加平局概率，爆冷选择主胜(2-1)"
+    },
+    {
+      "date": "2026-06-24",
       "home": "Morocco",
       "away": "Haiti",
       "agent": "稳健派",
@@ -9341,6 +11133,17 @@
       "away_score": 1,
       "confidence": 0.375,
       "reasoning": "ELO模型计算：Morocco胜率49%/Haiti胜率16%/平局35%；FIFA排名：Morocco=1692分/Haiti=1500分；最可能比分1-1(概率11.0%)"
+    },
+    {
+      "date": "2026-06-24",
+      "home": "Morocco",
+      "away": "Haiti",
+      "agent": "爆冷派",
+      "result": "A",
+      "home_score": 0,
+      "away_score": 1,
+      "confidence": 0.08,
+      "reasoning": "历史数据表明赔率>3.0时爆冷概率12%；市场隐含概率与模型存在分歧；实力悬殊(192分差距)增加冷门可能，爆冷选择客胜(0-1)"
     },
     {
       "date": "2026-06-25",
@@ -9399,6 +11202,17 @@
     },
     {
       "date": "2026-06-25",
+      "home": "Czechia",
+      "away": "Mexico",
+      "agent": "爆冷派",
+      "result": "H",
+      "home_score": 1,
+      "away_score": 0,
+      "confidence": 0.188,
+      "reasoning": "历史数据表明赔率>3.0时爆冷概率12%；市场隐含概率与模型存在分歧；实力悬殊(215分差距)增加冷门可能，爆冷选择主胜(1-0)"
+    },
+    {
+      "date": "2026-06-25",
       "home": "South Africa",
       "away": "South Korea",
       "agent": "稳健派",
@@ -9451,6 +11265,17 @@
       "away_score": 1,
       "confidence": 0.296,
       "reasoning": "ELO模型计算：South Africa胜率27%/South Korea胜率36%/平局37%；FIFA排名：South Africa=1612分/South Korea=1682分；最可能比分1-1(概率12.3%) [炎热利好South Africa·降雨增加平局概率]"
+    },
+    {
+      "date": "2026-06-25",
+      "home": "South Africa",
+      "away": "South Korea",
+      "agent": "爆冷派",
+      "result": "H",
+      "home_score": 2,
+      "away_score": 1,
+      "confidence": 0.22,
+      "reasoning": "历史数据表明赔率>3.0时爆冷概率22%；市场隐含概率与模型存在分歧；天气因素炎热利好South Africa·降雨增加平局概率，爆冷选择主胜(2-1)"
     },
     {
       "date": "2026-06-25",
@@ -9509,6 +11334,17 @@
     },
     {
       "date": "2026-06-25",
+      "home": "Ecuador",
+      "away": "Germany",
+      "agent": "爆冷派",
+      "result": "H",
+      "home_score": 1,
+      "away_score": 0,
+      "confidence": 0.17,
+      "reasoning": "历史数据表明赔率>3.0时爆冷概率22%；市场隐含概率与模型存在分歧，爆冷选择主胜(1-0)"
+    },
+    {
+      "date": "2026-06-25",
       "home": "Curaçao",
       "away": "Ivory Coast",
       "agent": "稳健派",
@@ -9561,6 +11397,17 @@
       "away_score": 1,
       "confidence": 0.328,
       "reasoning": "ELO模型计算：Curaçao胜率18%/Ivory Coast胜率41%/平局41%；FIFA排名：Curaçao=1500分/Ivory Coast=1625分；最可能比分0-1(概率13.6%) [降雨增加平局概率]"
+    },
+    {
+      "date": "2026-06-25",
+      "home": "Curaçao",
+      "away": "Ivory Coast",
+      "agent": "爆冷派",
+      "result": "D",
+      "home_score": 1,
+      "away_score": 1,
+      "confidence": 0.41,
+      "reasoning": "本场未发现明显冷门机会，跟随模型判断"
     },
     {
       "date": "2026-06-25",
@@ -9619,6 +11466,17 @@
     },
     {
       "date": "2026-06-25",
+      "home": "Tunisia",
+      "away": "Netherlands",
+      "agent": "爆冷派",
+      "result": "H",
+      "home_score": 2,
+      "away_score": 1,
+      "confidence": 0.12,
+      "reasoning": "历史数据表明赔率>3.0时爆冷概率17%；市场隐含概率与模型存在分歧；实力悬殊(130分差距)增加冷门可能，爆冷选择主胜(2-1)"
+    },
+    {
+      "date": "2026-06-25",
       "home": "Japan",
       "away": "Sweden",
       "agent": "稳健派",
@@ -9671,6 +11529,17 @@
       "away_score": 1,
       "confidence": 0.308,
       "reasoning": "ELO模型计算：Japan胜率39%/Sweden胜率26%/平局35%；FIFA排名：Japan=1695分/Sweden=1625分；最可能比分1-1(概率11.8%)"
+    },
+    {
+      "date": "2026-06-25",
+      "home": "Japan",
+      "away": "Sweden",
+      "agent": "爆冷派",
+      "result": "A",
+      "home_score": 1,
+      "away_score": 2,
+      "confidence": 0.22,
+      "reasoning": "历史数据表明赔率>3.0时爆冷概率22%；市场隐含概率与模型存在分歧，爆冷选择客胜(1-2)"
     },
     {
       "date": "2026-06-26",
@@ -9729,6 +11598,17 @@
     },
     {
       "date": "2026-06-26",
+      "home": "Turkey",
+      "away": "United States",
+      "agent": "爆冷派",
+      "result": "A",
+      "home_score": 1,
+      "away_score": 2,
+      "confidence": 0.347,
+      "reasoning": "历史数据表明赔率>3.0时爆冷概率17%；市场隐含概率与模型存在分歧；实力悬殊(108分差距)增加冷门可能；天气因素降雨增加平局概率，爆冷选择客胜(1-2)"
+    },
+    {
+      "date": "2026-06-26",
       "home": "Paraguay",
       "away": "Australia",
       "agent": "稳健派",
@@ -9781,6 +11661,17 @@
       "away_score": 1,
       "confidence": 0.281,
       "reasoning": "ELO模型计算：Paraguay胜率30%/Australia胜率35%/平局35%；FIFA排名：Paraguay=1655分/Australia=1678分；最可能比分1-1(概率11.9%)"
+    },
+    {
+      "date": "2026-06-26",
+      "home": "Paraguay",
+      "away": "Australia",
+      "agent": "爆冷派",
+      "result": "A",
+      "home_score": 1,
+      "away_score": 2,
+      "confidence": 0.22,
+      "reasoning": "历史数据表明赔率>3.0时爆冷概率30%；市场隐含概率与模型存在分歧，爆冷选择客胜(1-2)"
     },
     {
       "date": "2026-06-26",
@@ -9839,6 +11730,17 @@
     },
     {
       "date": "2026-06-26",
+      "home": "Norway",
+      "away": "France",
+      "agent": "爆冷派",
+      "result": "H",
+      "home_score": 2,
+      "away_score": 1,
+      "confidence": 0.197,
+      "reasoning": "历史数据表明赔率>3.0时爆冷概率10%；市场隐含概率与模型存在分歧；实力悬殊(223分差距)增加冷门可能；天气因素降雨增加平局概率，爆冷选择主胜(2-1)"
+    },
+    {
+      "date": "2026-06-26",
       "home": "Senegal",
       "away": "Iraq",
       "agent": "稳健派",
@@ -9891,6 +11793,17 @@
       "away_score": 1,
       "confidence": 0.373,
       "reasoning": "ELO模型计算：Senegal胜率49%/Iraq胜率16%/平局35%；FIFA排名：Senegal=1688分/Iraq=1500分；最可能比分1-1(概率11.1%)"
+    },
+    {
+      "date": "2026-06-26",
+      "home": "Senegal",
+      "away": "Iraq",
+      "agent": "爆冷派",
+      "result": "A",
+      "home_score": 1,
+      "away_score": 2,
+      "confidence": 0.1,
+      "reasoning": "历史数据表明赔率>3.0时爆冷概率12%；市场隐含概率与模型存在分歧；实力悬殊(188分差距)增加冷门可能，爆冷选择客胜(1-2)"
     },
     {
       "date": "2026-06-27",
@@ -9949,6 +11862,17 @@
     },
     {
       "date": "2026-06-27",
+      "home": "Cape Verde Islands",
+      "away": "Saudi Arabia",
+      "agent": "爆冷派",
+      "result": "H",
+      "home_score": 2,
+      "away_score": 1,
+      "confidence": 0.358,
+      "reasoning": "历史数据表明赔率>3.0时爆冷概率14%；市场隐含概率与模型存在分歧；实力悬殊(175分差距)增加冷门可能，爆冷选择主胜(2-1)"
+    },
+    {
+      "date": "2026-06-27",
       "home": "Uruguay",
       "away": "Spain",
       "agent": "稳健派",
@@ -10001,6 +11925,17 @@
       "away_score": 1,
       "confidence": 0.327,
       "reasoning": "ELO模型计算：Uruguay胜率25%/Spain胜率34%/平局41%；FIFA排名：Uruguay=1712分/Spain=1758分；最可能比分1-1(概率13.2%) [降雨增加平局概率]"
+    },
+    {
+      "date": "2026-06-27",
+      "home": "Uruguay",
+      "away": "Spain",
+      "agent": "爆冷派",
+      "result": "H",
+      "home_score": 2,
+      "away_score": 1,
+      "confidence": 0.14,
+      "reasoning": "历史数据表明赔率>3.0时爆冷概率22%；市场隐含概率与模型存在分歧；天气因素降雨增加平局概率，爆冷选择主胜(2-1)"
     },
     {
       "date": "2026-06-27",
@@ -10059,6 +11994,17 @@
     },
     {
       "date": "2026-06-27",
+      "home": "New Zealand",
+      "away": "Belgium",
+      "agent": "爆冷派",
+      "result": "H",
+      "home_score": 2,
+      "away_score": 1,
+      "confidence": 0.08,
+      "reasoning": "历史数据表明赔率>3.0时爆冷概率12%；市场隐含概率与模型存在分歧；实力悬殊(215分差距)增加冷门可能，爆冷选择主胜(2-1)"
+    },
+    {
+      "date": "2026-06-27",
       "home": "Egypt",
       "away": "Iran",
       "agent": "稳健派",
@@ -10111,6 +12057,17 @@
       "away_score": 1,
       "confidence": 0.296,
       "reasoning": "ELO模型计算：Egypt胜率26%/Iran胜率37%/平局37%；FIFA排名：Egypt=1628分/Iran=1685分；最可能比分1-1(概率12.4%) [降雨增加平局概率]"
+    },
+    {
+      "date": "2026-06-27",
+      "home": "Egypt",
+      "away": "Iran",
+      "agent": "爆冷派",
+      "result": "A",
+      "home_score": 1,
+      "away_score": 2,
+      "confidence": 0.22,
+      "reasoning": "历史数据表明赔率>3.0时爆冷概率30%；市场隐含概率与模型存在分歧；天气因素降雨增加平局概率，爆冷选择客胜(1-2)"
     },
     {
       "date": "2026-06-27",
@@ -10169,6 +12126,17 @@
     },
     {
       "date": "2026-06-27",
+      "home": "Panama",
+      "away": "England",
+      "agent": "爆冷派",
+      "result": "H",
+      "home_score": 1,
+      "away_score": 0,
+      "confidence": 0.08,
+      "reasoning": "历史数据表明赔率>3.0时爆冷概率14%；市场隐含概率与模型存在分歧；实力悬殊(164分差距)增加冷门可能；天气因素炎热利好Panama·降雨增加平局概率，爆冷选择主胜(1-0)"
+    },
+    {
+      "date": "2026-06-27",
       "home": "Croatia",
       "away": "Ghana",
       "agent": "稳健派",
@@ -10221,6 +12189,17 @@
       "away_score": 1,
       "confidence": 0.3,
       "reasoning": "ELO模型计算：Croatia胜率38%/Ghana胜率25%/平局37%；FIFA排名：Croatia=1728分/Ghana=1638分；最可能比分1-1(概率12.3%) [炎热利好客队·降雨增加平局概率]"
+    },
+    {
+      "date": "2026-06-27",
+      "home": "Croatia",
+      "away": "Ghana",
+      "agent": "爆冷派",
+      "result": "A",
+      "home_score": 1,
+      "away_score": 2,
+      "confidence": 0.14,
+      "reasoning": "历史数据表明赔率>3.0时爆冷概率17%；市场隐含概率与模型存在分歧；天气因素炎热利好客队·降雨增加平局概率，爆冷选择客胜(1-2)"
     },
     {
       "date": "2026-06-27",
@@ -10279,6 +12258,17 @@
     },
     {
       "date": "2026-06-27",
+      "home": "Colombia",
+      "away": "Portugal",
+      "agent": "爆冷派",
+      "result": "H",
+      "home_score": 1,
+      "away_score": 0,
+      "confidence": 0.22,
+      "reasoning": "历史数据表明赔率>3.0时爆冷概率22%；市场隐含概率与模型存在分歧；天气因素降雨增加平局概率，爆冷选择主胜(1-0)"
+    },
+    {
+      "date": "2026-06-27",
       "home": "Congo DR",
       "away": "Uzbekistan",
       "agent": "稳健派",
@@ -10331,6 +12321,17 @@
       "away_score": 1,
       "confidence": 0.335,
       "reasoning": "ELO模型计算：Congo DR胜率43%/Uzbekistan胜率22%/平局35%；FIFA排名：Congo DR=1615分/Uzbekistan=1500分；最可能比分1-1(概率11.6%)"
+    },
+    {
+      "date": "2026-06-27",
+      "home": "Congo DR",
+      "away": "Uzbekistan",
+      "agent": "爆冷派",
+      "result": "A",
+      "home_score": 0,
+      "away_score": 1,
+      "confidence": 0.244,
+      "reasoning": "历史数据表明赔率>3.0时爆冷概率17%；市场隐含概率与模型存在分歧；实力悬殊(115分差距)增加冷门可能，爆冷选择客胜(0-1)"
     },
     {
       "date": "2026-06-28",
@@ -10389,6 +12390,17 @@
     },
     {
       "date": "2026-06-28",
+      "home": "Jordan",
+      "away": "Argentina",
+      "agent": "爆冷派",
+      "result": "A",
+      "home_score": 1,
+      "away_score": 2,
+      "confidence": 0.594,
+      "reasoning": "本场未发现明显冷门机会，跟随模型判断"
+    },
+    {
+      "date": "2026-06-28",
       "home": "Algeria",
       "away": "Austria",
       "agent": "稳健派",
@@ -10441,6 +12453,17 @@
       "away_score": 1,
       "confidence": 0.296,
       "reasoning": "ELO模型计算：Algeria胜率33%/Austria胜率30%/平局37%；FIFA排名：Algeria=1632分/Austria=1612分；最可能比分1-1(概率12.4%) [降雨增加平局概率]"
+    },
+    {
+      "date": "2026-06-28",
+      "home": "Algeria",
+      "away": "Austria",
+      "agent": "爆冷派",
+      "result": "H",
+      "home_score": 2,
+      "away_score": 1,
+      "confidence": 0.22,
+      "reasoning": "历史数据表明赔率>3.0时爆冷概率30%；市场隐含概率与模型存在分歧；天气因素降雨增加平局概率，爆冷选择主胜(2-1)"
     }
   ]
 }

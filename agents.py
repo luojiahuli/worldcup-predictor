@@ -21,6 +21,7 @@ AGENT_COLORS = {
     "价值派": "#3b82f6",
     "防守派": "#8b5cf6",
     "数据派": "#f59e0b",
+    "爆冷派": "#ec4899",
 }
 
 # === 天气数据：2026世界杯场馆城市天气（6-7月典型） ===
@@ -616,6 +617,181 @@ class TechnicalAgent(BaseAgent):
         }
 
 
+class UpsetAgent(BaseAgent):
+    """爆冷派 - 专攻高赔率异常比分，寻找市场低估的冷门"""
+
+    def __init__(self):
+        super().__init__("爆冷派")
+        self.style = "爆冷型"
+        self.motto = "大热必死，冷门才是世界杯的灵魂"
+        self.color = "#ec4899"
+
+        # 历史冷门统计：世界杯中下盘赢球/平局占比（基于历史数据分布）
+        # 当一方赔率 > 5.0（隐含概率 < 20%）时，实际赢球概率约 12-18%
+        # 当一方赔率 > 3.0（隐含概率 < 33%）时，实际赢球概率约 25-30%
+        self.upset_odds_table = [
+            (3.0, 0.30),   # 赔率3.0时，真实爆冷概率约30%
+            (4.0, 0.22),   # 赔率4.0时，真实爆冷概率约22%
+            (5.0, 0.17),   # 赔率5.0时，真实爆冷概率约17%
+            (6.0, 0.14),   # 赔率6.0时，真实爆冷概率约14%
+            (7.0, 0.12),   # 赔率7.0时，真实爆冷概率约12%
+            (8.0, 0.10),   # 赔率8.0时，真实爆冷概率约10%
+            (10.0, 0.08),  # 赔率10.0时，真实爆冷概率约8%
+            (15.0, 0.05),  # 赔率15.0时，真实爆冷概率约5%
+        ]
+        # 冷门常见比分（历史统计）
+        self.upset_scores = {
+            "H": [(1, 0), (2, 1), (2, 0), (1, 0)],
+            "A": [(0, 1), (1, 2), (0, 2), (0, 1)],
+            "D": [(0, 0), (1, 1), (0, 0), (1, 1)],
+        }
+
+    def _get_real_upset_prob(self, underdog_odds):
+        """根据历史赔率-爆冷关系估算真实爆冷概率"""
+        for odds_thresh, prob in self.upset_odds_table:
+            if underdog_odds <= odds_thresh:
+                return prob
+        return 0.04
+
+    def _find_upset_candidates(self, base_probs, fair_odds, real_odds):
+        """分析是否存在冷门机会，返回 (is_upset, target, scoreline, confidence)"""
+        prob_h, prob_d, prob_a = base_probs
+        oH, oD, oA = fair_odds
+        rH, rD, rA = real_odds or (oH, oD, oA)
+
+        # 转换真实赔率为隐含概率
+        imp_h = 1.0 / rH if rH > 0 else prob_h
+        imp_d = 1.0 / rD if rD > 0 else prob_d
+        imp_a = 1.0 / rA if rA > 0 else prob_a
+        total_imp = imp_h + imp_d + imp_a
+        if total_imp > 0:
+            imp_h /= total_imp
+            imp_d /= total_imp
+            imp_a /= total_imp
+
+        # 模型概率 vs 市场隐含概率的差异
+        model_probs = [prob_h, prob_d, prob_a]
+        market_probs = [imp_h, imp_d, imp_a]
+        results = ["H", "D", "A"]
+
+        candidates = []
+        for i, res in enumerate(results):
+            diff = market_probs[i] - model_probs[i]
+            odds = [rH, rD, rA][i]
+            if diff > 0.05 and odds > 2.5:
+                # 市场比模型更看好这个结果，且赔率不低
+                upset_prob = self._get_real_upset_prob(odds)
+                # 倾向度 = 市场额外看好的程度 x 历史爆冷概率
+                score = diff * upset_prob * 100
+                candidates.append((res, odds, diff, score))
+
+        # 如果没有明显的市场-模型分歧，寻找赔率最高的选项
+        if not candidates:
+            max_odds_idx = [rH, rD, rA].index(max(rH, rD, rA))
+            target = results[max_odds_idx]
+            odds = [rH, rD, rA][max_odds_idx]
+            upset_prob = self._get_real_upset_prob(odds)
+            if odds > 3.0 and upset_prob > 0.05:
+                candidates.append((target, odds, 0, upset_prob * 50))
+
+        if not candidates:
+            return False, None, (0, 0), 0
+
+        # 选倾向度最高的
+        candidates.sort(key=lambda x: -x[3])
+        target, odds, diff, score = candidates[0]
+
+        # 根据冷门类型确定最可能的比分
+        if target == "D":
+            scoreline = (1, 1) if np.random.random() > 0.4 else (0, 0)
+        elif target == "H":
+            scoreline = (1, 0) if np.random.random() > 0.5 else (2, 1)
+        else:
+            scoreline = (0, 1) if np.random.random() > 0.5 else (1, 2)
+
+        # 置信度 = 历史爆冷概率的基础 + 市场-模型差异加成
+        base_conf = self._get_real_upset_prob(odds)
+        conf_boost = max(0, diff * 0.3)
+        confidence = min(0.70, base_conf + conf_boost)
+
+        return True, target, scoreline, confidence
+
+    def predict(self, home, away, home_pts, away_pts, base_probs, fair_odds, weather=None):
+        (prob_h, prob_d, prob_a), weather_note = self._apply_weather(base_probs, weather, home, away)
+        oH, oD, oA = fair_odds
+
+        # 加载真实赔率
+        real_odds = self._load_real_odds_for_match(home, away)
+
+        # 分析冷门可能
+        is_upset, target, scoreline, confidence = self._find_upset_candidates(
+            [prob_h, prob_d, prob_a], (oH, oD, oA), real_odds
+        )
+
+        if not is_upset or confidence < 0.06:
+            # 无冷门机会，退回到模型预测
+            probs = {"H": prob_h, "D": prob_d, "A": prob_a}
+            result = max(probs, key=probs.get)
+            conf = probs[result]
+            exp_h, exp_a = exp_goals_from_elo(home_pts, away_pts)
+            exp_h, exp_a = self._apply_weather_score(exp_h, exp_a, weather)
+            score = (round(exp_h), round(exp_a))
+            return {
+                "result": result, "home_score": max(0, score[0]), "away_score": max(0, score[1]),
+                "confidence": round(min(0.80, conf), 3), "reasoning": "本场未发现明显冷门机会，跟随模型判断",
+                "probs": probs, "is_upset": False,
+            }
+
+        # 构建推理
+        probs = {"H": prob_h, "D": prob_d, "A": prob_a}
+        result_str = RESULT_NAMES.get(target, target)
+        odds_str = f"{oH:.2f}/{oD:.2f}/{oA:.2f}"
+
+        if real_odds:
+            rH, rD, rA = real_odds
+            odds_str = f"模型{oH:.2f}/{oD:.2f}/{oA:.2f} 市场{rH:.2f}/{rD:.2f}/{rA:.2f}"
+            market_boost = "市场赔率显示" if target == "H" and rH < oH or target == "A" and rA < oA or target == "D" and rD < oD else ""
+
+        reasons = [f"历史数据表明赔率>3.0时爆冷概率{self._get_real_upset_prob([oH,oD,oA][{'H':0,'D':1,'A':2}[target]])*100:.0f}%"]
+        if real_odds:
+            reasons.append(f"市场隐含概率与模型存在分歧")
+        if abs(home_pts - away_pts) > 100:
+            reasons.append(f"实力悬殊({abs(home_pts-away_pts)}分差距)增加冷门可能")
+        if weather_note:
+            reasons.append(f"天气因素{weather_note}")
+
+        reasoning = "；".join(reasons)
+        reasoning += f"，爆冷选择{result_str}({scoreline[0]}-{scoreline[1]})"
+
+        return {
+            "result": target,
+            "home_score": scoreline[0],
+            "away_score": scoreline[1],
+            "confidence": round(min(0.70, confidence), 3),
+            "reasoning": reasoning,
+            "probs": probs,
+            "is_upset": True,
+            "real_odds": real_odds,
+        }
+
+    def _load_real_odds_for_match(self, home, away):
+        """从缓存加载真实赔率"""
+        try:
+            path = os.path.join(DATA_DIR, "real_odds.json")
+            if not os.path.exists(path):
+                return None
+            with open(path, "r") as f:
+                data = json.load(f)
+            matches = data.get("matches", {})
+            key = f"{home}_vs_{away}"
+            if key in matches:
+                m = matches[key]
+                return (m["odds_H"], m["odds_D"], m["odds_A"])
+            return None
+        except:
+            return None
+
+
 def create_agents():
     """创建所有智能体"""
     return {
@@ -624,6 +800,7 @@ def create_agents():
         "价值派": ValueAgent(),
         "防守派": DefensiveAgent(),
         "数据派": TechnicalAgent(),
+        "爆冷派": UpsetAgent(),
     }
 
 
