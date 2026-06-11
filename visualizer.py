@@ -517,7 +517,7 @@ tr:hover td{{background:rgba(255,255,255,.015)}}
     <div class="hd-t">世界杯2026预测系统</div>
   </div>
   <div class="hd-r">
-    <strong>{today_str}</strong><br>
+    <strong id="liveClock"></strong><br>
     48支球队 · 104场比赛 · FIFA排名+ML模型
   </div>
 </header>
@@ -655,6 +655,20 @@ tr:hover td{{background:rgba(255,255,255,.015)}}
 </div>
 
 <script>
+// ===== Live Clock =====
+function updateClock() {{
+  var now = new Date();
+  var s = now.getFullYear() + '-' +
+    String(now.getMonth()+1).padStart(2,'0') + '-' +
+    String(now.getDate()).padStart(2,'0') + ' ' +
+    String(now.getHours()).padStart(2,'0') + ':' +
+    String(now.getMinutes()).padStart(2,'0') + ':' +
+    String(now.getSeconds()).padStart(2,'0');
+  document.getElementById('liveClock').textContent = s;
+}}
+updateClock();
+setInterval(updateClock, 1000);
+
 // ===== Prediction Cards =====
 var picks = {json.dumps(high_conf_picks, ensure_ascii=False)};
 var ph = document.getElementById('picksContainer');
