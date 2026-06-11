@@ -294,6 +294,15 @@ class BaseAgent:
             exp_a *= (1 - gr)
         return exp_h, exp_a
 
+    def _get_odds_score(self, home, away, h2h_probs):
+        """基于真实赔率的 Poisson 比分预测"""
+        try:
+            from data_collector import get_score_prediction
+            hg, ag, sp, exph, expa = get_score_prediction(home, away, h2h_probs)
+            return hg, ag
+        except Exception:
+            return None, None
+
 
 class ConservativeAgent(BaseAgent):
     """稳健派 - 稳字当头，强队必胜"""
@@ -307,42 +316,42 @@ class ConservativeAgent(BaseAgent):
         (prob_h, prob_d, prob_a), weather_note = self._apply_weather(base_probs, weather, home, away)
         oH, oD, oA = fair_odds
         rating_gap = abs(home_pts - away_pts)
-        exp_h, exp_a = exp_goals_from_elo(home_pts, away_pts)
-        exp_h, exp_a = self._apply_weather_score(exp_h, exp_a, weather)
 
         # 保守：强队差距大时高置信度，接近时倾向平局
         if rating_gap > 100:
             if prob_h > prob_a:
                 result = "H"
                 confidence = min(0.65, prob_h * 1.15)
-                score = (max(1, round(exp_h)), max(0, round(exp_a - 0.3)))
                 reasoning = f"{home}实力明显占优(FIFA排名差{rating_gap}分)，稳健看好主胜"
             else:
                 result = "A"
                 confidence = min(0.65, prob_a * 1.15)
-                score = (max(0, round(exp_h - 0.3)), max(1, round(exp_a)))
                 reasoning = f"{away}实力更强，客胜可期"
         elif rating_gap < 40:
             result = "D"
             confidence = min(0.45, prob_d * 1.2)
-            score = (max(0, round(exp_h - 0.3)), max(0, round(exp_a - 0.3)))
             reasoning = f"双方实力接近(排名差仅{rating_gap}分)，稳健选择平局"
         else:
             if prob_h >= prob_a:
                 result = "H"
                 confidence = prob_h * 1.05
-                score = (round(exp_h), round(exp_a))
                 reasoning = f"{home}略占优势，谨慎看好主队不败"
             else:
                 result = "A"
                 confidence = prob_a * 1.05
-                score = (round(exp_h), round(exp_a))
                 reasoning = f"{away}略占优势，谨慎看好客队不败"
 
-        # 比分修正：保守派预测低比分
-        score = (min(score[0], 2), min(score[1], 1))
-        if score[0] == score[1] and result != "D":
-            score = (score[0] + 1, score[1])
+        # 使用真实赔率 Poisson 比分
+        hg, ag = self._get_odds_score(home, away, (prob_h, prob_d, prob_a))
+        if hg is not None:
+            score = (hg, ag)
+        else:
+            exp_h, exp_a = exp_goals_from_elo(home_pts, away_pts)
+            exp_h, exp_a = self._apply_weather_score(exp_h, exp_a, weather)
+            score = (max(0, round(exp_h)), max(0, round(exp_a)))
+            score = (min(score[0], 2), min(score[1], 1))
+            if score[0] == score[1] and result != "D":
+                score = (score[0] + 1, score[1])
 
         probs = {"H": prob_h, "D": prob_d, "A": prob_a}
         return {
@@ -398,14 +407,18 @@ class AggressiveAgent(BaseAgent):
         result = max_key
         confidence = probs[max_key]
 
-        exp_h, exp_a = exp_goals_from_elo(home_pts, away_pts)
-        exp_h, exp_a = self._apply_weather_score(exp_h, exp_a, weather)
-        # 激进派预测高比分
-        exp_h *= 1.2
-        exp_a *= 1.2
-        score = (min(4, round(exp_h)), min(4, round(exp_a)))
-        if score[0] == score[1] and result != "D":
-            score = (score[0] + 1, score[1])
+        # 使用真实赔率 Poisson 比分
+        hg, ag = self._get_odds_score(home, away, (prob_h, prob_d, prob_a))
+        if hg is not None:
+            score = (hg, ag)
+        else:
+            exp_h, exp_a = exp_goals_from_elo(home_pts, away_pts)
+            exp_h, exp_a = self._apply_weather_score(exp_h, exp_a, weather)
+            exp_h *= 1.2
+            exp_a *= 1.2
+            score = (min(4, round(exp_h)), min(4, round(exp_a)))
+            if score[0] == score[1] and result != "D":
+                score = (score[0] + 1, score[1])
 
         if result == "H":
             reasoning = f"{away}并非没有机会，但{home}进攻火力更强，看好大球取胜"
@@ -472,9 +485,14 @@ class ValueAgent(BaseAgent):
             kelly = 0
             reasoning = "本场价值空间不足，如需投注建议观望"
 
-        exp_h, exp_a = exp_goals_from_elo(home_pts, away_pts)
-        exp_h, exp_a = self._apply_weather_score(exp_h, exp_a, weather)
-        score = (round(exp_h), round(exp_a))
+        # 使用真实赔率 Poisson 比分
+        hg, ag = self._get_odds_score(home, away, (base_probs[0], base_probs[1], base_probs[2]))
+        if hg is not None:
+            score = (hg, ag)
+        else:
+            exp_h, exp_a = exp_goals_from_elo(home_pts, away_pts)
+            exp_h, exp_a = self._apply_weather_score(exp_h, exp_a, weather)
+            score = (round(exp_h), round(exp_a))
 
         if weather_note:
             reasoning += f" ({weather_note})"
@@ -526,12 +544,16 @@ class DefensiveAgent(BaseAgent):
             result = max(probs, key=probs.get)
         confidence = probs[result]
 
-        # 防守派预测低比分
-        exp_h, exp_a = exp_goals_from_elo(home_pts, away_pts)
-        exp_h, exp_a = self._apply_weather_score(exp_h, exp_a, weather)
-        exp_h *= 0.6
-        exp_a *= 0.6
-        score = (max(0, round(exp_h)), max(0, round(exp_a)))
+        # 使用真实赔率 Poisson 比分
+        hg, ag = self._get_odds_score(home, away, (prob_h, prob_d, prob_a))
+        if hg is not None:
+            score = (hg, ag)
+        else:
+            exp_h, exp_a = exp_goals_from_elo(home_pts, away_pts)
+            exp_h, exp_a = self._apply_weather_score(exp_h, exp_a, weather)
+            exp_h *= 0.6
+            exp_a *= 0.6
+            score = (max(0, round(exp_h)), max(0, round(exp_a)))
 
         # 确保比分与结果一致
         if result == "H" and score[0] <= score[1]:
@@ -539,10 +561,7 @@ class DefensiveAgent(BaseAgent):
         elif result == "A" and score[1] <= score[0]:
             score = (score[0], score[0] + 1)
         elif result == "D" and score[0] != score[1]:
-            if score[0] > score[1]:
-                score = (score[1], score[1])
-            else:
-                score = (score[0], score[0])
+            score = (score[0], score[0])
 
         reasons = []
         if result == "D":
@@ -589,19 +608,25 @@ class TechnicalAgent(BaseAgent):
         result = max(probs, key=probs.get)
         confidence = probs[result]
 
-        # 泊松分布精确预测比分
-        exp_h, exp_a = exp_goals_from_elo(home_pts, away_pts)
-        exp_h, exp_a = self._apply_weather_score(exp_h, exp_a, weather)
-        score, score_prob, score_probs = predict_scoreline(exp_h, exp_a)
+        # 使用真实赔率 Poisson 比分
+        hg, ag = self._get_odds_score(home, away, (prob_h, prob_d, prob_a))
+        if hg is not None:
+            score = (hg, ag)
+            score_prob = 0
+        else:
+            exp_h, exp_a = exp_goals_from_elo(home_pts, away_pts)
+            exp_h, exp_a = self._apply_weather_score(exp_h, exp_a, weather)
+            score, score_prob, score_probs = predict_scoreline(exp_h, exp_a)
 
         # 综合置信度
         combined_conf = confidence * 0.7 + score_prob * 0.3
 
         # 详细推理
+        hs, as_ = score
         reasoning = (
             f"ELO模型计算：{home}胜率{prob_h*100:.0f}%/{away}胜率{prob_a*100:.0f}%/平局{prob_d*100:.0f}%；"
             f"FIFA排名：{home}={home_pts}分/{away}={away_pts}分；"
-            f"最可能比分{score[0]}-{score[1]}(概率{score_prob*100:.1f}%)"
+            f"最可能比分{hs}-{as_}"
         )
         if weather_note:
             reasoning += f" [{weather_note}]"
@@ -701,13 +726,14 @@ class UpsetAgent(BaseAgent):
         candidates.sort(key=lambda x: -x[3])
         target, odds, diff, score = candidates[0]
 
-        # 根据冷门类型确定最可能的比分
+        # 根据冷门类型确定最可能的比分（更丰富的冷门比分）
+        import random as _r
         if target == "D":
-            scoreline = (1, 1) if np.random.random() > 0.4 else (0, 0)
+            scoreline = _r.choices([(1,1),(0,0),(2,2),(0,0)],[0.4,0.3,0.2,0.1])[0]
         elif target == "H":
-            scoreline = (1, 0) if np.random.random() > 0.5 else (2, 1)
+            scoreline = _r.choices([(1,0),(2,1),(2,0),(3,1),(1,0)],[0.3,0.25,0.2,0.15,0.1])[0]
         else:
-            scoreline = (0, 1) if np.random.random() > 0.5 else (1, 2)
+            scoreline = _r.choices([(0,1),(1,2),(0,2),(1,3),(0,1)],[0.3,0.25,0.2,0.15,0.1])[0]
 
         # 置信度 = 历史爆冷概率的基础 + 市场-模型差异加成
         base_conf = self._get_real_upset_prob(odds)
@@ -733,9 +759,13 @@ class UpsetAgent(BaseAgent):
             probs = {"H": prob_h, "D": prob_d, "A": prob_a}
             result = max(probs, key=probs.get)
             conf = probs[result]
-            exp_h, exp_a = exp_goals_from_elo(home_pts, away_pts)
-            exp_h, exp_a = self._apply_weather_score(exp_h, exp_a, weather)
-            score = (round(exp_h), round(exp_a))
+            score_h, score_a = self._get_odds_score(home, away, (prob_h, prob_d, prob_a))
+            if score_h is None:
+                exp_h, exp_a = exp_goals_from_elo(home_pts, away_pts)
+                exp_h, exp_a = self._apply_weather_score(exp_h, exp_a, weather)
+                score = (round(exp_h), round(exp_a))
+            else:
+                score = (score_h, score_a)
             return {
                 "result": result, "home_score": max(0, score[0]), "away_score": max(0, score[1]),
                 "confidence": round(min(0.80, conf), 3), "reasoning": "本场未发现明显冷门机会，跟随模型判断",
