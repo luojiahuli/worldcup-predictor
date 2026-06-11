@@ -89,12 +89,12 @@
     "H_pct": 0.5,
     "D_pct": 0.194,
     "A_pct": 0.306,
-    "avg_confidence": 0.341,
+    "avg_confidence": 0.305,
     "diversity_score": 39.7,
     "balance_score": 99.4,
-    "total_score": 55.4,
-    "accuracy": 0.341,
-    "roi": 1.1,
+    "total_score": 54.0,
+    "accuracy": 0.305,
+    "roi": -2.5,
     "rank": 5
   },
   {
