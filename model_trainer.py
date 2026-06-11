@@ -40,6 +40,14 @@ def elo_prob(pts_home, pts_away, draw_neutral=True):
     return prob_h, draw_base, prob_a
 
 
+def exp_goals_from_elo(pts_home, pts_away):
+    """基于ELO差值估算期望进球数"""
+    diff = (pts_home - pts_away) / 400.0
+    exp_h = 1.4 + diff * 0.8
+    exp_a = 1.4 - diff * 0.8
+    return max(0.3, min(3.5, exp_h)), max(0.3, min(3.5, exp_a))
+
+
 class RankingModel:
     """基于FIFA排名的基准模型"""
     def __init__(self, rankings_df):
@@ -391,6 +399,21 @@ def predict_matches(feature_df):
     results["fair_odds_H"] = 1.0 / np.clip(results["pred_H"], 0.01, 0.99)
     results["fair_odds_D"] = 1.0 / np.clip(results["pred_D"], 0.01, 0.99)
     results["fair_odds_A"] = 1.0 / np.clip(results["pred_A"], 0.01, 0.99)
+
+    # 比分预测：基于FIFA排名点数的期望进球
+    home_pts = feature_df["home_rank_pts"].values if "home_rank_pts" in feature_df.columns else None
+    away_pts = feature_df["away_rank_pts"].values if "away_rank_pts" in feature_df.columns else None
+    if home_pts is not None and away_pts is not None:
+        home_scores, away_scores = [], []
+        for hp, ap in zip(home_pts, away_pts):
+            exp_h, exp_a = exp_goals_from_elo(hp, ap)
+            home_scores.append(max(0, round(exp_h)))
+            away_scores.append(max(0, round(exp_a)))
+        results["pred_home_score"] = home_scores
+        results["pred_away_score"] = away_scores
+    else:
+        results["pred_home_score"] = 1
+        results["pred_away_score"] = 0
 
     # 价值评分
     results["value_score"] = 0.0

@@ -108,6 +108,8 @@ def build_prediction_rows(predictions):
             "oh": round(float(row.get("fair_odds_H", 2.0)), 2),
             "od": round(float(row.get("fair_odds_D", 3.0)), 2),
             "oa": round(float(row.get("fair_odds_A", 3.0)), 2),
+            "hs": int(row.get("pred_home_score", 0)),
+            "as": int(row.get("pred_away_score", 0)),
         }, ensure_ascii=False))
     return ",\n".join(rows)
 
@@ -182,6 +184,8 @@ def generate_dashboard(data):
                     "oH": f"{float(row.get('fair_odds_H', 2.0)):.2f}",
                     "oD": f"{float(row.get('fair_odds_D', 3.0)):.2f}",
                     "oA": f"{float(row.get('fair_odds_A', 3.0)):.2f}",
+                    "hs": int(row.get("pred_home_score", 0)),
+                    "as": int(row.get("pred_away_score", 0)),
                     "color": RESULT_COLORS.get(row.get("pred_result", ""), "#888"),
                 })
 
@@ -207,6 +211,8 @@ def generate_dashboard(data):
                 pred_r = row["pred_result"]
                 conf = float(row["confidence"])
                 pred_h, pred_d, pred_a = float(row["pred_H"]), float(row["pred_D"]), float(row["pred_A"])
+                hs = int(row.get("pred_home_score", 0))
+                as_ = int(row.get("pred_away_score", 0))
                 oH = float(row.get("fair_odds_H", 2.0))
                 oD = float(row.get("fair_odds_D", 3.0))
                 oA = float(row.get("fair_odds_A", 3.0))
@@ -251,6 +257,7 @@ def generate_dashboard(data):
                     f'<td style="font-weight:600">{home}</td>'
                     f'<td style="font-weight:600">{away}</td>'
                     f'<td style="color:{color};font-weight:600">{row["pred_label"]}</td>'
+                    f'<td style="font-weight:600;color:var(--text2)">{hs}-{as_}</td>'
                     f'<td>{conf*100:.0f}%</td>'
                     f'<td>{odds_display}</td>'
                     f'<td class="reason-cell">{"；".join(reasons)}</td>'
@@ -546,7 +553,7 @@ tr:hover td{{background:rgba(255,255,255,.015)}}
   </div>
   <div class="tw">
   <table>
-    <tr><th>时间</th><th>主队</th><th>客队</th><th>预测</th><th>概率</th><th>赔率(主/平/客)</th><th>推荐理由</th><th>投注建议</th></tr>
+    <tr><th>时间</th><th>主队</th><th>客队</th><th>预测</th><th>比分</th><th>概率</th><th>赔率(主/平/客)</th><th>推荐理由</th><th>投注建议</th></tr>
     {matchday_html_rows}
   </table>
   </div>
@@ -700,8 +707,9 @@ if (picks.length === 0) {{
       '</div>';
     var confPct = parseFloat(p.conf);
     var confColor = confPct >= 50 ? 'var(--green)' : confPct >= 40 ? 'var(--draw)' : 'var(--text3)';
+    var scoreStr = p.hs !== undefined ? '<span style="font-size:13px;color:var(--text2);font-weight:600;margin-left:6px">'+p.hs+'-'+p.as+'</span>' : '';
     d.innerHTML = '<span class="pc-d">'+p.date+'</span>' +
-      '<div class="pc-t">'+p.home+'<span style="color:var(--text3)"> vs </span>'+p.away+'</div>' +
+      '<div class="pc-t">'+p.home+'<span style="color:var(--text3)"> vs </span>'+p.away+scoreStr+'</div>' +
       '<div class="pc-pr" style="color:'+c+'">'+p.pred+' <span>'+p.conf+'% 置信度</span></div>' +
       pb +
       '<div class="pc-cb"><div class="f" style="width:'+p.conf+'%;background:'+confColor+'"></div></div>';
@@ -810,11 +818,12 @@ if (tarr.length > 0) {{
 var predData = [{pred_rows}];
 var at = document.getElementById('allPredictionsTable');
 if (predData.length > 0) {{
-  var h = '<table><tr><th>日期</th><th>主队</th><th>客队</th><th>预测</th><th>主胜</th><th>平局</th><th>客胜</th><th>置信度</th><th>主胜赔</th><th>平赔</th><th>客胜赔</th></tr>';
+  var h = '<table><tr><th>日期</th><th>主队</th><th>客队</th><th>预测</th><th>比分</th><th>主胜</th><th>平局</th><th>客胜</th><th>置信度</th><th>主胜赔</th><th>平赔</th><th>客胜赔</th></tr>';
   predData.forEach(function(r){{
     var pc = r.pred_r === 'H' ? 'var(--home)' : r.pred_r === 'D' ? 'var(--draw)' : 'var(--away)';
     h += '<tr><td>'+r.date+'</td><td>'+r.home+'</td><td>'+r.away+'</td>' +
       '<td style="color:'+pc+';font-weight:600">'+r.pred+'</td>' +
+      '<td style="font-weight:600;color:var(--text2)">'+r.hs+'-'+r.as+'</td>' +
       '<td>'+r.ph+'%</td><td>'+r.pd+'%</td><td>'+r.pa+'%</td>' +
       '<td>'+r.conf+'%</td><td>'+r.oh+'</td><td>'+r.od+'</td><td>'+r.oa+'</td></tr>';
   }});
