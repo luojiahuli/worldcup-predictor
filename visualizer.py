@@ -17,6 +17,7 @@ os.makedirs(OUTPUT_DIR, exist_ok=True)
 
 RESULT_COLORS = {"H": "#ef4444", "D": "#f59e0b", "A": "#3b82f6"}
 RESULT_NAMES = {"H": "主胜", "D": "平局", "A": "客胜"}
+AGENT_COLORS = {"稳健派": "#22c55e", "激进派": "#ef4444", "价值派": "#3b82f6", "防守派": "#8b5cf6", "数据派": "#f59e0b"}
 
 
 def load_all_data():
@@ -61,6 +62,18 @@ def load_all_data():
     if os.path.exists(trend_path):
         with open(trend_path, "r") as f:
             data["social_trends"] = json.load(f)
+
+    # 智能体预测
+    agent_path = os.path.join(DATA_DIR, "agent_predictions.json")
+    if os.path.exists(agent_path):
+        with open(agent_path, "r") as f:
+            data["agent_predictions"] = json.load(f)
+
+    # 智能体排行榜
+    lb_path = os.path.join(DATA_DIR, "agent_leaderboard.json")
+    if os.path.exists(lb_path):
+        with open(lb_path, "r") as f:
+            data["agent_leaderboard"] = json.load(f)
 
     return data
 
@@ -230,6 +243,84 @@ def generate_dashboard(data):
                 )
             matchday_html_rows = "\n".join(rows_html)
 
+    # === 智能体PK辩论 ===
+    agent_pk_html = ""
+    agent_leaderboard_rows = ""
+    agent_predictions = data.get("agent_predictions")
+    agent_leaderboard = data.get("agent_leaderboard")
+
+    # 排行榜
+    if agent_leaderboard:
+        lb_rows = []
+        for entry in agent_leaderboard:
+            dist = f"H{entry.get('H_pct',0)*100:.0f}/D{entry.get('D_pct',0)*100:.0f}/A{entry.get('A_pct',0)*100:.0f}"
+            color = entry.get("color", "#888")
+            lb_rows.append(
+                f'<tr>'
+                f'<td style="color:{color};font-weight:600">#{entry["rank"]}</td>'
+                f'<td style="color:{color};font-weight:600">{entry["name"]}</td>'
+                f'<td>{dist}</td>'
+                f'<td>{entry.get("avg_confidence",0)*100:.0f}%</td>'
+                f'<td>{entry.get("diversity_score",0):.0f}</td>'
+                f'<td style="font-weight:600;color:var(--accent2)">{entry.get("total_score",0):.1f}</td>'
+                f'</tr>'
+            )
+        agent_leaderboard_rows = "\n".join(lb_rows)
+
+    # PK对比
+    if agent_predictions and matchday_date_str:
+        matches = agent_predictions.get("matches", {})
+        md_matches_agent = [
+            m for m in matches.values()
+            if m.get("date", "")[:10] == matchday_date_str
+        ]
+        if md_matches_agent:
+            sections = []
+            for m in md_matches_agent:
+                agents = m.get("agents", {})
+                consensus = m.get("consensus", {})
+                consensus_result = consensus.get("consensus", "N/A")
+                agreement = consensus.get("agreement_pct", 0)
+
+                agent_rows = ""
+                for agent_name in ["稳健派", "激进派", "价值派", "防守派", "数据派"]:
+                    if agent_name not in agents:
+                        continue
+                    a = agents[agent_name]
+                    a_color = AGENT_COLORS.get(agent_name, "#888")
+                    is_consensus = "✓" if a.get("result") == consensus_result else ""
+                    agent_rows += (
+                        f'<div class="ar" style="border-left-color:{a_color}">'
+                        f'<div class="ar-h">'
+                        f'<span class="ar-n" style="color:{a_color}">{agent_name}</span>'
+                        f'<span class="ar-r" style="color:{RESULT_COLORS.get(a.get("result",""),"#888")}">'
+                        f'{RESULT_NAMES.get(a.get("result",""),"")}</span>'
+                        f'<span class="ar-s">{a.get("home_score",0)}-{a.get("away_score",0)}</span>'
+                        f'<span class="ar-c">{a.get("confidence",0)*100:.0f}%</span>'
+                        f'{f"<span class=ar-cons>共识</span>" if is_consensus else ""}'
+                        f'</div>'
+                        f'<div class="ar-reason">{a.get("reasoning","")}</div>'
+                        f'</div>'
+                    )
+
+                # Consensus bar
+                h_c = consensus.get("H", 0)
+                d_c = consensus.get("D", 0)
+                a_c = consensus.get("A", 0)
+                total_c = h_c + d_c + a_c or 1
+                sections.append(
+                    f'<div class="am">'
+                    f'<div class="am-h">{m["home"]} <span style="color:var(--text3);font-weight:400">vs</span> {m["away"]}</div>'
+                    f'<div class="am-cb">'
+                    f'<span class="am-cb-s" style="width:{h_c/total_c*100}%;background:var(--home)">{h_c if h_c>0 else ""}</span>'
+                    f'<span class="am-cb-s" style="width:{d_c/total_c*100}%;background:var(--draw)">{d_c if d_c>0 else ""}</span>'
+                    f'<span class="am-cb-s" style="width:{a_c/total_c*100}%;background:var(--away)">{a_c if a_c>0 else ""}</span>'
+                    f'</div>'
+                    f'<div class="am-agents">{agent_rows}</div>'
+                    f'</div>'
+                )
+            agent_pk_html = "\n".join(sections)
+
     # 媒体情感
     media_json = []
     if media_df is not None and len(media_df) > 0:
@@ -394,6 +485,27 @@ tr:hover td{{background:rgba(255,255,255,.015)}}
 .st-c:nth-child(2){{animation-delay:.05s}}
 .st-c:nth-child(3){{animation-delay:.1s}}
 .st-c:nth-child(4){{animation-delay:.15s}}
+
+/* Agent PK */
+.ap{{margin-top:4px}}
+.am{{background:var(--bg2);border:1px solid var(--border);border-radius:var(--rs);padding:14px;margin-bottom:10px}}
+.am-h{{font-weight:600;font-size:14px;margin-bottom:8px;color:var(--text)}}
+.am-cb{{display:flex;height:6px;border-radius:3px;overflow:hidden;margin-bottom:10px}}
+.am-cb-s{{display:flex;align-items:center;justify-content:center;font-size:7px;color:#fff;font-weight:600;transition:width .3s}}
+.am-agents{{display:flex;flex-direction:column;gap:6px}}
+.ar{{padding:8px 10px;border-left:3px solid;background:rgba(255,255,255,.02);border-radius:0 4px 4px 0;display:flex;flex-direction:column;gap:3px}}
+.ar-h{{display:flex;align-items:center;gap:8px}}
+.ar-n{{font-weight:600;font-size:12px;min-width:48px}}
+.ar-r{{font-weight:700;font-size:13px;min-width:32px}}
+.ar-s{{font-size:13px;color:var(--text2);font-weight:600;min-width:32px}}
+.ar-c{{font-size:10px;color:var(--text3);min-width:36px}}
+.ar-cons{{font-size:8px;padding:1px 5px;border-radius:3px;background:rgba(34,197,94,.2);color:#22c55e;margin-left:4px}}
+.ar-reason{{font-size:10px;color:var(--text3);line-height:1.5}}
+/* Leaderboard */
+.lb-w{{overflow-x:auto}}
+.lb-w table{{font-size:11px}}
+.lb-w th{{font-size:8px;padding:6px 8px}}
+.lb-w td{{padding:5px 8px}}
 </style>
 </head>
 <body>
@@ -462,6 +574,31 @@ tr:hover td{{background:rgba(255,255,255,.015)}}
     <h2>模型回测收益曲线</h2>
   </div>
   <div id="backtestChart" class="ch"></div>
+</div>
+
+<!-- Agent PK Debate + Leaderboard -->
+<div class="l2">
+  <div class="cd">
+    <div class="cd-h">
+      <span class="cd-h-dot"></span>
+      <h2>智能体PK辩论 · {matchday_date_str}</h2>
+      <span class="cd-h-b">5 AGENTS</span>
+    </div>
+    {agent_pk_html if agent_pk_html else '<div style="text-align:center;padding:20px;color:var(--text3);font-size:12px">暂无智能体预测数据，请先运行 agents.py</div>'}
+  </div>
+  <div class="cd">
+    <div class="cd-h">
+      <span class="cd-h-dot"></span>
+      <h2>智能体业绩排行榜</h2>
+      <span class="cd-h-b">LEADERBOARD</span>
+    </div>
+    <div class="lb-w">
+      <table>
+        <tr><th>排名</th><th>智能体</th><th>结果分布</th><th>平均置信度</th><th>多样性</th><th>总分</th></tr>
+        {agent_leaderboard_rows if agent_leaderboard_rows else '<tr><td colspan="6" style="text-align:center;color:var(--text3);padding:20px">暂无排行榜数据</td></tr>'}
+      </table>
+    </div>
+  </div>
 </div>
 
 <!-- Media + Social -->

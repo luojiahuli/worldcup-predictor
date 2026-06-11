@@ -1,0 +1,100 @@
+[
+  {
+    "name": "防守派",
+    "color": "#8b5cf6",
+    "total_predictions": 72,
+    "result_dist": {
+      "D": 72
+    },
+    "H_pct": 0.0,
+    "D_pct": 1.0,
+    "A_pct": 0.0,
+    "avg_confidence": 0.451,
+    "diversity_score": 86.5,
+    "balance_score": 60.0,
+    "total_score": 62.0,
+    "accuracy": 0.451,
+    "roi": 12.1,
+    "rank": 1
+  },
+  {
+    "name": "稳健派",
+    "color": "#22c55e",
+    "total_predictions": 72,
+    "result_dist": {
+      "H": 35,
+      "A": 30,
+      "D": 7
+    },
+    "H_pct": 0.486,
+    "D_pct": 0.097,
+    "A_pct": 0.417,
+    "avg_confidence": 0.486,
+    "diversity_score": 35.4,
+    "balance_score": 98.3,
+    "total_score": 59.6,
+    "accuracy": 0.486,
+    "roi": 15.6,
+    "rank": 2
+  },
+  {
+    "name": "激进派",
+    "color": "#ef4444",
+    "total_predictions": 72,
+    "result_dist": {
+      "H": 38,
+      "A": 29,
+      "D": 5
+    },
+    "H_pct": 0.528,
+    "D_pct": 0.069,
+    "A_pct": 0.403,
+    "avg_confidence": 0.455,
+    "diversity_score": 36.1,
+    "balance_score": 99.7,
+    "total_score": 58.9,
+    "accuracy": 0.455,
+    "roi": 12.5,
+    "rank": 3
+  },
+  {
+    "name": "数据派",
+    "color": "#f59e0b",
+    "total_predictions": 72,
+    "result_dist": {
+      "H": 36,
+      "A": 22,
+      "D": 14
+    },
+    "H_pct": 0.5,
+    "D_pct": 0.194,
+    "A_pct": 0.306,
+    "avg_confidence": 0.341,
+    "diversity_score": 30.9,
+    "balance_score": 99.4,
+    "total_score": 52.8,
+    "accuracy": 0.341,
+    "roi": 1.1,
+    "rank": 4
+  },
+  {
+    "name": "价值派",
+    "color": "#3b82f6",
+    "total_predictions": 72,
+    "result_dist": {
+      "H": 34,
+      "A": 25,
+      "D": 13
+    },
+    "H_pct": 0.472,
+    "D_pct": 0.181,
+    "A_pct": 0.347,
+    "avg_confidence": 0.316,
+    "diversity_score": 30.6,
+    "balance_score": 98.1,
+    "total_score": 51.2,
+    "accuracy": 0.316,
+    "roi": -1.4,
+    "rank": 5
+  }
+]
