@@ -189,6 +189,34 @@ def generate_dashboard(data):
                     "color": RESULT_COLORS.get(row.get("pred_result", ""), "#888"),
                 })
 
+    # === 已完成比赛复盘 ===
+    finished_review_rows = ""
+    finished_count = 0
+    correct_count = 0
+    if predictions is not None and len(predictions) > 0:
+        finished = predictions[predictions["is_finished"] == True]
+        finished_count = len(finished)
+        if finished_count > 0:
+            correct_count = int(finished["correct"].sum())
+            review_rows = []
+            for _, row in finished.iterrows():
+                hs = int(row.get("pred_home_score", 0))
+                as_ = int(row.get("pred_away_score", 0))
+                ah = int(row.get("actual_home_score", 0))
+                aa = int(row.get("actual_away_score", 0))
+                is_correct = row.get("correct", False)
+                mark = "✅" if is_correct else "❌"
+                review_rows.append(
+                    f'<tr><td>{str(row["date"])[:10]}</td>'
+                    f'<td style="font-weight:600">{row["home_team"]}</td>'
+                    f'<td style="font-weight:600">{row["away_team"]}</td>'
+                    f'<td style="font-weight:600;color:var(--accent2)">{row["pred_label"]}</td>'
+                    f'<td>{hs}-{as_}</td>'
+                    f'<td style="font-weight:600"><span style="color:var(--green)">{ah}-{aa}</span></td>'
+                    f'<td>{mark}</td></tr>'
+                )
+            finished_review_rows = "\n".join(review_rows)
+
     # === 最新比赛日分析 ===
     matchday_date_str = ""
     matchday_html_rows = ""
@@ -196,7 +224,8 @@ def generate_dashboard(data):
         unfinished = predictions[predictions["is_finished"] == False].copy()
         dates = pd.to_datetime(unfinished["date"])
         today = pd.Timestamp.now().normalize()
-        upcoming = unfinished[dates >= today].sort_values("date")
+        yesterday = today - pd.Timedelta(days=1)
+        upcoming = unfinished[dates >= yesterday].sort_values("date")
         if len(upcoming) > 0:
             md_date = upcoming["date"].iloc[0]
             md_matches = upcoming[upcoming["date"] == md_date]
@@ -393,6 +422,24 @@ def generate_dashboard(data):
             cum_ret = cum
     cum_ret_str = json.dumps(cum_ret)
 
+    # 比赛复盘section
+    if finished_review_rows:
+        finished_review_section = f'''<div class="cd cd-md" style="border-left:3px solid var(--green)">
+  <div class="cd-h">
+    <span class="cd-h-dot" style="background:var(--green)"></span>
+    <h2>已完成比赛复盘</h2>
+    <span class="cd-h-b" style="background:var(--green)">{finished_count} MATCHES &middot; {correct_count}/{finished_count} CORRECT</span>
+  </div>
+  <div class="tw">
+  <table>
+    <tr><th>时间</th><th>主队</th><th>客队</th><th>预测结果</th><th>预测比分</th><th>实际比分</th><th>验证</th></tr>
+    {finished_review_rows}
+  </table>
+  </div>
+</div>'''
+    else:
+        finished_review_section = ""
+
     html = f'''<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
@@ -543,6 +590,9 @@ tr:hover td{{background:rgba(255,255,255,.015)}}
     48支球队 · 104场比赛 · FIFA排名+ML模型
   </div>
 </header>
+
+<!-- Match Review -->
+{finished_review_section}
 
 <!-- Latest Matchday -->
 <div class="cd cd-md">
