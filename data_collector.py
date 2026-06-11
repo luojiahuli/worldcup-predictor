@@ -394,5 +394,100 @@ def load_real_odds():
     return {}
 
 
+# === 比分预测工具函数 ===
+
+def expected_total_from_ou(over_prob):
+    """
+    从 O/U 2.5 市场隐含概率反推期望总进球数 λ
+    使用 Newton 法求解 Poisson 分布的 λ
+    """
+    import math
+    if over_prob <= 0 or over_prob >= 1:
+        return 2.5
+    target = over_prob
+    lam = 2.5  # 初始估计
+    for _ in range(30):
+        p0 = math.exp(-lam)
+        p1 = lam * p0
+        p2 = lam * lam / 2.0 * p0
+        p_le_2 = p0 + p1 + p2  # P(X <= 2)
+        p_over = 1.0 - p_le_2
+        diff = p_over - target
+        if abs(diff) < 1e-6:
+            break
+        # d(P_over)/dλ = (λ²/2 - λ + 1) * e^(-λ)
+        dp = (lam * lam / 2.0 - lam + 1.0) * p0
+        if abs(dp) < 1e-10:
+            break
+        lam -= diff / dp
+        lam = max(1.0, min(6.0, lam))
+    return lam
+
+
+def predict_score_poisson(exp_h, exp_a, max_goals=5):
+    """
+    使用 Poisson 分布预测最可能比分
+    返回 ((home_goals, away_goals), probability)
+    """
+    import math
+    best_prob = 0
+    best_score = (0, 0)
+    # 预计算 Poisson 概率
+    ph_cache = [math.exp(-exp_h) * (exp_h ** g) / math.factorial(g) for g in range(max_goals + 1)]
+    pa_cache = [math.exp(-exp_a) * (exp_a ** g) / math.factorial(g) for g in range(max_goals + 1)]
+    for i in range(max_goals + 1):
+        for j in range(max_goals + 1):
+            p = ph_cache[i] * pa_cache[j]
+            if p > best_prob:
+                best_prob = p
+                best_score = (i, j)
+    return best_score, best_prob
+
+
+def get_score_prediction(home_team, away_team, h2h_probs=None):
+    """
+    基于真实赔率预测比分
+    h2h_probs: (prob_H, prob_D, prob_A) 模型概率，作为无 O/U 数据时的后备
+    返回 (home_goals, away_goals, confidence)
+    """
+    odds_map = load_real_odds()
+    key = f"{home_team}_vs_{away_team}"
+    match = odds_map.get(key)
+
+    if match and match.get("over_odds") and match.get("under_odds"):
+        # 从 O/U 赔率计算期望总进球
+        over_prob = 1.0 / match["over_odds"]
+        under_prob = 1.0 / match["under_odds"]
+        total_imp = over_prob + under_prob
+        fair_over = over_prob / total_imp if total_imp > 0 else 0.5
+        total_goals = expected_total_from_ou(fair_over)
+
+        # 按 h2h 隐含概率分配主客期望进球
+        fp_h = match["fair_prob_H"]
+        fp_d = match["fair_prob_D"]
+        fp_a = match["fair_prob_A"]
+    elif h2h_probs:
+        total_goals = 2.5
+        fp_h, fp_d, fp_a = h2h_probs
+    else:
+        total_goals = 2.5
+        fp_h, fp_d, fp_a = 0.4, 0.25, 0.35
+
+    # 分配主客期望进球
+    home_share = (fp_h + fp_d * 0.5)
+    away_share = (fp_a + fp_d * 0.5)
+    total_share = home_share + away_share
+    if total_share > 0:
+        exp_h = total_goals * home_share / total_share
+        exp_a = total_goals * away_share / total_share
+    else:
+        exp_h = total_goals * 0.5
+        exp_a = total_goals * 0.5
+
+    # Poisson 找出最可能比分
+    (h_goals, a_goals), score_prob = predict_score_poisson(exp_h, exp_a)
+    return h_goals, a_goals, round(score_prob, 3), round(exp_h, 2), round(exp_a, 2)
+
+
 if __name__ == "__main__":
     collect_all()

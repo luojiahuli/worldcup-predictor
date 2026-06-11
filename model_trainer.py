@@ -400,20 +400,34 @@ def predict_matches(feature_df):
     results["fair_odds_D"] = 1.0 / np.clip(results["pred_D"], 0.01, 0.99)
     results["fair_odds_A"] = 1.0 / np.clip(results["pred_A"], 0.01, 0.99)
 
-    # 比分预测：基于FIFA排名点数的期望进球
-    home_pts = feature_df["home_rank_pts"].values if "home_rank_pts" in feature_df.columns else None
-    away_pts = feature_df["away_rank_pts"].values if "away_rank_pts" in feature_df.columns else None
-    if home_pts is not None and away_pts is not None:
-        home_scores, away_scores = [], []
-        for hp, ap in zip(home_pts, away_pts):
-            exp_h, exp_a = exp_goals_from_elo(hp, ap)
-            home_scores.append(max(0, round(exp_h)))
-            away_scores.append(max(0, round(exp_a)))
-        results["pred_home_score"] = home_scores
-        results["pred_away_score"] = away_scores
-    else:
-        results["pred_home_score"] = 1
-        results["pred_away_score"] = 0
+    # 比分预测：优先使用真实赔率 O/U 数据 + Poisson 分布
+    # 后备使用 ELO 期望进球
+    h2h_keys = ["pred_H", "pred_D", "pred_A"]
+    has_h2h = all(c in results.columns for c in h2h_keys)
+    try:
+        from data_collector import get_score_prediction
+    except ImportError:
+        get_score_prediction = None
+    home_scores, away_scores = [], []
+    for i, row in results.iterrows():
+        h2h = (row["pred_H"], row["pred_D"], row["pred_A"]) if has_h2h else None
+        hg, ag, sp, exph, expa = (1, 0, 0, 1.4, 0.8)
+        if get_score_prediction is not None:
+            try:
+                hg, ag, sp, exph, expa = get_score_prediction(row["home_team"], row["away_team"], h2h)
+            except:
+                pass
+        else:
+            # 后备：用 ELO
+            hp = feature_df["home_rank_pts"].iloc[i] if "home_rank_pts" in feature_df.columns else 1500
+            ap = feature_df["away_rank_pts"].iloc[i] if "away_rank_pts" in feature_df.columns else 1500
+            exp_h, exp_a = exp_goals_from_elo(int(hp), int(ap))
+            from data_collector import predict_score_poisson
+            (hg, ag), sp = predict_score_poisson(exp_h, exp_a)
+        home_scores.append(hg)
+        away_scores.append(ag)
+    results["pred_home_score"] = home_scores
+    results["pred_away_score"] = away_scores
 
     # 价值评分
     results["value_score"] = 0.0
