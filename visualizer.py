@@ -539,76 +539,75 @@ def generate_dashboard(data):
 <title>世界杯2026预测系统 | {today_str}</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
 <style>
 :root{{
-  --bg:#090b14;--bg2:#0f111b;--card:rgba(20,23,36,.75);--card-hover:rgba(26,30,48,.85);
-  --border:rgba(255,255,255,.05);--border-hover:rgba(255,255,255,.1);
-  --text:#e2e8f0;--text2:#94a3b8;--text3:#4a5270;
-  --accent:#f59e0b;--accent2:#fbbf24;
+  --bg:#07080e;--bg2:#0b0d18;--card:rgba(12,15,28,.82);--card-hover:rgba(18,22,38,.88);
+  --border:rgba(255,255,255,.04);--border-hover:rgba(255,255,255,.09);
+  --text:#e2e6ef;--text2:#858ca5;--text3:#3d4560;
+  --accent:#f5a623;--accent2:#f7c948;
   --home:#ef4444;--draw:#f59e0b;--away:#3b82f6;--green:#22c55e;
-  --r:12px;--rs:8px;
+  --r:14px;--rs:10px;
 }}
 *{{margin:0;padding:0;box-sizing:border-box}}
-body{{background:var(--bg);color:var(--text);font-family:Inter,'PingFang SC','Microsoft YaHei',system-ui,sans-serif;padding:24px;max-width:1340px;margin:0 auto;line-height:1.6;font-size:14px;-webkit-font-smoothing:antialiased}}
+body{{background:var(--bg);color:var(--text);font-family:Inter,'PingFang SC','Microsoft YaHei',system-ui,sans-serif;padding:28px;max-width:1380px;margin:0 auto;line-height:1.7;font-size:14px;-webkit-font-smoothing:antialiased;font-feature-settings:'cv02','cv03','cv04','cv11'}}
+h1,h2,h3,h4,.hd-t,.st-v,.pc-pr,.am-h,.ar-r{{font-family:Outfit,Inter,'PingFang SC','Microsoft YaHei',system-ui,sans-serif;letter-spacing:-.02em}}
+table,.num{{font-variant-numeric:tabular-nums}}
 
 /* Header */
-.hd{{display:flex;align-items:center;justify-content:space-between;padding:16px 0 12px;margin-bottom:20px;border-bottom:1px solid var(--border)}}
-.hd-l{{display:flex;align-items:center;gap:12px}}
-.hd-icon{{width:38px;height:38px;background:linear-gradient(135deg,var(--accent),#d97706);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}}
-.hd-t{{font-size:20px;font-weight:700;background:linear-gradient(135deg,var(--accent2),var(--accent));-webkit-background-clip:text;-webkit-text-fill-color:transparent;letter-spacing:-.3px}}
-.hd-r{{text-align:right;font-size:11px;color:var(--text3);line-height:1.5}}
-.hd-r strong{{color:var(--text2);font-weight:500}}
+.hd{{display:flex;align-items:center;justify-content:space-between;padding:20px 0 16px;margin-bottom:24px;border-bottom:1px solid var(--border)}}
+.hd-l{{display:flex;align-items:center;gap:14px}}
+.hd-icon{{width:42px;height:42px;background:linear-gradient(135deg,var(--accent),#c6841a);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;box-shadow:0 0 0 1px rgba(245,166,35,.15)}}
+.hd-t{{font-size:22px;font-weight:700;background:linear-gradient(135deg,#f7c948,#e8951a);-webkit-background-clip:text;-webkit-text-fill-color:transparent}}
 
 /* Stats */
-.st{{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:20px}}
-.st-c{{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:16px 12px;text-align:center;backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);transition:all .25s;position:relative;overflow:hidden}}
-.st-c:hover{{border-color:var(--border-hover);transform:translateY(-2px)}}
-.st-c::before{{content:'';position:absolute;top:0;left:25%;right:25%;height:1px;background:linear-gradient(90deg,transparent,var(--accent),transparent);opacity:0;transition:opacity .3s}}
+.st{{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:24px}}
+.st-c{{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:20px 16px;text-align:center;backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);transition:all .3s cubic-bezier(.16,1,.3,1);position:relative;overflow:hidden}}
+.st-c:hover{{border-color:var(--border-hover);transform:translateY(-3px);box-shadow:0 8px 32px rgba(0,0,0,.3)}}
+.st-c::before{{content:'';position:absolute;top:0;left:20%;right:20%;height:1px;background:linear-gradient(90deg,transparent,var(--accent),transparent);opacity:0;transition:opacity .4s}}
 .st-c:hover::before{{opacity:1}}
-.st-v{{font-size:26px;font-weight:700;line-height:1.2;letter-spacing:-.5px}}
-.st-l{{font-size:10px;color:var(--text3);text-transform:uppercase;letter-spacing:.6px;margin-top:4px}}
+.st-v{{font-size:28px;font-weight:700;line-height:1.15;letter-spacing:-.04em;text-wrap:balance}}
+.st-l{{font-size:10px;color:var(--text3);text-transform:uppercase;letter-spacing:.08em;margin-top:6px;font-weight:500}}
 
 /* Cards */
-.cd{{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:20px;margin-bottom:18px;backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);transition:border-color .25s}}
+.cd{{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:24px;margin-bottom:20px;backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);transition:border-color .3s cubic-bezier(.16,1,.3,1)}}
 .cd:hover{{border-color:var(--border-hover)}}
-.cd-h{{display:flex;align-items:center;gap:10px;margin-bottom:14px;padding-bottom:12px;border-bottom:1px solid var(--border)}}
-.cd-h-dot{{width:5px;height:5px;border-radius:50%;background:var(--accent);flex-shrink:0}}
-.cd-h h2{{font-size:11px;font-weight:600;color:var(--text2);letter-spacing:.4px;text-transform:uppercase}}
-.cd-h-b{{margin-left:auto;font-size:9px;padding:2px 8px;border-radius:8px;background:rgba(255,255,255,.04);color:var(--text3);letter-spacing:.3px}}
+.cd-h{{display:flex;align-items:center;gap:12px;margin-bottom:16px;padding-bottom:14px;border-bottom:1px solid var(--border)}}
+.cd-h-dot{{width:6px;height:6px;border-radius:50%;background:var(--accent);flex-shrink:0}}
+.cd-h h2{{font-size:10px;font-weight:600;color:var(--text3);letter-spacing:.06em;text-transform:uppercase}}
+.cd-h-b{{margin-left:auto;font-size:9px;padding:3px 10px;border-radius:6px;background:rgba(255,255,255,.03);color:var(--text3);letter-spacing:.04em;font-weight:500;border:1px solid rgba(255,255,255,.04)}}
 
 /* Matchday card */
-.cd-md{{border-color:rgba(245,158,11,.2) !important}}
-.cd-md:hover{{border-color:rgba(245,158,11,.35) !important}}
-.cd-md .cd-h{{border-bottom-color:rgba(245,158,11,.1)}}
+.cd-md{{border-color:rgba(245,166,35,.15) !important}}
+.cd-md:hover{{border-color:rgba(245,166,35,.3) !important}}
+.cd-md .cd-h{{border-bottom-color:rgba(245,166,35,.08)}}
 .cd-md .cd-h-dot{{background:#22c55e}}
 
 /* Predictions Grid */
-.pg{{display:grid;grid-template-columns:repeat(auto-fill,minmax(275px,1fr));gap:10px}}
-.pc{{background:var(--bg2);border:1px solid var(--border);border-radius:var(--rs);padding:16px;position:relative;transition:all .25s}}
-.pc:hover{{border-color:var(--border-hover);transform:translateY(-2px)}}
-.pc-d{{position:absolute;top:8px;right:10px;font-size:9px;padding:2px 7px;border-radius:4px;background:var(--border);color:var(--text3);letter-spacing:.2px}}
-.pc-t{{font-size:14px;font-weight:600;color:var(--text);margin-bottom:4px;letter-spacing:-.2px}}
-.pc-vs{{font-size:11px;color:var(--text3);margin-bottom:8px}}
-.pc-pr{{font-size:22px;font-weight:700;margin:6px 0 10px}}
-.pc-pr span{{font-size:11px;font-weight:400;color:var(--text3);margin-left:4px}}
-.pc-prb{{display:flex;gap:6px;margin-bottom:8px}}
-.pc-prb-b{{flex:1;text-align:center;padding:7px 4px 5px;border-radius:6px;background:var(--card)}}
-.pc-prb-b .p{{font-size:15px;font-weight:600}}
-.pc-prb-b .l{{font-size:9px;color:var(--text3);margin-top:1px}}
-.pc-prb-b .o{{font-size:9px;color:var(--text3);margin-top:1px}}
-.pc-cb{{height:3px;background:var(--border);border-radius:2px;overflow:hidden;margin-top:2px}}
-.pc-cb .f{{height:100%;border-radius:2px;transition:width .6s ease}}
+.pg{{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:12px}}
+.pc{{background:var(--bg2);border:1px solid var(--border);border-radius:var(--rs);padding:18px;position:relative;transition:all .3s cubic-bezier(.16,1,.3,1);display:flex;flex-direction:column}}
+.pc:hover{{border-color:var(--border-hover);transform:translateY(-3px);box-shadow:0 8px 24px rgba(0,0,0,.25)}}
+.pc-d{{position:absolute;top:10px;right:12px;font-size:9px;padding:2px 8px;border-radius:5px;background:var(--border);color:var(--text3);letter-spacing:.03em}}
+.pc-t{{font-size:15px;font-weight:600;color:var(--text);margin-bottom:6px;letter-spacing:-.02em}}
+.pc-pr{{font-size:24px;font-weight:700;margin:8px 0 12px;text-wrap:balance}}
+.pc-pr span{{font-size:11px;font-weight:400;color:var(--text3);margin-left:6px}}
+.pc-prb{{display:flex;gap:8px;margin-bottom:10px}}
+.pc-prb-b{{flex:1;text-align:center;padding:8px 4px 6px;border-radius:8px;background:var(--card)}}
+.pc-prb-b .p{{font-size:16px;font-weight:600}}
+.pc-prb-b .l{{font-size:9px;color:var(--text3);margin-top:2px}}
+.pc-prb-b .o{{font-size:9px;color:var(--text3);margin-top:2px}}
+.pc-cb{{height:4px;background:var(--border);border-radius:3px;overflow:hidden;margin-top:auto}}
+.pc-cb .f{{height:100%;border-radius:3px;transition:width .8s cubic-bezier(.16,1,.3,1)}}
 
 /* Tables */
-.tw{{overflow-x:auto}}
+.tw{{overflow-x:auto;border-radius:var(--rs);border:1px solid var(--border)}}
 table{{width:100%;border-collapse:collapse;font-size:12px}}
-th{{padding:8px 10px;text-align:left;font-weight:500;color:var(--text3);font-size:9px;text-transform:uppercase;letter-spacing:.6px;border-bottom:1px solid var(--border)}}
-td{{padding:7px 10px;border-bottom:1px solid var(--border);color:var(--text2)}}
+th{{padding:10px 12px;text-align:left;font-weight:500;color:var(--text3);font-size:9px;text-transform:uppercase;letter-spacing:.06em;border-bottom:1px solid var(--border);background:var(--bg2);position:sticky;top:0;z-index:1}}
+td{{padding:9px 12px;border-bottom:1px solid rgba(255,255,255,.02);color:var(--text2);transition:color .2s}}
 tr:last-child td{{border-bottom:none}}
-tr:hover td{{background:rgba(255,255,255,.015)}}
-.reason-cell{{font-size:11px;max-width:170px;color:var(--text3)}}
+tr:hover td{{background:rgba(255,255,255,.02);color:var(--text)}}
+.reason-cell{{font-size:11px;max-width:180px;color:var(--text3);line-height:1.6}}
 .bet-cell{{font-size:11px;white-space:nowrap}}
 
 /* Charts */
@@ -616,56 +615,63 @@ tr:hover td{{background:rgba(255,255,255,.015)}}
 .ch-sm{{width:100%;height:220px}}
 
 /* Analysis Grid */
-.ag{{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:10px}}
-.ac{{background:var(--bg2);border:1px solid var(--border);border-radius:var(--rs);padding:14px;transition:all .2s}}
-.ac:hover{{border-color:var(--border-hover)}}
-.ac-n{{font-weight:600;color:var(--text);font-size:13px;margin-bottom:6px}}
+.ag{{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px}}
+.ac{{background:var(--bg2);border:1px solid var(--border);border-radius:var(--rs);padding:16px;transition:all .25s cubic-bezier(.16,1,.3,1)}}
+.ac:hover{{border-color:var(--border-hover);transform:translateY(-2px)}}
+.ac-n{{font-weight:600;color:var(--text);font-size:14px;margin-bottom:8px}}
 .ac-v{{font-size:11px;color:var(--text3);line-height:1.8}}
-.bc{{height:5px;background:var(--border);border-radius:3px;margin:4px 0;overflow:hidden}}
-.bc .b{{height:100%;border-radius:3px;transition:width .5s}}
+.bc{{height:6px;background:var(--border);border-radius:4px;margin:6px 0;overflow:hidden}}
+.bc .b{{height:100%;border-radius:4px;transition:width .6s cubic-bezier(.16,1,.3,1)}}
 
 /* Tags */
 .th{{color:var(--home)}} .td{{color:var(--draw)}} .ta{{color:var(--away)}}
 
 /* Layout helpers */
-.l2{{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:18px}}
+.l2{{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:20px}}
 
 /* Footer */
-.ft{{text-align:center;font-size:10px;color:var(--text3);padding:20px 0 4px;border-top:1px solid var(--border);margin-top:12px;line-height:1.8}}
+.ft{{text-align:center;font-size:10px;color:var(--text3);padding:24px 0 4px;border-top:1px solid var(--border);margin-top:16px;line-height:2}}
 
 /* Responsive */
-@media(max-width:768px){{.st{{grid-template-columns:repeat(2,1fr)}}.pg{{grid-template-columns:1fr}}.l2{{grid-template-columns:1fr}}.hd{{flex-direction:column;align-items:flex-start;gap:8px}}}}
+@media(max-width:768px){{body{{padding:16px}}.st{{grid-template-columns:repeat(2,1fr);gap:8px}}.pg{{grid-template-columns:1fr}}.l2{{grid-template-columns:1fr;gap:16px}}.hd{{flex-direction:column;align-items:flex-start;gap:10px}}.st-v{{font-size:22px}}.cd{{padding:16px}}.tw{{border:none}}}}
 
 /* Animations */
-@keyframes fi{{from{{opacity:0;transform:translateY(6px)}}to{{opacity:1;transform:translateY(0)}}}}
-.cd,.st-c,.pc,.ac{{animation:fi .45s ease-out both}}
-.pc:nth-child(2){{animation-delay:.05s}}
+@keyframes fi{{from{{opacity:0;transform:translateY(8px)}}to{{opacity:1;transform:translateY(0)}}}}
+@keyframes gl{{0%,100%{{opacity:.3}}50%{{opacity:.7}}}}
+.cd,.st-c,.pc,.ac{{animation:fi .5s cubic-bezier(.16,1,.3,1) both}}
+.pc:nth-child(2){{animation-delay:.06s}}
 .pc:nth-child(3){{animation-delay:.1s}}
-.pc:nth-child(4){{animation-delay:.15s}}
-.st-c:nth-child(2){{animation-delay:.05s}}
+.pc:nth-child(4){{animation-delay:.14s}}
+.st-c:nth-child(2){{animation-delay:.06s}}
 .st-c:nth-child(3){{animation-delay:.1s}}
-.st-c:nth-child(4){{animation-delay:.15s}}
+.st-c:nth-child(4){{animation-delay:.14s}}
 
 /* Agent PK */
-.ap{{margin-top:4px}}
-.am{{background:var(--bg2);border:1px solid var(--border);border-radius:var(--rs);padding:14px;margin-bottom:10px}}
-.am-h{{font-weight:600;font-size:14px;margin-bottom:8px;color:var(--text)}}
-.am-cb{{display:flex;height:6px;border-radius:3px;overflow:hidden;margin-bottom:10px}}
-.am-cb-s{{display:flex;align-items:center;justify-content:center;font-size:7px;color:#fff;font-weight:600;transition:width .3s}}
-.am-agents{{display:flex;flex-direction:column;gap:6px}}
-.ar{{padding:8px 10px;border-left:3px solid;background:rgba(255,255,255,.02);border-radius:0 4px 4px 0;display:flex;flex-direction:column;gap:3px}}
-.ar-h{{display:flex;align-items:center;gap:8px}}
+.ap{{margin-top:6px}}
+.am{{background:var(--bg2);border:1px solid var(--border);border-radius:var(--rs);padding:16px;margin-bottom:12px;transition:border-color .2s}}
+.am:hover{{border-color:var(--border-hover)}}
+.am-h{{font-weight:600;font-size:15px;margin-bottom:10px;color:var(--text);text-wrap:balance}}
+.am-cb{{display:flex;height:8px;border-radius:4px;overflow:hidden;margin-bottom:12px}}
+.am-cb-s{{display:flex;align-items:center;justify-content:center;font-size:7px;color:#fff;font-weight:600;transition:width .4s cubic-bezier(.16,1,.3,1)}}
+.am-agents{{display:flex;flex-direction:column;gap:8px}}
+.ar{{padding:10px 12px;border-left:3px solid;background:rgba(255,255,255,.015);border-radius:0 6px 6px 0;display:flex;flex-direction:column;gap:4px;transition:background .2s}}
+.ar:hover{{background:rgba(255,255,255,.03)}}
+.ar-h{{display:flex;align-items:center;gap:10px}}
 .ar-n{{font-weight:600;font-size:12px;min-width:48px}}
-.ar-r{{font-weight:700;font-size:13px;min-width:32px}}
-.ar-s{{font-size:13px;color:var(--text2);font-weight:600;min-width:32px}}
+.ar-r{{font-weight:700;font-size:14px;min-width:36px}}
+.ar-s{{font-size:13px;color:var(--text2);font-weight:600;min-width:36px;font-variant-numeric:tabular-nums}}
 .ar-c{{font-size:10px;color:var(--text3);min-width:36px}}
-.ar-cons{{font-size:8px;padding:1px 5px;border-radius:3px;background:rgba(34,197,94,.2);color:#22c55e;margin-left:4px}}
-.ar-reason{{font-size:10px;color:var(--text3);line-height:1.5}}
+.ar-cons{{font-size:8px;padding:2px 6px;border-radius:4px;background:rgba(34,197,94,.15);color:#22c55e;margin-left:6px;font-weight:600;letter-spacing:.03em}}
+.ar-reason{{font-size:10px;color:var(--text3);line-height:1.6}}
 /* Leaderboard */
 .lb-w{{overflow-x:auto}}
 .lb-w table{{font-size:11px}}
-.lb-w th{{font-size:8px;padding:6px 8px}}
-.lb-w td{{padding:5px 8px}}
+.lb-w th{{font-size:8px;padding:8px 10px}}
+.lb-w td{{padding:6px 10px}}
+
+/* Empty state */
+.empty-state{{text-align:center;padding:32px 16px;color:var(--text3);font-size:13px;line-height:2}}
+.empty-state::before{{content:'📊';display:block;font-size:28px;margin-bottom:8px;opacity:.5}}
 </style>
 </head>
 <body>
@@ -708,7 +714,7 @@ tr:hover td{{background:rgba(255,255,255,.015)}}
       <h2>智能体PK辩论 · {matchday_date_str}</h2>
       <span class="cd-h-b">5 AGENTS</span>
     </div>
-    {agent_pk_html if agent_pk_html else '<div style="text-align:center;padding:20px;color:var(--text3);font-size:12px">暂无智能体预测数据，请先运行 agents.py</div>'}
+    {agent_pk_html if agent_pk_html else '<div class="empty-state">暂无智能体预测数据<br>请先运行 agents.py</div>'}
   </div>
   <div class="cd">
     <div class="cd-h">
@@ -719,7 +725,7 @@ tr:hover td{{background:rgba(255,255,255,.015)}}
     <div class="lb-w">
       <table>
         <tr><th>排名</th><th>智能体</th><th>结果分布</th><th>平均置信度</th><th>真实准确率</th><th>权重</th><th>总分</th></tr>
-        {agent_leaderboard_rows if agent_leaderboard_rows else '<tr><td colspan="7" style="text-align:center;color:var(--text3);padding:20px">暂无排行榜数据</td></tr>'}
+        {agent_leaderboard_rows if agent_leaderboard_rows else '<tr><td colspan="7"><div class="empty-state" style="padding:24px 16px">暂无排行榜数据</div></td></tr>'}
       </table>
     </div>
   </div>
@@ -846,7 +852,7 @@ setInterval(updateClock, 1000);
 var picks = {json.dumps(high_conf_picks, ensure_ascii=False)};
 var ph = document.getElementById('picksContainer');
 if (picks.length === 0) {{
-  ph.innerHTML = '<div style="text-align:center;padding:30px;color:var(--text3);font-size:13px">暂无预测数据，请先运行主流程</div>';
+  ph.innerHTML = '<div class="empty-state">暂无预测数据<br>请先运行主流程</div>';
 }} else {{
   picks.forEach(function(p){{
     var c = p.pred_r === 'H' ? 'var(--home)' : p.pred_r === 'D' ? 'var(--draw)' : 'var(--away)';
@@ -984,7 +990,7 @@ if (tarr.length > 0) {{
     tc.appendChild(d);
   }});
 }} else {{
-  tc.innerHTML = '<div style="text-align:center;padding:30px;color:var(--text3);font-size:13px">暂无分析数据</div>';
+  tc.innerHTML = '<div class="empty-state">暂无分析数据</div>';
 }}
 
 // ===== All Predictions Table =====
@@ -1003,7 +1009,7 @@ if (predData.length > 0) {{
   h += '</table>';
   at.innerHTML = h;
 }} else {{
-  at.innerHTML = '<div style="text-align:center;padding:30px;color:var(--text3);font-size:13px">暂无预测数据</div>';
+  at.innerHTML = '<div class="empty-state">暂无预测数据</div>';
 }}
 
 window.addEventListener('resize', function(){{ bc.resize(); if(typeof mc !== 'undefined'){{mc.resize();}} if(typeof sc !== 'undefined'){{sc.resize();}} }});
