@@ -264,6 +264,7 @@ def generate_dashboard(data):
     # === 最新比赛日分析 ===
     matchday_date_str = ""
     matchday_html_rows = ""
+    matchday_dates = []
     if predictions is not None and len(predictions) > 0:
         unfinished = predictions[predictions["is_finished"] == False].copy()
         dates = pd.to_datetime(unfinished["date"])
@@ -274,7 +275,12 @@ def generate_dashboard(data):
             md_date = upcoming["date"].iloc[0]
             cutoff = pd.Timestamp(md_date) + pd.Timedelta(days=2)
             md_matches = upcoming[pd.to_datetime(upcoming["date"]) < cutoff]
-            matchday_date_str = f'{str(md_date)[:10]} +' if len(md_matches) > 0 else str(md_date)[:10]
+            matchday_dates = md_matches["date"].unique()
+            # Use first date for matching agent data; display all dates
+            matchday_date_str = str(md_date)[:10]
+            if len(matchday_dates) > 1:
+                last_date = str(matchday_dates[-1])[:10]
+                matchday_date_str = f"{matchday_date_str} ~ {last_date}"
             rank_path = os.path.join(DATA_DIR, "fifa_rankings.csv")
             rankings_df = None
             if os.path.exists(rank_path):
@@ -366,9 +372,10 @@ def generate_dashboard(data):
     # PK对比
     if agent_predictions and matchday_date_str:
         matches = agent_predictions.get("matches", {})
+        matchday_dates_list = [str(d)[:10] for d in matchday_dates]
         md_matches_agent = [
             m for m in matches.values()
-            if m.get("date", "")[:10] == matchday_date_str
+            if m.get("date", "")[:10] in matchday_dates_list
         ]
         if md_matches_agent:
             sections = []
