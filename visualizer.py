@@ -75,6 +75,12 @@ def load_all_data():
         with open(lb_path, "r") as f:
             data["agent_leaderboard"] = json.load(f)
 
+    # 智能体权重
+    weights_path = os.path.join(DATA_DIR, "agent_weights.json")
+    if os.path.exists(weights_path):
+        with open(weights_path, "r") as f:
+            data["agent_weights"] = json.load(f)
+
     # 真实赔率
     real_odds_path = os.path.join(DATA_DIR, "real_odds.json")
     if os.path.exists(real_odds_path):
@@ -350,6 +356,12 @@ def generate_dashboard(data):
     agent_leaderboard_rows = ""
     agent_predictions = data.get("agent_predictions")
     agent_leaderboard = data.get("agent_leaderboard")
+    agent_weights_data = data.get("agent_weights")
+    current_weights = agent_weights_data.get("weights", {}) if agent_weights_data else {}
+    round_history = agent_weights_data.get("round_history", {}) if agent_weights_data else {}
+    current_round_name = agent_weights_data.get("current_round", "") if agent_weights_data else ""
+    round_acc = (agent_weights_data.get("agent_round_accuracy", {}).get(current_round_name, {})
+                if agent_weights_data else {})
 
     # 排行榜
     if agent_leaderboard:
@@ -357,14 +369,20 @@ def generate_dashboard(data):
         for entry in agent_leaderboard:
             dist = f"H{entry.get('H_pct',0)*100:.0f}/D{entry.get('D_pct',0)*100:.0f}/A{entry.get('A_pct',0)*100:.0f}"
             color = entry.get("color", "#888")
+            name = entry["name"]
+            weight = current_weights.get(name, 1.0)
+            ra = round_acc.get(name, {})
+            real_acc = ra.get("accuracy", 0)
+            real_acc_str = f'{real_acc:.0%}' if real_acc > 0 and ra.get("total", 0) > 0 else "-"
             lb_rows.append(
                 f'<tr>'
                 f'<td style="color:{color};font-weight:600">#{entry["rank"]}</td>'
-                f'<td style="color:{color};font-weight:600">{entry["name"]}</td>'
+                f'<td style="color:{color};font-weight:600">{name}</td>'
                 f'<td>{dist}</td>'
                 f'<td>{entry.get("avg_confidence",0)*100:.0f}%</td>'
-                f'<td>{entry.get("diversity_score",0):.0f}</td>'
-                f'<td style="font-weight:600;color:var(--accent2)">{entry.get("total_score",0):.1f}</td>'
+                f'<td>{real_acc_str}</td>'
+                f'<td style="color:var(--accent2);font-weight:600">{weight:.2f}</td>'
+                f'<td>{entry.get("total_score",0):.1f}</td>'
                 f'</tr>'
             )
         agent_leaderboard_rows = "\n".join(lb_rows)
@@ -406,14 +424,18 @@ def generate_dashboard(data):
                         f'</div>'
                     )
 
-                # Consensus bar
+                # Consensus bar (with weighted display)
+                is_weighted = consensus.get("weighted", False)
+                weight_label = '<span style="font-size:10px;color:var(--text3);margin-left:6px">(加权)</span>' if is_weighted else ""
                 h_c = consensus.get("H", 0)
                 d_c = consensus.get("D", 0)
                 a_c = consensus.get("A", 0)
                 total_c = h_c + d_c + a_c or 1
                 sections.append(
                     f'<div class="am">'
-                    f'<div class="am-h">{m["home"]} <span style="color:var(--text3);font-weight:400">vs</span> {m["away"]}</div>'
+                    f'<div class="am-h">{m["home"]} <span style="color:var(--text3);font-weight:400">vs</span> {m["away"]}'
+                    f'{weight_label}'
+                    f'</div>'
                     f'<div class="am-cb">'
                     f'<span class="am-cb-s" style="width:{h_c/total_c*100}%;background:var(--home)">{h_c if h_c>0 else ""}</span>'
                     f'<span class="am-cb-s" style="width:{d_c/total_c*100}%;background:var(--draw)">{d_c if d_c>0 else ""}</span>'
@@ -423,6 +445,26 @@ def generate_dashboard(data):
                     f'</div>'
                 )
             agent_pk_html = "\n".join(sections)
+
+    # Weight history for ECharts
+    weight_history_json = "[]"
+    if round_history:
+        rounds = sorted(round_history.keys())
+        traces = []
+        for agent_name in ["稳健派", "激进派", "价值派", "防守派", "数据派", "爆冷派"]:
+            values = []
+            for r in rounds:
+                w = round_history[r].get("weights", {}).get(agent_name, 1.0)
+                values.append(w)
+            values.append(current_weights.get(agent_name, 1.0))
+            all_rounds = list(rounds) + ([current_round_name] if current_round_name else [])
+            traces.append({
+                "name": agent_name,
+                "color": AGENT_COLORS.get(agent_name, "#888"),
+                "values": values,
+                "rounds": all_rounds,
+            })
+        weight_history_json = json.dumps(traces, ensure_ascii=False)
 
     # 媒体情感
     media_json = []
@@ -676,11 +718,21 @@ tr:hover td{{background:rgba(255,255,255,.015)}}
     </div>
     <div class="lb-w">
       <table>
-        <tr><th>排名</th><th>智能体</th><th>结果分布</th><th>平均置信度</th><th>多样性</th><th>总分</th></tr>
-        {agent_leaderboard_rows if agent_leaderboard_rows else '<tr><td colspan="6" style="text-align:center;color:var(--text3);padding:20px">暂无排行榜数据</td></tr>'}
+        <tr><th>排名</th><th>智能体</th><th>结果分布</th><th>平均置信度</th><th>真实准确率</th><th>权重</th><th>总分</th></tr>
+        {agent_leaderboard_rows if agent_leaderboard_rows else '<tr><td colspan="7" style="text-align:center;color:var(--text3);padding:20px">暂无排行榜数据</td></tr>'}
       </table>
     </div>
   </div>
+</div>
+
+<!-- Weight History Chart -->
+<div class="cd">
+  <div class="cd-h">
+    <span class="cd-h-dot"></span>
+    <h2>智能体权重历史</h2>
+    <span class="cd-h-b">WEIGHT TRACKING</span>
+  </div>
+  <div id="weightChart" class="ch"></div>
 </div>
 
 <!-- Stats -->
@@ -832,6 +884,28 @@ bc.setOption({{
     markLine:{{silent:true,data:[{{yAxis:0,lineStyle:{{color:'#2a2d42',type:'dashed',width:1}},label:{{formatter:'盈亏平衡',color:'#4a5270',fontSize:10}}}}]}}
   }}]
 }});
+
+// ===== Weight History Chart =====
+var weightData = {weight_history_json};
+var wc = echarts.init(document.getElementById('weightChart'));
+if (weightData.length > 0 && weightData[0].rounds.length > 0) {{
+  wc.setOption({{
+    backgroundColor:'transparent',
+    tooltip:{{trigger:'axis',formatter:function(ps){{var s='<b>'+ps[0].axisValue+'</b>';ps.forEach(function(p){{s+='<br/>'+p.marker+' '+p.seriesName+': '+p.value.toFixed(3)}});return s;}}}},
+    legend:{{data:weightData.map(function(d){{return d.name}}),textStyle:{{color:'#94a3b8',fontSize:10}},top:0}},
+    grid:{{left:'6%',right:'4%',top:'18%',bottom:'10%'}},
+    xAxis:{{type:'category',data:weightData[0].rounds,axisLabel:{{color:'#4a5270',fontSize:10}},axisLine:{{lineStyle:{{color:'#1a1d2e'}}}},axisTick:{{show:false}}}},
+    yAxis:{{type:'value',name:'权重',min:0,nameTextStyle:{{color:'#4a5270',fontSize:10}},splitLine:{{lineStyle:{{color:'#1a1d2e'}}}},axisLabel:{{color:'#4a5270',fontSize:10}}}},
+    series:weightData.map(function(d){{return {{
+      name:d.name,type:'line',data:d.values,smooth:true,
+      lineStyle:{{width:2,color:d.color}},
+      itemStyle:{{color:d.color}},
+      symbol:'circle',symbolSize:6,
+      markLine:{{silent:true,data:[{{yAxis:1,lineStyle:{{color:'#2a2d42',type:'dashed',width:1}},label:{{formatter:'基准1.0',color:'#4a5270',fontSize:9}}}}]}}
+    }}}})
+  }});
+}}
+window.addEventListener('resize', function(){{ wc.resize() }});
 
 // ===== Media Sentiment =====
 var mediaData = {media_str};
