@@ -21,7 +21,11 @@ python3 -c "from data_collector import fetch_real_odds; fetch_real_odds()" 2>&1 
 python3 main.py 2>&1 || log "main.py 失败"
 python3 agents.py 2>&1 || log "agents.py 失败"
 
-# 3. Generate dashboard
+# 5. Apply finished match results to all data files
+log "应用已完成比赛结果..."
+python3 apply_finished.py 2>&1 || log "apply_finished.py 失败"
+
+# 6. Generate dashboard
 python3 -c "
 from visualizer import load_all_data, generate_dashboard
 data = load_all_data()
@@ -32,7 +36,7 @@ else:
     print('加载数据失败')
 " 2>&1
 
-# 4. Deploy to Cloudflare
+# 7. Deploy to Cloudflare
 mkdir -p /tmp/wc-deploy
 cp output/worldcup_dashboard_latest.html /tmp/wc-deploy/index.html 2>/dev/null || log "无最新仪表盘文件"
 if [ -n "$CLOUDFLARE_API_TOKEN" ]; then
@@ -41,7 +45,7 @@ else
   log "CLOUDFLARE_API_TOKEN 未设置，跳过部署"
 fi
 
-# 5. Commit and push to GitHub
+# 8. Commit and push to GitHub
 git add -A 2>/dev/null
 git commit -m "daily update $(date '+%Y-%m-%d %H:%M')" 2>/dev/null || log "无变更需要提交"
 git push origin main 2>&1 || log "Git push 失败"

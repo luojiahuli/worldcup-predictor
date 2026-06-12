@@ -2,7 +2,7 @@
 main.py - 世界杯2026预测系统主入口
 一键完成：数据采集 → 特征工程 → 模型训练 → 预测 → 多元分析 → 可视化
 """
-import os, sys, logging, subprocess, pickle
+import os, sys, logging, subprocess, pickle, json
 import pandas as pd
 from datetime import datetime
 
@@ -113,16 +113,29 @@ def step_prediction():
         return None
 
     # 合并历史完赛数据（防止 pipeline 覆盖手动更新的比赛结果）
-    prev_path = os.path.join(DATA_DIR, "wc_predictions.pkl")
-    if os.path.exists(prev_path):
-        with open(prev_path, "rb") as f:
-            prev = pickle.load(f)
-        prev_finished = prev[prev["is_finished"] == True]
-        if len(prev_finished) > 0:
-            for col in ["actual_result", "is_finished", "correct", "actual_home_score", "actual_away_score"]:
-                if col in prev_finished.columns:
-                    results.loc[prev_finished.index, col] = prev_finished[col].values
-            log.info(f"已合并 {len(prev_finished)} 场历史完赛数据")
+    finished_path = os.path.join(DATA_DIR, "finished_matches.json")
+    if os.path.exists(finished_path):
+        with open(finished_path) as f:
+            finished_data = json.load(f)
+        merged = 0
+        for mid, info in finished_data.items():
+            mask = (
+                (results["home_team"] == info["home_team"])
+                & (results["away_team"] == info["away_team"])
+                & (results["is_finished"] == False)
+            )
+            if mask.any():
+                results.loc[mask, "actual_home_score"] = info["actual_home_score"]
+                results.loc[mask, "actual_away_score"] = info["actual_away_score"]
+                results.loc[mask, "actual_result"] = info["actual_result"]
+                results.loc[mask, "is_finished"] = True
+                ph = results.loc[mask, "pred_home_score"].values[0]
+                pa = results.loc[mask, "pred_away_score"].values[0]
+                correct = int(ph == info["actual_home_score"] and pa == info["actual_away_score"])
+                results.loc[mask, "correct"] = correct
+                merged += 1
+        if merged > 0:
+            log.info(f"已合并 {merged} 场历史完赛数据")
 
     # 保存预测结果
     with open(os.path.join(DATA_DIR, "wc_predictions.pkl"), "wb") as f:
