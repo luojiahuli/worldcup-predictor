@@ -112,6 +112,18 @@ def step_prediction():
     if results is None:
         return None
 
+    # 合并历史完赛数据（防止 pipeline 覆盖手动更新的比赛结果）
+    prev_path = os.path.join(DATA_DIR, "wc_predictions.pkl")
+    if os.path.exists(prev_path):
+        with open(prev_path, "rb") as f:
+            prev = pickle.load(f)
+        prev_finished = prev[prev["is_finished"] == True]
+        if len(prev_finished) > 0:
+            for col in ["actual_result", "is_finished", "correct", "actual_home_score", "actual_away_score"]:
+                if col in prev_finished.columns:
+                    results.loc[prev_finished.index, col] = prev_finished[col].values
+            log.info(f"已合并 {len(prev_finished)} 场历史完赛数据")
+
     # 保存预测结果
     with open(os.path.join(DATA_DIR, "wc_predictions.pkl"), "wb") as f:
         pickle.dump(results, f)

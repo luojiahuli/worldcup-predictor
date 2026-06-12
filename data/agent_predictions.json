@@ -1,109 +1,5 @@
 {
   "matches": {
-    "Mexico_vs_South Africa": {
-      "home": "Mexico",
-      "away": "South Africa",
-      "date": "2026-06-11",
-      "venue": "Mexico City",
-      "weather": {
-        "temp": 23,
-        "humidity": 0.55,
-        "rain_pct": 0.45,
-        "altitude": 2240,
-        "indoor": false,
-        "heat_advantage": 0,
-        "altitude_advantage": 0.134,
-        "goal_reduction": 0.12,
-        "draw_boost": 0.04,
-        "summary": "23°C·有雨·海拔2240m·高海拔利好Mexico"
-      },
-      "agents": {
-        "稳健派": {
-          "result": "H",
-          "home_score": 1,
-          "away_score": 0,
-          "confidence": 0.52,
-          "reasoning": "Mexico实力明显占优(FIFA排名差103分)，稳健看好主胜",
-          "probs": {
-            "H": 0.45222200498449017,
-            "D": 0.38999999999999996,
-            "A": 0.15777799501550976
-          }
-        },
-        "激进派": {
-          "result": "H",
-          "home_score": 1,
-          "away_score": 0,
-          "confidence": 0.501,
-          "reasoning": "South Africa并非没有机会，但Mexico进攻火力更强，看好大球取胜 (高海拔利好Mexico·降雨增加平局概率)",
-          "probs": {
-            "H": 0.501,
-            "D": 0.232,
-            "A": 0.267
-          }
-        },
-        "价值派": {
-          "result": "D",
-          "home_score": 1,
-          "away_score": 1,
-          "confidence": 0.35,
-          "reasoning": "发现价值空间(平局赔率隐含概率35% vs 预测概率35%)，存在4.0%期望价值 (高海拔利好Mexico·降雨增加平局概率)",
-          "probs": {
-            "H": 0.45222200498449017,
-            "D": 0.38999999999999996,
-            "A": 0.15777799501550976
-          },
-          "value_edge": 0.04,
-          "kelly_stake": 0
-        },
-        "防守派": {
-          "result": "D",
-          "home_score": 1,
-          "away_score": 1,
-          "confidence": 0.47,
-          "reasoning": "世界杯大赛往往以防守为主，看好闷平，高海拔利好Mexico·降雨增加平局概率",
-          "probs": {
-            "H": 0.393,
-            "D": 0.47,
-            "A": 0.137
-          }
-        },
-        "数据派": {
-          "result": "H",
-          "home_score": 1,
-          "away_score": 0,
-          "confidence": 0.317,
-          "reasoning": "ELO模型计算：Mexico胜率45%/South Africa胜率16%/平局39%；FIFA排名：Mexico=1715分/South Africa=1612分；最可能比分1-0 [高海拔利好Mexico·降雨增加平局概率]",
-          "probs": {
-            "H": 0.45222200498449017,
-            "D": 0.38999999999999996,
-            "A": 0.15777799501550976
-          },
-          "score_prob": 0
-        },
-        "爆冷派": {
-          "result": "A",
-          "home_score": 0,
-          "away_score": 1,
-          "confidence": 0.192,
-          "reasoning": "历史数据表明赔率>3.0时爆冷概率17%；实力悬殊(103分差距)增加冷门可能；天气因素高海拔利好Mexico·降雨增加平局概率，爆冷选择客胜(0-1)",
-          "probs": {
-            "H": 0.45222200498449017,
-            "D": 0.38999999999999996,
-            "A": 0.15777799501550976
-          },
-          "is_upset": true,
-          "real_odds": null
-        }
-      },
-      "consensus": {
-        "H": 3,
-        "D": 2,
-        "A": 1,
-        "consensus": "H",
-        "agreement_pct": 0.5
-      }
-    },
     "South Korea_vs_Czechia": {
       "home": "South Korea",
       "away": "Czechia",
@@ -125,7 +21,7 @@
         "稳健派": {
           "result": "H",
           "home_score": 1,
-          "away_score": 1,
+          "away_score": 0,
           "confidence": 0.553,
           "reasoning": "South Korea实力明显占优(FIFA排名差182分)，稳健看好主胜",
           "probs": {
@@ -137,7 +33,7 @@
         "激进派": {
           "result": "H",
           "home_score": 1,
-          "away_score": 1,
+          "away_score": 0,
           "confidence": 0.5,
           "reasoning": "Czechia并非没有机会，但South Korea进攻火力更强，看好大球取胜",
           "probs": {
@@ -149,7 +45,7 @@
         "价值派": {
           "result": "H",
           "home_score": 1,
-          "away_score": 1,
+          "away_score": 0,
           "confidence": 0.337,
           "reasoning": "本场价值空间不足，如需投注建议观望",
           "probs": {
@@ -175,9 +71,9 @@
         "数据派": {
           "result": "H",
           "home_score": 1,
-          "away_score": 1,
+          "away_score": 0,
           "confidence": 0.337,
-          "reasoning": "ELO模型计算：South Korea胜率48%/Czechia胜率17%/平局35%；FIFA排名：South Korea=1682分/Czechia=1500分；最可能比分1-1",
+          "reasoning": "ELO模型计算：South Korea胜率48%/Czechia胜率17%/平局35%；FIFA排名：South Korea=1682分/Czechia=1500分；最可能比分1-0",
           "probs": {
             "H": 0.48121347268463976,
             "D": 0.35,
@@ -188,20 +84,16 @@
         "爆冷派": {
           "result": "A",
           "home_score": 0,
-          "away_score": 2,
-          "confidence": 0.345,
-          "reasoning": "历史数据表明赔率>3.0时爆冷概率14%；市场隐含概率与模型存在分歧；实力悬殊(182分差距)增加冷门可能，爆冷选择客胜(0-2)",
+          "away_score": 1,
+          "confidence": 0.14,
+          "reasoning": "历史数据表明赔率>3.0时爆冷概率14%；实力悬殊(182分差距)增加冷门可能，爆冷选择客胜(0-1)",
           "probs": {
             "H": 0.48121347268463976,
             "D": 0.35,
             "A": 0.16878652731536029
           },
           "is_upset": true,
-          "real_odds": [
-            2.61,
-            3.03,
-            2.99
-          ]
+          "real_odds": null
         }
       },
       "consensus": {
@@ -295,10 +187,10 @@
         },
         "爆冷派": {
           "result": "A",
-          "home_score": 1,
-          "away_score": 3,
+          "home_score": 0,
+          "away_score": 1,
           "confidence": 0.17,
-          "reasoning": "历史数据表明赔率>3.0时爆冷概率14%；市场隐含概率与模型存在分歧；实力悬殊(168分差距)增加冷门可能；天气因素降雨增加平局概率，爆冷选择客胜(1-3)",
+          "reasoning": "历史数据表明赔率>3.0时爆冷概率14%；市场隐含概率与模型存在分歧；实力悬殊(168分差距)增加冷门可能；天气因素降雨增加平局概率，爆冷选择客胜(0-1)",
           "probs": {
             "H": 0.46094985784764847,
             "D": 0.37,
@@ -306,9 +198,9 @@
           },
           "is_upset": true,
           "real_odds": [
-            1.83,
+            1.82,
             3.5,
-            4.57
+            4.71
           ]
         }
       },
@@ -340,8 +232,8 @@
       "agents": {
         "稳健派": {
           "result": "A",
-          "home_score": 1,
-          "away_score": 0,
+          "home_score": 0,
+          "away_score": 1,
           "confidence": 0.53,
           "reasoning": "Paraguay实力更强，客胜可期",
           "probs": {
@@ -352,8 +244,8 @@
         },
         "激进派": {
           "result": "A",
-          "home_score": 1,
-          "away_score": 0,
+          "home_score": 0,
+          "away_score": 1,
           "confidence": 0.392,
           "reasoning": "数据低估了Paraguay的实力，冷门可期，大胆搏客胜",
           "probs": {
@@ -364,8 +256,8 @@
         },
         "价值派": {
           "result": "A",
-          "home_score": 1,
-          "away_score": 0,
+          "home_score": 0,
+          "away_score": 1,
           "confidence": 0.323,
           "reasoning": "本场价值空间不足，如需投注建议观望",
           "probs": {
@@ -390,10 +282,10 @@
         },
         "数据派": {
           "result": "A",
-          "home_score": 1,
-          "away_score": 0,
+          "home_score": 0,
+          "away_score": 1,
           "confidence": 0.323,
-          "reasoning": "ELO模型计算：United States胜率19%/Paraguay胜率46%/平局35%；FIFA排名：United States=1500分/Paraguay=1655分；最可能比分1-0",
+          "reasoning": "ELO模型计算：United States胜率19%/Paraguay胜率46%/平局35%；FIFA排名：United States=1500分/Paraguay=1655分；最可能比分0-1",
           "probs": {
             "H": 0.18891949011080383,
             "D": 0.35,
@@ -404,9 +296,9 @@
         "爆冷派": {
           "result": "A",
           "home_score": 0,
-          "away_score": 2,
-          "confidence": 0.17,
-          "reasoning": "历史数据表明赔率>3.0时爆冷概率30%；市场隐含概率与模型存在分歧；实力悬殊(155分差距)增加冷门可能，爆冷选择客胜(0-2)",
+          "away_score": 1,
+          "confidence": 0.22,
+          "reasoning": "历史数据表明赔率>3.0时爆冷概率30%；市场隐含概率与模型存在分歧；实力悬殊(155分差距)增加冷门可能，爆冷选择客胜(0-1)",
           "probs": {
             "H": 0.18891949011080383,
             "D": 0.35,
@@ -414,9 +306,9 @@
           },
           "is_upset": true,
           "real_odds": [
-            1.93,
-            3.41,
-            4.2
+            2.08,
+            3.21,
+            3.91
           ]
         }
       },
@@ -614,10 +506,10 @@
         },
         "爆冷派": {
           "result": "A",
-          "home_score": 1,
-          "away_score": 2,
+          "home_score": 0,
+          "away_score": 1,
           "confidence": 0.14,
-          "reasoning": "历史数据表明赔率>3.0时爆冷概率14%；市场隐含概率与模型存在分歧；实力悬殊(142分差距)增加冷门可能，爆冷选择客胜(1-2)",
+          "reasoning": "历史数据表明赔率>3.0时爆冷概率14%；市场隐含概率与模型存在分歧；实力悬殊(142分差距)增加冷门可能，爆冷选择客胜(0-1)",
           "probs": {
             "H": 0.4508971456742775,
             "D": 0.35,
@@ -625,9 +517,9 @@
           },
           "is_upset": true,
           "real_odds": [
-            1.67,
-            3.77,
-            5.44
+            1.63,
+            3.84,
+            5.64
           ]
         }
       },
@@ -671,7 +563,7 @@
         },
         "激进派": {
           "result": "D",
-          "home_score": 0,
+          "home_score": 1,
           "away_score": 1,
           "confidence": 0.427,
           "reasoning": "双方都有机会，对攻战平局收场 (炎热利好Haiti·降雨增加平局概率)",
@@ -683,7 +575,7 @@
         },
         "价值派": {
           "result": "D",
-          "home_score": 0,
+          "home_score": 1,
           "away_score": 1,
           "confidence": 0.35,
           "reasoning": "发现价值空间(平局赔率隐含概率35% vs 预测概率35%)，存在6.0%期望价值 (炎热利好Haiti·降雨增加平局概率)",
@@ -697,8 +589,8 @@
         },
         "防守派": {
           "result": "D",
-          "home_score": 0,
-          "away_score": 0,
+          "home_score": 1,
+          "away_score": 1,
           "confidence": 0.491,
           "reasoning": "世界杯大赛往往以防守为主，看好闷平，炎热利好Haiti·降雨增加平局概率",
           "probs": {
@@ -709,10 +601,10 @@
         },
         "数据派": {
           "result": "D",
-          "home_score": 0,
+          "home_score": 1,
           "away_score": 1,
           "confidence": 0.287,
-          "reasoning": "ELO模型计算：Haiti胜率22%/Scotland胜率37%/平局41%；FIFA排名：Haiti=1500分/Scotland=1618分；最可能比分0-1 [炎热利好Haiti·降雨增加平局概率]",
+          "reasoning": "ELO模型计算：Haiti胜率22%/Scotland胜率37%/平局41%；FIFA排名：Haiti=1500分/Scotland=1618分；最可能比分1-1 [炎热利好Haiti·降雨增加平局概率]",
           "probs": {
             "H": 0.21867683627315795,
             "D": 0.41,
@@ -722,10 +614,10 @@
         },
         "爆冷派": {
           "result": "H",
-          "home_score": 2,
+          "home_score": 1,
           "away_score": 0,
           "confidence": 0.14,
-          "reasoning": "历史数据表明赔率>3.0时爆冷概率17%；市场隐含概率与模型存在分歧；实力悬殊(118分差距)增加冷门可能；天气因素炎热利好Haiti·降雨增加平局概率，爆冷选择主胜(2-0)",
+          "reasoning": "历史数据表明赔率>3.0时爆冷概率17%；市场隐含概率与模型存在分歧；实力悬殊(118分差距)增加冷门可能；天气因素炎热利好Haiti·降雨增加平局概率，爆冷选择主胜(1-0)",
           "probs": {
             "H": 0.21867683627315795,
             "D": 0.41,
@@ -733,9 +625,9 @@
           },
           "is_upset": true,
           "real_odds": [
-            5.9,
-            4.23,
-            1.55
+            5.87,
+            4.19,
+            1.56
           ]
         }
       },
@@ -767,8 +659,8 @@
       "agents": {
         "稳健派": {
           "result": "H",
-          "home_score": 0,
-          "away_score": 1,
+          "home_score": 1,
+          "away_score": 0,
           "confidence": 0.409,
           "reasoning": "Australia略占优势，谨慎看好主队不败",
           "probs": {
@@ -779,8 +671,8 @@
         },
         "激进派": {
           "result": "H",
-          "home_score": 0,
-          "away_score": 1,
+          "home_score": 1,
+          "away_score": 0,
           "confidence": 0.451,
           "reasoning": "Turkey并非没有机会，但Australia进攻火力更强，看好大球取胜",
           "probs": {
@@ -791,8 +683,8 @@
         },
         "价值派": {
           "result": "H",
-          "home_score": 0,
-          "away_score": 1,
+          "home_score": 1,
+          "away_score": 0,
           "confidence": 0.273,
           "reasoning": "本场价值空间不足，如需投注建议观望",
           "probs": {
@@ -805,8 +697,8 @@
         },
         "防守派": {
           "result": "D",
-          "home_score": 0,
-          "away_score": 0,
+          "home_score": 1,
+          "away_score": 1,
           "confidence": 0.428,
           "reasoning": "世界杯大赛往往以防守为主，看好闷平",
           "probs": {
@@ -817,10 +709,10 @@
         },
         "数据派": {
           "result": "H",
-          "home_score": 0,
-          "away_score": 1,
+          "home_score": 1,
+          "away_score": 0,
           "confidence": 0.273,
-          "reasoning": "ELO模型计算：Australia胜率39%/Turkey胜率26%/平局35%；FIFA排名：Australia=1678分/Turkey=1608分；最可能比分0-1",
+          "reasoning": "ELO模型计算：Australia胜率39%/Turkey胜率26%/平局35%；FIFA排名：Australia=1678分/Turkey=1608分；最可能比分1-0",
           "probs": {
             "H": 0.38960791786101695,
             "D": 0.35,
@@ -841,9 +733,9 @@
           },
           "is_upset": true,
           "real_odds": [
-            5.26,
+            5.1,
             3.75,
-            1.69
+            1.7
           ]
         }
       },
@@ -913,8 +805,8 @@
         },
         "防守派": {
           "result": "D",
-          "home_score": 2,
-          "away_score": 2,
+          "home_score": 0,
+          "away_score": 0,
           "confidence": 0.449,
           "reasoning": "世界杯大赛往往以防守为主，看好闷平，降雨增加平局概率",
           "probs": {
@@ -979,7 +871,7 @@
         "稳健派": {
           "result": "H",
           "home_score": 1,
-          "away_score": 1,
+          "away_score": 0,
           "confidence": 0.399,
           "reasoning": "Netherlands略占优势，谨慎看好主队不败",
           "probs": {
@@ -991,7 +883,7 @@
         "激进派": {
           "result": "H",
           "home_score": 1,
-          "away_score": 1,
+          "away_score": 0,
           "confidence": 0.444,
           "reasoning": "Japan并非没有机会，但Netherlands进攻火力更强，看好大球取胜 (降雨增加平局概率)",
           "probs": {
@@ -1003,7 +895,7 @@
         "价值派": {
           "result": "H",
           "home_score": 1,
-          "away_score": 1,
+          "away_score": 0,
           "confidence": 0.273,
           "reasoning": "本场价值空间不足，如需投注建议观望 (降雨增加平局概率)",
           "probs": {
@@ -1029,9 +921,9 @@
         "数据派": {
           "result": "H",
           "home_score": 1,
-          "away_score": 1,
+          "away_score": 0,
           "confidence": 0.266,
-          "reasoning": "ELO模型计算：Netherlands胜率38%/Japan胜率25%/平局37%；FIFA排名：Netherlands=1765分/Japan=1695分；最可能比分1-1 [降雨增加平局概率]",
+          "reasoning": "ELO模型计算：Netherlands胜率38%/Japan胜率25%/平局37%；FIFA排名：Netherlands=1765分/Japan=1695分；最可能比分1-0 [降雨增加平局概率]",
           "probs": {
             "H": 0.37960791786101694,
             "D": 0.37,
@@ -1041,10 +933,10 @@
         },
         "爆冷派": {
           "result": "A",
-          "home_score": 1,
-          "away_score": 2,
+          "home_score": 0,
+          "away_score": 1,
           "confidence": 0.22,
-          "reasoning": "历史数据表明赔率>3.0时爆冷概率22%；市场隐含概率与模型存在分歧；天气因素降雨增加平局概率，爆冷选择客胜(1-2)",
+          "reasoning": "历史数据表明赔率>3.0时爆冷概率22%；市场隐含概率与模型存在分歧；天气因素降雨增加平局概率，爆冷选择客胜(0-1)",
           "probs": {
             "H": 0.37960791786101694,
             "D": 0.37,
@@ -1052,9 +944,9 @@
           },
           "is_upset": true,
           "real_odds": [
-            2.01,
-            3.54,
-            3.69
+            1.99,
+            3.56,
+            3.73
           ]
         }
       },
@@ -1086,7 +978,7 @@
       "agents": {
         "稳健派": {
           "result": "A",
-          "home_score": 1,
+          "home_score": 0,
           "away_score": 1,
           "confidence": 0.38,
           "reasoning": "Ecuador略占优势，谨慎看好客队不败",
@@ -1098,7 +990,7 @@
         },
         "激进派": {
           "result": "A",
-          "home_score": 1,
+          "home_score": 0,
           "away_score": 1,
           "confidence": 0.42,
           "reasoning": "数据低估了Ecuador的实力，冷门可期，大胆搏客胜",
@@ -1110,7 +1002,7 @@
         },
         "价值派": {
           "result": "A",
-          "home_score": 1,
+          "home_score": 0,
           "away_score": 1,
           "confidence": 0.254,
           "reasoning": "本场价值空间不足，如需投注建议观望",
@@ -1136,10 +1028,10 @@
         },
         "数据派": {
           "result": "A",
-          "home_score": 1,
+          "home_score": 0,
           "away_score": 1,
           "confidence": 0.254,
-          "reasoning": "ELO模型计算：Ivory Coast胜率29%/Ecuador胜率36%/平局35%；FIFA排名：Ivory Coast=1625分/Ecuador=1665分；最可能比分1-1",
+          "reasoning": "ELO模型计算：Ivory Coast胜率29%/Ecuador胜率36%/平局35%；FIFA排名：Ivory Coast=1625分/Ecuador=1665分；最可能比分0-1",
           "probs": {
             "H": 0.2877474380545097,
             "D": 0.35,
@@ -1149,10 +1041,10 @@
         },
         "爆冷派": {
           "result": "H",
-          "home_score": 1,
+          "home_score": 2,
           "away_score": 0,
           "confidence": 0.22,
-          "reasoning": "历史数据表明赔率>3.0时爆冷概率22%；市场隐含概率与模型存在分歧，爆冷选择主胜(1-0)",
+          "reasoning": "历史数据表明赔率>3.0时爆冷概率22%；市场隐含概率与模型存在分歧，爆冷选择主胜(2-0)",
           "probs": {
             "H": 0.2877474380545097,
             "D": 0.35,
@@ -1160,8 +1052,8 @@
           },
           "is_upset": true,
           "real_odds": [
-            3.57,
-            2.83,
+            3.55,
+            2.82,
             2.41
           ]
         }
@@ -1195,7 +1087,7 @@
         "稳健派": {
           "result": "D",
           "home_score": 1,
-          "away_score": 0,
+          "away_score": 1,
           "confidence": 0.444,
           "reasoning": "双方实力接近(排名差仅10分)，稳健选择平局",
           "probs": {
@@ -1206,8 +1098,8 @@
         },
         "激进派": {
           "result": "A",
-          "home_score": 1,
-          "away_score": 0,
+          "home_score": 0,
+          "away_score": 1,
           "confidence": 0.379,
           "reasoning": "数据低估了Tunisia的实力，冷门可期，大胆搏客胜 (降雨增加平局概率)",
           "probs": {
@@ -1219,7 +1111,7 @@
         "价值派": {
           "result": "D",
           "home_score": 1,
-          "away_score": 0,
+          "away_score": 1,
           "confidence": 0.245,
           "reasoning": "本场价值空间不足，如需投注建议观望 (降雨增加平局概率)",
           "probs": {
@@ -1245,9 +1137,9 @@
         "数据派": {
           "result": "D",
           "home_score": 1,
-          "away_score": 0,
+          "away_score": 1,
           "confidence": 0.259,
-          "reasoning": "ELO模型计算：Sweden胜率31%/Tunisia胜率32%/平局37%；FIFA排名：Sweden=1625分/Tunisia=1635分；最可能比分1-0 [降雨增加平局概率]",
+          "reasoning": "ELO模型计算：Sweden胜率31%/Tunisia胜率32%/平局37%；FIFA排名：Sweden=1625分/Tunisia=1635分；最可能比分1-1 [降雨增加平局概率]",
           "probs": {
             "H": 0.30564833029210087,
             "D": 0.37,
@@ -1257,10 +1149,10 @@
         },
         "爆冷派": {
           "result": "A",
-          "home_score": 0,
-          "away_score": 2,
+          "home_score": 1,
+          "away_score": 3,
           "confidence": 0.17,
-          "reasoning": "历史数据表明赔率>3.0时爆冷概率30%；市场隐含概率与模型存在分歧；天气因素降雨增加平局概率，爆冷选择客胜(0-2)",
+          "reasoning": "历史数据表明赔率>3.0时爆冷概率30%；市场隐含概率与模型存在分歧；天气因素降雨增加平局概率，爆冷选择客胜(1-3)",
           "probs": {
             "H": 0.30564833029210087,
             "D": 0.37,
@@ -1268,9 +1160,9 @@
           },
           "is_upset": true,
           "real_odds": [
-            1.91,
-            3.42,
-            4.3
+            1.89,
+            3.45,
+            4.36
           ]
         }
       },
@@ -1340,8 +1232,8 @@
         },
         "防守派": {
           "result": "D",
-          "home_score": 2,
-          "away_score": 2,
+          "home_score": 0,
+          "away_score": 0,
           "confidence": 0.449,
           "reasoning": "世界杯大赛往往以防守为主，看好闷平，降雨增加平局概率",
           "probs": {
@@ -1468,10 +1360,10 @@
         },
         "爆冷派": {
           "result": "A",
-          "home_score": 0,
-          "away_score": 2,
+          "home_score": 1,
+          "away_score": 3,
           "confidence": 0.14,
-          "reasoning": "历史数据表明赔率>3.0时爆冷概率14%；市场隐含概率与模型存在分歧；实力悬殊(167分差距)增加冷门可能；天气因素降雨增加平局概率，爆冷选择客胜(0-2)",
+          "reasoning": "历史数据表明赔率>3.0时爆冷概率14%；市场隐含概率与模型存在分歧；实力悬殊(167分差距)增加冷门可能；天气因素降雨增加平局概率，爆冷选择客胜(1-3)",
           "probs": {
             "H": 0.4602021151354609,
             "D": 0.37,
@@ -1479,9 +1371,9 @@
           },
           "is_upset": true,
           "real_odds": [
-            1.63,
-            3.9,
-            5.54
+            1.61,
+            3.94,
+            5.74
           ]
         }
       },
@@ -1513,7 +1405,7 @@
       "agents": {
         "稳健派": {
           "result": "D",
-          "home_score": 0,
+          "home_score": 1,
           "away_score": 1,
           "confidence": 0.42,
           "reasoning": "双方实力接近(排名差仅37分)，稳健选择平局",
@@ -1551,8 +1443,8 @@
         },
         "防守派": {
           "result": "D",
-          "home_score": 0,
-          "away_score": 0,
+          "home_score": 1,
+          "away_score": 1,
           "confidence": 0.473,
           "reasoning": "世界杯大赛往往以防守为主，双方实力接近(差37分)，看好闷平",
           "probs": {
@@ -1587,9 +1479,9 @@
           },
           "is_upset": true,
           "real_odds": [
-            7.75,
-            4.43,
-            1.44
+            7.87,
+            4.44,
+            1.43
           ]
         }
       },
@@ -1696,8 +1588,8 @@
           "is_upset": true,
           "real_odds": [
             1.83,
-            3.48,
-            4.59
+            3.45,
+            4.63
           ]
         }
       },
@@ -1767,8 +1659,8 @@
         },
         "防守派": {
           "result": "D",
-          "home_score": 2,
-          "away_score": 2,
+          "home_score": 1,
+          "away_score": 1,
           "confidence": 0.449,
           "reasoning": "世界杯大赛往往以防守为主，看好闷平，降雨增加平局概率",
           "probs": {
@@ -1792,10 +1684,10 @@
         },
         "爆冷派": {
           "result": "A",
-          "home_score": 0,
-          "away_score": 1,
+          "home_score": 1,
+          "away_score": 2,
           "confidence": 0.1,
-          "reasoning": "历史数据表明赔率>3.0时爆冷概率14%；市场隐含概率与模型存在分歧；实力悬殊(157分差距)增加冷门可能；天气因素降雨增加平局概率，爆冷选择客胜(0-1)",
+          "reasoning": "历史数据表明赔率>3.0时爆冷概率14%；市场隐含概率与模型存在分歧；实力悬殊(157分差距)增加冷门可能；天气因素降雨增加平局概率，爆冷选择客胜(1-2)",
           "probs": {
             "H": 0.45261964082279094,
             "D": 0.37,
@@ -1804,8 +1696,8 @@
           "is_upset": true,
           "real_odds": [
             1.47,
-            4.36,
-            7.19
+            4.37,
+            7.23
           ]
         }
       },
@@ -1850,7 +1742,7 @@
         "激进派": {
           "result": "D",
           "home_score": 0,
-          "away_score": 2,
+          "away_score": 0,
           "confidence": 0.37,
           "reasoning": "双方都有机会，对攻战平局收场",
           "probs": {
@@ -1978,8 +1870,8 @@
         },
         "防守派": {
           "result": "D",
-          "home_score": 2,
-          "away_score": 2,
+          "home_score": 1,
+          "away_score": 1,
           "confidence": 0.428,
           "reasoning": "世界杯大赛往往以防守为主，看好闷平",
           "probs": {
@@ -2003,10 +1895,10 @@
         },
         "爆冷派": {
           "result": "A",
-          "home_score": 1,
-          "away_score": 3,
+          "home_score": 0,
+          "away_score": 1,
           "confidence": 0.08,
-          "reasoning": "历史数据表明赔率>3.0时爆冷概率10%；市场隐含概率与模型存在分歧；实力悬殊(226分差距)增加冷门可能，爆冷选择客胜(1-3)",
+          "reasoning": "历史数据表明赔率>3.0时爆冷概率10%；市场隐含概率与模型存在分歧；实力悬殊(226分差距)增加冷门可能，爆冷选择客胜(0-1)",
           "probs": {
             "H": 0.5108977914834024,
             "D": 0.35,
@@ -2016,7 +1908,7 @@
           "real_odds": [
             1.39,
             4.58,
-            8.75
+            8.78
           ]
         }
       },
@@ -2086,8 +1978,8 @@
         },
         "防守派": {
           "result": "D",
-          "home_score": 2,
-          "away_score": 2,
+          "home_score": 1,
+          "away_score": 1,
           "confidence": 0.449,
           "reasoning": "世界杯大赛往往以防守为主，看好闷平，炎热利好客队·降雨增加平局概率",
           "probs": {
@@ -2111,10 +2003,10 @@
         },
         "爆冷派": {
           "result": "A",
-          "home_score": 0,
+          "home_score": 1,
           "away_score": 2,
           "confidence": 0.08,
-          "reasoning": "历史数据表明赔率>3.0时爆冷概率17%；市场隐含概率与模型存在分歧；实力悬殊(112分差距)增加冷门可能；天气因素炎热利好客队·降雨增加平局概率，爆冷选择客胜(0-2)",
+          "reasoning": "历史数据表明赔率>3.0时爆冷概率17%；市场隐含概率与模型存在分歧；实力悬殊(112分差距)增加冷门可能；天气因素炎热利好客队·降雨增加平局概率，爆冷选择客胜(1-2)",
           "probs": {
             "H": 0.3937833288430568,
             "D": 0.37,
@@ -2122,9 +2014,9 @@
           },
           "is_upset": true,
           "real_odds": [
-            1.31,
-            5.53,
-            9.46
+            1.32,
+            5.45,
+            9.18
           ]
         }
       },
@@ -2194,8 +2086,8 @@
         },
         "防守派": {
           "result": "D",
-          "home_score": 2,
-          "away_score": 2,
+          "home_score": 1,
+          "away_score": 1,
           "confidence": 0.449,
           "reasoning": "世界杯大赛往往以防守为主，看好闷平，降雨增加平局概率",
           "probs": {
@@ -2323,9 +2215,9 @@
         "爆冷派": {
           "result": "A",
           "home_score": 0,
-          "away_score": 2,
+          "away_score": 1,
           "confidence": 0.17,
-          "reasoning": "历史数据表明赔率>3.0时爆冷概率17%；市场隐含概率与模型存在分歧；天气因素降雨增加平局概率，爆冷选择客胜(0-2)",
+          "reasoning": "历史数据表明赔率>3.0时爆冷概率17%；市场隐含概率与模型存在分歧；天气因素降雨增加平局概率，爆冷选择客胜(0-1)",
           "probs": {
             "H": 0.39207967935787,
             "D": 0.37000000000000005,
@@ -2333,9 +2225,9 @@
           },
           "is_upset": true,
           "real_odds": [
-            1.72,
+            1.73,
             3.76,
-            4.91
+            4.9
           ]
         }
       },
@@ -2379,7 +2271,7 @@
         },
         "激进派": {
           "result": "A",
-          "home_score": 1,
+          "home_score": 0,
           "away_score": 1,
           "confidence": 0.387,
           "reasoning": "数据低估了Panama的实力，冷门可期，大胆搏客胜",
@@ -2430,10 +2322,10 @@
         },
         "爆冷派": {
           "result": "A",
-          "home_score": 1,
-          "away_score": 2,
+          "home_score": 0,
+          "away_score": 1,
           "confidence": 0.22,
-          "reasoning": "历史数据表明赔率>3.0时爆冷概率30%；市场隐含概率与模型存在分歧，爆冷选择客胜(1-2)",
+          "reasoning": "历史数据表明赔率>3.0时爆冷概率30%；市场隐含概率与模型存在分歧，爆冷选择客胜(0-1)",
           "probs": {
             "H": 0.3156483302921009,
             "D": 0.35,
@@ -2442,8 +2334,8 @@
           "is_upset": true,
           "real_odds": [
             2.12,
-            3.41,
-            3.5
+            3.4,
+            3.49
           ]
         }
       },
@@ -2513,8 +2405,8 @@
         },
         "防守派": {
           "result": "D",
-          "home_score": 0,
-          "away_score": 0,
+          "home_score": 1,
+          "away_score": 1,
           "confidence": 0.428,
           "reasoning": "世界杯大赛往往以防守为主，看好闷平",
           "probs": {
@@ -2538,10 +2430,10 @@
         },
         "爆冷派": {
           "result": "H",
-          "home_score": 1,
-          "away_score": 0,
+          "home_score": 3,
+          "away_score": 1,
           "confidence": 0.08,
-          "reasoning": "历史数据表明赔率>3.0时爆冷概率12%；市场隐含概率与模型存在分歧；实力悬殊(208分差距)增加冷门可能，爆冷选择主胜(1-0)",
+          "reasoning": "历史数据表明赔率>3.0时爆冷概率12%；市场隐含概率与模型存在分歧；实力悬殊(208分差距)增加冷门可能，爆冷选择主胜(3-1)",
           "probs": {
             "H": 0.1507661979410704,
             "D": 0.35,
@@ -2549,7 +2441,7 @@
           },
           "is_upset": true,
           "real_odds": [
-            8.78,
+            8.82,
             4.67,
             1.38
           ]
@@ -2583,8 +2475,8 @@
       "agents": {
         "稳健派": {
           "result": "A",
-          "home_score": 1,
-          "away_score": 0,
+          "home_score": 0,
+          "away_score": 1,
           "confidence": 0.49,
           "reasoning": "South Africa实力更强，客胜可期",
           "probs": {
@@ -2596,7 +2488,7 @@
         "激进派": {
           "result": "D",
           "home_score": 1,
-          "away_score": 0,
+          "away_score": 1,
           "confidence": 0.369,
           "reasoning": "双方都有机会，对攻战平局收场",
           "probs": {
@@ -2607,8 +2499,8 @@
         },
         "价值派": {
           "result": "A",
-          "home_score": 1,
-          "away_score": 0,
+          "home_score": 0,
+          "away_score": 1,
           "confidence": 0.298,
           "reasoning": "本场价值空间不足，如需投注建议观望",
           "probs": {
@@ -2633,10 +2525,10 @@
         },
         "数据派": {
           "result": "A",
-          "home_score": 1,
-          "away_score": 0,
+          "home_score": 0,
+          "away_score": 1,
           "confidence": 0.298,
-          "reasoning": "ELO模型计算：Czechia胜率22%/South Africa胜率43%/平局35%；FIFA排名：Czechia=1500分/South Africa=1612分；最可能比分1-0",
+          "reasoning": "ELO模型计算：Czechia胜率22%/South Africa胜率43%/平局35%；FIFA排名：Czechia=1500分/South Africa=1612分；最可能比分0-1",
           "probs": {
             "H": 0.22371667115694327,
             "D": 0.35,
@@ -2647,9 +2539,9 @@
         "爆冷派": {
           "result": "A",
           "home_score": 1,
-          "away_score": 3,
-          "confidence": 0.14,
-          "reasoning": "历史数据表明赔率>3.0时爆冷概率30%；市场隐含概率与模型存在分歧；实力悬殊(112分差距)增加冷门可能，爆冷选择客胜(1-3)",
+          "away_score": 2,
+          "confidence": 0.17,
+          "reasoning": "历史数据表明赔率>3.0时爆冷概率30%；市场隐含概率与模型存在分歧；实力悬殊(112分差距)增加冷门可能，爆冷选择客胜(1-2)",
           "probs": {
             "H": 0.22371667115694327,
             "D": 0.35,
@@ -2657,9 +2549,9 @@
           },
           "is_upset": true,
           "real_odds": [
-            1.65,
-            3.81,
-            5.32
+            1.7,
+            3.8,
+            5.0
           ]
         }
       },
@@ -2837,8 +2729,8 @@
         },
         "防守派": {
           "result": "D",
-          "home_score": 2,
-          "away_score": 2,
+          "home_score": 1,
+          "away_score": 1,
           "confidence": 0.449,
           "reasoning": "世界杯大赛往往以防守为主，看好闷平，降雨增加平局概率",
           "probs": {
@@ -2903,7 +2795,7 @@
         "稳健派": {
           "result": "D",
           "home_score": 1,
-          "away_score": 0,
+          "away_score": 1,
           "confidence": 0.45,
           "reasoning": "双方实力接近(排名差仅33分)，稳健选择平局",
           "probs": {
@@ -2965,10 +2857,10 @@
         },
         "爆冷派": {
           "result": "A",
-          "home_score": 1,
-          "away_score": 2,
+          "home_score": 0,
+          "away_score": 1,
           "confidence": 0.17,
-          "reasoning": "历史数据表明赔率>3.0时爆冷概率22%；市场隐含概率与模型存在分歧；天气因素高海拔利好Mexico·降雨增加平局概率，爆冷选择客胜(1-2)",
+          "reasoning": "历史数据表明赔率>3.0时爆冷概率22%；市场隐含概率与模型存在分歧；天气因素高海拔利好Mexico·降雨增加平局概率，爆冷选择客胜(0-1)",
           "probs": {
             "H": 0.41817653672981203,
             "D": 0.38999999999999996,
@@ -2976,9 +2868,9 @@
           },
           "is_upset": true,
           "real_odds": [
-            1.82,
-            3.5,
-            4.52
+            1.97,
+            3.33,
+            4.05
           ]
         }
       },
@@ -3010,8 +2902,8 @@
       "agents": {
         "稳健派": {
           "result": "A",
-          "home_score": 1,
-          "away_score": 0,
+          "home_score": 0,
+          "away_score": 1,
           "confidence": 0.55,
           "reasoning": "Australia实力更强，客胜可期",
           "probs": {
@@ -3022,8 +2914,8 @@
         },
         "激进派": {
           "result": "A",
-          "home_score": 1,
-          "away_score": 0,
+          "home_score": 0,
+          "away_score": 1,
           "confidence": 0.407,
           "reasoning": "数据低估了Australia的实力，冷门可期，大胆搏客胜",
           "probs": {
@@ -3034,8 +2926,8 @@
         },
         "价值派": {
           "result": "A",
-          "home_score": 1,
-          "away_score": 0,
+          "home_score": 0,
+          "away_score": 1,
           "confidence": 0.335,
           "reasoning": "本场价值空间不足，如需投注建议观望",
           "probs": {
@@ -3060,10 +2952,10 @@
         },
         "数据派": {
           "result": "A",
-          "home_score": 1,
-          "away_score": 0,
+          "home_score": 0,
+          "away_score": 1,
           "confidence": 0.335,
-          "reasoning": "ELO模型计算：United States胜率17%/Australia胜率48%/平局35%；FIFA排名：United States=1500分/Australia=1678分；最可能比分1-0",
+          "reasoning": "ELO模型计算：United States胜率17%/Australia胜率48%/平局35%；FIFA排名：United States=1500分/Australia=1678分；最可能比分0-1",
           "probs": {
             "H": 0.17167966133404036,
             "D": 0.35,
@@ -3085,7 +2977,7 @@
           "is_upset": true,
           "real_odds": [
             1.74,
-            3.79,
+            3.78,
             4.53
           ]
         }
@@ -3156,8 +3048,8 @@
         },
         "防守派": {
           "result": "D",
-          "home_score": 0,
-          "away_score": 0,
+          "home_score": 1,
+          "away_score": 1,
           "confidence": 0.449,
           "reasoning": "世界杯大赛往往以防守为主，看好闷平，降雨增加平局概率",
           "probs": {
@@ -3181,10 +3073,10 @@
         },
         "爆冷派": {
           "result": "H",
-          "home_score": 1,
-          "away_score": 0,
+          "home_score": 2,
+          "away_score": 1,
           "confidence": 0.17,
-          "reasoning": "历史数据表明赔率>3.0时爆冷概率22%；市场隐含概率与模型存在分歧；天气因素降雨增加平局概率，爆冷选择主胜(1-0)",
+          "reasoning": "历史数据表明赔率>3.0时爆冷概率22%；市场隐含概率与模型存在分歧；天气因素降雨增加平局概率，爆冷选择主胜(2-1)",
           "probs": {
             "H": 0.2468066136948281,
             "D": 0.37,
@@ -3192,9 +3084,9 @@
           },
           "is_upset": true,
           "real_odds": [
-            4.09,
-            3.28,
-            1.97
+            4.15,
+            3.29,
+            1.95
           ]
         }
       },
@@ -3264,8 +3156,8 @@
         },
         "防守派": {
           "result": "D",
-          "home_score": 2,
-          "away_score": 2,
+          "home_score": 0,
+          "away_score": 0,
           "confidence": 0.413,
           "reasoning": "世界杯大赛往往以防守为主，看好闷平",
           "probs": {
@@ -3329,7 +3221,7 @@
       "agents": {
         "稳健派": {
           "result": "A",
-          "home_score": 1,
+          "home_score": 0,
           "away_score": 1,
           "confidence": 0.377,
           "reasoning": "Paraguay略占优势，谨慎看好客队不败",
@@ -3341,7 +3233,7 @@
         },
         "激进派": {
           "result": "A",
-          "home_score": 1,
+          "home_score": 0,
           "away_score": 1,
           "confidence": 0.419,
           "reasoning": "数据低估了Paraguay的实力，冷门可期，大胆搏客胜 (降雨增加平局概率)",
@@ -3353,7 +3245,7 @@
         },
         "价值派": {
           "result": "A",
-          "home_score": 1,
+          "home_score": 0,
           "away_score": 1,
           "confidence": 0.258,
           "reasoning": "本场价值空间不足，如需投注建议观望 (降雨增加平局概率)",
@@ -3403,9 +3295,9 @@
           },
           "is_upset": true,
           "real_odds": [
-            2.22,
-            3.17,
-            3.4
+            2.21,
+            3.18,
+            3.41
           ]
         }
       },
@@ -3501,9 +3393,9 @@
         "爆冷派": {
           "result": "A",
           "home_score": 1,
-          "away_score": 3,
+          "away_score": 2,
           "confidence": 0.14,
-          "reasoning": "历史数据表明赔率>3.0时爆冷概率17%；市场隐含概率与模型存在分歧；实力悬殊(140分差距)增加冷门可能；天气因素降雨增加平局概率，爆冷选择客胜(1-3)",
+          "reasoning": "历史数据表明赔率>3.0时爆冷概率17%；市场隐含概率与模型存在分歧；实力悬殊(140分差距)增加冷门可能；天气因素降雨增加平局概率，爆冷选择客胜(1-2)",
           "probs": {
             "H": 0.4393034990695959,
             "D": 0.37,
@@ -3513,7 +3405,7 @@
           "real_odds": [
             1.63,
             3.98,
-            5.18
+            5.17
           ]
         }
       },
@@ -3583,8 +3475,8 @@
         },
         "防守派": {
           "result": "D",
-          "home_score": 2,
-          "away_score": 2,
+          "home_score": 1,
+          "away_score": 1,
           "confidence": 0.449,
           "reasoning": "世界杯大赛往往以防守为主，看好闷平，降雨增加平局概率",
           "probs": {
@@ -3609,9 +3501,9 @@
         "爆冷派": {
           "result": "A",
           "home_score": 0,
-          "away_score": 2,
+          "away_score": 1,
           "confidence": 0.14,
-          "reasoning": "历史数据表明赔率>3.0时爆冷概率17%；市场隐含概率与模型存在分歧；实力悬殊(120分差距)增加冷门可能；天气因素降雨增加平局概率，爆冷选择客胜(0-2)",
+          "reasoning": "历史数据表明赔率>3.0时爆冷概率17%；市场隐含概率与模型存在分歧；实力悬殊(120分差距)增加冷门可能；天气因素降雨增加平局概率，爆冷选择客胜(0-1)",
           "probs": {
             "H": 0.4229906259790294,
             "D": 0.37,
@@ -3691,8 +3583,8 @@
         },
         "防守派": {
           "result": "D",
-          "home_score": 2,
-          "away_score": 2,
+          "home_score": 0,
+          "away_score": 0,
           "confidence": 0.428,
           "reasoning": "世界杯大赛往往以防守为主，看好闷平",
           "probs": {
@@ -3794,8 +3686,8 @@
         },
         "防守派": {
           "result": "D",
-          "home_score": 0,
-          "away_score": 0,
+          "home_score": 1,
+          "away_score": 1,
           "confidence": 0.428,
           "reasoning": "世界杯大赛往往以防守为主，看好闷平",
           "probs": {
@@ -3819,10 +3711,10 @@
         },
         "爆冷派": {
           "result": "H",
-          "home_score": 2,
+          "home_score": 1,
           "away_score": 0,
           "confidence": 0.14,
-          "reasoning": "历史数据表明赔率>3.0时爆冷概率22%；市场隐含概率与模型存在分歧，爆冷选择主胜(2-0)",
+          "reasoning": "历史数据表明赔率>3.0时爆冷概率22%；市场隐含概率与模型存在分歧，爆冷选择主胜(1-0)",
           "probs": {
             "H": 0.2694258588633238,
             "D": 0.35,
@@ -3830,9 +3722,9 @@
           },
           "is_upset": true,
           "real_odds": [
-            5.23,
-            3.55,
-            1.71
+            5.29,
+            3.56,
+            1.69
           ]
         }
       },
@@ -3902,8 +3794,8 @@
         },
         "防守派": {
           "result": "D",
-          "home_score": 2,
-          "away_score": 2,
+          "home_score": 0,
+          "away_score": 0,
           "confidence": 0.449,
           "reasoning": "世界杯大赛往往以防守为主，看好闷平，降雨增加平局概率",
           "probs": {
@@ -4005,8 +3897,8 @@
         },
         "防守派": {
           "result": "D",
-          "home_score": 2,
-          "away_score": 2,
+          "home_score": 1,
+          "away_score": 1,
           "confidence": 0.449,
           "reasoning": "世界杯大赛往往以防守为主，看好闷平，降雨增加平局概率",
           "probs": {
@@ -4042,8 +3934,8 @@
           "is_upset": true,
           "real_odds": [
             1.4,
-            4.61,
-            7.97
+            4.62,
+            7.92
           ]
         }
       },
@@ -4099,8 +3991,8 @@
         },
         "价值派": {
           "result": "D",
-          "home_score": 2,
-          "away_score": 0,
+          "home_score": 1,
+          "away_score": 1,
           "confidence": 0.35,
           "reasoning": "发现价值空间(平局赔率隐含概率35% vs 预测概率35%)，存在6.0%期望价值 (炎热利好客队·降雨增加平局概率)",
           "probs": {
@@ -4113,8 +4005,8 @@
         },
         "防守派": {
           "result": "D",
-          "home_score": 2,
-          "away_score": 2,
+          "home_score": 1,
+          "away_score": 1,
           "confidence": 0.491,
           "reasoning": "世界杯大赛往往以防守为主，看好闷平，炎热利好客队·降雨增加平局概率",
           "probs": {
@@ -4138,10 +4030,10 @@
         },
         "爆冷派": {
           "result": "A",
-          "home_score": 1,
-          "away_score": 2,
+          "home_score": 0,
+          "away_score": 1,
           "confidence": 0.1,
-          "reasoning": "历史数据表明赔率>3.0时爆冷概率12%；市场隐含概率与模型存在分歧；实力悬殊(212分差距)增加冷门可能；天气因素炎热利好客队·降雨增加平局概率，爆冷选择客胜(1-2)",
+          "reasoning": "历史数据表明赔率>3.0时爆冷概率12%；市场隐含概率与模型存在分歧；实力悬殊(212分差距)增加冷门可能；天气因素炎热利好客队·降雨增加平局概率，爆冷选择客胜(0-1)",
           "probs": {
             "H": 0.45088363775457957,
             "D": 0.41000000000000003,
@@ -4151,7 +4043,7 @@
           "real_odds": [
             1.43,
             4.44,
-            7.41
+            7.42
           ]
         }
       },
@@ -4221,8 +4113,8 @@
         },
         "防守派": {
           "result": "D",
-          "home_score": 0,
-          "away_score": 0,
+          "home_score": 1,
+          "away_score": 1,
           "confidence": 0.473,
           "reasoning": "世界杯大赛往往以防守为主，双方实力接近(差48分)，看好闷平",
           "probs": {
@@ -4247,9 +4139,9 @@
         "爆冷派": {
           "result": "H",
           "home_score": 2,
-          "away_score": 1,
+          "away_score": 0,
           "confidence": 0.17,
-          "reasoning": "历史数据表明赔率>3.0时爆冷概率22%；市场隐含概率与模型存在分歧，爆冷选择主胜(2-1)",
+          "reasoning": "历史数据表明赔率>3.0时爆冷概率22%；市场隐含概率与模型存在分歧，爆冷选择主胜(2-0)",
           "probs": {
             "H": 0.28038309527561606,
             "D": 0.35,
@@ -4257,8 +4149,8 @@
           },
           "is_upset": true,
           "real_odds": [
-            4.82,
-            3.65,
+            4.81,
+            3.66,
             1.73
           ]
         }
@@ -4354,10 +4246,10 @@
         },
         "爆冷派": {
           "result": "A",
-          "home_score": 0,
-          "away_score": 1,
+          "home_score": 1,
+          "away_score": 2,
           "confidence": 0.14,
-          "reasoning": "历史数据表明赔率>3.0时爆冷概率10%；市场隐含概率与模型存在分歧；实力悬殊(246分差距)增加冷门可能，爆冷选择客胜(0-1)",
+          "reasoning": "历史数据表明赔率>3.0时爆冷概率10%；市场隐含概率与模型存在分歧；实力悬殊(246分差距)增加冷门可能，爆冷选择客胜(1-2)",
           "probs": {
             "H": 0.5230710507745187,
             "D": 0.35,
@@ -4367,7 +4259,7 @@
           "real_odds": [
             1.64,
             3.82,
-            5.35
+            5.38
           ]
         }
       },
@@ -4437,8 +4329,8 @@
         },
         "防守派": {
           "result": "D",
-          "home_score": 2,
-          "away_score": 2,
+          "home_score": 0,
+          "away_score": 0,
           "confidence": 0.432,
           "reasoning": "世界杯大赛往往以防守为主，看好闷平，降雨增加平局概率",
           "probs": {
@@ -4502,7 +4394,7 @@
       "agents": {
         "稳健派": {
           "result": "A",
-          "home_score": 1,
+          "home_score": 0,
           "away_score": 1,
           "confidence": 0.395,
           "reasoning": "Senegal略占优势，谨慎看好客队不败",
@@ -4514,7 +4406,7 @@
         },
         "激进派": {
           "result": "A",
-          "home_score": 1,
+          "home_score": 0,
           "away_score": 1,
           "confidence": 0.44,
           "reasoning": "数据低估了Senegal的实力，冷门可期，大胆搏客胜 (降雨增加平局概率)",
@@ -4526,7 +4418,7 @@
         },
         "价值派": {
           "result": "A",
-          "home_score": 1,
+          "home_score": 0,
           "away_score": 1,
           "confidence": 0.27,
           "reasoning": "本场价值空间不足，如需投注建议观望 (降雨增加平局概率)",
@@ -4552,10 +4444,10 @@
         },
         "数据派": {
           "result": "A",
-          "home_score": 1,
+          "home_score": 0,
           "away_score": 1,
           "confidence": 0.263,
-          "reasoning": "ELO模型计算：Norway胜率25%/Senegal胜率38%/平局37%；FIFA排名：Norway=1622分/Senegal=1688分；最可能比分1-1 [降雨增加平局概率]",
+          "reasoning": "ELO模型计算：Norway胜率25%/Senegal胜率38%/平局37%；FIFA排名：Norway=1622分/Senegal=1688分；最可能比分0-1 [降雨增加平局概率]",
           "probs": {
             "H": 0.25399399959648444,
             "D": 0.37,
@@ -4565,10 +4457,10 @@
         },
         "爆冷派": {
           "result": "D",
-          "home_score": 2,
-          "away_score": 2,
+          "home_score": 0,
+          "away_score": 0,
           "confidence": 0.22,
-          "reasoning": "历史数据表明赔率>3.0时爆冷概率30%；市场隐含概率与模型存在分歧；天气因素降雨增加平局概率，爆冷选择平局(2-2)",
+          "reasoning": "历史数据表明赔率>3.0时爆冷概率30%；市场隐含概率与模型存在分歧；天气因素降雨增加平局概率，爆冷选择平局(0-0)",
           "probs": {
             "H": 0.25399399959648444,
             "D": 0.37,
@@ -4577,7 +4469,7 @@
           "is_upset": true,
           "real_odds": [
             2.13,
-            3.45,
+            3.44,
             3.33
           ]
         }
@@ -4648,8 +4540,8 @@
         },
         "防守派": {
           "result": "D",
-          "home_score": 0,
-          "away_score": 0,
+          "home_score": 1,
+          "away_score": 1,
           "confidence": 0.428,
           "reasoning": "世界杯大赛往往以防守为主，看好闷平",
           "probs": {
@@ -4673,10 +4565,10 @@
         },
         "爆冷派": {
           "result": "H",
-          "home_score": 2,
-          "away_score": 1,
+          "home_score": 1,
+          "away_score": 0,
           "confidence": 0.12,
-          "reasoning": "历史数据表明赔率>3.0时爆冷概率17%；市场隐含概率与模型存在分歧；实力悬殊(132分差距)增加冷门可能，爆冷选择主胜(2-1)",
+          "reasoning": "历史数据表明赔率>3.0时爆冷概率17%；市场隐含概率与模型存在分歧；实力悬殊(132分差距)增加冷门可能，爆冷选择主胜(1-0)",
           "probs": {
             "H": 0.2071408071418441,
             "D": 0.35,
@@ -4684,8 +4576,8 @@
           },
           "is_upset": true,
           "real_odds": [
-            6.32,
-            4.16,
+            6.34,
+            4.15,
             1.51
           ]
         }
@@ -4756,8 +4648,8 @@
         },
         "防守派": {
           "result": "D",
-          "home_score": 2,
-          "away_score": 2,
+          "home_score": 1,
+          "away_score": 1,
           "confidence": 0.447,
           "reasoning": "世界杯大赛往往以防守为主，看好闷平，降雨增加平局概率",
           "probs": {
@@ -4859,8 +4751,8 @@
         },
         "防守派": {
           "result": "D",
-          "home_score": 2,
-          "away_score": 2,
+          "home_score": 1,
+          "away_score": 1,
           "confidence": 0.449,
           "reasoning": "世界杯大赛往往以防守为主，看好闷平，降雨增加平局概率",
           "probs": {
@@ -4885,9 +4777,9 @@
         "爆冷派": {
           "result": "A",
           "home_score": 0,
-          "away_score": 1,
+          "away_score": 2,
           "confidence": 0.08,
-          "reasoning": "历史数据表明赔率>3.0时爆冷概率14%；市场隐含概率与模型存在分歧；实力悬殊(174分差距)增加冷门可能；天气因素降雨增加平局概率，爆冷选择客胜(0-1)",
+          "reasoning": "历史数据表明赔率>3.0时爆冷概率14%；市场隐含概率与模型存在分歧；实力悬殊(174分差距)增加冷门可能；天气因素降雨增加平局概率，爆冷选择客胜(0-2)",
           "probs": {
             "H": 0.4653956075956024,
             "D": 0.37,
@@ -4896,8 +4788,8 @@
           "is_upset": true,
           "real_odds": [
             1.32,
-            5.26,
-            9.3
+            5.2,
+            9.36
           ]
         }
       },
@@ -4953,7 +4845,7 @@
         },
         "价值派": {
           "result": "D",
-          "home_score": 0,
+          "home_score": 1,
           "away_score": 1,
           "confidence": 0.35,
           "reasoning": "发现价值空间(平局赔率隐含概率35% vs 预测概率35%)，存在6.0%期望价值 (炎热利好Panama·降雨增加平局概率)",
@@ -4967,8 +4859,8 @@
         },
         "防守派": {
           "result": "D",
-          "home_score": 0,
-          "away_score": 0,
+          "home_score": 1,
+          "away_score": 1,
           "confidence": 0.491,
           "reasoning": "世界杯大赛往往以防守为主，看好闷平，炎热利好Panama·降雨增加平局概率",
           "probs": {
@@ -4979,10 +4871,10 @@
         },
         "数据派": {
           "result": "D",
-          "home_score": 0,
+          "home_score": 1,
           "away_score": 1,
           "confidence": 0.287,
-          "reasoning": "ELO模型计算：Panama胜率24%/Croatia胜率35%/平局41%；FIFA排名：Panama=1648分/Croatia=1728分；最可能比分0-1 [炎热利好Panama·降雨增加平局概率]",
+          "reasoning": "ELO模型计算：Panama胜率24%/Croatia胜率35%/平局41%；FIFA排名：Panama=1648分/Croatia=1728分；最可能比分1-1 [炎热利好Panama·降雨增加平局概率]",
           "probs": {
             "H": 0.24246106690045702,
             "D": 0.41,
@@ -5003,7 +4895,7 @@
           },
           "is_upset": true,
           "real_odds": [
-            6.46,
+            6.42,
             3.89,
             1.54
           ]
@@ -5062,7 +4954,7 @@
         "价值派": {
           "result": "D",
           "home_score": 1,
-          "away_score": 0,
+          "away_score": 1,
           "confidence": 0.35,
           "reasoning": "发现价值空间(平局赔率隐含概率35% vs 预测概率35%)，存在6.0%期望价值 (降雨增加平局概率)",
           "probs": {
@@ -5088,9 +4980,9 @@
         "数据派": {
           "result": "D",
           "home_score": 1,
-          "away_score": 0,
+          "away_score": 1,
           "confidence": 0.287,
-          "reasoning": "ELO模型计算：Colombia胜率38%/Congo DR胜率21%/平局41%；FIFA排名：Colombia=1708分/Congo DR=1615分；最可能比分1-0 [降雨增加平局概率]",
+          "reasoning": "ELO模型计算：Colombia胜率38%/Congo DR胜率21%/平局41%；FIFA排名：Colombia=1708分/Congo DR=1615分；最可能比分1-1 [降雨增加平局概率]",
           "probs": {
             "H": 0.37997468760053144,
             "D": 0.40999999999999986,
@@ -5100,10 +4992,10 @@
         },
         "爆冷派": {
           "result": "A",
-          "home_score": 1,
-          "away_score": 3,
+          "home_score": 0,
+          "away_score": 2,
           "confidence": 0.1,
-          "reasoning": "历史数据表明赔率>3.0时爆冷概率17%；市场隐含概率与模型存在分歧；天气因素降雨增加平局概率，爆冷选择客胜(1-3)",
+          "reasoning": "历史数据表明赔率>3.0时爆冷概率17%；市场隐含概率与模型存在分歧；天气因素降雨增加平局概率，爆冷选择客胜(0-2)",
           "probs": {
             "H": 0.37997468760053144,
             "D": 0.40999999999999986,
@@ -5113,7 +5005,7 @@
           "real_odds": [
             1.47,
             4.12,
-            7.3
+            7.28
           ]
         }
       },
@@ -5158,7 +5050,7 @@
         "激进派": {
           "result": "H",
           "home_score": 1,
-          "away_score": 1,
+          "away_score": 0,
           "confidence": 0.409,
           "reasoning": "Canada并非没有机会，但Switzerland进攻火力更强，看好大球取胜",
           "probs": {
@@ -5170,7 +5062,7 @@
         "价值派": {
           "result": "H",
           "home_score": 1,
-          "away_score": 1,
+          "away_score": 0,
           "confidence": 0.247,
           "reasoning": "本场价值空间不足，如需投注建议观望",
           "probs": {
@@ -5196,9 +5088,9 @@
         "数据派": {
           "result": "H",
           "home_score": 1,
-          "away_score": 1,
+          "away_score": 0,
           "confidence": 0.247,
-          "reasoning": "ELO模型计算：Switzerland胜率35%/Canada胜率30%/平局35%；FIFA排名：Switzerland=1698分/Canada=1668分；最可能比分1-1",
+          "reasoning": "ELO模型计算：Switzerland胜率35%/Canada胜率30%/平局35%；FIFA排名：Switzerland=1698分/Canada=1668分；最可能比分1-0",
           "probs": {
             "H": 0.35299321981443776,
             "D": 0.35,
@@ -5253,8 +5145,8 @@
       "agents": {
         "稳健派": {
           "result": "A",
-          "home_score": 1,
-          "away_score": 0,
+          "home_score": 0,
+          "away_score": 1,
           "confidence": 0.414,
           "reasoning": "Qatar略占优势，谨慎看好客队不败",
           "probs": {
@@ -5265,8 +5157,8 @@
         },
         "激进派": {
           "result": "A",
-          "home_score": 1,
-          "away_score": 0,
+          "home_score": 0,
+          "away_score": 1,
           "confidence": 0.457,
           "reasoning": "数据低估了Qatar的实力，冷门可期，大胆搏客胜",
           "probs": {
@@ -5277,8 +5169,8 @@
         },
         "价值派": {
           "result": "A",
-          "home_score": 1,
-          "away_score": 0,
+          "home_score": 0,
+          "away_score": 1,
           "confidence": 0.276,
           "reasoning": "本场价值空间不足，如需投注建议观望",
           "probs": {
@@ -5303,10 +5195,10 @@
         },
         "数据派": {
           "result": "A",
-          "home_score": 1,
-          "away_score": 0,
+          "home_score": 0,
+          "away_score": 1,
           "confidence": 0.276,
-          "reasoning": "ELO模型计算：Bosnia-Herzegovina胜率26%/Qatar胜率39%/平局35%；FIFA排名：Bosnia-Herzegovina=1500分/Qatar=1575分；最可能比分1-0",
+          "reasoning": "ELO模型计算：Bosnia-Herzegovina胜率26%/Qatar胜率39%/平局35%；FIFA排名：Bosnia-Herzegovina=1500分/Qatar=1575分；最可能比分0-1",
           "probs": {
             "H": 0.2559129145394717,
             "D": 0.35,
@@ -5316,10 +5208,10 @@
         },
         "爆冷派": {
           "result": "A",
-          "home_score": 1,
+          "home_score": 0,
           "away_score": 2,
           "confidence": 0.14,
-          "reasoning": "历史数据表明赔率>3.0时爆冷概率30%；市场隐含概率与模型存在分歧，爆冷选择客胜(1-2)",
+          "reasoning": "历史数据表明赔率>3.0时爆冷概率30%；市场隐含概率与模型存在分歧，爆冷选择客胜(0-2)",
           "probs": {
             "H": 0.2559129145394717,
             "D": 0.35,
@@ -5327,9 +5219,9 @@
           },
           "is_upset": true,
           "real_odds": [
-            1.6,
+            1.61,
             3.75,
-            5.76
+            5.66
           ]
         }
       },
@@ -5399,8 +5291,8 @@
         },
         "防守派": {
           "result": "D",
-          "home_score": 0,
-          "away_score": 0,
+          "home_score": 1,
+          "away_score": 1,
           "confidence": 0.449,
           "reasoning": "世界杯大赛往往以防守为主，看好闷平，降雨增加平局概率",
           "probs": {
@@ -5424,10 +5316,10 @@
         },
         "爆冷派": {
           "result": "H",
-          "home_score": 2,
+          "home_score": 1,
           "away_score": 0,
           "confidence": 0.12,
-          "reasoning": "历史数据表明赔率>3.0时爆冷概率12%；市场隐含概率与模型存在分歧；实力悬殊(216分差距)增加冷门可能；天气因素降雨增加平局概率，爆冷选择主胜(2-0)",
+          "reasoning": "历史数据表明赔率>3.0时爆冷概率12%；市场隐含概率与模型存在分歧；实力悬殊(216分差距)增加冷门可能；天气因素降雨增加平局概率，爆冷选择主胜(1-0)",
           "probs": {
             "H": 0.13549952602781004,
             "D": 0.37,
@@ -5435,8 +5327,8 @@
           },
           "is_upset": true,
           "real_odds": [
-            6.78,
-            4.5,
+            6.74,
+            4.49,
             1.44
           ]
         }
@@ -5507,8 +5399,8 @@
         },
         "防守派": {
           "result": "D",
-          "home_score": 2,
-          "away_score": 2,
+          "home_score": 1,
+          "away_score": 1,
           "confidence": 0.428,
           "reasoning": "世界杯大赛往往以防守为主，看好闷平",
           "probs": {
@@ -5533,9 +5425,9 @@
         "爆冷派": {
           "result": "A",
           "home_score": 0,
-          "away_score": 1,
+          "away_score": 2,
           "confidence": 0.08,
-          "reasoning": "历史数据表明赔率>3.0时爆冷概率12%；市场隐含概率与模型存在分歧；实力悬殊(192分差距)增加冷门可能，爆冷选择客胜(0-1)",
+          "reasoning": "历史数据表明赔率>3.0时爆冷概率12%；市场隐含概率与模型存在分歧；实力悬殊(192分差距)增加冷门可能，爆冷选择客胜(0-2)",
           "probs": {
             "H": 0.488306515796912,
             "D": 0.35000000000000003,
@@ -5545,7 +5437,7 @@
           "real_odds": [
             1.31,
             5.09,
-            9.61
+            9.58
           ]
         }
       },
@@ -5615,8 +5507,8 @@
         },
         "防守派": {
           "result": "D",
-          "home_score": 0,
-          "away_score": 0,
+          "home_score": 1,
+          "away_score": 1,
           "confidence": 0.428,
           "reasoning": "世界杯大赛往往以防守为主，看好闷平",
           "probs": {
@@ -5640,10 +5532,10 @@
         },
         "爆冷派": {
           "result": "H",
-          "home_score": 1,
-          "away_score": 0,
-          "confidence": 0.188,
-          "reasoning": "历史数据表明赔率>3.0时爆冷概率12%；市场隐含概率与模型存在分歧；实力悬殊(215分差距)增加冷门可能，爆冷选择主胜(1-0)",
+          "home_score": 2,
+          "away_score": 1,
+          "confidence": 0.189,
+          "reasoning": "历史数据表明赔率>3.0时爆冷概率12%；市场隐含概率与模型存在分歧；实力悬殊(215分差距)增加冷门可能，爆冷选择主胜(2-1)",
           "probs": {
             "H": 0.14615063732770534,
             "D": 0.35,
@@ -5651,9 +5543,9 @@
           },
           "is_upset": true,
           "real_odds": [
-            4.55,
-            3.48,
-            1.79
+            4.52,
+            3.46,
+            1.81
           ]
         }
       },
@@ -5723,8 +5615,8 @@
         },
         "防守派": {
           "result": "D",
-          "home_score": 0,
-          "away_score": 0,
+          "home_score": 1,
+          "away_score": 1,
           "confidence": 0.449,
           "reasoning": "世界杯大赛往往以防守为主，看好闷平，炎热利好South Africa·降雨增加平局概率",
           "probs": {
@@ -5735,10 +5627,10 @@
         },
         "数据派": {
           "result": "D",
-          "home_score": 0,
+          "home_score": 1,
           "away_score": 1,
           "confidence": 0.259,
-          "reasoning": "ELO模型计算：South Africa胜率27%/South Korea胜率36%/平局37%；FIFA排名：South Africa=1612分/South Korea=1682分；最可能比分0-1 [炎热利好South Africa·降雨增加平局概率]",
+          "reasoning": "ELO模型计算：South Africa胜率27%/South Korea胜率36%/平局37%；FIFA排名：South Africa=1612分/South Korea=1682分；最可能比分1-1 [炎热利好South Africa·降雨增加平局概率]",
           "probs": {
             "H": 0.2668920821389831,
             "D": 0.37,
@@ -5750,7 +5642,7 @@
           "result": "H",
           "home_score": 1,
           "away_score": 0,
-          "confidence": 0.17,
+          "confidence": 0.14,
           "reasoning": "历史数据表明赔率>3.0时爆冷概率22%；市场隐含概率与模型存在分歧；天气因素炎热利好South Africa·降雨增加平局概率，爆冷选择主胜(1-0)",
           "probs": {
             "H": 0.2668920821389831,
@@ -5759,9 +5651,9 @@
           },
           "is_upset": true,
           "real_odds": [
-            4.92,
-            3.6,
-            1.71
+            5.6,
+            3.87,
+            1.6
           ]
         }
       },
@@ -5831,8 +5723,8 @@
         },
         "防守派": {
           "result": "D",
-          "home_score": 0,
-          "away_score": 0,
+          "home_score": 1,
+          "away_score": 1,
           "confidence": 0.428,
           "reasoning": "世界杯大赛往往以防守为主，看好闷平",
           "probs": {
@@ -5856,10 +5748,10 @@
         },
         "爆冷派": {
           "result": "H",
-          "home_score": 2,
-          "away_score": 0,
+          "home_score": 3,
+          "away_score": 1,
           "confidence": 0.17,
-          "reasoning": "历史数据表明赔率>3.0时爆冷概率22%；市场隐含概率与模型存在分歧，爆冷选择主胜(2-0)",
+          "reasoning": "历史数据表明赔率>3.0时爆冷概率22%；市场隐含概率与模型存在分歧，爆冷选择主胜(3-1)",
           "probs": {
             "H": 0.251461066900457,
             "D": 0.35,
@@ -5867,8 +5759,8 @@
           },
           "is_upset": true,
           "real_odds": [
-            4.77,
-            3.75,
+            4.75,
+            3.74,
             1.71
           ]
         }
@@ -5913,8 +5805,8 @@
         },
         "激进派": {
           "result": "D",
-          "home_score": 0,
-          "away_score": 2,
+          "home_score": 1,
+          "away_score": 1,
           "confidence": 0.428,
           "reasoning": "双方都有机会，对攻战平局收场 (降雨增加平局概率)",
           "probs": {
@@ -5925,8 +5817,8 @@
         },
         "价值派": {
           "result": "D",
-          "home_score": 0,
-          "away_score": 2,
+          "home_score": 1,
+          "away_score": 1,
           "confidence": 0.35,
           "reasoning": "发现价值空间(平局赔率隐含概率35% vs 预测概率35%)，存在6.0%期望价值 (降雨增加平局概率)",
           "probs": {
@@ -5939,8 +5831,8 @@
         },
         "防守派": {
           "result": "D",
-          "home_score": 0,
-          "away_score": 0,
+          "home_score": 1,
+          "away_score": 1,
           "confidence": 0.491,
           "reasoning": "世界杯大赛往往以防守为主，看好闷平，降雨增加平局概率",
           "probs": {
@@ -5951,10 +5843,10 @@
         },
         "数据派": {
           "result": "D",
-          "home_score": 0,
-          "away_score": 2,
+          "home_score": 1,
+          "away_score": 1,
           "confidence": 0.287,
-          "reasoning": "ELO模型计算：Curaçao胜率18%/Ivory Coast胜率41%/平局41%；FIFA排名：Curaçao=1500分/Ivory Coast=1625分；最可能比分0-2 [降雨增加平局概率]",
+          "reasoning": "ELO模型计算：Curaçao胜率18%/Ivory Coast胜率41%/平局41%；FIFA排名：Curaçao=1500分/Ivory Coast=1625分；最可能比分1-1 [降雨增加平局概率]",
           "probs": {
             "H": 0.18286873183225974,
             "D": 0.41,
@@ -5964,8 +5856,8 @@
         },
         "爆冷派": {
           "result": "D",
-          "home_score": 0,
-          "away_score": 2,
+          "home_score": 1,
+          "away_score": 1,
           "confidence": 0.41,
           "reasoning": "本场未发现明显冷门机会，跟随模型判断",
           "probs": {
@@ -6042,8 +5934,8 @@
         },
         "防守派": {
           "result": "D",
-          "home_score": 0,
-          "away_score": 0,
+          "home_score": 1,
+          "away_score": 1,
           "confidence": 0.428,
           "reasoning": "世界杯大赛往往以防守为主，看好闷平",
           "probs": {
@@ -6067,10 +5959,10 @@
         },
         "爆冷派": {
           "result": "H",
-          "home_score": 1,
-          "away_score": 0,
+          "home_score": 2,
+          "away_score": 1,
           "confidence": 0.12,
-          "reasoning": "历史数据表明赔率>3.0时爆冷概率17%；市场隐含概率与模型存在分歧；实力悬殊(130分差距)增加冷门可能，爆冷选择主胜(1-0)",
+          "reasoning": "历史数据表明赔率>3.0时爆冷概率17%；市场隐含概率与模型存在分歧；实力悬殊(130分差距)增加冷门可能，爆冷选择主胜(2-1)",
           "probs": {
             "H": 0.2087690021334082,
             "D": 0.35,
@@ -6078,7 +5970,7 @@
           },
           "is_upset": true,
           "real_odds": [
-            6.44,
+            6.43,
             4.2,
             1.49
           ]
@@ -6113,7 +6005,7 @@
         "稳健派": {
           "result": "H",
           "home_score": 1,
-          "away_score": 1,
+          "away_score": 0,
           "confidence": 0.409,
           "reasoning": "Japan略占优势，谨慎看好主队不败",
           "probs": {
@@ -6125,7 +6017,7 @@
         "激进派": {
           "result": "H",
           "home_score": 1,
-          "away_score": 1,
+          "away_score": 0,
           "confidence": 0.451,
           "reasoning": "Sweden并非没有机会，但Japan进攻火力更强，看好大球取胜",
           "probs": {
@@ -6137,7 +6029,7 @@
         "价值派": {
           "result": "H",
           "home_score": 1,
-          "away_score": 1,
+          "away_score": 0,
           "confidence": 0.273,
           "reasoning": "本场价值空间不足，如需投注建议观望",
           "probs": {
@@ -6163,9 +6055,9 @@
         "数据派": {
           "result": "H",
           "home_score": 1,
-          "away_score": 1,
+          "away_score": 0,
           "confidence": 0.273,
-          "reasoning": "ELO模型计算：Japan胜率39%/Sweden胜率26%/平局35%；FIFA排名：Japan=1695分/Sweden=1625分；最可能比分1-1",
+          "reasoning": "ELO模型计算：Japan胜率39%/Sweden胜率26%/平局35%；FIFA排名：Japan=1695分/Sweden=1625分；最可能比分1-0",
           "probs": {
             "H": 0.38960791786101695,
             "D": 0.35,
@@ -6175,10 +6067,10 @@
         },
         "爆冷派": {
           "result": "A",
-          "home_score": 0,
-          "away_score": 1,
+          "home_score": 1,
+          "away_score": 2,
           "confidence": 0.22,
-          "reasoning": "历史数据表明赔率>3.0时爆冷概率22%；市场隐含概率与模型存在分歧，爆冷选择客胜(0-1)",
+          "reasoning": "历史数据表明赔率>3.0时爆冷概率22%；市场隐含概率与模型存在分歧，爆冷选择客胜(1-2)",
           "probs": {
             "H": 0.38960791786101695,
             "D": 0.35,
@@ -6221,7 +6113,7 @@
         "稳健派": {
           "result": "H",
           "home_score": 1,
-          "away_score": 1,
+          "away_score": 0,
           "confidence": 0.475,
           "reasoning": "Turkey实力明显占优(FIFA排名差108分)，稳健看好主胜",
           "probs": {
@@ -6233,7 +6125,7 @@
         "激进派": {
           "result": "H",
           "home_score": 1,
-          "away_score": 1,
+          "away_score": 0,
           "confidence": 0.414,
           "reasoning": "United States并非没有机会，但Turkey进攻火力更强，看好大球取胜 (降雨增加平局概率)",
           "probs": {
@@ -6245,7 +6137,7 @@
         "价值派": {
           "result": "H",
           "home_score": 1,
-          "away_score": 1,
+          "away_score": 0,
           "confidence": 0.296,
           "reasoning": "本场价值空间不足，如需投注建议观望 (降雨增加平局概率)",
           "probs": {
@@ -6271,9 +6163,9 @@
         "数据派": {
           "result": "H",
           "home_score": 1,
-          "away_score": 1,
+          "away_score": 0,
           "confidence": 0.289,
-          "reasoning": "ELO模型计算：Turkey胜率41%/United States胜率22%/平局37%；FIFA排名：Turkey=1608分/United States=1500分；最可能比分1-1 [降雨增加平局概率]",
+          "reasoning": "ELO模型计算：Turkey胜率41%/United States胜率22%/平局37%；FIFA排名：Turkey=1608分/United States=1500分；最可能比分1-0 [降雨增加平局概率]",
           "probs": {
             "H": 0.4128930081570171,
             "D": 0.37,
@@ -6283,10 +6175,10 @@
         },
         "爆冷派": {
           "result": "A",
-          "home_score": 0,
-          "away_score": 1,
+          "home_score": 1,
+          "away_score": 2,
           "confidence": 0.346,
-          "reasoning": "历史数据表明赔率>3.0时爆冷概率17%；市场隐含概率与模型存在分歧；实力悬殊(108分差距)增加冷门可能；天气因素降雨增加平局概率，爆冷选择客胜(0-1)",
+          "reasoning": "历史数据表明赔率>3.0时爆冷概率17%；市场隐含概率与模型存在分歧；实力悬殊(108分差距)增加冷门可能；天气因素降雨增加平局概率，爆冷选择客胜(1-2)",
           "probs": {
             "H": 0.4128930081570171,
             "D": 0.37,
@@ -6294,9 +6186,9 @@
           },
           "is_upset": true,
           "real_odds": [
-            2.64,
-            3.44,
-            2.53
+            2.62,
+            3.43,
+            2.54
           ]
         }
       },
@@ -6340,7 +6232,7 @@
         },
         "激进派": {
           "result": "A",
-          "home_score": 1,
+          "home_score": 0,
           "away_score": 1,
           "confidence": 0.401,
           "reasoning": "数据低估了Australia的实力，冷门可期，大胆搏客胜",
@@ -6402,7 +6294,7 @@
           },
           "is_upset": true,
           "real_odds": [
-            2.16,
+            2.15,
             3.21,
             3.47
           ]
@@ -6474,8 +6366,8 @@
         },
         "防守派": {
           "result": "D",
-          "home_score": 0,
-          "away_score": 0,
+          "home_score": 1,
+          "away_score": 1,
           "confidence": 0.449,
           "reasoning": "世界杯大赛往往以防守为主，看好闷平，降雨增加平局概率",
           "probs": {
@@ -6499,10 +6391,10 @@
         },
         "爆冷派": {
           "result": "H",
-          "home_score": 3,
+          "home_score": 2,
           "away_score": 1,
           "confidence": 0.197,
-          "reasoning": "历史数据表明赔率>3.0时爆冷概率10%；市场隐含概率与模型存在分歧；实力悬殊(223分差距)增加冷门可能；天气因素降雨增加平局概率，爆冷选择主胜(3-1)",
+          "reasoning": "历史数据表明赔率>3.0时爆冷概率10%；市场隐含概率与模型存在分歧；实力悬殊(223分差距)增加冷门可能；天气因素降雨增加平局概率，爆冷选择主胜(2-1)",
           "probs": {
             "H": 0.13099966178371053,
             "D": 0.37,
@@ -6510,7 +6402,7 @@
           },
           "is_upset": true,
           "real_odds": [
-            4.27,
+            4.26,
             3.58,
             1.82
           ]
@@ -6582,8 +6474,8 @@
         },
         "防守派": {
           "result": "D",
-          "home_score": 2,
-          "away_score": 2,
+          "home_score": 1,
+          "away_score": 1,
           "confidence": 0.428,
           "reasoning": "世界杯大赛往往以防守为主，看好闷平",
           "probs": {
@@ -6608,9 +6500,9 @@
         "爆冷派": {
           "result": "A",
           "home_score": 0,
-          "away_score": 2,
+          "away_score": 1,
           "confidence": 0.1,
-          "reasoning": "历史数据表明赔率>3.0时爆冷概率12%；市场隐含概率与模型存在分歧；实力悬殊(188分差距)增加冷门可能，爆冷选择客胜(0-2)",
+          "reasoning": "历史数据表明赔率>3.0时爆冷概率12%；市场隐含概率与模型存在分歧；实力悬殊(188分差距)增加冷门可能，爆冷选择客胜(0-1)",
           "probs": {
             "H": 0.48549339892881305,
             "D": 0.35,
@@ -6619,8 +6511,8 @@
           "is_upset": true,
           "real_odds": [
             1.41,
-            4.41,
-            7.6
+            4.45,
+            7.76
           ]
         }
       },
@@ -6652,7 +6544,7 @@
       "agents": {
         "稳健派": {
           "result": "A",
-          "home_score": 1,
+          "home_score": 0,
           "away_score": 1,
           "confidence": 0.548,
           "reasoning": "Saudi Arabia实力更强，客胜可期",
@@ -6664,7 +6556,7 @@
         },
         "激进派": {
           "result": "A",
-          "home_score": 1,
+          "home_score": 0,
           "away_score": 1,
           "confidence": 0.405,
           "reasoning": "数据低估了Saudi Arabia的实力，冷门可期，大胆搏客胜",
@@ -6676,7 +6568,7 @@
         },
         "价值派": {
           "result": "A",
-          "home_score": 1,
+          "home_score": 0,
           "away_score": 1,
           "confidence": 0.333,
           "reasoning": "本场价值空间不足，如需投注建议观望",
@@ -6702,10 +6594,10 @@
         },
         "数据派": {
           "result": "A",
-          "home_score": 1,
+          "home_score": 0,
           "away_score": 1,
           "confidence": 0.333,
-          "reasoning": "ELO模型计算：Cape Verde Islands胜率17%/Saudi Arabia胜率48%/平局35%；FIFA排名：Cape Verde Islands=1500分/Saudi Arabia=1675分；最可能比分1-1",
+          "reasoning": "ELO模型计算：Cape Verde Islands胜率17%/Saudi Arabia胜率48%/平局35%；FIFA排名：Cape Verde Islands=1500分/Saudi Arabia=1675分；最可能比分0-1",
           "probs": {
             "H": 0.17387026165881608,
             "D": 0.35,
@@ -6714,11 +6606,11 @@
           "score_prob": 0
         },
         "爆冷派": {
-          "result": "H",
+          "result": "D",
           "home_score": 2,
-          "away_score": 1,
-          "confidence": 0.358,
-          "reasoning": "历史数据表明赔率>3.0时爆冷概率14%；市场隐含概率与模型存在分歧；实力悬殊(175分差距)增加冷门可能，爆冷选择主胜(2-1)",
+          "away_score": 2,
+          "confidence": 0.22,
+          "reasoning": "历史数据表明赔率>3.0时爆冷概率30%；市场隐含概率与模型存在分歧；实力悬殊(175分差距)增加冷门可能，爆冷选择平局(2-2)",
           "probs": {
             "H": 0.17387026165881608,
             "D": 0.35,
@@ -6726,15 +6618,15 @@
           },
           "is_upset": true,
           "real_odds": [
-            2.56,
-            3.27,
-            2.73
+            2.5,
+            3.29,
+            2.79
           ]
         }
       },
       "consensus": {
-        "H": 1,
-        "D": 1,
+        "H": 0,
+        "D": 2,
         "A": 4,
         "consensus": "A",
         "agreement_pct": 0.6666666666666666
@@ -6784,7 +6676,7 @@
         },
         "价值派": {
           "result": "D",
-          "home_score": 0,
+          "home_score": 1,
           "away_score": 1,
           "confidence": 0.35,
           "reasoning": "发现价值空间(平局赔率隐含概率35% vs 预测概率35%)，存在6.0%期望价值 (降雨增加平局概率)",
@@ -6798,8 +6690,8 @@
         },
         "防守派": {
           "result": "D",
-          "home_score": 0,
-          "away_score": 0,
+          "home_score": 1,
+          "away_score": 1,
           "confidence": 0.537,
           "reasoning": "世界杯大赛往往以防守为主，双方实力接近(差46分)，看好闷平，降雨增加平局概率",
           "probs": {
@@ -6810,10 +6702,10 @@
         },
         "数据派": {
           "result": "D",
-          "home_score": 0,
+          "home_score": 1,
           "away_score": 1,
           "confidence": 0.287,
-          "reasoning": "ELO模型计算：Uruguay胜率25%/Spain胜率34%/平局41%；FIFA排名：Uruguay=1712分/Spain=1758分；最可能比分0-1 [降雨增加平局概率]",
+          "reasoning": "ELO模型计算：Uruguay胜率25%/Spain胜率34%/平局41%；FIFA排名：Uruguay=1712分/Spain=1758分；最可能比分1-1 [降雨增加平局概率]",
           "probs": {
             "H": 0.25222011800499844,
             "D": 0.41,
@@ -6824,9 +6716,9 @@
         "爆冷派": {
           "result": "H",
           "home_score": 2,
-          "away_score": 1,
+          "away_score": 0,
           "confidence": 0.14,
-          "reasoning": "历史数据表明赔率>3.0时爆冷概率22%；市场隐含概率与模型存在分歧；天气因素降雨增加平局概率，爆冷选择主胜(2-1)",
+          "reasoning": "历史数据表明赔率>3.0时爆冷概率22%；市场隐含概率与模型存在分歧；天气因素降雨增加平局概率，爆冷选择主胜(2-0)",
           "probs": {
             "H": 0.25222011800499844,
             "D": 0.41,
@@ -6906,8 +6798,8 @@
         },
         "防守派": {
           "result": "D",
-          "home_score": 0,
-          "away_score": 0,
+          "home_score": 1,
+          "away_score": 1,
           "confidence": 0.428,
           "reasoning": "世界杯大赛往往以防守为主，看好闷平",
           "probs": {
@@ -6931,10 +6823,10 @@
         },
         "爆冷派": {
           "result": "H",
-          "home_score": 3,
-          "away_score": 1,
+          "home_score": 1,
+          "away_score": 0,
           "confidence": 0.08,
-          "reasoning": "历史数据表明赔率>3.0时爆冷概率12%；市场隐含概率与模型存在分歧；实力悬殊(215分差距)增加冷门可能，爆冷选择主胜(3-1)",
+          "reasoning": "历史数据表明赔率>3.0时爆冷概率12%；市场隐含概率与模型存在分歧；实力悬殊(215分差距)增加冷门可能，爆冷选择主胜(1-0)",
           "probs": {
             "H": 0.14615063732770534,
             "D": 0.35,
@@ -6942,8 +6834,8 @@
           },
           "is_upset": true,
           "real_odds": [
-            9.75,
-            5.52,
+            9.76,
+            5.53,
             1.28
           ]
         }
@@ -6977,7 +6869,7 @@
         "稳健派": {
           "result": "A",
           "home_score": 1,
-          "away_score": 1,
+          "away_score": 2,
           "confidence": 0.386,
           "reasoning": "Iran略占优势，谨慎看好客队不败",
           "probs": {
@@ -6989,7 +6881,7 @@
         "激进派": {
           "result": "A",
           "home_score": 1,
-          "away_score": 1,
+          "away_score": 2,
           "confidence": 0.43,
           "reasoning": "数据低估了Iran的实力，冷门可期，大胆搏客胜 (降雨增加平局概率)",
           "probs": {
@@ -7001,7 +6893,7 @@
         "价值派": {
           "result": "A",
           "home_score": 1,
-          "away_score": 1,
+          "away_score": 2,
           "confidence": 0.264,
           "reasoning": "本场价值空间不足，如需投注建议观望 (降雨增加平局概率)",
           "probs": {
@@ -7052,7 +6944,7 @@
           "real_odds": [
             2.23,
             3.04,
-            3.53
+            3.52
           ]
         }
       },
@@ -7096,8 +6988,8 @@
         },
         "激进派": {
           "result": "D",
-          "home_score": 0,
-          "away_score": 2,
+          "home_score": 1,
+          "away_score": 1,
           "confidence": 0.428,
           "reasoning": "双方都有机会，对攻战平局收场 (炎热利好Panama·降雨增加平局概率)",
           "probs": {
@@ -7108,8 +7000,8 @@
         },
         "价值派": {
           "result": "D",
-          "home_score": 0,
-          "away_score": 2,
+          "home_score": 1,
+          "away_score": 1,
           "confidence": 0.35,
           "reasoning": "发现价值空间(平局赔率隐含概率35% vs 预测概率35%)，存在6.0%期望价值 (炎热利好Panama·降雨增加平局概率)",
           "probs": {
@@ -7122,8 +7014,8 @@
         },
         "防守派": {
           "result": "D",
-          "home_score": 0,
-          "away_score": 0,
+          "home_score": 1,
+          "away_score": 1,
           "confidence": 0.491,
           "reasoning": "世界杯大赛往往以防守为主，看好闷平，炎热利好Panama·降雨增加平局概率",
           "probs": {
@@ -7134,10 +7026,10 @@
         },
         "数据派": {
           "result": "D",
-          "home_score": 0,
-          "away_score": 2,
+          "home_score": 1,
+          "away_score": 1,
           "confidence": 0.287,
-          "reasoning": "ELO模型计算：Panama胜率18%/England胜率41%/平局41%；FIFA排名：Panama=1648分/England=1812分；最可能比分0-2 [炎热利好Panama·降雨增加平局概率]",
+          "reasoning": "ELO模型计算：Panama胜率18%/England胜率41%/平局41%；FIFA排名：Panama=1648分/England=1812分；最可能比分1-1 [炎热利好Panama·降雨增加平局概率]",
           "probs": {
             "H": 0.18205264613435126,
             "D": 0.41,
@@ -7158,8 +7050,8 @@
           },
           "is_upset": true,
           "real_odds": [
-            9.57,
-            5.72,
+            9.59,
+            5.71,
             1.28
           ]
         }
@@ -7255,10 +7147,10 @@
         },
         "爆冷派": {
           "result": "A",
-          "home_score": 1,
-          "away_score": 2,
+          "home_score": 0,
+          "away_score": 1,
           "confidence": 0.14,
-          "reasoning": "历史数据表明赔率>3.0时爆冷概率17%；市场隐含概率与模型存在分歧；天气因素炎热利好客队·降雨增加平局概率，爆冷选择客胜(1-2)",
+          "reasoning": "历史数据表明赔率>3.0时爆冷概率17%；市场隐含概率与模型存在分歧；天气因素炎热利好客队·降雨增加平局概率，爆冷选择客胜(0-1)",
           "probs": {
             "H": 0.3763544030833758,
             "D": 0.37,
@@ -7267,8 +7159,8 @@
           "is_upset": true,
           "real_odds": [
             1.64,
-            3.73,
-            5.45
+            3.72,
+            5.46
           ]
         }
       },
@@ -7300,7 +7192,7 @@
       "agents": {
         "稳健派": {
           "result": "A",
-          "home_score": 1,
+          "home_score": 0,
           "away_score": 1,
           "confidence": 0.387,
           "reasoning": "Portugal略占优势，谨慎看好客队不败",
@@ -7312,7 +7204,7 @@
         },
         "激进派": {
           "result": "A",
-          "home_score": 1,
+          "home_score": 0,
           "away_score": 1,
           "confidence": 0.439,
           "reasoning": "数据低估了Portugal的实力，冷门可期，大胆搏客胜 (降雨增加平局概率)",
@@ -7363,10 +7255,10 @@
         },
         "爆冷派": {
           "result": "H",
-          "home_score": 1,
+          "home_score": 2,
           "away_score": 0,
           "confidence": 0.22,
-          "reasoning": "历史数据表明赔率>3.0时爆冷概率22%；市场隐含概率与模型存在分歧；天气因素降雨增加平局概率，爆冷选择主胜(1-0)",
+          "reasoning": "历史数据表明赔率>3.0时爆冷概率22%；市场隐含概率与模型存在分歧；天气因素降雨增加平局概率，爆冷选择主胜(2-0)",
           "probs": {
             "H": 0.221461066900457,
             "D": 0.41,
@@ -7409,7 +7301,7 @@
         "稳健派": {
           "result": "H",
           "home_score": 1,
-          "away_score": 1,
+          "away_score": 0,
           "confidence": 0.493,
           "reasoning": "Congo DR实力明显占优(FIFA排名差115分)，稳健看好主胜",
           "probs": {
@@ -7421,7 +7313,7 @@
         "激进派": {
           "result": "H",
           "home_score": 1,
-          "away_score": 1,
+          "away_score": 0,
           "confidence": 0.418,
           "reasoning": "Uzbekistan并非没有机会，但Congo DR进攻火力更强，看好大球取胜",
           "probs": {
@@ -7433,7 +7325,7 @@
         "价值派": {
           "result": "H",
           "home_score": 1,
-          "away_score": 1,
+          "away_score": 0,
           "confidence": 0.3,
           "reasoning": "本场价值空间不足，如需投注建议观望",
           "probs": {
@@ -7459,9 +7351,9 @@
         "数据派": {
           "result": "H",
           "home_score": 1,
-          "away_score": 1,
+          "away_score": 0,
           "confidence": 0.3,
-          "reasoning": "ELO模型计算：Congo DR胜率43%/Uzbekistan胜率22%/平局35%；FIFA排名：Congo DR=1615分/Uzbekistan=1500分；最可能比分1-1",
+          "reasoning": "ELO模型计算：Congo DR胜率43%/Uzbekistan胜率22%/平局35%；FIFA排名：Congo DR=1615分/Uzbekistan=1500分；最可能比分1-0",
           "probs": {
             "H": 0.4288101961940863,
             "D": 0.35,
@@ -7472,9 +7364,9 @@
         "爆冷派": {
           "result": "A",
           "home_score": 1,
-          "away_score": 2,
+          "away_score": 3,
           "confidence": 0.244,
-          "reasoning": "历史数据表明赔率>3.0时爆冷概率17%；市场隐含概率与模型存在分歧；实力悬殊(115分差距)增加冷门可能，爆冷选择客胜(1-2)",
+          "reasoning": "历史数据表明赔率>3.0时爆冷概率17%；市场隐含概率与模型存在分歧；实力悬殊(115分差距)增加冷门可能，爆冷选择客胜(1-3)",
           "probs": {
             "H": 0.4288101961940863,
             "D": 0.35,
@@ -7483,8 +7375,8 @@
           "is_upset": true,
           "real_odds": [
             2.32,
-            3.22,
-            3.11
+            3.21,
+            3.1
           ]
         }
       },
@@ -7632,7 +7524,7 @@
         "激进派": {
           "result": "H",
           "home_score": 1,
-          "away_score": 1,
+          "away_score": 0,
           "confidence": 0.39,
           "reasoning": "Austria并非没有机会，但Algeria进攻火力更强，看好大球取胜 (降雨增加平局概率)",
           "probs": {
@@ -7682,10 +7574,10 @@
         },
         "爆冷派": {
           "result": "H",
-          "home_score": 3,
+          "home_score": 2,
           "away_score": 1,
           "confidence": 0.22,
-          "reasoning": "历史数据表明赔率>3.0时爆冷概率30%；市场隐含概率与模型存在分歧；天气因素降雨增加平局概率，爆冷选择主胜(3-1)",
+          "reasoning": "历史数据表明赔率>3.0时爆冷概率30%；市场隐含概率与模型存在分歧；天气因素降雨增加平局概率，爆冷选择主胜(2-1)",
           "probs": {
             "H": 0.3336878665299746,
             "D": 0.37,
@@ -7710,79 +7602,13 @@
   },
   "all_predictions": [
     {
-      "date": "2026-06-11",
-      "home": "Mexico",
-      "away": "South Africa",
-      "agent": "稳健派",
-      "result": "H",
-      "home_score": 1,
-      "away_score": 0,
-      "confidence": 0.52,
-      "reasoning": "Mexico实力明显占优(FIFA排名差103分)，稳健看好主胜"
-    },
-    {
-      "date": "2026-06-11",
-      "home": "Mexico",
-      "away": "South Africa",
-      "agent": "激进派",
-      "result": "H",
-      "home_score": 1,
-      "away_score": 0,
-      "confidence": 0.501,
-      "reasoning": "South Africa并非没有机会，但Mexico进攻火力更强，看好大球取胜 (高海拔利好Mexico·降雨增加平局概率)"
-    },
-    {
-      "date": "2026-06-11",
-      "home": "Mexico",
-      "away": "South Africa",
-      "agent": "价值派",
-      "result": "D",
-      "home_score": 1,
-      "away_score": 1,
-      "confidence": 0.35,
-      "reasoning": "发现价值空间(平局赔率隐含概率35% vs 预测概率35%)，存在4.0%期望价值 (高海拔利好Mexico·降雨增加平局概率)"
-    },
-    {
-      "date": "2026-06-11",
-      "home": "Mexico",
-      "away": "South Africa",
-      "agent": "防守派",
-      "result": "D",
-      "home_score": 1,
-      "away_score": 1,
-      "confidence": 0.47,
-      "reasoning": "世界杯大赛往往以防守为主，看好闷平，高海拔利好Mexico·降雨增加平局概率"
-    },
-    {
-      "date": "2026-06-11",
-      "home": "Mexico",
-      "away": "South Africa",
-      "agent": "数据派",
-      "result": "H",
-      "home_score": 1,
-      "away_score": 0,
-      "confidence": 0.317,
-      "reasoning": "ELO模型计算：Mexico胜率45%/South Africa胜率16%/平局39%；FIFA排名：Mexico=1715分/South Africa=1612分；最可能比分1-0 [高海拔利好Mexico·降雨增加平局概率]"
-    },
-    {
-      "date": "2026-06-11",
-      "home": "Mexico",
-      "away": "South Africa",
-      "agent": "爆冷派",
-      "result": "A",
-      "home_score": 0,
-      "away_score": 1,
-      "confidence": 0.192,
-      "reasoning": "历史数据表明赔率>3.0时爆冷概率17%；实力悬殊(103分差距)增加冷门可能；天气因素高海拔利好Mexico·降雨增加平局概率，爆冷选择客胜(0-1)"
-    },
-    {
       "date": "2026-06-12",
       "home": "South Korea",
       "away": "Czechia",
       "agent": "稳健派",
       "result": "H",
       "home_score": 1,
-      "away_score": 1,
+      "away_score": 0,
       "confidence": 0.553,
       "reasoning": "South Korea实力明显占优(FIFA排名差182分)，稳健看好主胜"
     },
@@ -7793,7 +7619,7 @@
       "agent": "激进派",
       "result": "H",
       "home_score": 1,
-      "away_score": 1,
+      "away_score": 0,
       "confidence": 0.5,
       "reasoning": "Czechia并非没有机会，但South Korea进攻火力更强，看好大球取胜"
     },
@@ -7804,7 +7630,7 @@
       "agent": "价值派",
       "result": "H",
       "home_score": 1,
-      "away_score": 1,
+      "away_score": 0,
       "confidence": 0.337,
       "reasoning": "本场价值空间不足，如需投注建议观望"
     },
@@ -7826,9 +7652,9 @@
       "agent": "数据派",
       "result": "H",
       "home_score": 1,
-      "away_score": 1,
+      "away_score": 0,
       "confidence": 0.337,
-      "reasoning": "ELO模型计算：South Korea胜率48%/Czechia胜率17%/平局35%；FIFA排名：South Korea=1682分/Czechia=1500分；最可能比分1-1"
+      "reasoning": "ELO模型计算：South Korea胜率48%/Czechia胜率17%/平局35%；FIFA排名：South Korea=1682分/Czechia=1500分；最可能比分1-0"
     },
     {
       "date": "2026-06-12",
@@ -7837,9 +7663,9 @@
       "agent": "爆冷派",
       "result": "A",
       "home_score": 0,
-      "away_score": 2,
-      "confidence": 0.345,
-      "reasoning": "历史数据表明赔率>3.0时爆冷概率14%；市场隐含概率与模型存在分歧；实力悬殊(182分差距)增加冷门可能，爆冷选择客胜(0-2)"
+      "away_score": 1,
+      "confidence": 0.14,
+      "reasoning": "历史数据表明赔率>3.0时爆冷概率14%；实力悬殊(182分差距)增加冷门可能，爆冷选择客胜(0-1)"
     },
     {
       "date": "2026-06-12",
@@ -7902,10 +7728,10 @@
       "away": "Bosnia-Herzegovina",
       "agent": "爆冷派",
       "result": "A",
-      "home_score": 1,
-      "away_score": 3,
+      "home_score": 0,
+      "away_score": 1,
       "confidence": 0.17,
-      "reasoning": "历史数据表明赔率>3.0时爆冷概率14%；市场隐含概率与模型存在分歧；实力悬殊(168分差距)增加冷门可能；天气因素降雨增加平局概率，爆冷选择客胜(1-3)"
+      "reasoning": "历史数据表明赔率>3.0时爆冷概率14%；市场隐含概率与模型存在分歧；实力悬殊(168分差距)增加冷门可能；天气因素降雨增加平局概率，爆冷选择客胜(0-1)"
     },
     {
       "date": "2026-06-13",
@@ -7913,8 +7739,8 @@
       "away": "Paraguay",
       "agent": "稳健派",
       "result": "A",
-      "home_score": 1,
-      "away_score": 0,
+      "home_score": 0,
+      "away_score": 1,
       "confidence": 0.53,
       "reasoning": "Paraguay实力更强，客胜可期"
     },
@@ -7924,8 +7750,8 @@
       "away": "Paraguay",
       "agent": "激进派",
       "result": "A",
-      "home_score": 1,
-      "away_score": 0,
+      "home_score": 0,
+      "away_score": 1,
       "confidence": 0.392,
       "reasoning": "数据低估了Paraguay的实力，冷门可期，大胆搏客胜"
     },
@@ -7935,8 +7761,8 @@
       "away": "Paraguay",
       "agent": "价值派",
       "result": "A",
-      "home_score": 1,
-      "away_score": 0,
+      "home_score": 0,
+      "away_score": 1,
       "confidence": 0.323,
       "reasoning": "本场价值空间不足，如需投注建议观望"
     },
@@ -7957,10 +7783,10 @@
       "away": "Paraguay",
       "agent": "数据派",
       "result": "A",
-      "home_score": 1,
-      "away_score": 0,
+      "home_score": 0,
+      "away_score": 1,
       "confidence": 0.323,
-      "reasoning": "ELO模型计算：United States胜率19%/Paraguay胜率46%/平局35%；FIFA排名：United States=1500分/Paraguay=1655分；最可能比分1-0"
+      "reasoning": "ELO模型计算：United States胜率19%/Paraguay胜率46%/平局35%；FIFA排名：United States=1500分/Paraguay=1655分；最可能比分0-1"
     },
     {
       "date": "2026-06-13",
@@ -7969,9 +7795,9 @@
       "agent": "爆冷派",
       "result": "A",
       "home_score": 0,
-      "away_score": 2,
-      "confidence": 0.17,
-      "reasoning": "历史数据表明赔率>3.0时爆冷概率30%；市场隐含概率与模型存在分歧；实力悬殊(155分差距)增加冷门可能，爆冷选择客胜(0-2)"
+      "away_score": 1,
+      "confidence": 0.22,
+      "reasoning": "历史数据表明赔率>3.0时爆冷概率30%；市场隐含概率与模型存在分歧；实力悬殊(155分差距)增加冷门可能，爆冷选择客胜(0-1)"
     },
     {
       "date": "2026-06-13",
@@ -8100,10 +7926,10 @@
       "away": "Morocco",
       "agent": "爆冷派",
       "result": "A",
-      "home_score": 1,
-      "away_score": 2,
+      "home_score": 0,
+      "away_score": 1,
       "confidence": 0.14,
-      "reasoning": "历史数据表明赔率>3.0时爆冷概率14%；市场隐含概率与模型存在分歧；实力悬殊(142分差距)增加冷门可能，爆冷选择客胜(1-2)"
+      "reasoning": "历史数据表明赔率>3.0时爆冷概率14%；市场隐含概率与模型存在分歧；实力悬殊(142分差距)增加冷门可能，爆冷选择客胜(0-1)"
     },
     {
       "date": "2026-06-14",
@@ -8122,7 +7948,7 @@
       "away": "Scotland",
       "agent": "激进派",
       "result": "D",
-      "home_score": 0,
+      "home_score": 1,
       "away_score": 1,
       "confidence": 0.427,
       "reasoning": "双方都有机会，对攻战平局收场 (炎热利好Haiti·降雨增加平局概率)"
@@ -8133,7 +7959,7 @@
       "away": "Scotland",
       "agent": "价值派",
       "result": "D",
-      "home_score": 0,
+      "home_score": 1,
       "away_score": 1,
       "confidence": 0.35,
       "reasoning": "发现价值空间(平局赔率隐含概率35% vs 预测概率35%)，存在6.0%期望价值 (炎热利好Haiti·降雨增加平局概率)"
@@ -8144,8 +7970,8 @@
       "away": "Scotland",
       "agent": "防守派",
       "result": "D",
-      "home_score": 0,
-      "away_score": 0,
+      "home_score": 1,
+      "away_score": 1,
       "confidence": 0.491,
       "reasoning": "世界杯大赛往往以防守为主，看好闷平，炎热利好Haiti·降雨增加平局概率"
     },
@@ -8155,10 +7981,10 @@
       "away": "Scotland",
       "agent": "数据派",
       "result": "D",
-      "home_score": 0,
+      "home_score": 1,
       "away_score": 1,
       "confidence": 0.287,
-      "reasoning": "ELO模型计算：Haiti胜率22%/Scotland胜率37%/平局41%；FIFA排名：Haiti=1500分/Scotland=1618分；最可能比分0-1 [炎热利好Haiti·降雨增加平局概率]"
+      "reasoning": "ELO模型计算：Haiti胜率22%/Scotland胜率37%/平局41%；FIFA排名：Haiti=1500分/Scotland=1618分；最可能比分1-1 [炎热利好Haiti·降雨增加平局概率]"
     },
     {
       "date": "2026-06-14",
@@ -8166,10 +7992,10 @@
       "away": "Scotland",
       "agent": "爆冷派",
       "result": "H",
-      "home_score": 2,
+      "home_score": 1,
       "away_score": 0,
       "confidence": 0.14,
-      "reasoning": "历史数据表明赔率>3.0时爆冷概率17%；市场隐含概率与模型存在分歧；实力悬殊(118分差距)增加冷门可能；天气因素炎热利好Haiti·降雨增加平局概率，爆冷选择主胜(2-0)"
+      "reasoning": "历史数据表明赔率>3.0时爆冷概率17%；市场隐含概率与模型存在分歧；实力悬殊(118分差距)增加冷门可能；天气因素炎热利好Haiti·降雨增加平局概率，爆冷选择主胜(1-0)"
     },
     {
       "date": "2026-06-14",
@@ -8177,8 +8003,8 @@
       "away": "Turkey",
       "agent": "稳健派",
       "result": "H",
-      "home_score": 0,
-      "away_score": 1,
+      "home_score": 1,
+      "away_score": 0,
       "confidence": 0.409,
       "reasoning": "Australia略占优势，谨慎看好主队不败"
     },
@@ -8188,8 +8014,8 @@
       "away": "Turkey",
       "agent": "激进派",
       "result": "H",
-      "home_score": 0,
-      "away_score": 1,
+      "home_score": 1,
+      "away_score": 0,
       "confidence": 0.451,
       "reasoning": "Turkey并非没有机会，但Australia进攻火力更强，看好大球取胜"
     },
@@ -8199,8 +8025,8 @@
       "away": "Turkey",
       "agent": "价值派",
       "result": "H",
-      "home_score": 0,
-      "away_score": 1,
+      "home_score": 1,
+      "away_score": 0,
       "confidence": 0.273,
       "reasoning": "本场价值空间不足，如需投注建议观望"
     },
@@ -8210,8 +8036,8 @@
       "away": "Turkey",
       "agent": "防守派",
       "result": "D",
-      "home_score": 0,
-      "away_score": 0,
+      "home_score": 1,
+      "away_score": 1,
       "confidence": 0.428,
       "reasoning": "世界杯大赛往往以防守为主，看好闷平"
     },
@@ -8221,10 +8047,10 @@
       "away": "Turkey",
       "agent": "数据派",
       "result": "H",
-      "home_score": 0,
-      "away_score": 1,
+      "home_score": 1,
+      "away_score": 0,
       "confidence": 0.273,
-      "reasoning": "ELO模型计算：Australia胜率39%/Turkey胜率26%/平局35%；FIFA排名：Australia=1678分/Turkey=1608分；最可能比分0-1"
+      "reasoning": "ELO模型计算：Australia胜率39%/Turkey胜率26%/平局35%；FIFA排名：Australia=1678分/Turkey=1608分；最可能比分1-0"
     },
     {
       "date": "2026-06-14",
@@ -8276,8 +8102,8 @@
       "away": "Curaçao",
       "agent": "防守派",
       "result": "D",
-      "home_score": 2,
-      "away_score": 2,
+      "home_score": 0,
+      "away_score": 0,
       "confidence": 0.449,
       "reasoning": "世界杯大赛往往以防守为主，看好闷平，降雨增加平局概率"
     },
@@ -8310,7 +8136,7 @@
       "agent": "稳健派",
       "result": "H",
       "home_score": 1,
-      "away_score": 1,
+      "away_score": 0,
       "confidence": 0.399,
       "reasoning": "Netherlands略占优势，谨慎看好主队不败"
     },
@@ -8321,7 +8147,7 @@
       "agent": "激进派",
       "result": "H",
       "home_score": 1,
-      "away_score": 1,
+      "away_score": 0,
       "confidence": 0.444,
       "reasoning": "Japan并非没有机会，但Netherlands进攻火力更强，看好大球取胜 (降雨增加平局概率)"
     },
@@ -8332,7 +8158,7 @@
       "agent": "价值派",
       "result": "H",
       "home_score": 1,
-      "away_score": 1,
+      "away_score": 0,
       "confidence": 0.273,
       "reasoning": "本场价值空间不足，如需投注建议观望 (降雨增加平局概率)"
     },
@@ -8354,9 +8180,9 @@
       "agent": "数据派",
       "result": "H",
       "home_score": 1,
-      "away_score": 1,
+      "away_score": 0,
       "confidence": 0.266,
-      "reasoning": "ELO模型计算：Netherlands胜率38%/Japan胜率25%/平局37%；FIFA排名：Netherlands=1765分/Japan=1695分；最可能比分1-1 [降雨增加平局概率]"
+      "reasoning": "ELO模型计算：Netherlands胜率38%/Japan胜率25%/平局37%；FIFA排名：Netherlands=1765分/Japan=1695分；最可能比分1-0 [降雨增加平局概率]"
     },
     {
       "date": "2026-06-14",
@@ -8364,10 +8190,10 @@
       "away": "Japan",
       "agent": "爆冷派",
       "result": "A",
-      "home_score": 1,
-      "away_score": 2,
+      "home_score": 0,
+      "away_score": 1,
       "confidence": 0.22,
-      "reasoning": "历史数据表明赔率>3.0时爆冷概率22%；市场隐含概率与模型存在分歧；天气因素降雨增加平局概率，爆冷选择客胜(1-2)"
+      "reasoning": "历史数据表明赔率>3.0时爆冷概率22%；市场隐含概率与模型存在分歧；天气因素降雨增加平局概率，爆冷选择客胜(0-1)"
     },
     {
       "date": "2026-06-14",
@@ -8375,7 +8201,7 @@
       "away": "Ecuador",
       "agent": "稳健派",
       "result": "A",
-      "home_score": 1,
+      "home_score": 0,
       "away_score": 1,
       "confidence": 0.38,
       "reasoning": "Ecuador略占优势，谨慎看好客队不败"
@@ -8386,7 +8212,7 @@
       "away": "Ecuador",
       "agent": "激进派",
       "result": "A",
-      "home_score": 1,
+      "home_score": 0,
       "away_score": 1,
       "confidence": 0.42,
       "reasoning": "数据低估了Ecuador的实力，冷门可期，大胆搏客胜"
@@ -8397,7 +8223,7 @@
       "away": "Ecuador",
       "agent": "价值派",
       "result": "A",
-      "home_score": 1,
+      "home_score": 0,
       "away_score": 1,
       "confidence": 0.254,
       "reasoning": "本场价值空间不足，如需投注建议观望"
@@ -8419,10 +8245,10 @@
       "away": "Ecuador",
       "agent": "数据派",
       "result": "A",
-      "home_score": 1,
+      "home_score": 0,
       "away_score": 1,
       "confidence": 0.254,
-      "reasoning": "ELO模型计算：Ivory Coast胜率29%/Ecuador胜率36%/平局35%；FIFA排名：Ivory Coast=1625分/Ecuador=1665分；最可能比分1-1"
+      "reasoning": "ELO模型计算：Ivory Coast胜率29%/Ecuador胜率36%/平局35%；FIFA排名：Ivory Coast=1625分/Ecuador=1665分；最可能比分0-1"
     },
     {
       "date": "2026-06-14",
@@ -8430,10 +8256,10 @@
       "away": "Ecuador",
       "agent": "爆冷派",
       "result": "H",
-      "home_score": 1,
+      "home_score": 2,
       "away_score": 0,
       "confidence": 0.22,
-      "reasoning": "历史数据表明赔率>3.0时爆冷概率22%；市场隐含概率与模型存在分歧，爆冷选择主胜(1-0)"
+      "reasoning": "历史数据表明赔率>3.0时爆冷概率22%；市场隐含概率与模型存在分歧，爆冷选择主胜(2-0)"
     },
     {
       "date": "2026-06-15",
@@ -8442,7 +8268,7 @@
       "agent": "稳健派",
       "result": "D",
       "home_score": 1,
-      "away_score": 0,
+      "away_score": 1,
       "confidence": 0.444,
       "reasoning": "双方实力接近(排名差仅10分)，稳健选择平局"
     },
@@ -8452,8 +8278,8 @@
       "away": "Tunisia",
       "agent": "激进派",
       "result": "A",
-      "home_score": 1,
-      "away_score": 0,
+      "home_score": 0,
+      "away_score": 1,
       "confidence": 0.379,
       "reasoning": "数据低估了Tunisia的实力，冷门可期，大胆搏客胜 (降雨增加平局概率)"
     },
@@ -8464,7 +8290,7 @@
       "agent": "价值派",
       "result": "D",
       "home_score": 1,
-      "away_score": 0,
+      "away_score": 1,
       "confidence": 0.245,
       "reasoning": "本场价值空间不足，如需投注建议观望 (降雨增加平局概率)"
     },
@@ -8486,9 +8312,9 @@
       "agent": "数据派",
       "result": "D",
       "home_score": 1,
-      "away_score": 0,
+      "away_score": 1,
       "confidence": 0.259,
-      "reasoning": "ELO模型计算：Sweden胜率31%/Tunisia胜率32%/平局37%；FIFA排名：Sweden=1625分/Tunisia=1635分；最可能比分1-0 [降雨增加平局概率]"
+      "reasoning": "ELO模型计算：Sweden胜率31%/Tunisia胜率32%/平局37%；FIFA排名：Sweden=1625分/Tunisia=1635分；最可能比分1-1 [降雨增加平局概率]"
     },
     {
       "date": "2026-06-15",
@@ -8496,10 +8322,10 @@
       "away": "Tunisia",
       "agent": "爆冷派",
       "result": "A",
-      "home_score": 0,
-      "away_score": 2,
+      "home_score": 1,
+      "away_score": 3,
       "confidence": 0.17,
-      "reasoning": "历史数据表明赔率>3.0时爆冷概率30%；市场隐含概率与模型存在分歧；天气因素降雨增加平局概率，爆冷选择客胜(0-2)"
+      "reasoning": "历史数据表明赔率>3.0时爆冷概率30%；市场隐含概率与模型存在分歧；天气因素降雨增加平局概率，爆冷选择客胜(1-3)"
     },
     {
       "date": "2026-06-15",
@@ -8540,8 +8366,8 @@
       "away": "Cape Verde Islands",
       "agent": "防守派",
       "result": "D",
-      "home_score": 2,
-      "away_score": 2,
+      "home_score": 0,
+      "away_score": 0,
       "confidence": 0.449,
       "reasoning": "世界杯大赛往往以防守为主，看好闷平，降雨增加平局概率"
     },
@@ -8628,10 +8454,10 @@
       "away": "Egypt",
       "agent": "爆冷派",
       "result": "A",
-      "home_score": 0,
-      "away_score": 2,
+      "home_score": 1,
+      "away_score": 3,
       "confidence": 0.14,
-      "reasoning": "历史数据表明赔率>3.0时爆冷概率14%；市场隐含概率与模型存在分歧；实力悬殊(167分差距)增加冷门可能；天气因素降雨增加平局概率，爆冷选择客胜(0-2)"
+      "reasoning": "历史数据表明赔率>3.0时爆冷概率14%；市场隐含概率与模型存在分歧；实力悬殊(167分差距)增加冷门可能；天气因素降雨增加平局概率，爆冷选择客胜(1-3)"
     },
     {
       "date": "2026-06-15",
@@ -8639,7 +8465,7 @@
       "away": "Uruguay",
       "agent": "稳健派",
       "result": "D",
-      "home_score": 0,
+      "home_score": 1,
       "away_score": 1,
       "confidence": 0.42,
       "reasoning": "双方实力接近(排名差仅37分)，稳健选择平局"
@@ -8672,8 +8498,8 @@
       "away": "Uruguay",
       "agent": "防守派",
       "result": "D",
-      "home_score": 0,
-      "away_score": 0,
+      "home_score": 1,
+      "away_score": 1,
       "confidence": 0.473,
       "reasoning": "世界杯大赛往往以防守为主，双方实力接近(差37分)，看好闷平"
     },
@@ -8804,8 +8630,8 @@
       "away": "Senegal",
       "agent": "防守派",
       "result": "D",
-      "home_score": 2,
-      "away_score": 2,
+      "home_score": 1,
+      "away_score": 1,
       "confidence": 0.449,
       "reasoning": "世界杯大赛往往以防守为主，看好闷平，降雨增加平局概率"
     },
@@ -8826,10 +8652,10 @@
       "away": "Senegal",
       "agent": "爆冷派",
       "result": "A",
-      "home_score": 0,
-      "away_score": 1,
+      "home_score": 1,
+      "away_score": 2,
       "confidence": 0.1,
-      "reasoning": "历史数据表明赔率>3.0时爆冷概率14%；市场隐含概率与模型存在分歧；实力悬殊(157分差距)增加冷门可能；天气因素降雨增加平局概率，爆冷选择客胜(0-1)"
+      "reasoning": "历史数据表明赔率>3.0时爆冷概率14%；市场隐含概率与模型存在分歧；实力悬殊(157分差距)增加冷门可能；天气因素降雨增加平局概率，爆冷选择客胜(1-2)"
     },
     {
       "date": "2026-06-16",
@@ -8849,7 +8675,7 @@
       "agent": "激进派",
       "result": "D",
       "home_score": 0,
-      "away_score": 2,
+      "away_score": 0,
       "confidence": 0.37,
       "reasoning": "双方都有机会，对攻战平局收场"
     },
@@ -8936,8 +8762,8 @@
       "away": "Algeria",
       "agent": "防守派",
       "result": "D",
-      "home_score": 2,
-      "away_score": 2,
+      "home_score": 1,
+      "away_score": 1,
       "confidence": 0.428,
       "reasoning": "世界杯大赛往往以防守为主，看好闷平"
     },
@@ -8958,10 +8784,10 @@
       "away": "Algeria",
       "agent": "爆冷派",
       "result": "A",
-      "home_score": 1,
-      "away_score": 3,
+      "home_score": 0,
+      "away_score": 1,
       "confidence": 0.08,
-      "reasoning": "历史数据表明赔率>3.0时爆冷概率10%；市场隐含概率与模型存在分歧；实力悬殊(226分差距)增加冷门可能，爆冷选择客胜(1-3)"
+      "reasoning": "历史数据表明赔率>3.0时爆冷概率10%；市场隐含概率与模型存在分歧；实力悬殊(226分差距)增加冷门可能，爆冷选择客胜(0-1)"
     },
     {
       "date": "2026-06-17",
@@ -9002,8 +8828,8 @@
       "away": "Jordan",
       "agent": "防守派",
       "result": "D",
-      "home_score": 2,
-      "away_score": 2,
+      "home_score": 1,
+      "away_score": 1,
       "confidence": 0.449,
       "reasoning": "世界杯大赛往往以防守为主，看好闷平，炎热利好客队·降雨增加平局概率"
     },
@@ -9024,10 +8850,10 @@
       "away": "Jordan",
       "agent": "爆冷派",
       "result": "A",
-      "home_score": 0,
+      "home_score": 1,
       "away_score": 2,
       "confidence": 0.08,
-      "reasoning": "历史数据表明赔率>3.0时爆冷概率17%；市场隐含概率与模型存在分歧；实力悬殊(112分差距)增加冷门可能；天气因素炎热利好客队·降雨增加平局概率，爆冷选择客胜(0-2)"
+      "reasoning": "历史数据表明赔率>3.0时爆冷概率17%；市场隐含概率与模型存在分歧；实力悬殊(112分差距)增加冷门可能；天气因素炎热利好客队·降雨增加平局概率，爆冷选择客胜(1-2)"
     },
     {
       "date": "2026-06-17",
@@ -9068,8 +8894,8 @@
       "away": "Congo DR",
       "agent": "防守派",
       "result": "D",
-      "home_score": 2,
-      "away_score": 2,
+      "home_score": 1,
+      "away_score": 1,
       "confidence": 0.449,
       "reasoning": "世界杯大赛往往以防守为主，看好闷平，降雨增加平局概率"
     },
@@ -9157,9 +8983,9 @@
       "agent": "爆冷派",
       "result": "A",
       "home_score": 0,
-      "away_score": 2,
+      "away_score": 1,
       "confidence": 0.17,
-      "reasoning": "历史数据表明赔率>3.0时爆冷概率17%；市场隐含概率与模型存在分歧；天气因素降雨增加平局概率，爆冷选择客胜(0-2)"
+      "reasoning": "历史数据表明赔率>3.0时爆冷概率17%；市场隐含概率与模型存在分歧；天气因素降雨增加平局概率，爆冷选择客胜(0-1)"
     },
     {
       "date": "2026-06-17",
@@ -9178,7 +9004,7 @@
       "away": "Panama",
       "agent": "激进派",
       "result": "A",
-      "home_score": 1,
+      "home_score": 0,
       "away_score": 1,
       "confidence": 0.387,
       "reasoning": "数据低估了Panama的实力，冷门可期，大胆搏客胜"
@@ -9222,10 +9048,10 @@
       "away": "Panama",
       "agent": "爆冷派",
       "result": "A",
-      "home_score": 1,
-      "away_score": 2,
+      "home_score": 0,
+      "away_score": 1,
       "confidence": 0.22,
-      "reasoning": "历史数据表明赔率>3.0时爆冷概率30%；市场隐含概率与模型存在分歧，爆冷选择客胜(1-2)"
+      "reasoning": "历史数据表明赔率>3.0时爆冷概率30%；市场隐含概率与模型存在分歧，爆冷选择客胜(0-1)"
     },
     {
       "date": "2026-06-18",
@@ -9266,8 +9092,8 @@
       "away": "Colombia",
       "agent": "防守派",
       "result": "D",
-      "home_score": 0,
-      "away_score": 0,
+      "home_score": 1,
+      "away_score": 1,
       "confidence": 0.428,
       "reasoning": "世界杯大赛往往以防守为主，看好闷平"
     },
@@ -9288,10 +9114,10 @@
       "away": "Colombia",
       "agent": "爆冷派",
       "result": "H",
-      "home_score": 1,
-      "away_score": 0,
+      "home_score": 3,
+      "away_score": 1,
       "confidence": 0.08,
-      "reasoning": "历史数据表明赔率>3.0时爆冷概率12%；市场隐含概率与模型存在分歧；实力悬殊(208分差距)增加冷门可能，爆冷选择主胜(1-0)"
+      "reasoning": "历史数据表明赔率>3.0时爆冷概率12%；市场隐含概率与模型存在分歧；实力悬殊(208分差距)增加冷门可能，爆冷选择主胜(3-1)"
     },
     {
       "date": "2026-06-18",
@@ -9299,8 +9125,8 @@
       "away": "South Africa",
       "agent": "稳健派",
       "result": "A",
-      "home_score": 1,
-      "away_score": 0,
+      "home_score": 0,
+      "away_score": 1,
       "confidence": 0.49,
       "reasoning": "South Africa实力更强，客胜可期"
     },
@@ -9311,7 +9137,7 @@
       "agent": "激进派",
       "result": "D",
       "home_score": 1,
-      "away_score": 0,
+      "away_score": 1,
       "confidence": 0.369,
       "reasoning": "双方都有机会，对攻战平局收场"
     },
@@ -9321,8 +9147,8 @@
       "away": "South Africa",
       "agent": "价值派",
       "result": "A",
-      "home_score": 1,
-      "away_score": 0,
+      "home_score": 0,
+      "away_score": 1,
       "confidence": 0.298,
       "reasoning": "本场价值空间不足，如需投注建议观望"
     },
@@ -9343,10 +9169,10 @@
       "away": "South Africa",
       "agent": "数据派",
       "result": "A",
-      "home_score": 1,
-      "away_score": 0,
+      "home_score": 0,
+      "away_score": 1,
       "confidence": 0.298,
-      "reasoning": "ELO模型计算：Czechia胜率22%/South Africa胜率43%/平局35%；FIFA排名：Czechia=1500分/South Africa=1612分；最可能比分1-0"
+      "reasoning": "ELO模型计算：Czechia胜率22%/South Africa胜率43%/平局35%；FIFA排名：Czechia=1500分/South Africa=1612分；最可能比分0-1"
     },
     {
       "date": "2026-06-18",
@@ -9355,9 +9181,9 @@
       "agent": "爆冷派",
       "result": "A",
       "home_score": 1,
-      "away_score": 3,
-      "confidence": 0.14,
-      "reasoning": "历史数据表明赔率>3.0时爆冷概率30%；市场隐含概率与模型存在分歧；实力悬殊(112分差距)增加冷门可能，爆冷选择客胜(1-3)"
+      "away_score": 2,
+      "confidence": 0.17,
+      "reasoning": "历史数据表明赔率>3.0时爆冷概率30%；市场隐含概率与模型存在分歧；实力悬殊(112分差距)增加冷门可能，爆冷选择客胜(1-2)"
     },
     {
       "date": "2026-06-18",
@@ -9464,8 +9290,8 @@
       "away": "Qatar",
       "agent": "防守派",
       "result": "D",
-      "home_score": 2,
-      "away_score": 2,
+      "home_score": 1,
+      "away_score": 1,
       "confidence": 0.449,
       "reasoning": "世界杯大赛往往以防守为主，看好闷平，降雨增加平局概率"
     },
@@ -9498,7 +9324,7 @@
       "agent": "稳健派",
       "result": "D",
       "home_score": 1,
-      "away_score": 0,
+      "away_score": 1,
       "confidence": 0.45,
       "reasoning": "双方实力接近(排名差仅33分)，稳健选择平局"
     },
@@ -9552,10 +9378,10 @@
       "away": "South Korea",
       "agent": "爆冷派",
       "result": "A",
-      "home_score": 1,
-      "away_score": 2,
+      "home_score": 0,
+      "away_score": 1,
       "confidence": 0.17,
-      "reasoning": "历史数据表明赔率>3.0时爆冷概率22%；市场隐含概率与模型存在分歧；天气因素高海拔利好Mexico·降雨增加平局概率，爆冷选择客胜(1-2)"
+      "reasoning": "历史数据表明赔率>3.0时爆冷概率22%；市场隐含概率与模型存在分歧；天气因素高海拔利好Mexico·降雨增加平局概率，爆冷选择客胜(0-1)"
     },
     {
       "date": "2026-06-19",
@@ -9563,8 +9389,8 @@
       "away": "Australia",
       "agent": "稳健派",
       "result": "A",
-      "home_score": 1,
-      "away_score": 0,
+      "home_score": 0,
+      "away_score": 1,
       "confidence": 0.55,
       "reasoning": "Australia实力更强，客胜可期"
     },
@@ -9574,8 +9400,8 @@
       "away": "Australia",
       "agent": "激进派",
       "result": "A",
-      "home_score": 1,
-      "away_score": 0,
+      "home_score": 0,
+      "away_score": 1,
       "confidence": 0.407,
       "reasoning": "数据低估了Australia的实力，冷门可期，大胆搏客胜"
     },
@@ -9585,8 +9411,8 @@
       "away": "Australia",
       "agent": "价值派",
       "result": "A",
-      "home_score": 1,
-      "away_score": 0,
+      "home_score": 0,
+      "away_score": 1,
       "confidence": 0.335,
       "reasoning": "本场价值空间不足，如需投注建议观望"
     },
@@ -9607,10 +9433,10 @@
       "away": "Australia",
       "agent": "数据派",
       "result": "A",
-      "home_score": 1,
-      "away_score": 0,
+      "home_score": 0,
+      "away_score": 1,
       "confidence": 0.335,
-      "reasoning": "ELO模型计算：United States胜率17%/Australia胜率48%/平局35%；FIFA排名：United States=1500分/Australia=1678分；最可能比分1-0"
+      "reasoning": "ELO模型计算：United States胜率17%/Australia胜率48%/平局35%；FIFA排名：United States=1500分/Australia=1678分；最可能比分0-1"
     },
     {
       "date": "2026-06-19",
@@ -9662,8 +9488,8 @@
       "away": "Morocco",
       "agent": "防守派",
       "result": "D",
-      "home_score": 0,
-      "away_score": 0,
+      "home_score": 1,
+      "away_score": 1,
       "confidence": 0.449,
       "reasoning": "世界杯大赛往往以防守为主，看好闷平，降雨增加平局概率"
     },
@@ -9684,10 +9510,10 @@
       "away": "Morocco",
       "agent": "爆冷派",
       "result": "H",
-      "home_score": 1,
-      "away_score": 0,
+      "home_score": 2,
+      "away_score": 1,
       "confidence": 0.17,
-      "reasoning": "历史数据表明赔率>3.0时爆冷概率22%；市场隐含概率与模型存在分歧；天气因素降雨增加平局概率，爆冷选择主胜(1-0)"
+      "reasoning": "历史数据表明赔率>3.0时爆冷概率22%；市场隐含概率与模型存在分歧；天气因素降雨增加平局概率，爆冷选择主胜(2-1)"
     },
     {
       "date": "2026-06-20",
@@ -9728,8 +9554,8 @@
       "away": "Haiti",
       "agent": "防守派",
       "result": "D",
-      "home_score": 2,
-      "away_score": 2,
+      "home_score": 0,
+      "away_score": 0,
       "confidence": 0.413,
       "reasoning": "世界杯大赛往往以防守为主，看好闷平"
     },
@@ -9761,7 +9587,7 @@
       "away": "Paraguay",
       "agent": "稳健派",
       "result": "A",
-      "home_score": 1,
+      "home_score": 0,
       "away_score": 1,
       "confidence": 0.377,
       "reasoning": "Paraguay略占优势，谨慎看好客队不败"
@@ -9772,7 +9598,7 @@
       "away": "Paraguay",
       "agent": "激进派",
       "result": "A",
-      "home_score": 1,
+      "home_score": 0,
       "away_score": 1,
       "confidence": 0.419,
       "reasoning": "数据低估了Paraguay的实力，冷门可期，大胆搏客胜 (降雨增加平局概率)"
@@ -9783,7 +9609,7 @@
       "away": "Paraguay",
       "agent": "价值派",
       "result": "A",
-      "home_score": 1,
+      "home_score": 0,
       "away_score": 1,
       "confidence": 0.258,
       "reasoning": "本场价值空间不足，如需投注建议观望 (降雨增加平局概率)"
@@ -9883,9 +9709,9 @@
       "agent": "爆冷派",
       "result": "A",
       "home_score": 1,
-      "away_score": 3,
+      "away_score": 2,
       "confidence": 0.14,
-      "reasoning": "历史数据表明赔率>3.0时爆冷概率17%；市场隐含概率与模型存在分歧；实力悬殊(140分差距)增加冷门可能；天气因素降雨增加平局概率，爆冷选择客胜(1-3)"
+      "reasoning": "历史数据表明赔率>3.0时爆冷概率17%；市场隐含概率与模型存在分歧；实力悬殊(140分差距)增加冷门可能；天气因素降雨增加平局概率，爆冷选择客胜(1-2)"
     },
     {
       "date": "2026-06-20",
@@ -9926,8 +9752,8 @@
       "away": "Ivory Coast",
       "agent": "防守派",
       "result": "D",
-      "home_score": 2,
-      "away_score": 2,
+      "home_score": 1,
+      "away_score": 1,
       "confidence": 0.449,
       "reasoning": "世界杯大赛往往以防守为主，看好闷平，降雨增加平局概率"
     },
@@ -9949,9 +9775,9 @@
       "agent": "爆冷派",
       "result": "A",
       "home_score": 0,
-      "away_score": 2,
+      "away_score": 1,
       "confidence": 0.14,
-      "reasoning": "历史数据表明赔率>3.0时爆冷概率17%；市场隐含概率与模型存在分歧；实力悬殊(120分差距)增加冷门可能；天气因素降雨增加平局概率，爆冷选择客胜(0-2)"
+      "reasoning": "历史数据表明赔率>3.0时爆冷概率17%；市场隐含概率与模型存在分歧；实力悬殊(120分差距)增加冷门可能；天气因素降雨增加平局概率，爆冷选择客胜(0-1)"
     },
     {
       "date": "2026-06-21",
@@ -9992,8 +9818,8 @@
       "away": "Curaçao",
       "agent": "防守派",
       "result": "D",
-      "home_score": 2,
-      "away_score": 2,
+      "home_score": 0,
+      "away_score": 0,
       "confidence": 0.428,
       "reasoning": "世界杯大赛往往以防守为主，看好闷平"
     },
@@ -10058,8 +9884,8 @@
       "away": "Japan",
       "agent": "防守派",
       "result": "D",
-      "home_score": 0,
-      "away_score": 0,
+      "home_score": 1,
+      "away_score": 1,
       "confidence": 0.428,
       "reasoning": "世界杯大赛往往以防守为主，看好闷平"
     },
@@ -10080,10 +9906,10 @@
       "away": "Japan",
       "agent": "爆冷派",
       "result": "H",
-      "home_score": 2,
+      "home_score": 1,
       "away_score": 0,
       "confidence": 0.14,
-      "reasoning": "历史数据表明赔率>3.0时爆冷概率22%；市场隐含概率与模型存在分歧，爆冷选择主胜(2-0)"
+      "reasoning": "历史数据表明赔率>3.0时爆冷概率22%；市场隐含概率与模型存在分歧，爆冷选择主胜(1-0)"
     },
     {
       "date": "2026-06-21",
@@ -10124,8 +9950,8 @@
       "away": "Saudi Arabia",
       "agent": "防守派",
       "result": "D",
-      "home_score": 2,
-      "away_score": 2,
+      "home_score": 0,
+      "away_score": 0,
       "confidence": 0.449,
       "reasoning": "世界杯大赛往往以防守为主，看好闷平，降雨增加平局概率"
     },
@@ -10190,8 +10016,8 @@
       "away": "Iran",
       "agent": "防守派",
       "result": "D",
-      "home_score": 2,
-      "away_score": 2,
+      "home_score": 1,
+      "away_score": 1,
       "confidence": 0.449,
       "reasoning": "世界杯大赛往往以防守为主，看好闷平，降雨增加平局概率"
     },
@@ -10245,8 +10071,8 @@
       "away": "Cape Verde Islands",
       "agent": "价值派",
       "result": "D",
-      "home_score": 2,
-      "away_score": 0,
+      "home_score": 1,
+      "away_score": 1,
       "confidence": 0.35,
       "reasoning": "发现价值空间(平局赔率隐含概率35% vs 预测概率35%)，存在6.0%期望价值 (炎热利好客队·降雨增加平局概率)"
     },
@@ -10256,8 +10082,8 @@
       "away": "Cape Verde Islands",
       "agent": "防守派",
       "result": "D",
-      "home_score": 2,
-      "away_score": 2,
+      "home_score": 1,
+      "away_score": 1,
       "confidence": 0.491,
       "reasoning": "世界杯大赛往往以防守为主，看好闷平，炎热利好客队·降雨增加平局概率"
     },
@@ -10278,10 +10104,10 @@
       "away": "Cape Verde Islands",
       "agent": "爆冷派",
       "result": "A",
-      "home_score": 1,
-      "away_score": 2,
+      "home_score": 0,
+      "away_score": 1,
       "confidence": 0.1,
-      "reasoning": "历史数据表明赔率>3.0时爆冷概率12%；市场隐含概率与模型存在分歧；实力悬殊(212分差距)增加冷门可能；天气因素炎热利好客队·降雨增加平局概率，爆冷选择客胜(1-2)"
+      "reasoning": "历史数据表明赔率>3.0时爆冷概率12%；市场隐含概率与模型存在分歧；实力悬殊(212分差距)增加冷门可能；天气因素炎热利好客队·降雨增加平局概率，爆冷选择客胜(0-1)"
     },
     {
       "date": "2026-06-22",
@@ -10322,8 +10148,8 @@
       "away": "Egypt",
       "agent": "防守派",
       "result": "D",
-      "home_score": 0,
-      "away_score": 0,
+      "home_score": 1,
+      "away_score": 1,
       "confidence": 0.473,
       "reasoning": "世界杯大赛往往以防守为主，双方实力接近(差48分)，看好闷平"
     },
@@ -10345,9 +10171,9 @@
       "agent": "爆冷派",
       "result": "H",
       "home_score": 2,
-      "away_score": 1,
+      "away_score": 0,
       "confidence": 0.17,
-      "reasoning": "历史数据表明赔率>3.0时爆冷概率22%；市场隐含概率与模型存在分歧，爆冷选择主胜(2-1)"
+      "reasoning": "历史数据表明赔率>3.0时爆冷概率22%；市场隐含概率与模型存在分歧，爆冷选择主胜(2-0)"
     },
     {
       "date": "2026-06-22",
@@ -10410,10 +10236,10 @@
       "away": "Austria",
       "agent": "爆冷派",
       "result": "A",
-      "home_score": 0,
-      "away_score": 1,
+      "home_score": 1,
+      "away_score": 2,
       "confidence": 0.14,
-      "reasoning": "历史数据表明赔率>3.0时爆冷概率10%；市场隐含概率与模型存在分歧；实力悬殊(246分差距)增加冷门可能，爆冷选择客胜(0-1)"
+      "reasoning": "历史数据表明赔率>3.0时爆冷概率10%；市场隐含概率与模型存在分歧；实力悬殊(246分差距)增加冷门可能，爆冷选择客胜(1-2)"
     },
     {
       "date": "2026-06-22",
@@ -10454,8 +10280,8 @@
       "away": "Iraq",
       "agent": "防守派",
       "result": "D",
-      "home_score": 2,
-      "away_score": 2,
+      "home_score": 0,
+      "away_score": 0,
       "confidence": 0.432,
       "reasoning": "世界杯大赛往往以防守为主，看好闷平，降雨增加平局概率"
     },
@@ -10487,7 +10313,7 @@
       "away": "Senegal",
       "agent": "稳健派",
       "result": "A",
-      "home_score": 1,
+      "home_score": 0,
       "away_score": 1,
       "confidence": 0.395,
       "reasoning": "Senegal略占优势，谨慎看好客队不败"
@@ -10498,7 +10324,7 @@
       "away": "Senegal",
       "agent": "激进派",
       "result": "A",
-      "home_score": 1,
+      "home_score": 0,
       "away_score": 1,
       "confidence": 0.44,
       "reasoning": "数据低估了Senegal的实力，冷门可期，大胆搏客胜 (降雨增加平局概率)"
@@ -10509,7 +10335,7 @@
       "away": "Senegal",
       "agent": "价值派",
       "result": "A",
-      "home_score": 1,
+      "home_score": 0,
       "away_score": 1,
       "confidence": 0.27,
       "reasoning": "本场价值空间不足，如需投注建议观望 (降雨增加平局概率)"
@@ -10531,10 +10357,10 @@
       "away": "Senegal",
       "agent": "数据派",
       "result": "A",
-      "home_score": 1,
+      "home_score": 0,
       "away_score": 1,
       "confidence": 0.263,
-      "reasoning": "ELO模型计算：Norway胜率25%/Senegal胜率38%/平局37%；FIFA排名：Norway=1622分/Senegal=1688分；最可能比分1-1 [降雨增加平局概率]"
+      "reasoning": "ELO模型计算：Norway胜率25%/Senegal胜率38%/平局37%；FIFA排名：Norway=1622分/Senegal=1688分；最可能比分0-1 [降雨增加平局概率]"
     },
     {
       "date": "2026-06-23",
@@ -10542,10 +10368,10 @@
       "away": "Senegal",
       "agent": "爆冷派",
       "result": "D",
-      "home_score": 2,
-      "away_score": 2,
+      "home_score": 0,
+      "away_score": 0,
       "confidence": 0.22,
-      "reasoning": "历史数据表明赔率>3.0时爆冷概率30%；市场隐含概率与模型存在分歧；天气因素降雨增加平局概率，爆冷选择平局(2-2)"
+      "reasoning": "历史数据表明赔率>3.0时爆冷概率30%；市场隐含概率与模型存在分歧；天气因素降雨增加平局概率，爆冷选择平局(0-0)"
     },
     {
       "date": "2026-06-23",
@@ -10586,8 +10412,8 @@
       "away": "Algeria",
       "agent": "防守派",
       "result": "D",
-      "home_score": 0,
-      "away_score": 0,
+      "home_score": 1,
+      "away_score": 1,
       "confidence": 0.428,
       "reasoning": "世界杯大赛往往以防守为主，看好闷平"
     },
@@ -10608,10 +10434,10 @@
       "away": "Algeria",
       "agent": "爆冷派",
       "result": "H",
-      "home_score": 2,
-      "away_score": 1,
+      "home_score": 1,
+      "away_score": 0,
       "confidence": 0.12,
-      "reasoning": "历史数据表明赔率>3.0时爆冷概率17%；市场隐含概率与模型存在分歧；实力悬殊(132分差距)增加冷门可能，爆冷选择主胜(2-1)"
+      "reasoning": "历史数据表明赔率>3.0时爆冷概率17%；市场隐含概率与模型存在分歧；实力悬殊(132分差距)增加冷门可能，爆冷选择主胜(1-0)"
     },
     {
       "date": "2026-06-23",
@@ -10652,8 +10478,8 @@
       "away": "Uzbekistan",
       "agent": "防守派",
       "result": "D",
-      "home_score": 2,
-      "away_score": 2,
+      "home_score": 1,
+      "away_score": 1,
       "confidence": 0.447,
       "reasoning": "世界杯大赛往往以防守为主，看好闷平，降雨增加平局概率"
     },
@@ -10718,8 +10544,8 @@
       "away": "Ghana",
       "agent": "防守派",
       "result": "D",
-      "home_score": 2,
-      "away_score": 2,
+      "home_score": 1,
+      "away_score": 1,
       "confidence": 0.449,
       "reasoning": "世界杯大赛往往以防守为主，看好闷平，降雨增加平局概率"
     },
@@ -10741,9 +10567,9 @@
       "agent": "爆冷派",
       "result": "A",
       "home_score": 0,
-      "away_score": 1,
+      "away_score": 2,
       "confidence": 0.08,
-      "reasoning": "历史数据表明赔率>3.0时爆冷概率14%；市场隐含概率与模型存在分歧；实力悬殊(174分差距)增加冷门可能；天气因素降雨增加平局概率，爆冷选择客胜(0-1)"
+      "reasoning": "历史数据表明赔率>3.0时爆冷概率14%；市场隐含概率与模型存在分歧；实力悬殊(174分差距)增加冷门可能；天气因素降雨增加平局概率，爆冷选择客胜(0-2)"
     },
     {
       "date": "2026-06-23",
@@ -10773,7 +10599,7 @@
       "away": "Croatia",
       "agent": "价值派",
       "result": "D",
-      "home_score": 0,
+      "home_score": 1,
       "away_score": 1,
       "confidence": 0.35,
       "reasoning": "发现价值空间(平局赔率隐含概率35% vs 预测概率35%)，存在6.0%期望价值 (炎热利好Panama·降雨增加平局概率)"
@@ -10784,8 +10610,8 @@
       "away": "Croatia",
       "agent": "防守派",
       "result": "D",
-      "home_score": 0,
-      "away_score": 0,
+      "home_score": 1,
+      "away_score": 1,
       "confidence": 0.491,
       "reasoning": "世界杯大赛往往以防守为主，看好闷平，炎热利好Panama·降雨增加平局概率"
     },
@@ -10795,10 +10621,10 @@
       "away": "Croatia",
       "agent": "数据派",
       "result": "D",
-      "home_score": 0,
+      "home_score": 1,
       "away_score": 1,
       "confidence": 0.287,
-      "reasoning": "ELO模型计算：Panama胜率24%/Croatia胜率35%/平局41%；FIFA排名：Panama=1648分/Croatia=1728分；最可能比分0-1 [炎热利好Panama·降雨增加平局概率]"
+      "reasoning": "ELO模型计算：Panama胜率24%/Croatia胜率35%/平局41%；FIFA排名：Panama=1648分/Croatia=1728分；最可能比分1-1 [炎热利好Panama·降雨增加平局概率]"
     },
     {
       "date": "2026-06-23",
@@ -10840,7 +10666,7 @@
       "agent": "价值派",
       "result": "D",
       "home_score": 1,
-      "away_score": 0,
+      "away_score": 1,
       "confidence": 0.35,
       "reasoning": "发现价值空间(平局赔率隐含概率35% vs 预测概率35%)，存在6.0%期望价值 (降雨增加平局概率)"
     },
@@ -10862,9 +10688,9 @@
       "agent": "数据派",
       "result": "D",
       "home_score": 1,
-      "away_score": 0,
+      "away_score": 1,
       "confidence": 0.287,
-      "reasoning": "ELO模型计算：Colombia胜率38%/Congo DR胜率21%/平局41%；FIFA排名：Colombia=1708分/Congo DR=1615分；最可能比分1-0 [降雨增加平局概率]"
+      "reasoning": "ELO模型计算：Colombia胜率38%/Congo DR胜率21%/平局41%；FIFA排名：Colombia=1708分/Congo DR=1615分；最可能比分1-1 [降雨增加平局概率]"
     },
     {
       "date": "2026-06-24",
@@ -10872,10 +10698,10 @@
       "away": "Congo DR",
       "agent": "爆冷派",
       "result": "A",
-      "home_score": 1,
-      "away_score": 3,
+      "home_score": 0,
+      "away_score": 2,
       "confidence": 0.1,
-      "reasoning": "历史数据表明赔率>3.0时爆冷概率17%；市场隐含概率与模型存在分歧；天气因素降雨增加平局概率，爆冷选择客胜(1-3)"
+      "reasoning": "历史数据表明赔率>3.0时爆冷概率17%；市场隐含概率与模型存在分歧；天气因素降雨增加平局概率，爆冷选择客胜(0-2)"
     },
     {
       "date": "2026-06-24",
@@ -10895,7 +10721,7 @@
       "agent": "激进派",
       "result": "H",
       "home_score": 1,
-      "away_score": 1,
+      "away_score": 0,
       "confidence": 0.409,
       "reasoning": "Canada并非没有机会，但Switzerland进攻火力更强，看好大球取胜"
     },
@@ -10906,7 +10732,7 @@
       "agent": "价值派",
       "result": "H",
       "home_score": 1,
-      "away_score": 1,
+      "away_score": 0,
       "confidence": 0.247,
       "reasoning": "本场价值空间不足，如需投注建议观望"
     },
@@ -10928,9 +10754,9 @@
       "agent": "数据派",
       "result": "H",
       "home_score": 1,
-      "away_score": 1,
+      "away_score": 0,
       "confidence": 0.247,
-      "reasoning": "ELO模型计算：Switzerland胜率35%/Canada胜率30%/平局35%；FIFA排名：Switzerland=1698分/Canada=1668分；最可能比分1-1"
+      "reasoning": "ELO模型计算：Switzerland胜率35%/Canada胜率30%/平局35%；FIFA排名：Switzerland=1698分/Canada=1668分；最可能比分1-0"
     },
     {
       "date": "2026-06-24",
@@ -10949,8 +10775,8 @@
       "away": "Qatar",
       "agent": "稳健派",
       "result": "A",
-      "home_score": 1,
-      "away_score": 0,
+      "home_score": 0,
+      "away_score": 1,
       "confidence": 0.414,
       "reasoning": "Qatar略占优势，谨慎看好客队不败"
     },
@@ -10960,8 +10786,8 @@
       "away": "Qatar",
       "agent": "激进派",
       "result": "A",
-      "home_score": 1,
-      "away_score": 0,
+      "home_score": 0,
+      "away_score": 1,
       "confidence": 0.457,
       "reasoning": "数据低估了Qatar的实力，冷门可期，大胆搏客胜"
     },
@@ -10971,8 +10797,8 @@
       "away": "Qatar",
       "agent": "价值派",
       "result": "A",
-      "home_score": 1,
-      "away_score": 0,
+      "home_score": 0,
+      "away_score": 1,
       "confidence": 0.276,
       "reasoning": "本场价值空间不足，如需投注建议观望"
     },
@@ -10993,10 +10819,10 @@
       "away": "Qatar",
       "agent": "数据派",
       "result": "A",
-      "home_score": 1,
-      "away_score": 0,
+      "home_score": 0,
+      "away_score": 1,
       "confidence": 0.276,
-      "reasoning": "ELO模型计算：Bosnia-Herzegovina胜率26%/Qatar胜率39%/平局35%；FIFA排名：Bosnia-Herzegovina=1500分/Qatar=1575分；最可能比分1-0"
+      "reasoning": "ELO模型计算：Bosnia-Herzegovina胜率26%/Qatar胜率39%/平局35%；FIFA排名：Bosnia-Herzegovina=1500分/Qatar=1575分；最可能比分0-1"
     },
     {
       "date": "2026-06-24",
@@ -11004,10 +10830,10 @@
       "away": "Qatar",
       "agent": "爆冷派",
       "result": "A",
-      "home_score": 1,
+      "home_score": 0,
       "away_score": 2,
       "confidence": 0.14,
-      "reasoning": "历史数据表明赔率>3.0时爆冷概率30%；市场隐含概率与模型存在分歧，爆冷选择客胜(1-2)"
+      "reasoning": "历史数据表明赔率>3.0时爆冷概率30%；市场隐含概率与模型存在分歧，爆冷选择客胜(0-2)"
     },
     {
       "date": "2026-06-24",
@@ -11048,8 +10874,8 @@
       "away": "Brazil",
       "agent": "防守派",
       "result": "D",
-      "home_score": 0,
-      "away_score": 0,
+      "home_score": 1,
+      "away_score": 1,
       "confidence": 0.449,
       "reasoning": "世界杯大赛往往以防守为主，看好闷平，降雨增加平局概率"
     },
@@ -11070,10 +10896,10 @@
       "away": "Brazil",
       "agent": "爆冷派",
       "result": "H",
-      "home_score": 2,
+      "home_score": 1,
       "away_score": 0,
       "confidence": 0.12,
-      "reasoning": "历史数据表明赔率>3.0时爆冷概率12%；市场隐含概率与模型存在分歧；实力悬殊(216分差距)增加冷门可能；天气因素降雨增加平局概率，爆冷选择主胜(2-0)"
+      "reasoning": "历史数据表明赔率>3.0时爆冷概率12%；市场隐含概率与模型存在分歧；实力悬殊(216分差距)增加冷门可能；天气因素降雨增加平局概率，爆冷选择主胜(1-0)"
     },
     {
       "date": "2026-06-24",
@@ -11114,8 +10940,8 @@
       "away": "Haiti",
       "agent": "防守派",
       "result": "D",
-      "home_score": 2,
-      "away_score": 2,
+      "home_score": 1,
+      "away_score": 1,
       "confidence": 0.428,
       "reasoning": "世界杯大赛往往以防守为主，看好闷平"
     },
@@ -11137,9 +10963,9 @@
       "agent": "爆冷派",
       "result": "A",
       "home_score": 0,
-      "away_score": 1,
+      "away_score": 2,
       "confidence": 0.08,
-      "reasoning": "历史数据表明赔率>3.0时爆冷概率12%；市场隐含概率与模型存在分歧；实力悬殊(192分差距)增加冷门可能，爆冷选择客胜(0-1)"
+      "reasoning": "历史数据表明赔率>3.0时爆冷概率12%；市场隐含概率与模型存在分歧；实力悬殊(192分差距)增加冷门可能，爆冷选择客胜(0-2)"
     },
     {
       "date": "2026-06-25",
@@ -11180,8 +11006,8 @@
       "away": "Mexico",
       "agent": "防守派",
       "result": "D",
-      "home_score": 0,
-      "away_score": 0,
+      "home_score": 1,
+      "away_score": 1,
       "confidence": 0.428,
       "reasoning": "世界杯大赛往往以防守为主，看好闷平"
     },
@@ -11202,10 +11028,10 @@
       "away": "Mexico",
       "agent": "爆冷派",
       "result": "H",
-      "home_score": 1,
-      "away_score": 0,
-      "confidence": 0.188,
-      "reasoning": "历史数据表明赔率>3.0时爆冷概率12%；市场隐含概率与模型存在分歧；实力悬殊(215分差距)增加冷门可能，爆冷选择主胜(1-0)"
+      "home_score": 2,
+      "away_score": 1,
+      "confidence": 0.189,
+      "reasoning": "历史数据表明赔率>3.0时爆冷概率12%；市场隐含概率与模型存在分歧；实力悬殊(215分差距)增加冷门可能，爆冷选择主胜(2-1)"
     },
     {
       "date": "2026-06-25",
@@ -11246,8 +11072,8 @@
       "away": "South Korea",
       "agent": "防守派",
       "result": "D",
-      "home_score": 0,
-      "away_score": 0,
+      "home_score": 1,
+      "away_score": 1,
       "confidence": 0.449,
       "reasoning": "世界杯大赛往往以防守为主，看好闷平，炎热利好South Africa·降雨增加平局概率"
     },
@@ -11257,10 +11083,10 @@
       "away": "South Korea",
       "agent": "数据派",
       "result": "D",
-      "home_score": 0,
+      "home_score": 1,
       "away_score": 1,
       "confidence": 0.259,
-      "reasoning": "ELO模型计算：South Africa胜率27%/South Korea胜率36%/平局37%；FIFA排名：South Africa=1612分/South Korea=1682分；最可能比分0-1 [炎热利好South Africa·降雨增加平局概率]"
+      "reasoning": "ELO模型计算：South Africa胜率27%/South Korea胜率36%/平局37%；FIFA排名：South Africa=1612分/South Korea=1682分；最可能比分1-1 [炎热利好South Africa·降雨增加平局概率]"
     },
     {
       "date": "2026-06-25",
@@ -11270,7 +11096,7 @@
       "result": "H",
       "home_score": 1,
       "away_score": 0,
-      "confidence": 0.17,
+      "confidence": 0.14,
       "reasoning": "历史数据表明赔率>3.0时爆冷概率22%；市场隐含概率与模型存在分歧；天气因素炎热利好South Africa·降雨增加平局概率，爆冷选择主胜(1-0)"
     },
     {
@@ -11312,8 +11138,8 @@
       "away": "Germany",
       "agent": "防守派",
       "result": "D",
-      "home_score": 0,
-      "away_score": 0,
+      "home_score": 1,
+      "away_score": 1,
       "confidence": 0.428,
       "reasoning": "世界杯大赛往往以防守为主，看好闷平"
     },
@@ -11334,10 +11160,10 @@
       "away": "Germany",
       "agent": "爆冷派",
       "result": "H",
-      "home_score": 2,
-      "away_score": 0,
+      "home_score": 3,
+      "away_score": 1,
       "confidence": 0.17,
-      "reasoning": "历史数据表明赔率>3.0时爆冷概率22%；市场隐含概率与模型存在分歧，爆冷选择主胜(2-0)"
+      "reasoning": "历史数据表明赔率>3.0时爆冷概率22%；市场隐含概率与模型存在分歧，爆冷选择主胜(3-1)"
     },
     {
       "date": "2026-06-25",
@@ -11356,8 +11182,8 @@
       "away": "Ivory Coast",
       "agent": "激进派",
       "result": "D",
-      "home_score": 0,
-      "away_score": 2,
+      "home_score": 1,
+      "away_score": 1,
       "confidence": 0.428,
       "reasoning": "双方都有机会，对攻战平局收场 (降雨增加平局概率)"
     },
@@ -11367,8 +11193,8 @@
       "away": "Ivory Coast",
       "agent": "价值派",
       "result": "D",
-      "home_score": 0,
-      "away_score": 2,
+      "home_score": 1,
+      "away_score": 1,
       "confidence": 0.35,
       "reasoning": "发现价值空间(平局赔率隐含概率35% vs 预测概率35%)，存在6.0%期望价值 (降雨增加平局概率)"
     },
@@ -11378,8 +11204,8 @@
       "away": "Ivory Coast",
       "agent": "防守派",
       "result": "D",
-      "home_score": 0,
-      "away_score": 0,
+      "home_score": 1,
+      "away_score": 1,
       "confidence": 0.491,
       "reasoning": "世界杯大赛往往以防守为主，看好闷平，降雨增加平局概率"
     },
@@ -11389,10 +11215,10 @@
       "away": "Ivory Coast",
       "agent": "数据派",
       "result": "D",
-      "home_score": 0,
-      "away_score": 2,
+      "home_score": 1,
+      "away_score": 1,
       "confidence": 0.287,
-      "reasoning": "ELO模型计算：Curaçao胜率18%/Ivory Coast胜率41%/平局41%；FIFA排名：Curaçao=1500分/Ivory Coast=1625分；最可能比分0-2 [降雨增加平局概率]"
+      "reasoning": "ELO模型计算：Curaçao胜率18%/Ivory Coast胜率41%/平局41%；FIFA排名：Curaçao=1500分/Ivory Coast=1625分；最可能比分1-1 [降雨增加平局概率]"
     },
     {
       "date": "2026-06-25",
@@ -11400,8 +11226,8 @@
       "away": "Ivory Coast",
       "agent": "爆冷派",
       "result": "D",
-      "home_score": 0,
-      "away_score": 2,
+      "home_score": 1,
+      "away_score": 1,
       "confidence": 0.41,
       "reasoning": "本场未发现明显冷门机会，跟随模型判断"
     },
@@ -11444,8 +11270,8 @@
       "away": "Netherlands",
       "agent": "防守派",
       "result": "D",
-      "home_score": 0,
-      "away_score": 0,
+      "home_score": 1,
+      "away_score": 1,
       "confidence": 0.428,
       "reasoning": "世界杯大赛往往以防守为主，看好闷平"
     },
@@ -11466,10 +11292,10 @@
       "away": "Netherlands",
       "agent": "爆冷派",
       "result": "H",
-      "home_score": 1,
-      "away_score": 0,
+      "home_score": 2,
+      "away_score": 1,
       "confidence": 0.12,
-      "reasoning": "历史数据表明赔率>3.0时爆冷概率17%；市场隐含概率与模型存在分歧；实力悬殊(130分差距)增加冷门可能，爆冷选择主胜(1-0)"
+      "reasoning": "历史数据表明赔率>3.0时爆冷概率17%；市场隐含概率与模型存在分歧；实力悬殊(130分差距)增加冷门可能，爆冷选择主胜(2-1)"
     },
     {
       "date": "2026-06-25",
@@ -11478,7 +11304,7 @@
       "agent": "稳健派",
       "result": "H",
       "home_score": 1,
-      "away_score": 1,
+      "away_score": 0,
       "confidence": 0.409,
       "reasoning": "Japan略占优势，谨慎看好主队不败"
     },
@@ -11489,7 +11315,7 @@
       "agent": "激进派",
       "result": "H",
       "home_score": 1,
-      "away_score": 1,
+      "away_score": 0,
       "confidence": 0.451,
       "reasoning": "Sweden并非没有机会，但Japan进攻火力更强，看好大球取胜"
     },
@@ -11500,7 +11326,7 @@
       "agent": "价值派",
       "result": "H",
       "home_score": 1,
-      "away_score": 1,
+      "away_score": 0,
       "confidence": 0.273,
       "reasoning": "本场价值空间不足，如需投注建议观望"
     },
@@ -11522,9 +11348,9 @@
       "agent": "数据派",
       "result": "H",
       "home_score": 1,
-      "away_score": 1,
+      "away_score": 0,
       "confidence": 0.273,
-      "reasoning": "ELO模型计算：Japan胜率39%/Sweden胜率26%/平局35%；FIFA排名：Japan=1695分/Sweden=1625分；最可能比分1-1"
+      "reasoning": "ELO模型计算：Japan胜率39%/Sweden胜率26%/平局35%；FIFA排名：Japan=1695分/Sweden=1625分；最可能比分1-0"
     },
     {
       "date": "2026-06-25",
@@ -11532,10 +11358,10 @@
       "away": "Sweden",
       "agent": "爆冷派",
       "result": "A",
-      "home_score": 0,
-      "away_score": 1,
+      "home_score": 1,
+      "away_score": 2,
       "confidence": 0.22,
-      "reasoning": "历史数据表明赔率>3.0时爆冷概率22%；市场隐含概率与模型存在分歧，爆冷选择客胜(0-1)"
+      "reasoning": "历史数据表明赔率>3.0时爆冷概率22%；市场隐含概率与模型存在分歧，爆冷选择客胜(1-2)"
     },
     {
       "date": "2026-06-26",
@@ -11544,7 +11370,7 @@
       "agent": "稳健派",
       "result": "H",
       "home_score": 1,
-      "away_score": 1,
+      "away_score": 0,
       "confidence": 0.475,
       "reasoning": "Turkey实力明显占优(FIFA排名差108分)，稳健看好主胜"
     },
@@ -11555,7 +11381,7 @@
       "agent": "激进派",
       "result": "H",
       "home_score": 1,
-      "away_score": 1,
+      "away_score": 0,
       "confidence": 0.414,
       "reasoning": "United States并非没有机会，但Turkey进攻火力更强，看好大球取胜 (降雨增加平局概率)"
     },
@@ -11566,7 +11392,7 @@
       "agent": "价值派",
       "result": "H",
       "home_score": 1,
-      "away_score": 1,
+      "away_score": 0,
       "confidence": 0.296,
       "reasoning": "本场价值空间不足，如需投注建议观望 (降雨增加平局概率)"
     },
@@ -11588,9 +11414,9 @@
       "agent": "数据派",
       "result": "H",
       "home_score": 1,
-      "away_score": 1,
+      "away_score": 0,
       "confidence": 0.289,
-      "reasoning": "ELO模型计算：Turkey胜率41%/United States胜率22%/平局37%；FIFA排名：Turkey=1608分/United States=1500分；最可能比分1-1 [降雨增加平局概率]"
+      "reasoning": "ELO模型计算：Turkey胜率41%/United States胜率22%/平局37%；FIFA排名：Turkey=1608分/United States=1500分；最可能比分1-0 [降雨增加平局概率]"
     },
     {
       "date": "2026-06-26",
@@ -11598,10 +11424,10 @@
       "away": "United States",
       "agent": "爆冷派",
       "result": "A",
-      "home_score": 0,
-      "away_score": 1,
+      "home_score": 1,
+      "away_score": 2,
       "confidence": 0.346,
-      "reasoning": "历史数据表明赔率>3.0时爆冷概率17%；市场隐含概率与模型存在分歧；实力悬殊(108分差距)增加冷门可能；天气因素降雨增加平局概率，爆冷选择客胜(0-1)"
+      "reasoning": "历史数据表明赔率>3.0时爆冷概率17%；市场隐含概率与模型存在分歧；实力悬殊(108分差距)增加冷门可能；天气因素降雨增加平局概率，爆冷选择客胜(1-2)"
     },
     {
       "date": "2026-06-26",
@@ -11620,7 +11446,7 @@
       "away": "Australia",
       "agent": "激进派",
       "result": "A",
-      "home_score": 1,
+      "home_score": 0,
       "away_score": 1,
       "confidence": 0.401,
       "reasoning": "数据低估了Australia的实力，冷门可期，大胆搏客胜"
@@ -11708,8 +11534,8 @@
       "away": "France",
       "agent": "防守派",
       "result": "D",
-      "home_score": 0,
-      "away_score": 0,
+      "home_score": 1,
+      "away_score": 1,
       "confidence": 0.449,
       "reasoning": "世界杯大赛往往以防守为主，看好闷平，降雨增加平局概率"
     },
@@ -11730,10 +11556,10 @@
       "away": "France",
       "agent": "爆冷派",
       "result": "H",
-      "home_score": 3,
+      "home_score": 2,
       "away_score": 1,
       "confidence": 0.197,
-      "reasoning": "历史数据表明赔率>3.0时爆冷概率10%；市场隐含概率与模型存在分歧；实力悬殊(223分差距)增加冷门可能；天气因素降雨增加平局概率，爆冷选择主胜(3-1)"
+      "reasoning": "历史数据表明赔率>3.0时爆冷概率10%；市场隐含概率与模型存在分歧；实力悬殊(223分差距)增加冷门可能；天气因素降雨增加平局概率，爆冷选择主胜(2-1)"
     },
     {
       "date": "2026-06-26",
@@ -11774,8 +11600,8 @@
       "away": "Iraq",
       "agent": "防守派",
       "result": "D",
-      "home_score": 2,
-      "away_score": 2,
+      "home_score": 1,
+      "away_score": 1,
       "confidence": 0.428,
       "reasoning": "世界杯大赛往往以防守为主，看好闷平"
     },
@@ -11797,9 +11623,9 @@
       "agent": "爆冷派",
       "result": "A",
       "home_score": 0,
-      "away_score": 2,
+      "away_score": 1,
       "confidence": 0.1,
-      "reasoning": "历史数据表明赔率>3.0时爆冷概率12%；市场隐含概率与模型存在分歧；实力悬殊(188分差距)增加冷门可能，爆冷选择客胜(0-2)"
+      "reasoning": "历史数据表明赔率>3.0时爆冷概率12%；市场隐含概率与模型存在分歧；实力悬殊(188分差距)增加冷门可能，爆冷选择客胜(0-1)"
     },
     {
       "date": "2026-06-27",
@@ -11807,7 +11633,7 @@
       "away": "Saudi Arabia",
       "agent": "稳健派",
       "result": "A",
-      "home_score": 1,
+      "home_score": 0,
       "away_score": 1,
       "confidence": 0.548,
       "reasoning": "Saudi Arabia实力更强，客胜可期"
@@ -11818,7 +11644,7 @@
       "away": "Saudi Arabia",
       "agent": "激进派",
       "result": "A",
-      "home_score": 1,
+      "home_score": 0,
       "away_score": 1,
       "confidence": 0.405,
       "reasoning": "数据低估了Saudi Arabia的实力，冷门可期，大胆搏客胜"
@@ -11829,7 +11655,7 @@
       "away": "Saudi Arabia",
       "agent": "价值派",
       "result": "A",
-      "home_score": 1,
+      "home_score": 0,
       "away_score": 1,
       "confidence": 0.333,
       "reasoning": "本场价值空间不足，如需投注建议观望"
@@ -11851,21 +11677,21 @@
       "away": "Saudi Arabia",
       "agent": "数据派",
       "result": "A",
-      "home_score": 1,
+      "home_score": 0,
       "away_score": 1,
       "confidence": 0.333,
-      "reasoning": "ELO模型计算：Cape Verde Islands胜率17%/Saudi Arabia胜率48%/平局35%；FIFA排名：Cape Verde Islands=1500分/Saudi Arabia=1675分；最可能比分1-1"
+      "reasoning": "ELO模型计算：Cape Verde Islands胜率17%/Saudi Arabia胜率48%/平局35%；FIFA排名：Cape Verde Islands=1500分/Saudi Arabia=1675分；最可能比分0-1"
     },
     {
       "date": "2026-06-27",
       "home": "Cape Verde Islands",
       "away": "Saudi Arabia",
       "agent": "爆冷派",
-      "result": "H",
+      "result": "D",
       "home_score": 2,
-      "away_score": 1,
-      "confidence": 0.358,
-      "reasoning": "历史数据表明赔率>3.0时爆冷概率14%；市场隐含概率与模型存在分歧；实力悬殊(175分差距)增加冷门可能，爆冷选择主胜(2-1)"
+      "away_score": 2,
+      "confidence": 0.22,
+      "reasoning": "历史数据表明赔率>3.0时爆冷概率30%；市场隐含概率与模型存在分歧；实力悬殊(175分差距)增加冷门可能，爆冷选择平局(2-2)"
     },
     {
       "date": "2026-06-27",
@@ -11895,7 +11721,7 @@
       "away": "Spain",
       "agent": "价值派",
       "result": "D",
-      "home_score": 0,
+      "home_score": 1,
       "away_score": 1,
       "confidence": 0.35,
       "reasoning": "发现价值空间(平局赔率隐含概率35% vs 预测概率35%)，存在6.0%期望价值 (降雨增加平局概率)"
@@ -11906,8 +11732,8 @@
       "away": "Spain",
       "agent": "防守派",
       "result": "D",
-      "home_score": 0,
-      "away_score": 0,
+      "home_score": 1,
+      "away_score": 1,
       "confidence": 0.537,
       "reasoning": "世界杯大赛往往以防守为主，双方实力接近(差46分)，看好闷平，降雨增加平局概率"
     },
@@ -11917,10 +11743,10 @@
       "away": "Spain",
       "agent": "数据派",
       "result": "D",
-      "home_score": 0,
+      "home_score": 1,
       "away_score": 1,
       "confidence": 0.287,
-      "reasoning": "ELO模型计算：Uruguay胜率25%/Spain胜率34%/平局41%；FIFA排名：Uruguay=1712分/Spain=1758分；最可能比分0-1 [降雨增加平局概率]"
+      "reasoning": "ELO模型计算：Uruguay胜率25%/Spain胜率34%/平局41%；FIFA排名：Uruguay=1712分/Spain=1758分；最可能比分1-1 [降雨增加平局概率]"
     },
     {
       "date": "2026-06-27",
@@ -11929,9 +11755,9 @@
       "agent": "爆冷派",
       "result": "H",
       "home_score": 2,
-      "away_score": 1,
+      "away_score": 0,
       "confidence": 0.14,
-      "reasoning": "历史数据表明赔率>3.0时爆冷概率22%；市场隐含概率与模型存在分歧；天气因素降雨增加平局概率，爆冷选择主胜(2-1)"
+      "reasoning": "历史数据表明赔率>3.0时爆冷概率22%；市场隐含概率与模型存在分歧；天气因素降雨增加平局概率，爆冷选择主胜(2-0)"
     },
     {
       "date": "2026-06-27",
@@ -11972,8 +11798,8 @@
       "away": "Belgium",
       "agent": "防守派",
       "result": "D",
-      "home_score": 0,
-      "away_score": 0,
+      "home_score": 1,
+      "away_score": 1,
       "confidence": 0.428,
       "reasoning": "世界杯大赛往往以防守为主，看好闷平"
     },
@@ -11994,10 +11820,10 @@
       "away": "Belgium",
       "agent": "爆冷派",
       "result": "H",
-      "home_score": 3,
-      "away_score": 1,
+      "home_score": 1,
+      "away_score": 0,
       "confidence": 0.08,
-      "reasoning": "历史数据表明赔率>3.0时爆冷概率12%；市场隐含概率与模型存在分歧；实力悬殊(215分差距)增加冷门可能，爆冷选择主胜(3-1)"
+      "reasoning": "历史数据表明赔率>3.0时爆冷概率12%；市场隐含概率与模型存在分歧；实力悬殊(215分差距)增加冷门可能，爆冷选择主胜(1-0)"
     },
     {
       "date": "2026-06-27",
@@ -12006,7 +11832,7 @@
       "agent": "稳健派",
       "result": "A",
       "home_score": 1,
-      "away_score": 1,
+      "away_score": 2,
       "confidence": 0.386,
       "reasoning": "Iran略占优势，谨慎看好客队不败"
     },
@@ -12017,7 +11843,7 @@
       "agent": "激进派",
       "result": "A",
       "home_score": 1,
-      "away_score": 1,
+      "away_score": 2,
       "confidence": 0.43,
       "reasoning": "数据低估了Iran的实力，冷门可期，大胆搏客胜 (降雨增加平局概率)"
     },
@@ -12028,7 +11854,7 @@
       "agent": "价值派",
       "result": "A",
       "home_score": 1,
-      "away_score": 1,
+      "away_score": 2,
       "confidence": 0.264,
       "reasoning": "本场价值空间不足，如需投注建议观望 (降雨增加平局概率)"
     },
@@ -12082,8 +11908,8 @@
       "away": "England",
       "agent": "激进派",
       "result": "D",
-      "home_score": 0,
-      "away_score": 2,
+      "home_score": 1,
+      "away_score": 1,
       "confidence": 0.428,
       "reasoning": "双方都有机会，对攻战平局收场 (炎热利好Panama·降雨增加平局概率)"
     },
@@ -12093,8 +11919,8 @@
       "away": "England",
       "agent": "价值派",
       "result": "D",
-      "home_score": 0,
-      "away_score": 2,
+      "home_score": 1,
+      "away_score": 1,
       "confidence": 0.35,
       "reasoning": "发现价值空间(平局赔率隐含概率35% vs 预测概率35%)，存在6.0%期望价值 (炎热利好Panama·降雨增加平局概率)"
     },
@@ -12104,8 +11930,8 @@
       "away": "England",
       "agent": "防守派",
       "result": "D",
-      "home_score": 0,
-      "away_score": 0,
+      "home_score": 1,
+      "away_score": 1,
       "confidence": 0.491,
       "reasoning": "世界杯大赛往往以防守为主，看好闷平，炎热利好Panama·降雨增加平局概率"
     },
@@ -12115,10 +11941,10 @@
       "away": "England",
       "agent": "数据派",
       "result": "D",
-      "home_score": 0,
-      "away_score": 2,
+      "home_score": 1,
+      "away_score": 1,
       "confidence": 0.287,
-      "reasoning": "ELO模型计算：Panama胜率18%/England胜率41%/平局41%；FIFA排名：Panama=1648分/England=1812分；最可能比分0-2 [炎热利好Panama·降雨增加平局概率]"
+      "reasoning": "ELO模型计算：Panama胜率18%/England胜率41%/平局41%；FIFA排名：Panama=1648分/England=1812分；最可能比分1-1 [炎热利好Panama·降雨增加平局概率]"
     },
     {
       "date": "2026-06-27",
@@ -12192,10 +12018,10 @@
       "away": "Ghana",
       "agent": "爆冷派",
       "result": "A",
-      "home_score": 1,
-      "away_score": 2,
+      "home_score": 0,
+      "away_score": 1,
       "confidence": 0.14,
-      "reasoning": "历史数据表明赔率>3.0时爆冷概率17%；市场隐含概率与模型存在分歧；天气因素炎热利好客队·降雨增加平局概率，爆冷选择客胜(1-2)"
+      "reasoning": "历史数据表明赔率>3.0时爆冷概率17%；市场隐含概率与模型存在分歧；天气因素炎热利好客队·降雨增加平局概率，爆冷选择客胜(0-1)"
     },
     {
       "date": "2026-06-27",
@@ -12203,7 +12029,7 @@
       "away": "Portugal",
       "agent": "稳健派",
       "result": "A",
-      "home_score": 1,
+      "home_score": 0,
       "away_score": 1,
       "confidence": 0.387,
       "reasoning": "Portugal略占优势，谨慎看好客队不败"
@@ -12214,7 +12040,7 @@
       "away": "Portugal",
       "agent": "激进派",
       "result": "A",
-      "home_score": 1,
+      "home_score": 0,
       "away_score": 1,
       "confidence": 0.439,
       "reasoning": "数据低估了Portugal的实力，冷门可期，大胆搏客胜 (降雨增加平局概率)"
@@ -12258,10 +12084,10 @@
       "away": "Portugal",
       "agent": "爆冷派",
       "result": "H",
-      "home_score": 1,
+      "home_score": 2,
       "away_score": 0,
       "confidence": 0.22,
-      "reasoning": "历史数据表明赔率>3.0时爆冷概率22%；市场隐含概率与模型存在分歧；天气因素降雨增加平局概率，爆冷选择主胜(1-0)"
+      "reasoning": "历史数据表明赔率>3.0时爆冷概率22%；市场隐含概率与模型存在分歧；天气因素降雨增加平局概率，爆冷选择主胜(2-0)"
     },
     {
       "date": "2026-06-27",
@@ -12270,7 +12096,7 @@
       "agent": "稳健派",
       "result": "H",
       "home_score": 1,
-      "away_score": 1,
+      "away_score": 0,
       "confidence": 0.493,
       "reasoning": "Congo DR实力明显占优(FIFA排名差115分)，稳健看好主胜"
     },
@@ -12281,7 +12107,7 @@
       "agent": "激进派",
       "result": "H",
       "home_score": 1,
-      "away_score": 1,
+      "away_score": 0,
       "confidence": 0.418,
       "reasoning": "Uzbekistan并非没有机会，但Congo DR进攻火力更强，看好大球取胜"
     },
@@ -12292,7 +12118,7 @@
       "agent": "价值派",
       "result": "H",
       "home_score": 1,
-      "away_score": 1,
+      "away_score": 0,
       "confidence": 0.3,
       "reasoning": "本场价值空间不足，如需投注建议观望"
     },
@@ -12314,9 +12140,9 @@
       "agent": "数据派",
       "result": "H",
       "home_score": 1,
-      "away_score": 1,
+      "away_score": 0,
       "confidence": 0.3,
-      "reasoning": "ELO模型计算：Congo DR胜率43%/Uzbekistan胜率22%/平局35%；FIFA排名：Congo DR=1615分/Uzbekistan=1500分；最可能比分1-1"
+      "reasoning": "ELO模型计算：Congo DR胜率43%/Uzbekistan胜率22%/平局35%；FIFA排名：Congo DR=1615分/Uzbekistan=1500分；最可能比分1-0"
     },
     {
       "date": "2026-06-27",
@@ -12325,9 +12151,9 @@
       "agent": "爆冷派",
       "result": "A",
       "home_score": 1,
-      "away_score": 2,
+      "away_score": 3,
       "confidence": 0.244,
-      "reasoning": "历史数据表明赔率>3.0时爆冷概率17%；市场隐含概率与模型存在分歧；实力悬殊(115分差距)增加冷门可能，爆冷选择客胜(1-2)"
+      "reasoning": "历史数据表明赔率>3.0时爆冷概率17%；市场隐含概率与模型存在分歧；实力悬殊(115分差距)增加冷门可能，爆冷选择客胜(1-3)"
     },
     {
       "date": "2026-06-28",
@@ -12413,7 +12239,7 @@
       "agent": "激进派",
       "result": "H",
       "home_score": 1,
-      "away_score": 1,
+      "away_score": 0,
       "confidence": 0.39,
       "reasoning": "Austria并非没有机会，但Algeria进攻火力更强，看好大球取胜 (降雨增加平局概率)"
     },
@@ -12456,10 +12282,10 @@
       "away": "Austria",
       "agent": "爆冷派",
       "result": "H",
-      "home_score": 3,
+      "home_score": 2,
       "away_score": 1,
       "confidence": 0.22,
-      "reasoning": "历史数据表明赔率>3.0时爆冷概率30%；市场隐含概率与模型存在分歧；天气因素降雨增加平局概率，爆冷选择主胜(3-1)"
+      "reasoning": "历史数据表明赔率>3.0时爆冷概率30%；市场隐含概率与模型存在分歧；天气因素降雨增加平局概率，爆冷选择主胜(2-1)"
     }
   ]
 }

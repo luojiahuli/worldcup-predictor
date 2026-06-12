@@ -424,31 +424,43 @@ def expected_total_from_ou(over_prob):
     return lam
 
 
-def predict_score_poisson(exp_h, exp_a, max_goals=5):
+def predict_score_poisson(exp_h, exp_a, max_goals=5, result=None):
     """
     使用 Poisson 分布预测最可能比分
+    result: 'H'=主胜(主>客), 'D'=平局(主=客), 'A'=客胜(客>主), None=不约束
     返回 ((home_goals, away_goals), probability)
     """
     import math
-    best_prob = 0
-    best_score = (0, 0)
-    # 预计算 Poisson 概率
     ph_cache = [math.exp(-exp_h) * (exp_h ** g) / math.factorial(g) for g in range(max_goals + 1)]
     pa_cache = [math.exp(-exp_a) * (exp_a ** g) / math.factorial(g) for g in range(max_goals + 1)]
+    best_prob = 0
+    best_score = (0, 0)
     for i in range(max_goals + 1):
         for j in range(max_goals + 1):
+            if result == "H" and i <= j: continue
+            if result == "D" and i != j: continue
+            if result == "A" and i >= j: continue
             p = ph_cache[i] * pa_cache[j]
             if p > best_prob:
                 best_prob = p
                 best_score = (i, j)
+    # 约束下找不到任何比分时（如 result=H 但 exp_h 极小），回退到无约束
+    if best_prob == 0:
+        for i in range(max_goals + 1):
+            for j in range(max_goals + 1):
+                p = ph_cache[i] * pa_cache[j]
+                if p > best_prob:
+                    best_prob = p
+                    best_score = (i, j)
     return best_score, best_prob
 
 
-def get_score_prediction(home_team, away_team, h2h_probs=None):
+def get_score_prediction(home_team, away_team, h2h_probs=None, result=None):
     """
     基于真实赔率预测比分
     h2h_probs: (prob_H, prob_D, prob_A) 模型概率，作为无 O/U 数据时的后备
-    返回 (home_goals, away_goals, confidence)
+    result: 'H'/'D'/'A' 约束比分方向，None=自动推断
+    返回 (home_goals, away_goals, confidence, exp_h, exp_a)
     """
     odds_map = load_real_odds()
     key = f"{home_team}_vs_{away_team}"
@@ -484,8 +496,12 @@ def get_score_prediction(home_team, away_team, h2h_probs=None):
         exp_h = total_goals * 0.5
         exp_a = total_goals * 0.5
 
-    # Poisson 找出最可能比分
-    (h_goals, a_goals), score_prob = predict_score_poisson(exp_h, exp_a)
+    # 自动推断比分方向
+    if result is None:
+        result = "H" if fp_h > fp_a else "A" if fp_a > fp_h else "D"
+
+    # Poisson 找出最可能比分（约束方向）
+    (h_goals, a_goals), score_prob = predict_score_poisson(exp_h, exp_a, result=result)
     return h_goals, a_goals, round(score_prob, 3), round(exp_h, 2), round(exp_a, 2)
 
 

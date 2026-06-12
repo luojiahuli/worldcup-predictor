@@ -414,7 +414,7 @@ def predict_matches(feature_df):
         hg, ag, sp, exph, expa = (1, 0, 0, 1.4, 0.8)
         if get_score_prediction is not None:
             try:
-                hg, ag, sp, exph, expa = get_score_prediction(row["home_team"], row["away_team"], h2h)
+                hg, ag, sp, exph, expa = get_score_prediction(row["home_team"], row["away_team"], h2h, result=row["pred_result"])
             except:
                 pass
         else:

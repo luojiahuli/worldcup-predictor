@@ -294,11 +294,11 @@ class BaseAgent:
             exp_a *= (1 - gr)
         return exp_h, exp_a
 
-    def _get_odds_score(self, home, away, h2h_probs):
+    def _get_odds_score(self, home, away, h2h_probs, result=None):
         """基于真实赔率的 Poisson 比分预测"""
         try:
             from data_collector import get_score_prediction
-            hg, ag, sp, exph, expa = get_score_prediction(home, away, h2h_probs)
+            hg, ag, sp, exph, expa = get_score_prediction(home, away, h2h_probs, result=result)
             return hg, ag
         except Exception:
             return None, None
@@ -342,7 +342,7 @@ class ConservativeAgent(BaseAgent):
                 reasoning = f"{away}略占优势，谨慎看好客队不败"
 
         # 使用真实赔率 Poisson 比分
-        hg, ag = self._get_odds_score(home, away, (prob_h, prob_d, prob_a))
+        hg, ag = self._get_odds_score(home, away, (prob_h, prob_d, prob_a), result=result)
         if hg is not None:
             score = (hg, ag)
         else:
@@ -408,7 +408,7 @@ class AggressiveAgent(BaseAgent):
         confidence = probs[max_key]
 
         # 使用真实赔率 Poisson 比分
-        hg, ag = self._get_odds_score(home, away, (prob_h, prob_d, prob_a))
+        hg, ag = self._get_odds_score(home, away, (prob_h, prob_d, prob_a), result=result)
         if hg is not None:
             score = (hg, ag)
         else:
@@ -486,7 +486,7 @@ class ValueAgent(BaseAgent):
             reasoning = "本场价值空间不足，如需投注建议观望"
 
         # 使用真实赔率 Poisson 比分
-        hg, ag = self._get_odds_score(home, away, (base_probs[0], base_probs[1], base_probs[2]))
+        hg, ag = self._get_odds_score(home, away, (base_probs[0], base_probs[1], base_probs[2]), result=result)
         if hg is not None:
             score = (hg, ag)
         else:
@@ -545,7 +545,7 @@ class DefensiveAgent(BaseAgent):
         confidence = probs[result]
 
         # 使用真实赔率 Poisson 比分
-        hg, ag = self._get_odds_score(home, away, (prob_h, prob_d, prob_a))
+        hg, ag = self._get_odds_score(home, away, (prob_h, prob_d, prob_a), result=result)
         if hg is not None:
             score = (hg, ag)
         else:
@@ -609,7 +609,7 @@ class TechnicalAgent(BaseAgent):
         confidence = probs[result]
 
         # 使用真实赔率 Poisson 比分
-        hg, ag = self._get_odds_score(home, away, (prob_h, prob_d, prob_a))
+        hg, ag = self._get_odds_score(home, away, (prob_h, prob_d, prob_a), result=result)
         if hg is not None:
             score = (hg, ag)
             score_prob = 0
@@ -759,7 +759,7 @@ class UpsetAgent(BaseAgent):
             probs = {"H": prob_h, "D": prob_d, "A": prob_a}
             result = max(probs, key=probs.get)
             conf = probs[result]
-            score_h, score_a = self._get_odds_score(home, away, (prob_h, prob_d, prob_a))
+            score_h, score_a = self._get_odds_score(home, away, (prob_h, prob_d, prob_a), result=result)
             if score_h is None:
                 exp_h, exp_a = exp_goals_from_elo(home_pts, away_pts)
                 exp_h, exp_a = self._apply_weather_score(exp_h, exp_a, weather)
