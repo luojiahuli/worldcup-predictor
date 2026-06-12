@@ -270,9 +270,11 @@ def generate_dashboard(data):
         today = pd.Timestamp.now().normalize()
         upcoming = unfinished[dates >= today].sort_values("date")
         if len(upcoming) > 0:
+            # Show matches from today through the next 2 matchdays
             md_date = upcoming["date"].iloc[0]
-            md_matches = upcoming[upcoming["date"] == md_date]
-            matchday_date_str = str(md_date)[:10]
+            cutoff = pd.Timestamp(md_date) + pd.Timedelta(days=2)
+            md_matches = upcoming[pd.to_datetime(upcoming["date"]) < cutoff]
+            matchday_date_str = f'{str(md_date)[:10]} +' if len(md_matches) > 0 else str(md_date)[:10]
             rank_path = os.path.join(DATA_DIR, "fifa_rankings.csv")
             rankings_df = None
             if os.path.exists(rank_path):

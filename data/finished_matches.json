@@ -6,5 +6,13 @@
     "actual_home_score": 2,
     "actual_away_score": 1,
     "actual_result": "H"
+  },
+  "Mexico_vs_South Africa": {
+    "home_team": "Mexico",
+    "away_team": "South Africa",
+    "date": "2026-06-11",
+    "actual_home_score": 2,
+    "actual_away_score": 0,
+    "actual_result": "H"
   }
 }
