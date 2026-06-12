@@ -199,22 +199,66 @@ def generate_dashboard(data):
         if finished_count > 0:
             correct_count = int(finished["correct"].sum())
             review_rows = []
-            for _, row in finished.iterrows():
+            # Sort by date descending so latest match is first
+            finished_sorted = finished.sort_values("date", ascending=False)
+            for idx, (_, row) in enumerate(finished_sorted.iterrows()):
                 hs = int(row.get("pred_home_score", 0))
                 as_ = int(row.get("pred_away_score", 0))
                 ah = int(row.get("actual_home_score", 0))
                 aa = int(row.get("actual_away_score", 0))
                 is_correct = row.get("correct", False)
-                mark = "✅" if is_correct else "❌"
-                review_rows.append(
-                    f'<tr><td>{str(row["date"])[:10]}</td>'
-                    f'<td style="font-weight:600">{row["home_team"]}</td>'
-                    f'<td style="font-weight:600">{row["away_team"]}</td>'
-                    f'<td style="font-weight:600;color:var(--accent2)">{row["pred_label"]}</td>'
-                    f'<td>{hs}-{as_}</td>'
-                    f'<td style="font-weight:600"><span style="color:var(--green)">{ah}-{aa}</span></td>'
-                    f'<td>{mark}</td></tr>'
-                )
+                is_result_correct = row.get("actual_result", "") == row.get("pred_result", "")
+                mark = "✅" if is_correct else ("⚠️" if is_result_correct else "❌")
+                date_str = str(row["date"])[:10]
+                home = row["home_team"]
+                away = row["away_team"]
+                pred_label = row.get("pred_label", "")
+                dir_color = "var(--green)" if is_result_correct else "#ef4444"
+                result_label = {'H': '主胜', 'D': '平局', 'A': '客胜'}.get(row.get("actual_result", ""), "-")
+                # Latest match: always expanded; older matches: collapsible
+                if idx == 0:
+                    review_rows.append(f'''<div class="fmc" style="border:1px solid var(--border);border-left:3px solid {dir_color};border-radius:8px;margin-bottom:8px;overflow:hidden;background:var(--card)">
+  <div class="fmc-h" onclick="var n=this.nextElementSibling;n.style.display=n.style.display==='none'?'block':'none'" style="display:flex;align-items:center;gap:10px;padding:10px 14px;cursor:pointer;user-select:none">
+    <span style="font-weight:600;font-size:13px">{home}</span>
+    <span style="color:var(--text3);font-size:11px">vs</span>
+    <span style="font-weight:600;font-size:13px">{away}</span>
+    <span style="font-size:10px;color:var(--text3);background:var(--bg2);padding:1px 6px;border-radius:4px">{date_str}</span>
+    <span style="margin-left:auto;display:flex;align-items:center;gap:10px">
+      <span style="font-size:16px;font-weight:700;color:var(--green)">{ah}-{aa}</span>
+      <span>{mark}</span>
+      <span style="font-size:10px;color:var(--text3)">▼</span>
+    </span>
+  </div>
+  <div class="fmc-b" style="display:none;padding:10px 14px;border-top:1px solid var(--border);font-size:12px">
+    <table style="width:100%">
+      <tr><td style="color:var(--text3);padding:3px 8px">预测结果</td><td style="padding:3px 8px;color:{dir_color};font-weight:600">{pred_label}</td>
+          <td style="color:var(--text3);padding:3px 8px">实际结果</td><td style="padding:3px 8px;font-weight:600">{result_label}</td></tr>
+      <tr><td style="color:var(--text3);padding:3px 8px">预测比分</td><td style="padding:3px 8px;font-weight:600">{hs}-{as_}</td>
+          <td style="color:var(--text3);padding:3px 8px">实际比分</td><td style="padding:3px 8px;font-weight:600;color:var(--green)">{ah}-{aa}</td></tr>
+    </table>
+  </div>
+</div>''')
+                else:
+                    review_rows.append(f'''<details style="margin-bottom:6px" {"open" if idx == 1 else ""}>
+  <summary style="display:flex;align-items:center;gap:10px;padding:8px 14px;background:var(--card);border:1px solid var(--border);border-radius:8px;cursor:pointer;font-size:12px;list-style:none">
+    <span style="font-weight:500;font-size:13px">{home}</span>
+    <span style="color:var(--text3)">vs</span>
+    <span style="font-weight:500;font-size:13px">{away}</span>
+    <span style="font-size:10px;color:var(--text3)">{date_str}</span>
+    <span style="margin-left:auto;display:flex;align-items:center;gap:10px">
+      <span style="font-size:14px;font-weight:600;color:var(--green)">{ah}-{aa}</span>
+      <span>{mark}</span>
+    </span>
+  </summary>
+  <div style="padding:10px 14px;border:1px solid var(--border);border-top:none;border-radius:0 0 8px 8px;font-size:12px;margin-top:-1px">
+    <table style="width:100%">
+      <tr><td style="color:var(--text3);padding:3px 8px">预测结果</td><td style="padding:3px 8px;color:{dir_color};font-weight:600">{pred_label}</td>
+          <td style="color:var(--text3);padding:3px 8px">实际结果</td><td style="padding:3px 8px;font-weight:600">{result_label}</td></tr>
+      <tr><td style="color:var(--text3);padding:3px 8px">预测比分</td><td style="padding:3px 8px;font-weight:600">{hs}-{as_}</td>
+          <td style="color:var(--text3);padding:3px 8px">实际比分</td><td style="padding:3px 8px;font-weight:600;color:var(--green)">{ah}-{aa}</td></tr>
+    </table>
+  </div>
+</details>''')
             finished_review_rows = "\n".join(review_rows)
 
     # === 最新比赛日分析 ===
@@ -224,8 +268,7 @@ def generate_dashboard(data):
         unfinished = predictions[predictions["is_finished"] == False].copy()
         dates = pd.to_datetime(unfinished["date"])
         today = pd.Timestamp.now().normalize()
-        yesterday = today - pd.Timedelta(days=1)
-        upcoming = unfinished[dates >= yesterday].sort_values("date")
+        upcoming = unfinished[dates >= today].sort_values("date")
         if len(upcoming) > 0:
             md_date = upcoming["date"].iloc[0]
             md_matches = upcoming[upcoming["date"] == md_date]
@@ -430,11 +473,8 @@ def generate_dashboard(data):
     <h2>已完成比赛复盘</h2>
     <span class="cd-h-b" style="background:var(--green)">{finished_count} MATCHES &middot; {correct_count}/{finished_count} CORRECT</span>
   </div>
-  <div class="tw">
-  <table>
-    <tr><th>时间</th><th>主队</th><th>客队</th><th>预测结果</th><th>预测比分</th><th>实际比分</th><th>验证</th></tr>
+  <div style="padding:4px 0">
     {finished_review_rows}
-  </table>
   </div>
 </div>'''
     else:

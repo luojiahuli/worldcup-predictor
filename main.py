@@ -132,7 +132,9 @@ def step_prediction():
                 ph = results.loc[mask, "pred_home_score"].values[0]
                 pa = results.loc[mask, "pred_away_score"].values[0]
                 correct = int(ph == info["actual_home_score"] and pa == info["actual_away_score"])
-                results.loc[mask, "correct"] = correct
+                if "correct" not in results.columns:
+                    results["correct"] = False
+                results.loc[mask, "correct"] = bool(correct)
                 merged += 1
         if merged > 0:
             log.info(f"已合并 {merged} 场历史完赛数据")

@@ -39,7 +39,9 @@ def apply_to_pickle(finished):
             pred_h = df.loc[mask, "pred_home_score"].values[0]
             pred_a = df.loc[mask, "pred_away_score"].values[0]
             correct = int(pred_h == info["actual_home_score"] and pred_a == info["actual_away_score"])
-            df.loc[mask, "correct"] = correct
+            if "correct" not in df.columns:
+                df["correct"] = False
+            df.loc[mask, "correct"] = bool(correct)
             updated += 1
     if updated > 0:
         with open(PRED_PATH, "wb") as f:
