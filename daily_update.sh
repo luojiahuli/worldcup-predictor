@@ -7,7 +7,7 @@ log() { echo "[$(date '+%H:%M:%S')] $*"; }
 log "===== 世界杯2026 每日更新 ====="
 
 ODDS_API_KEY="${ODDS_API_KEY:-99459d111ea685ab723b0385811713be}"
-CLOUDFLARE_API_TOKEN="${CLOUDFLARE_API_TOKEN:-cfut_P166Xqky47mpuPPVIHAwgXhnheQ1wqEygZdYaxgn27fa94bc}"
+CLOUDFLARE_API_TOKEN="${CLOUDFLARE_API_TOKEN:-cfut_nptJdYcPeEBaP9GErjrzN1Bem7LHsU5ESF5TKRXW0c6fcc73}"
 
 export ODDS_API_KEY
 export CLOUDFLARE_API_TOKEN
@@ -24,6 +24,17 @@ python3 agents.py 2>&1 || log "agents.py 失败"
 # 5. Apply finished match results to all data files
 log "应用已完成比赛结果..."
 python3 apply_finished.py 2>&1 || log "apply_finished.py 失败"
+
+# 5b. Log current agent weights
+log "当前智能体权重:"
+python3 -c "
+import json
+with open('data/agent_weights.json') as f:
+    d = json.load(f)
+print(f'    轮次: {d[\"current_round\"]}')
+for k, v in d['weights'].items():
+    print(f'      {k}: {v:.3f}')
+" 2>&1 || true
 
 # 6. Generate dashboard
 python3 -c "

@@ -97,3 +97,140 @@ NotImplementedError: (<StringDtype(storage='python', na_value=nan)>, array(['202
        '2026-06-27', '2026-06-27', '2026-06-27', '2026-06-27',
        '2026-06-27', '2026-06-27', '2026-06-28', '2026-06-28'],
       dtype=object))
+[05:03:29] ===== 世界杯2026 每日更新 =====
+[05:03:29] 获取最新赔率数据...
+/Users/mac13/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+[2026-06-13 05:03:31,537] ==================================================
+[2026-06-13 05:03:31,538] 获取实时赔率 (The Odds API)...
+[2026-06-13 05:03:31,538] ==================================================
+[2026-06-13 05:03:31,556] 获取赔率失败: HTTPSConnectionPool(host='api.the-odds-api.com', port=443): Max retries exceeded with url: /v4/sports/soccer_fifa_world_cup/odds?apiKey=99459d111ea685ab723b0385811713be&regions=us%2Cuk%2Ceu&markets=h2h%2Ctotals (Caused by NameResolutionError("HTTPSConnection(host='api.the-odds-api.com', port=443): Failed to resolve 'api.the-odds-api.com' ([Errno 8] nodename nor servname provided, or not known)"))
+[2026-06-13 05:03:32,584] 🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆
+[2026-06-13 05:03:32,585] 🏆  世界杯2026预测系统 v1.0
+[2026-06-13 05:03:32,585] 🏆  运行时间: 2026-06-13 05:03:32
+[2026-06-13 05:03:32,585] 🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆
+[2026-06-13 05:03:32,585] 
+============================================================
+[2026-06-13 05:03:32,585] 步骤 1/6: 数据采集
+[2026-06-13 05:03:32,585] ============================================================
+[2026-06-13 05:03:32,585] 数据缓存已存在
+[2026-06-13 05:03:32,585] 
+============================================================
+[2026-06-13 05:03:32,586] 步骤 2/6: 特征工程
+[2026-06-13 05:03:32,586] ============================================================
+[2026-06-13 05:03:32,586] 特征矩阵已缓存
+[2026-06-13 05:03:32,586] 
+============================================================
+[2026-06-13 05:03:32,586] 步骤 3/6: 模型训练与回测
+[2026-06-13 05:03:32,586] ============================================================
+[2026-06-13 05:03:32,586] 模型已存在 (如需重新训练请删除 models/ 目录)
+Traceback (most recent call last):
+  File "/Users/mac13/workspace/worldcup_predictor/main.py", line 281, in <module>
+    run_pipeline()
+  File "/Users/mac13/workspace/worldcup_predictor/main.py", line 253, in run_pipeline
+    if not step_model_training():
+  File "/Users/mac13/workspace/worldcup_predictor/main.py", line 85, in step_model_training
+    feature_df = pickle.load(f)
+  File "pandas/_libs/arrays.pyx", line 85, in pandas._libs.arrays.NDArrayBacked.__setstate__
+  File "pandas/_libs/arrays.pyx", line 103, in pandas._libs.arrays.NDArrayBacked.__setstate__
+NotImplementedError: (<StringDtype(storage='python', na_value=nan)>, array(['U', 'U', 'U', 'U', 'U', 'U', 'U', 'U', 'U', 'U', 'U', 'U', 'U',
+       'U', 'U', 'U', 'U', 'U', 'U', 'U', 'U', 'U', 'U', 'U', 'U', 'U',
+       'U', 'U', 'U', 'U', 'U', 'U', 'U', 'U', 'U', 'U', 'U', 'U', 'U',
+       'U', 'U', 'U', 'U', 'U', 'U', 'U', 'U', 'U', 'U', 'U', 'U', 'U',
+       'U', 'U', 'U', 'U', 'U', 'U', 'U', 'U', 'U', 'U', 'U', 'U', 'U',
+       'U', 'U', 'U', 'U', 'U', 'U', 'U'], dtype=object))
+[05:03:32] main.py 失败
+[2026-06-13 05:03:34,336] ==================================================
+[2026-06-13 05:03:34,337] 多智能体预测系统
+[2026-06-13 05:03:34,337] ==================================================
+Traceback (most recent call last):
+  File "/Users/mac13/workspace/worldcup_predictor/agents.py", line 1115, in <module>
+    results, leaderboard = generate_agent_predictions()
+  File "/Users/mac13/workspace/worldcup_predictor/agents.py", line 858, in generate_agent_predictions
+    predictions = pickle.load(open(pred_path, "rb"))
+  File "pandas/_libs/arrays.pyx", line 85, in pandas._libs.arrays.NDArrayBacked.__setstate__
+  File "pandas/_libs/arrays.pyx", line 103, in pandas._libs.arrays.NDArrayBacked.__setstate__
+NotImplementedError: (<StringDtype(storage='python', na_value=nan)>, array(['2026-06-11', '2026-06-12', '2026-06-12', '2026-06-13',
+       '2026-06-13', '2026-06-13', '2026-06-14', '2026-06-14',
+       '2026-06-14', '2026-06-14', '2026-06-14', '2026-06-15',
+       '2026-06-15', '2026-06-15', '2026-06-15', '2026-06-16',
+       '2026-06-16', '2026-06-16', '2026-06-17', '2026-06-17',
+       '2026-06-17', '2026-06-17', '2026-06-17', '2026-06-18',
+       '2026-06-18', '2026-06-18', '2026-06-18', '2026-06-19',
+       '2026-06-19', '2026-06-19', '2026-06-20', '2026-06-20',
+       '2026-06-20', '2026-06-20', '2026-06-21', '2026-06-21',
+       '2026-06-21', '2026-06-21', '2026-06-21', '2026-06-22',
+       '2026-06-22', '2026-06-22', '2026-06-23', '2026-06-23',
+       '2026-06-23', '2026-06-23', '2026-06-23', '2026-06-24',
+       '2026-06-24', '2026-06-24', '2026-06-24', '2026-06-24',
+       '2026-06-25', '2026-06-25', '2026-06-25', '2026-06-25',
+       '2026-06-25', '2026-06-25', '2026-06-26', '2026-06-26',
+       '2026-06-26', '2026-06-26', '2026-06-27', '2026-06-27',
+       '2026-06-27', '2026-06-27', '2026-06-27', '2026-06-27',
+       '2026-06-27', '2026-06-27', '2026-06-28', '2026-06-28'],
+      dtype=object))
+[05:03:34] agents.py 失败
+[05:03:34] 应用已完成比赛结果...
+Applying 2 finished match(es)...
+Traceback (most recent call last):
+  File "/Users/mac13/workspace/worldcup_predictor/apply_finished.py", line 282, in <module>
+    main()
+  File "/Users/mac13/workspace/worldcup_predictor/apply_finished.py", line 260, in main
+    apply_to_pickle(finished)
+  File "/Users/mac13/workspace/worldcup_predictor/apply_finished.py", line 39, in apply_to_pickle
+    df = pickle.load(f)
+  File "pandas/_libs/arrays.pyx", line 85, in pandas._libs.arrays.NDArrayBacked.__setstate__
+  File "pandas/_libs/arrays.pyx", line 103, in pandas._libs.arrays.NDArrayBacked.__setstate__
+NotImplementedError: (<StringDtype(storage='python', na_value=nan)>, array(['2026-06-11', '2026-06-12', '2026-06-12', '2026-06-13',
+       '2026-06-13', '2026-06-13', '2026-06-14', '2026-06-14',
+       '2026-06-14', '2026-06-14', '2026-06-14', '2026-06-15',
+       '2026-06-15', '2026-06-15', '2026-06-15', '2026-06-16',
+       '2026-06-16', '2026-06-16', '2026-06-17', '2026-06-17',
+       '2026-06-17', '2026-06-17', '2026-06-17', '2026-06-18',
+       '2026-06-18', '2026-06-18', '2026-06-18', '2026-06-19',
+       '2026-06-19', '2026-06-19', '2026-06-20', '2026-06-20',
+       '2026-06-20', '2026-06-20', '2026-06-21', '2026-06-21',
+       '2026-06-21', '2026-06-21', '2026-06-21', '2026-06-22',
+       '2026-06-22', '2026-06-22', '2026-06-23', '2026-06-23',
+       '2026-06-23', '2026-06-23', '2026-06-23', '2026-06-24',
+       '2026-06-24', '2026-06-24', '2026-06-24', '2026-06-24',
+       '2026-06-25', '2026-06-25', '2026-06-25', '2026-06-25',
+       '2026-06-25', '2026-06-25', '2026-06-26', '2026-06-26',
+       '2026-06-26', '2026-06-26', '2026-06-27', '2026-06-27',
+       '2026-06-27', '2026-06-27', '2026-06-27', '2026-06-27',
+       '2026-06-27', '2026-06-27', '2026-06-28', '2026-06-28'],
+      dtype=object))
+[05:03:35] apply_finished.py 失败
+[05:03:35] 当前智能体权重:
+    轮次: group_1
+      稳健派: 1.000
+      激进派: 1.000
+      价值派: 1.000
+      防守派: 1.000
+      数据派: 1.000
+      爆冷派: 1.000
+Traceback (most recent call last):
+  File "<string>", line 3, in <module>
+  File "/Users/mac13/workspace/worldcup_predictor/visualizer.py", line 31, in load_all_data
+    data["predictions"] = pickle.load(f)
+  File "pandas/_libs/arrays.pyx", line 85, in pandas._libs.arrays.NDArrayBacked.__setstate__
+  File "pandas/_libs/arrays.pyx", line 103, in pandas._libs.arrays.NDArrayBacked.__setstate__
+NotImplementedError: (<StringDtype(storage='python', na_value=nan)>, array(['2026-06-11', '2026-06-12', '2026-06-12', '2026-06-13',
+       '2026-06-13', '2026-06-13', '2026-06-14', '2026-06-14',
+       '2026-06-14', '2026-06-14', '2026-06-14', '2026-06-15',
+       '2026-06-15', '2026-06-15', '2026-06-15', '2026-06-16',
+       '2026-06-16', '2026-06-16', '2026-06-17', '2026-06-17',
+       '2026-06-17', '2026-06-17', '2026-06-17', '2026-06-18',
+       '2026-06-18', '2026-06-18', '2026-06-18', '2026-06-19',
+       '2026-06-19', '2026-06-19', '2026-06-20', '2026-06-20',
+       '2026-06-20', '2026-06-20', '2026-06-21', '2026-06-21',
+       '2026-06-21', '2026-06-21', '2026-06-21', '2026-06-22',
+       '2026-06-22', '2026-06-22', '2026-06-23', '2026-06-23',
+       '2026-06-23', '2026-06-23', '2026-06-23', '2026-06-24',
+       '2026-06-24', '2026-06-24', '2026-06-24', '2026-06-24',
+       '2026-06-25', '2026-06-25', '2026-06-25', '2026-06-25',
+       '2026-06-25', '2026-06-25', '2026-06-26', '2026-06-26',
+       '2026-06-26', '2026-06-26', '2026-06-27', '2026-06-27',
+       '2026-06-27', '2026-06-27', '2026-06-27', '2026-06-27',
+       '2026-06-27', '2026-06-27', '2026-06-28', '2026-06-28'],
+      dtype=object))

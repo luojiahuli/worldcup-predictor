@@ -939,6 +939,8 @@ def generate_agent_predictions():
             except Exception as e:
                 log.warning(f"{name}预测{home}vs{away}失败: {e}")
 
+        weights_data = load_agent_weights()
+        current_weights = weights_data["weights"]
         results[match_key] = {
             "home": home,
             "away": away,
@@ -946,7 +948,7 @@ def generate_agent_predictions():
             "venue": venue,
             "weather": weather,
             "agents": match_agents,
-            "consensus": _calc_consensus(match_agents),
+            "consensus": _calc_weighted_consensus(match_agents, current_weights),
         }
 
     # 保存结果
@@ -967,8 +969,33 @@ def generate_agent_predictions():
     return results, leaderboard
 
 
+WEIGHTS_PATH = os.path.join(DATA_DIR, "agent_weights.json")
+
+
+def load_agent_weights():
+    """加载智能体权重，不存在时初始化默认值"""
+    if os.path.exists(WEIGHTS_PATH):
+        with open(WEIGHTS_PATH, 'r', encoding='utf-8') as f:
+            return json.load(f)
+    default = {
+        "current_round": "group_1",
+        "weights": {name: 1.0 for name in AGENT_COLORS},
+        "round_history": {},
+        "agent_round_accuracy": {},
+    }
+    os.makedirs(DATA_DIR, exist_ok=True)
+    with open(WEIGHTS_PATH, 'w', encoding='utf-8') as f:
+        json.dump(default, f, ensure_ascii=False, indent=2)
+    return default
+
+
+def save_agent_weights(weights_data):
+    with open(WEIGHTS_PATH, 'w', encoding='utf-8') as f:
+        json.dump(weights_data, f, ensure_ascii=False, indent=2)
+
+
 def _calc_consensus(match_agents):
-    """计算智能体共识"""
+    """计算智能体共识（简单多数）"""
     results = [a["result"] for a in match_agents.values()]
     h_count = results.count("H")
     d_count = results.count("D")
@@ -978,6 +1005,29 @@ def _calc_consensus(match_agents):
         "H": h_count, "D": d_count, "A": a_count,
         "consensus": max(set(results), key=results.count) if results else "N/A",
         "agreement_pct": max(h_count, d_count, a_count) / total if total > 0 else 0,
+        "weighted": False,
+    }
+
+
+def _calc_weighted_consensus(match_agents, weights):
+    """计算加权共识：每个智能体按权重投票"""
+    h_weight = sum(weights.get(name, 1.0) for name, a in match_agents.items() if a["result"] == "H")
+    d_weight = sum(weights.get(name, 1.0) for name, a in match_agents.items() if a["result"] == "D")
+    a_weight = sum(weights.get(name, 1.0) for name, a in match_agents.items() if a["result"] == "A")
+    total = h_weight + d_weight + a_weight or 1
+
+    result_labels = ["H", "D", "A"]
+    weight_vals = [h_weight, d_weight, a_weight]
+    max_idx = weight_vals.index(max(weight_vals))
+    consensus = result_labels[max_idx]
+
+    return {
+        "H": round(h_weight, 2),
+        "D": round(d_weight, 2),
+        "A": round(a_weight, 2),
+        "consensus": consensus,
+        "agreement_pct": round(max(weight_vals) / total, 4),
+        "weighted": True,
     }
 
 

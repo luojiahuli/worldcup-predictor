@@ -1,0 +1,46 @@
+{
+  "current_round": "group_1",
+  "weights": {
+    "稳健派": 1.0,
+    "激进派": 1.0,
+    "价值派": 1.0,
+    "防守派": 1.0,
+    "数据派": 1.0,
+    "爆冷派": 1.0
+  },
+  "round_history": {},
+  "agent_round_accuracy": {
+    "group_1": {
+      "稳健派": {
+        "correct": 0,
+        "total": 0,
+        "accuracy": 0
+      },
+      "激进派": {
+        "correct": 0,
+        "total": 0,
+        "accuracy": 0
+      },
+      "价值派": {
+        "correct": 0,
+        "total": 0,
+        "accuracy": 0
+      },
+      "防守派": {
+        "correct": 0,
+        "total": 0,
+        "accuracy": 0
+      },
+      "数据派": {
+        "correct": 0,
+        "total": 0,
+        "accuracy": 0
+      },
+      "爆冷派": {
+        "correct": 0,
+        "total": 0,
+        "accuracy": 0
+      }
+    }
+  }
+}
