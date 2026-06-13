@@ -232,6 +232,53 @@ class BaseAgent:
         self.motto = ""
         self.color = AGENT_COLORS.get(name, "#888")
 
+    def _build_context(self, home, away, home_pts, away_pts, home_top5, away_top5):
+        """构建结构化上下文信息，用于可解释性和辩论
+
+        返回：包含排名差距、五大联赛含量差距、混合模型alpha等信息的字符串
+        """
+        rank_gap = abs(home_pts - away_pts)
+        rank_diff = home_pts - away_pts
+        top5_diff = home_top5 - away_top5
+        top5_gap = abs(top5_diff)
+
+        try:
+            params_path = os.path.join(DATA_DIR, "hybrid_params.json")
+            if os.path.exists(params_path):
+                with open(params_path) as f:
+                    hp = json.load(f)
+            else:
+                hp = {"close_threshold": 100, "elo_min_weight": 0.4}
+            ct = hp.get("close_threshold", 100)
+            emw = hp.get("elo_min_weight", 0.4)
+        except:
+            ct, emw = 100, 0.4
+
+        alpha_ratio = min(rank_gap / ct, 1.0)
+        alpha = emw + (1.0 - emw) * alpha_ratio
+        top5_weight = round((1.0 - alpha) * 100)
+
+        if rank_gap >= ct:
+            mode = "纯Elo排名驱动"
+        elif top5_weight > 60:
+            mode = "五大联赛含量主导"
+        elif top5_weight > 30:
+            mode = "排名+五大联赛混合"
+        else:
+            mode = "Elo排名主导"
+
+        return {
+            "rank_gap": rank_gap,
+            "rank_diff": rank_diff,
+            "top5_diff": round(top5_diff, 2),
+            "top5_gap": round(top5_gap, 2),
+            "top5_home": home_top5,
+            "top5_away": away_top5,
+            "alpha": round(alpha, 2),
+            "top5_weight": top5_weight,
+            "mode": mode,
+        }
+
     def predict(self, home, away, home_pts, away_pts, base_probs, fair_odds, weather=None,
                 home_top5=0.0, away_top5=0.0):
         """
@@ -240,20 +287,55 @@ class BaseAgent:
         """
         raise NotImplementedError
 
-    def _apply_top5(self, home_top5, away_top5, probs_h, probs_d, probs_a, strength=0.12):
-        """根据五大联赛球员密度调整概率。strength控制调整幅度"""
+    def _apply_top5(self, home_top5, away_top5, probs_h, probs_d, probs_a, strength=0.12, rank_gap=None):
+        """根据五大联赛球员密度调整概率。
+
+        当rank_gap较小时（排名接近），使用混合模型方式：alpha根据排名差距动态调整。
+        当rank_gap较大时，使用原始固定强度调整。
+        strength控制调整幅度
+        """
         diff = home_top5 - away_top5
         if abs(diff) < 0.1:
             return probs_h, probs_d, probs_a
-        shift = diff * strength
-        if shift > 0:
-            probs_h += shift
-            probs_a -= shift * 0.6
-            probs_d -= shift * 0.4
+
+        if rank_gap is not None:
+            # 混合模式：排名越接近，top5调整权重越大
+            try:
+                params_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "data", "hybrid_params.json")
+                if os.path.exists(params_path):
+                    with open(params_path) as f:
+                        hp = json.load(f)
+                else:
+                    hp = {"top5_strength": 0.15, "close_threshold": 100, "elo_min_weight": 0.4}
+                ts = hp.get("top5_strength", 0.15)
+                ct = hp.get("close_threshold", 100)
+                emw = hp.get("elo_min_weight", 0.4)
+            except:
+                ts, ct, emw = 0.15, 100, 0.4
+
+            alpha_ratio = min(rank_gap / ct, 1.0)
+            alpha = emw + (1.0 - emw) * alpha_ratio
+
+            shift = diff * ts * (1 - alpha)
+            if shift > 0:
+                probs_h += shift
+                probs_a -= shift * 0.6
+                probs_d -= shift * 0.4
+            else:
+                probs_a -= shift
+                probs_h += shift * 0.6
+                probs_d += shift * 0.4
         else:
-            probs_a -= shift  # shift is negative, so this adds
-            probs_h += shift * 0.6
-            probs_d += shift * 0.4
+            shift = diff * strength
+            if shift > 0:
+                probs_h += shift
+                probs_a -= shift * 0.6
+                probs_d -= shift * 0.4
+            else:
+                probs_a -= shift
+                probs_h += shift * 0.6
+                probs_d += shift * 0.4
+
         probs = [max(0.05, p) for p in [probs_h, probs_d, probs_a]]
         total = sum(probs)
         return probs[0] / total, probs[1] / total, probs[2] / total
@@ -334,55 +416,70 @@ class ConservativeAgent(BaseAgent):
     def predict(self, home, away, home_pts, away_pts, base_probs, fair_odds, weather=None,
                 home_top5=0.0, away_top5=0.0):
         (prob_h, prob_d, prob_a), weather_note = self._apply_weather(base_probs, weather, home, away)
-        prob_h, prob_d, prob_a = self._apply_top5(home_top5, away_top5, prob_h, prob_d, prob_a, strength=0.10)
+        prob_h, prob_d, prob_a = self._apply_top5(home_top5, away_top5, prob_h, prob_d, prob_a, strength=0.10, rank_gap=abs(home_pts - away_pts))
         oH, oD, oA = fair_odds
         rating_gap = abs(home_pts - away_pts)
         top5_gap = home_top5 - away_top5 if prob_h >= prob_a else away_top5 - home_top5
 
         # 保守：强队差距大时高置信度，接近时倾向平局
+        ctx = self._build_context(home, away, home_pts, away_pts, home_top5, away_top5)
         if rating_gap > 100:
             if prob_h > prob_a:
                 result = "H"
                 bonus = 1.0 + top5_gap * 0.15
                 confidence = min(0.70, prob_h * 1.15 * bonus)
-                reasoning = f"{home}实力明显占优(FIFA排名差{rating_gap}分)，稳健看好主胜"
+                parts = [f"{home}实力明显占优(排名差{rating_gap}分，五大联赛含量{home_top5:.0%} vs {away_top5:.0%})"]
                 if top5_gap > 0.15:
-                    reasoning += f"，首发五大联赛球员占比高"
+                    parts.append(f"首发五大联赛球员占比高({home_top5:.0%})")
+                parts.append("稳健看好主胜")
+                reasoning = "，".join(parts)
             else:
                 result = "A"
                 bonus = 1.0 + top5_gap * 0.15
                 confidence = min(0.70, prob_a * 1.15 * bonus)
-                reasoning = f"{away}实力更强，客胜可期"
+                parts = [f"{away}实力更强(排名差{rating_gap}分，五大联赛含量{home_top5:.0%} vs {away_top5:.0%})"]
                 if top5_gap > 0.15:
-                    reasoning += f"，五大联赛球员优势明显"
+                    parts.append(f"五大联赛球员优势明显({away_top5:.0%})")
+                parts.append("客胜可期")
+                reasoning = "，".join(parts)
         elif rating_gap < 40:
             # 排名接近时 top5 密度成为关键区分因子
             if abs(home_top5 - away_top5) > 0.2:
                 if home_top5 > away_top5 and prob_h >= prob_a:
                     result = "H"
                     confidence = min(0.55, prob_h * 1.25)
-                    reasoning = f"排名接近但{home}五大联赛阵容更强，看好主胜"
+                    reasoning = (f"排名接近(仅差{rating_gap}分)但{home}五大联赛阵容更强"
+                                 f"({home_top5:.0%} vs {away_top5:.0%})，{ctx['mode']}，看好主胜")
                 elif away_top5 > home_top5 and prob_a >= prob_h:
                     result = "A"
                     confidence = min(0.55, prob_a * 1.25)
-                    reasoning = f"排名接近但{away}五大联赛阵容更强，看好客胜"
+                    reasoning = (f"排名接近(仅差{rating_gap}分)但{away}五大联赛阵容更强"
+                                 f"({home_top5:.0%} vs {away_top5:.0%})，{ctx['mode']}，看好客胜")
                 else:
                     result = "D"
                     confidence = min(0.45, prob_d * 1.2)
-                    reasoning = f"双方实力接近(排名差仅{rating_gap}分)，稳健选择平局"
+                    reasoning = f"双方实力接近(排名差仅{rating_gap}分，五大联赛含量相当)，{ctx['mode']}，稳健选择平局"
             else:
                 result = "D"
                 confidence = min(0.45, prob_d * 1.2)
-                reasoning = f"双方实力接近(排名差仅{rating_gap}分)，稳健选择平局"
+                reasoning = f"双方实力接近(排名差仅{rating_gap}分，五大联赛含量相当)，{ctx['mode']}，稳健选择平局"
         else:
             if prob_h >= prob_a:
                 result = "H"
                 confidence = prob_h * 1.05
-                reasoning = f"{home}略占优势，谨慎看好主队不败"
+                parts = [f"{home}略占优势(排名差{rating_gap}分，{ctx['mode']})"]
+                if ctx["top5_gap"] > 0.15:
+                    parts.append(f"五大联赛含量{home_top5:.0%} vs {away_top5:.0%}")
+                parts.append("谨慎看好主队不败")
+                reasoning = "，".join(parts)
             else:
                 result = "A"
                 confidence = prob_a * 1.05
-                reasoning = f"{away}略占优势，谨慎看好客队不败"
+                parts = [f"{away}略占优势(排名差{rating_gap}分，{ctx['mode']})"]
+                if ctx["top5_gap"] > 0.15:
+                    parts.append(f"五大联赛含量{home_top5:.0%} vs {away_top5:.0%}")
+                parts.append("谨慎看好客队不败")
+                reasoning = "，".join(parts)
 
         # 使用真实赔率 Poisson 比分
         hg, ag = self._get_odds_score(home, away, (prob_h, prob_d, prob_a), result=result)
@@ -418,7 +515,7 @@ class AggressiveAgent(BaseAgent):
     def predict(self, home, away, home_pts, away_pts, base_probs, fair_odds, weather=None,
                 home_top5=0.0, away_top5=0.0):
         (prob_h, prob_d, prob_a), weather_note = self._apply_weather(base_probs, weather, home, away)
-        prob_h, prob_d, prob_a = self._apply_top5(home_top5, away_top5, prob_h, prob_d, prob_a, strength=0.08)
+        prob_h, prob_d, prob_a = self._apply_top5(home_top5, away_top5, prob_h, prob_d, prob_a, strength=0.08, rank_gap=abs(home_pts - away_pts))
         oH, oD, oA = fair_odds
         rating_gap = abs(home_pts - away_pts)
         top5_gap = home_top5 - away_top5
@@ -471,12 +568,21 @@ class AggressiveAgent(BaseAgent):
             if score[0] == score[1] and result != "D":
                 score = (score[0] + 1, score[1])
 
+        ctx = self._build_context(home, away, home_pts, away_pts, home_top5, away_top5)
         if result == "H":
-            reasoning = f"{away}并非没有机会，但{home}进攻火力更强，看好大球取胜"
+            parts = [f"{away}并非没有机会(排名差{rating_gap}分)"]
+            if ctx["top5_gap"] > 0.15:
+                parts.append(f"五大联赛含量{home_top5:.0%} vs {away_top5:.0%}")
+            parts.append(f"但{home}进攻火力更强，{ctx['mode']}，看好大球取胜")
+            reasoning = "，".join(parts)
         elif result == "A":
-            reasoning = f"数据低估了{away}的实力，冷门可期，大胆搏客胜"
+            parts = [f"数据低估了{away}的实力(排名差{rating_gap}分)"]
+            if ctx["top5_gap"] > 0.15:
+                parts.append(f"五大联赛含量{home_top5:.0%} vs {away_top5:.0%}")
+            parts.append(f"冷门可期，{ctx['mode']}，大胆搏客胜")
+            reasoning = "，".join(parts)
         else:
-            reasoning = "双方都有机会，对攻战平局收场"
+            reasoning = f"双方都有机会(排名差{rating_gap}分，{ctx['mode']})，对攻战平局收场"
         if weather_note:
             reasoning += f" ({weather_note})"
 
@@ -501,7 +607,7 @@ class ValueAgent(BaseAgent):
     def predict(self, home, away, home_pts, away_pts, base_probs, fair_odds, weather=None,
                 home_top5=0.0, away_top5=0.0):
         (prob_h, prob_d, prob_a), weather_note = self._apply_weather(base_probs, weather, home, away)
-        prob_h, prob_d, prob_a = self._apply_top5(home_top5, away_top5, prob_h, prob_d, prob_a, strength=0.06)
+        prob_h, prob_d, prob_a = self._apply_top5(home_top5, away_top5, prob_h, prob_d, prob_a, strength=0.06, rank_gap=abs(home_pts - away_pts))
         oH, oD, oA = fair_odds
 
         # 计算每个结果的价值
@@ -516,6 +622,7 @@ class ValueAgent(BaseAgent):
         # 只有存在价值才出手
         result_map = {"H": 0, "D": 1, "A": 2}
         odds_map = {"H": oH, "D": oD, "A": oA}
+        ctx = self._build_context(home, away, home_pts, away_pts, home_top5, away_top5)
         if max_value > 0.03:
             result = best
             confidence = base_probs[result_map[best]]
@@ -528,6 +635,8 @@ class ValueAgent(BaseAgent):
                 f"发现价值空间({RESULT_NAMES[result]}赔率隐含概率{implied:.0f}%"
                 f" vs 预测概率{confidence*100:.0f}%)，存在{edge_pct:.1f}%期望价值"
             )
+            if ctx["top5_gap"] > 0.15 or ctx["rank_gap"] < 60:
+                reasoning += f" [排名差{ctx['rank_gap']}分，{ctx['mode']}，五大联赛{home_top5:.0%} vs {away_top5:.0%}]"
         else:
             # 没有价值，选概率最高的但降置信度
             probs_list = [base_probs[0], base_probs[1], base_probs[2]]
@@ -536,7 +645,7 @@ class ValueAgent(BaseAgent):
             result = result_inv[max_idx]
             confidence = base_probs[max_idx] * 0.7
             kelly = 0
-            reasoning = "本场价值空间不足，如需投注建议观望"
+            reasoning = f"本场价值空间不足(排名差{ctx['rank_gap']}分，{ctx['mode']})，如需投注建议观望"
 
         # 使用真实赔率 Poisson 比分
         hg, ag = self._get_odds_score(home, away, (base_probs[0], base_probs[1], base_probs[2]), result=result)
@@ -573,7 +682,7 @@ class DefensiveAgent(BaseAgent):
     def predict(self, home, away, home_pts, away_pts, base_probs, fair_odds, weather=None,
                 home_top5=0.0, away_top5=0.0):
         (prob_h, prob_d, prob_a), weather_note = self._apply_weather(base_probs, weather, home, away)
-        prob_h, prob_d, prob_a = self._apply_top5(home_top5, away_top5, prob_h, prob_d, prob_a, strength=0.10)
+        prob_h, prob_d, prob_a = self._apply_top5(home_top5, away_top5, prob_h, prob_d, prob_a, strength=0.10, rank_gap=abs(home_pts - away_pts))
         rating_gap = abs(home_pts - away_pts)
 
         # 防守派偏好平局和小球
@@ -618,19 +727,27 @@ class DefensiveAgent(BaseAgent):
         elif result == "D" and score[0] != score[1]:
             score = (score[0], score[0])
 
+        ctx = self._build_context(home, away, home_pts, away_pts, home_top5, away_top5)
         reasons = []
         if result == "D":
             reasons.append("世界杯大赛往往以防守为主")
             if rating_gap < 60:
                 reasons.append(f"双方实力接近(差{rating_gap}分)")
+            reasons.append(f"{ctx['mode']}")
             reasons.append("看好闷平")
         elif result == "H":
             reasons.append(f"{home}防守体系更稳固")
             if rating_gap > 100:
                 reasons.append(f"排名优势({rating_gap}分)保障了防线")
+            if ctx["top5_gap"] > 0.15:
+                reasons.append(f"五大联赛含量{home_top5:.0%} vs {away_top5:.0%}")
+            reasons.append(f"{ctx['mode']}")
             reasons.append("小球取胜")
         else:
             reasons.append(f"{away}反击效率值得信赖")
+            if ctx["top5_gap"] > 0.15:
+                reasons.append(f"五大联赛含量{home_top5:.0%} vs {away_top5:.0%}")
+            reasons.append(f"{ctx['mode']}")
             reasons.append("防守反击拿到客胜")
 
         if weather_note:
@@ -657,7 +774,7 @@ class TechnicalAgent(BaseAgent):
     def predict(self, home, away, home_pts, away_pts, base_probs, fair_odds, weather=None,
                 home_top5=0.0, away_top5=0.0):
         (prob_h, prob_d, prob_a), weather_note = self._apply_weather(base_probs, weather, home, away)
-        prob_h, prob_d, prob_a = self._apply_top5(home_top5, away_top5, prob_h, prob_d, prob_a, strength=0.07)
+        prob_h, prob_d, prob_a = self._apply_top5(home_top5, away_top5, prob_h, prob_d, prob_a, strength=0.07, rank_gap=abs(home_pts - away_pts))
         oH, oD, oA = fair_odds
 
         # 使用纯ELO概率，不做调整
@@ -680,9 +797,12 @@ class TechnicalAgent(BaseAgent):
 
         # 详细推理
         hs, as_ = score
+        ctx = self._build_context(home, away, home_pts, away_pts, home_top5, away_top5)
         reasoning = (
             f"ELO模型计算：{home}胜率{prob_h*100:.0f}%/{away}胜率{prob_a*100:.0f}%/平局{prob_d*100:.0f}%；"
             f"FIFA排名：{home}={home_pts}分/{away}={away_pts}分；"
+            f"五大联赛含量：{home}={home_top5:.0%}/{away}={away_top5:.0%}；"
+            f"混合模式：{ctx['mode']}(alpha={ctx['alpha']})；"
             f"最可能比分{hs}-{as_}"
         )
         if weather_note:
@@ -802,7 +922,7 @@ class UpsetAgent(BaseAgent):
     def predict(self, home, away, home_pts, away_pts, base_probs, fair_odds, weather=None,
                 home_top5=0.0, away_top5=0.0):
         (prob_h, prob_d, prob_a), weather_note = self._apply_weather(base_probs, weather, home, away)
-        prob_h, prob_d, prob_a = self._apply_top5(home_top5, away_top5, prob_h, prob_d, prob_a, strength=0.07)
+        prob_h, prob_d, prob_a = self._apply_top5(home_top5, away_top5, prob_h, prob_d, prob_a, strength=0.07, rank_gap=abs(home_pts - away_pts))
         oH, oD, oA = fair_odds
 
         # 加载真实赔率
@@ -841,11 +961,15 @@ class UpsetAgent(BaseAgent):
             odds_str = f"模型{oH:.2f}/{oD:.2f}/{oA:.2f} 市场{rH:.2f}/{rD:.2f}/{rA:.2f}"
             market_boost = "市场赔率显示" if target == "H" and rH < oH or target == "A" and rA < oA or target == "D" and rD < oD else ""
 
-        reasons = [f"历史数据表明赔率>3.0时爆冷概率{self._get_real_upset_prob([oH,oD,oA][{'H':0,'D':1,'A':2}[target]])*100:.0f}%"]
+        ctx = self._build_context(home, away, home_pts, away_pts, home_top5, away_top5)
+        upset_prob = self._get_real_upset_prob([oH,oD,oA][{"H":0,"D":1,"A":2}[target]])
+        reasons = [f"历史数据表明赔率>3.0时爆冷概率{upset_prob*100:.0f}%"]
         if real_odds:
             reasons.append(f"市场隐含概率与模型存在分歧")
         if abs(home_pts - away_pts) > 100:
             reasons.append(f"实力悬殊({abs(home_pts-away_pts)}分差距)增加冷门可能")
+        if ctx["top5_gap"] > 0.15:
+            reasons.append(f"五大联赛含量{home_top5:.0%} vs {away_top5:.0%}({ctx['mode']})")
         if weather_note:
             reasons.append(f"天气因素{weather_note}")
 
@@ -898,6 +1022,14 @@ def get_team_points(rankings_df, team_name):
     row = rankings_df[rankings_df["Team"] == team_name]
     if len(row) > 0:
         return int(row["RankPoints"].values[0])
+    mapped = {"United States": "USA", "Czechia": "Czech Republic"}.get(team_name)
+    if mapped:
+        row = rankings_df[rankings_df["Team"] == mapped]
+        if len(row) > 0:
+            return int(row["RankPoints"].values[0])
+    for t in rankings_df["Team"]:
+        if t.lower() == team_name.lower():
+            return int(rankings_df[rankings_df["Team"] == t]["RankPoints"].values[0])
     return 1500
 
 
@@ -1010,6 +1142,33 @@ def generate_agent_predictions():
 
         weights_data = load_agent_weights()
         current_weights = weights_data["weights"]
+
+        # 计算混合模型上下文
+        rank_gap = abs(home_pts - away_pts)
+        top5_diff = round((top5_data.get(home, 0.10) - top5_data.get(away, 0.10)), 2)
+        try:
+            hp_path = os.path.join(DATA_DIR, "hybrid_params.json")
+            if os.path.exists(hp_path):
+                with open(hp_path) as f:
+                    hp = json.load(f)
+            else:
+                hp = {"close_threshold": 100, "elo_min_weight": 0.4}
+            ct = hp.get("close_threshold", 100)
+            emw = hp.get("elo_min_weight", 0.4)
+        except:
+            ct, emw = 100, 0.4
+        alpha_ratio = min(rank_gap / ct, 1.0)
+        alpha = round(emw + (1.0 - emw) * alpha_ratio, 2)
+        top5_weight = round((1.0 - alpha) * 100)
+        if rank_gap >= ct:
+            mode = "纯Elo排名驱动"
+        elif top5_weight > 60:
+            mode = "五大联赛含量主导"
+        elif top5_weight > 30:
+            mode = "排名+五大联赛混合"
+        else:
+            mode = "Elo排名主导"
+
         results[match_key] = {
             "home": home,
             "away": away,
@@ -1018,6 +1177,15 @@ def generate_agent_predictions():
             "weather": weather,
             "agents": match_agents,
             "consensus": _calc_weighted_consensus(match_agents, current_weights),
+            "hybrid_context": {
+                "rank_gap": rank_gap,
+                "top5_diff": top5_diff,
+                "home_top5": round(top5_data.get(home, 0.10), 2),
+                "away_top5": round(top5_data.get(away, 0.10), 2),
+                "alpha": alpha,
+                "top5_weight_pct": top5_weight,
+                "mode": mode,
+            },
         }
 
     # 保存结果
@@ -1090,6 +1258,22 @@ def _calc_weighted_consensus(match_agents, weights):
     max_idx = weight_vals.index(max(weight_vals))
     consensus = result_labels[max_idx]
 
+    # 生成共识解释
+    h_count = sum(1 for n, a in match_agents.items() if a["result"] == "H")
+    d_count = sum(1 for n, a in match_agents.items() if a["result"] == "D")
+    a_count = sum(1 for n, a in match_agents.items() if a["result"] == "A")
+    n_agents = len(match_agents)
+    agree_count = max(h_count, d_count, a_count)
+    agree_agents = [n for n, a in match_agents.items() if a["result"] == consensus]
+    consensus_label = {"H": "主胜", "D": "平局", "A": "客胜"}[consensus]
+
+    summary = (
+        f"加权共识：{consensus_label} "
+        f"(H:{h_weight:.1f} D:{d_weight:.1f} A:{a_weight:.1f}，"
+        f"共识度{max(weight_vals)/total:.0%}) "
+        f"| {agree_count}/{n_agents}个智能体支持：{'、'.join(agree_agents)}"
+    )
+
     return {
         "H": round(h_weight, 2),
         "D": round(d_weight, 2),
@@ -1097,6 +1281,7 @@ def _calc_weighted_consensus(match_agents, weights):
         "consensus": consensus,
         "agreement_pct": round(max(weight_vals) / total, 4),
         "weighted": True,
+        "summary": summary,
     }
 
 

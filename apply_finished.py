@@ -250,6 +250,39 @@ def update_agent_weights(finished):
         print("  No new matches to apply weights for")
 
 
+def reoptimize_hybrid_params():
+    """每次有新完赛比赛时，重新优化混合模型参数（在线学习）"""
+    feat_path = os.path.join(DATA_DIR, "wc_feature_matrix.pkl")
+    finished_path = FINISHED_PATH
+    top5_path = os.path.join(DATA_DIR, "team_top5.json")
+    rank_path = os.path.join(DATA_DIR, "fifa_rankings.csv")
+
+    if not all(os.path.exists(p) for p in [feat_path, finished_path, top5_path, rank_path]):
+        print("  [hybrid] 缺少数据文件，跳过")
+        return
+
+    try:
+        from model_trainer import optimize_hybrid_params
+        with open(finished_path) as f:
+            finished_matches = json.load(f)
+        with open(top5_path) as f:
+            top5_data = json.load(f)
+        rankings_df = pd.read_csv(rank_path)
+
+        if len(finished_matches) == 0:
+            print("  [hybrid] 无已完赛比赛，跳过")
+            return
+
+        result = optimize_hybrid_params(finished_matches, top5_data, rankings_df)
+        best = result["best_params"]
+        print(f"  [hybrid] 优化完成! 参数: strength={best['top5_strength']}, "
+              f"threshold={best['close_threshold']}, min_weight={best['elo_min_weight']}")
+        print(f"  [hybrid] 准确率={result['history'][0]['accuracy']:.1%} "
+              f"(基于{len(finished_matches)}场完赛比赛)")
+    except Exception as e:
+        print(f"  [hybrid] 重优化失败: {e}")
+
+
 def main():
     finished = load_finished()
     if not finished:
@@ -263,6 +296,10 @@ def main():
     # 权重更新
     print("\n--- Agent Weight Update ---")
     update_agent_weights(finished)
+
+    # 混合模型参数重优化（每次有新完赛比赛时触发）
+    print("\n--- Hybrid Model Re-optimization ---")
+    reoptimize_hybrid_params()
 
     # 轮次切换检测
     latest_date = max(

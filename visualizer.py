@@ -210,8 +210,10 @@ def generate_dashboard(data):
             for idx, (_, row) in enumerate(finished_sorted.iterrows()):
                 hs = int(row.get("pred_home_score", 0))
                 as_ = int(row.get("pred_away_score", 0))
-                ah = int(row.get("actual_home_score", 0))
-                aa = int(row.get("actual_away_score", 0))
+                ah_val = row.get("actual_home_score", 0)
+                aa_val = row.get("actual_away_score", 0)
+                ah = int(ah_val) if not (isinstance(ah_val, float) and ah_val != ah_val) else 0
+                aa = int(aa_val) if not (isinstance(aa_val, float) and aa_val != aa_val) else 0
                 is_correct = row.get("correct", False)
                 is_result_correct = row.get("actual_result", "") == row.get("pred_result", "")
                 mark = "✅" if is_correct else ("⚠️" if is_result_correct else "❌")
@@ -653,6 +655,9 @@ tr:hover td{{background:rgba(255,255,255,.02);color:var(--text)}}
 .am-h{{font-weight:600;font-size:15px;margin-bottom:10px;color:var(--text);text-wrap:balance}}
 .am-cb{{display:flex;height:8px;border-radius:4px;overflow:hidden;margin-bottom:12px}}
 .am-cb-s{{display:flex;align-items:center;justify-content:center;font-size:7px;color:#fff;font-weight:600;transition:width .4s cubic-bezier(.16,1,.3,1)}}
+.am-ctx{{display:flex;gap:8px;align-items:center;padding:6px 12px;margin-bottom:8px;background:rgba(255,255,255,.03);border-radius:6px;font-size:11px;color:var(--text2);flex-wrap:wrap}}
+.am-mode{{color:var(--accent);font-weight:600}}
+.am-cs{{padding:6px 12px;margin-bottom:8px;background:rgba(34,197,56,.08);border-radius:6px;font-size:11px;color:var(--green);line-height:1.4}}
 .am-agents{{display:flex;flex-direction:column;gap:8px}}
 .ar{{padding:10px 12px;border-left:3px solid;background:rgba(255,255,255,.015);border-radius:0 6px 6px 0;display:flex;flex-direction:column;gap:4px;transition:background .2s}}
 .ar:hover{{background:rgba(255,255,255,.03)}}
@@ -760,6 +765,8 @@ tr:hover td{{background:rgba(255,255,255,.02);color:var(--text)}}
     <div class="st-l">开幕日</div>
   </div>
 </div>
+
+	<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2492910744108706" crossorigin="anonymous"></script>
 
 </body>
 </html>'''

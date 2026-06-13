@@ -21,10 +21,23 @@ def load_fifa_rankings():
     return None
 
 
+TEAM_NAME_MAP = {
+    "United States": "USA",
+    "Czechia": "Czech Republic",
+}
+
 def get_team_rank_points(team, rankings_df):
     row = rankings_df[rankings_df["Team"] == team]
     if len(row) > 0:
         return int(row["RankPoints"].values[0])
+    mapped = TEAM_NAME_MAP.get(team)
+    if mapped:
+        row = rankings_df[rankings_df["Team"] == mapped]
+        if len(row) > 0:
+            return int(row["RankPoints"].values[0])
+    for t in rankings_df["Team"]:
+        if t.lower() == team.lower():
+            return int(rankings_df[rankings_df["Team"] == t]["RankPoints"].values[0])
     return 1500
 
 

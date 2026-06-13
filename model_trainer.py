@@ -4,7 +4,7 @@ model_trainer.py - 世界杯预测模型训练
 """
 import pandas as pd
 import numpy as np
-import os, pickle, logging
+import os, json, math, pickle, logging
 from datetime import datetime
 from sklearn.metrics import log_loss, accuracy_score
 from sklearn.preprocessing import StandardScaler
@@ -48,6 +48,54 @@ def exp_goals_from_elo(pts_home, pts_away):
     return max(0.3, min(3.5, exp_h)), max(0.3, min(3.5, exp_a))
 
 
+def _normalize_probs(p_h, p_d, p_a, min_prob=0.05):
+    """钳制并重新归一化概率"""
+    probs = [max(min_prob, p) for p in [p_h, p_d, p_a]]
+    total = sum(probs)
+    return probs[0] / total, probs[1] / total, probs[2] / total
+
+
+def hybrid_elo_prob(pts_home, pts_away, top5_home, top5_away,
+                    top5_strength=0.15, close_threshold=100, elo_min_weight=0.4):
+    """混合ElO概率：排名相近时降低排名权重，增加五大联赛球员含量权重
+
+    参数:
+        pts_home, pts_away: FIFA排名积分
+        top5_home, top5_away: 五大联赛球员比例 (0.0~1.0)
+        top5_strength: top5差异对概率的偏移强度
+        close_threshold: 排名分差阈值，超过此值则纯用Elo
+        elo_min_weight: 排名分差为0时Elo的最小权重
+    返回:
+        (prob_h, prob_d, prob_a)
+    """
+    # 1. 纯Elo概率
+    prob_h, prob_d, prob_a = elo_prob(pts_home, pts_away)
+
+    # 2. Top-5调整后的概率
+    top5_diff = top5_home - top5_away
+    t5_h, t5_d, t5_a = prob_h, prob_d, prob_a
+    if abs(top5_diff) > 0.05:
+        shift = top5_diff * top5_strength
+        t5_h += shift
+        t5_a -= shift * 0.6
+        t5_d -= shift * 0.4
+        t5_h, t5_d, t5_a = _normalize_probs(t5_h, t5_d, t5_a)
+
+    # 3. 计算混合权重alpha
+    #    rank_diff越大 → alpha越接近1.0（纯Elo）
+    #    rank_diff越小 → alpha越接近elo_min_weight（Top5占更大比重）
+    rank_diff = abs(pts_home - pts_away)
+    alpha_ratio = min(rank_diff / close_threshold, 1.0)
+    alpha = elo_min_weight + (1.0 - elo_min_weight) * alpha_ratio
+
+    # 4. 混合
+    hybrid_h = alpha * prob_h + (1.0 - alpha) * t5_h
+    hybrid_d = alpha * prob_d + (1.0 - alpha) * t5_d
+    hybrid_a = alpha * prob_a + (1.0 - alpha) * t5_a
+
+    return _normalize_probs(hybrid_h, hybrid_d, hybrid_a)
+
+
 class RankingModel:
     """基于FIFA排名的基准模型"""
     def __init__(self, rankings_df):
@@ -70,6 +118,44 @@ class RankingModel:
     def predict(self, feature_df):
         probs = self.predict_proba(feature_df)
         return np.argmax(probs, axis=1)
+
+
+class HybridRankingModel(RankingModel):
+    """增强排名模型：混合Elo + 五大联赛球员密度
+
+    当排名接近时，降低排名权重，增加五大联赛球员含量权重。
+    参数通过网格搜索从已完赛比赛中学习。
+    """
+    def __init__(self, rankings_df, top5_data=None, params=None):
+        super().__init__(rankings_df)
+        self.top5_data = top5_data or {}
+        self.params = params or {
+            "top5_strength": 0.15,
+            "close_threshold": 100,
+            "elo_min_weight": 0.4,
+        }
+
+    def get_top5(self, team):
+        """获取球队五大联赛比例，默认0.10"""
+        return self.top5_data.get(team, 0.10)
+
+    def predict_proba(self, feature_df):
+        probs = []
+        for _, row in feature_df.iterrows():
+            home = str(row.get("home_team", ""))
+            away = str(row.get("away_team", ""))
+            hp = self.rankings.get(home, 1500)
+            ap = self.rankings.get(away, 1500)
+            t5h = self.get_top5(home)
+            t5a = self.get_top5(away)
+            ph, pd_val, pa = hybrid_elo_prob(
+                hp, ap, t5h, t5a,
+                top5_strength=self.params["top5_strength"],
+                close_threshold=self.params["close_threshold"],
+                elo_min_weight=self.params["elo_min_weight"],
+            )
+            probs.append([ph, pd_val, pa])
+        return np.array(probs)
 
 
 def prepare_data(feature_df):
@@ -166,6 +252,7 @@ def notify_no_training_data(feature_df):
         "\n! 无历史完赛数据，无法训练ML模型" +
         "\n! 将使用基于FIFA排名的Elo概率模型" +
         "\n! 世界杯开赛后，完赛数据会被自动用于增量学习" +
+        "\n! 混合模式：排名接近时降低排名权重，增加五大联赛含量权重" +
         "\n" + "!" * 50
     )
     log.warning(msg)
@@ -176,7 +263,18 @@ def notify_no_training_data(feature_df):
     if os.path.exists(rank_path):
         rankings_df = pd.read_csv(rank_path)
         log.info(f"加载FIFA排名: {len(rankings_df)} 支球队")
-    model = RankingModel(rankings_df)
+
+    # 使用混合模型（Elo + Top5）
+    top5_path = os.path.join(DATA_DIR, "team_top5.json")
+    top5_data = {}
+    if os.path.exists(top5_path):
+        with open(top5_path) as f:
+            top5_data = json.load(f)
+
+    params = load_hybrid_params()
+    model = HybridRankingModel(rankings_df, top5_data=top5_data, params=params)
+    log.info(f"混合模型参数: strength={params['top5_strength']}, "
+             f"threshold={params['close_threshold']}, min_weight={params['elo_min_weight']}")
     return model
 
 
@@ -448,6 +546,154 @@ def predict_matches(feature_df):
         results["correct"] = False
 
     return results
+
+
+# ─── 混合模型参数优化（RL式网格搜索） ─────────────────────────
+
+
+def load_hybrid_params():
+    """加载学习到的混合模型参数，不存在时返回默认值"""
+    params_path = os.path.join(DATA_DIR, "hybrid_params.json")
+    if os.path.exists(params_path):
+        with open(params_path) as f:
+            return json.load(f)
+    return {"top5_strength": 0.15, "close_threshold": 100, "elo_min_weight": 0.4}
+
+
+def optimize_hybrid_params(finished_matches, top5_data, rankings_df, param_grid=None, save=True):
+    """用已完赛比赛进行网格搜索，找到最优混合模型参数
+
+    这是"强化学习"的核心：每个参数组合是一个"动作"，
+    在已完赛比赛上的预测准确率是"奖励"。
+    随着比赛增多，参数会持续优化。
+
+    参数:
+        finished_matches: dict from finished_matches.json
+        top5_data: dict of team -> top5 ratio
+        rankings_df: 排名DataFrame
+        param_grid: 自定义参数网格
+        save: 是否保存结果
+    返回:
+        {"best_params": ..., "best_score": ..., "history": [...]}
+    """
+    if param_grid is None:
+        param_grid = {
+            "top5_strength": [0.05, 0.10, 0.15, 0.20, 0.25, 0.30],
+            "close_threshold": [50, 75, 100, 125, 150, 175, 200],
+            "elo_min_weight": [0.3, 0.4, 0.5, 0.6, 0.7],
+        }
+
+    # 构建排名查询（含队名映射）
+    TEAM_MAP = {"United States": "USA", "Czechia": "Czech Republic"}
+    rank_lookup = {}
+    if rankings_df is not None:
+        for _, row in rankings_df.iterrows():
+            rank_lookup[row["Team"]] = int(row["RankPoints"])
+        for match_name, mapped_name in TEAM_MAP.items():
+            if mapped_name in rank_lookup:
+                rank_lookup[match_name] = rank_lookup[mapped_name]
+
+    # 准备已完赛比赛数据
+    match_data = []
+    for mid, info in finished_matches.items():
+        home = info["home_team"]
+        away = info["away_team"]
+        actual = info.get("actual_result", "")
+        if not actual:
+            continue
+        hp = rank_lookup.get(home, 1500)
+        ap = rank_lookup.get(away, 1500)
+        t5h = top5_data.get(home, 0.10)
+        t5a = top5_data.get(away, 0.10)
+        match_data.append({
+            "home": home, "away": away,
+            "hp": hp, "ap": ap,
+            "t5h": t5h, "t5a": t5a,
+            "actual": actual,
+        })
+
+    if not match_data:
+        log.warning("无已完赛比赛可供优化，使用默认参数")
+        return {"best_params": {"top5_strength": 0.15, "close_threshold": 100, "elo_min_weight": 0.4},
+                "best_score": 0, "history": []}
+
+    # 为每个匹配写日志
+    log.info(f"混合模型优化: {len(match_data)} 场已完赛比赛")
+    for md in match_data:
+        log.info(f"  {md['home']} vs {md['away']}: rank_diff={md['hp']-md['ap']:+d}, "
+                 f"top5_diff={md['t5h']-md['t5a']:+.2f}, actual={md['actual']}")
+
+    best_score = -999
+    best_params = None
+    history = []
+
+    # 全网格搜索
+    for ts in param_grid["top5_strength"]:
+        for ct in param_grid["close_threshold"]:
+            for emw in param_grid["elo_min_weight"]:
+                correct = 0
+                logloss_sum = 0.0
+                for md in match_data:
+                    ph, pd_val, pa = hybrid_elo_prob(
+                        md["hp"], md["ap"], md["t5h"], md["t5a"],
+                        top5_strength=ts, close_threshold=ct, elo_min_weight=emw,
+                    )
+                    actual_map = {"H": 0, "D": 1, "A": 2}
+                    pred_idx = 0 if ph > pd_val and ph > pa else (1 if pd_val > pa else 2)
+                    actual_idx = actual_map.get(md["actual"], 1)
+                    if pred_idx == actual_idx:
+                        correct += 1
+                    probs = [ph, pd_val, pa]
+                    actual_one_hot = [0, 0, 0]
+                    actual_one_hot[actual_idx] = 1.0
+                    clipped = np.clip(probs, 1e-10, 1 - 1e-10)
+                    logloss_sum += -sum(actual_one_hot[i] * math.log(clipped[i]) for i in range(3))
+
+                avg_acc = correct / len(match_data)
+                avg_ll = logloss_sum / len(match_data)
+                combined = avg_acc - avg_ll * 0.1
+
+                history.append({
+                    "params": {"top5_strength": ts, "close_threshold": ct, "elo_min_weight": emw},
+                    "accuracy": round(avg_acc, 4),
+                    "log_loss": round(avg_ll, 4),
+                    "combined_score": round(combined, 4),
+                })
+
+                if combined > best_score:
+                    best_score = combined
+                    best_params = {"top5_strength": ts, "close_threshold": ct, "elo_min_weight": emw}
+
+    best_params["score"] = round(best_score, 4)
+    history_sorted = sorted(history, key=lambda x: -x["combined_score"])
+
+    log.info(f"最优混合参数: strength={best_params['top5_strength']}, "
+             f"threshold={best_params['close_threshold']}, "
+             f"min_weight={best_params['elo_min_weight']} "
+             f"(score={best_score:.4f})")
+    log.info(f"  准确率={history_sorted[0]['accuracy']:.1%}, "
+             f"log_loss={history_sorted[0]['log_loss']:.4f}")
+
+    if save:
+        params_path = os.path.join(DATA_DIR, "hybrid_params.json")
+        with open(params_path, "w") as f:
+            json.dump(best_params, f, indent=2)
+
+        history_path = os.path.join(MODEL_DIR, "hybrid_optimization_history.json")
+        with open(history_path, "w") as f:
+            json.dump({
+                "n_matches": len(match_data),
+                "n_param_combinations": len(history),
+                "best_params": best_params,
+                "top_results": history_sorted[:20],
+                "all_results": history_sorted,
+                "match_data": [{"home": md["home"], "away": md["away"],
+                                "actual": md["actual"]} for md in match_data],
+                "optimized_at": datetime.now().isoformat(),
+            }, f, indent=2)
+        log.info(f"混合参数已保存: {params_path}")
+
+    return {"best_params": best_params, "best_score": best_score, "history": history}
 
 
 if __name__ == "__main__":

@@ -236,6 +236,39 @@ def step_visualization():
     return html_path
 
 
+def step_hybrid_optimization():
+    """步骤3.5: 用已完赛比赛优化混合模型参数（RL式网格搜索）"""
+    log.info("\n" + "=" * 60)
+    log.info("步骤 3.5/7: 混合模型参数优化（RL网格搜索）")
+    log.info("=" * 60)
+
+    from model_trainer import optimize_hybrid_params, load_hybrid_params
+
+    finished_path = os.path.join(DATA_DIR, "finished_matches.json")
+    top5_path = os.path.join(DATA_DIR, "team_top5.json")
+    rank_path = os.path.join(DATA_DIR, "fifa_rankings.csv")
+
+    if not all(os.path.exists(p) for p in [finished_path, top5_path, rank_path]):
+        log.warning("缺少数据文件，跳过混合优化")
+        return None
+
+    with open(finished_path) as f:
+        finished_matches = json.load(f)
+    with open(top5_path) as f:
+        top5_data = json.load(f)
+    rankings_df = pd.read_csv(rank_path)
+
+    if len(finished_matches) == 0:
+        log.info("暂无已完赛比赛，使用默认混合参数")
+        params = load_hybrid_params()
+        log.info(f"  默认参数: strength={params['top5_strength']}, "
+                 f"threshold={params['close_threshold']}, min_weight={params['elo_min_weight']}")
+        return params
+
+    result = optimize_hybrid_params(finished_matches, top5_data, rankings_df)
+    return result
+
+
 def run_pipeline():
     log.info("🏆" * 30)
     log.info("🏆  世界杯2026预测系统 v1.0")
@@ -253,6 +286,8 @@ def run_pipeline():
     if not step_model_training():
         log.error("模型训练失败")
         return
+
+    step_hybrid_optimization()
 
     predictions = step_prediction()
     step_media_analysis()
