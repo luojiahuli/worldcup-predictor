@@ -232,12 +232,31 @@ class BaseAgent:
         self.motto = ""
         self.color = AGENT_COLORS.get(name, "#888")
 
-    def predict(self, home, away, home_pts, away_pts, base_probs, fair_odds, weather=None):
+    def predict(self, home, away, home_pts, away_pts, base_probs, fair_odds, weather=None,
+                home_top5=0.0, away_top5=0.0):
         """
         预测比赛
         返回: {result, home_score, away_score, confidence, reasoning, probs}
         """
         raise NotImplementedError
+
+    def _apply_top5(self, home_top5, away_top5, probs_h, probs_d, probs_a, strength=0.12):
+        """根据五大联赛球员密度调整概率。strength控制调整幅度"""
+        diff = home_top5 - away_top5
+        if abs(diff) < 0.1:
+            return probs_h, probs_d, probs_a
+        shift = diff * strength
+        if shift > 0:
+            probs_h += shift
+            probs_a -= shift * 0.6
+            probs_d -= shift * 0.4
+        else:
+            probs_a -= shift  # shift is negative, so this adds
+            probs_h += shift * 0.6
+            probs_d += shift * 0.4
+        probs = [max(0.05, p) for p in [probs_h, probs_d, probs_a]]
+        total = sum(probs)
+        return probs[0] / total, probs[1] / total, probs[2] / total
 
     def _apply_weather(self, base_probs, weather, home, away):
         """应用天气因素调整概率，返回 (adjusted_probs, weather_note)"""
@@ -312,25 +331,49 @@ class ConservativeAgent(BaseAgent):
         self.style = "保守型"
         self.motto = "稳字当头，实力为王"
 
-    def predict(self, home, away, home_pts, away_pts, base_probs, fair_odds, weather=None):
+    def predict(self, home, away, home_pts, away_pts, base_probs, fair_odds, weather=None,
+                home_top5=0.0, away_top5=0.0):
         (prob_h, prob_d, prob_a), weather_note = self._apply_weather(base_probs, weather, home, away)
+        prob_h, prob_d, prob_a = self._apply_top5(home_top5, away_top5, prob_h, prob_d, prob_a, strength=0.10)
         oH, oD, oA = fair_odds
         rating_gap = abs(home_pts - away_pts)
+        top5_gap = home_top5 - away_top5 if prob_h >= prob_a else away_top5 - home_top5
 
         # 保守：强队差距大时高置信度，接近时倾向平局
         if rating_gap > 100:
             if prob_h > prob_a:
                 result = "H"
-                confidence = min(0.65, prob_h * 1.15)
+                bonus = 1.0 + top5_gap * 0.15
+                confidence = min(0.70, prob_h * 1.15 * bonus)
                 reasoning = f"{home}实力明显占优(FIFA排名差{rating_gap}分)，稳健看好主胜"
+                if top5_gap > 0.15:
+                    reasoning += f"，首发五大联赛球员占比高"
             else:
                 result = "A"
-                confidence = min(0.65, prob_a * 1.15)
+                bonus = 1.0 + top5_gap * 0.15
+                confidence = min(0.70, prob_a * 1.15 * bonus)
                 reasoning = f"{away}实力更强，客胜可期"
+                if top5_gap > 0.15:
+                    reasoning += f"，五大联赛球员优势明显"
         elif rating_gap < 40:
-            result = "D"
-            confidence = min(0.45, prob_d * 1.2)
-            reasoning = f"双方实力接近(排名差仅{rating_gap}分)，稳健选择平局"
+            # 排名接近时 top5 密度成为关键区分因子
+            if abs(home_top5 - away_top5) > 0.2:
+                if home_top5 > away_top5 and prob_h >= prob_a:
+                    result = "H"
+                    confidence = min(0.55, prob_h * 1.25)
+                    reasoning = f"排名接近但{home}五大联赛阵容更强，看好主胜"
+                elif away_top5 > home_top5 and prob_a >= prob_h:
+                    result = "A"
+                    confidence = min(0.55, prob_a * 1.25)
+                    reasoning = f"排名接近但{away}五大联赛阵容更强，看好客胜"
+                else:
+                    result = "D"
+                    confidence = min(0.45, prob_d * 1.2)
+                    reasoning = f"双方实力接近(排名差仅{rating_gap}分)，稳健选择平局"
+            else:
+                result = "D"
+                confidence = min(0.45, prob_d * 1.2)
+                reasoning = f"双方实力接近(排名差仅{rating_gap}分)，稳健选择平局"
         else:
             if prob_h >= prob_a:
                 result = "H"
@@ -372,13 +415,21 @@ class AggressiveAgent(BaseAgent):
         self.style = "激进型"
         self.motto = "足球是圆的，一切皆有可能"
 
-    def predict(self, home, away, home_pts, away_pts, base_probs, fair_odds, weather=None):
+    def predict(self, home, away, home_pts, away_pts, base_probs, fair_odds, weather=None,
+                home_top5=0.0, away_top5=0.0):
         (prob_h, prob_d, prob_a), weather_note = self._apply_weather(base_probs, weather, home, away)
+        prob_h, prob_d, prob_a = self._apply_top5(home_top5, away_top5, prob_h, prob_d, prob_a, strength=0.08)
         oH, oD, oA = fair_odds
         rating_gap = abs(home_pts - away_pts)
+        top5_gap = home_top5 - away_top5
 
-        # 激进：夸大弱队概率，偏好爆冷
+        # 激进：夸大弱队概率，偏好爆冷。五大联赛含量低=更容易爆冷
         upset_factor = np.random.RandomState(hash(home + away) % 2**31).uniform(0.05, 0.15)
+        if abs(home_top5 - away_top5) > 0.2:
+            if prob_h > prob_a and away_top5 < home_top5 - 0.2:
+                upset_factor += 0.08  # 客队阵容单薄，爆冷概率更高
+            elif prob_a >= prob_h and home_top5 < away_top5 - 0.2:
+                upset_factor += 0.08
         if rating_gap > 100:
             # 强强对话或实力悬殊时找冷门
             if prob_h > prob_a:
@@ -447,8 +498,10 @@ class ValueAgent(BaseAgent):
         self.style = "价值型"
         self.motto = "只投有价值的比赛"
 
-    def predict(self, home, away, home_pts, away_pts, base_probs, fair_odds, weather=None):
+    def predict(self, home, away, home_pts, away_pts, base_probs, fair_odds, weather=None,
+                home_top5=0.0, away_top5=0.0):
         (prob_h, prob_d, prob_a), weather_note = self._apply_weather(base_probs, weather, home, away)
+        prob_h, prob_d, prob_a = self._apply_top5(home_top5, away_top5, prob_h, prob_d, prob_a, strength=0.06)
         oH, oD, oA = fair_odds
 
         # 计算每个结果的价值
@@ -517,8 +570,10 @@ class DefensiveAgent(BaseAgent):
         self.style = "防守型"
         self.motto = "防守赢得冠军"
 
-    def predict(self, home, away, home_pts, away_pts, base_probs, fair_odds, weather=None):
+    def predict(self, home, away, home_pts, away_pts, base_probs, fair_odds, weather=None,
+                home_top5=0.0, away_top5=0.0):
         (prob_h, prob_d, prob_a), weather_note = self._apply_weather(base_probs, weather, home, away)
+        prob_h, prob_d, prob_a = self._apply_top5(home_top5, away_top5, prob_h, prob_d, prob_a, strength=0.10)
         rating_gap = abs(home_pts - away_pts)
 
         # 防守派偏好平局和小球
@@ -599,8 +654,10 @@ class TechnicalAgent(BaseAgent):
         self.style = "数据型"
         self.motto = "让数据说话"
 
-    def predict(self, home, away, home_pts, away_pts, base_probs, fair_odds, weather=None):
+    def predict(self, home, away, home_pts, away_pts, base_probs, fair_odds, weather=None,
+                home_top5=0.0, away_top5=0.0):
         (prob_h, prob_d, prob_a), weather_note = self._apply_weather(base_probs, weather, home, away)
+        prob_h, prob_d, prob_a = self._apply_top5(home_top5, away_top5, prob_h, prob_d, prob_a, strength=0.07)
         oH, oD, oA = fair_odds
 
         # 使用纯ELO概率，不做调整
@@ -742,8 +799,10 @@ class UpsetAgent(BaseAgent):
 
         return True, target, scoreline, confidence
 
-    def predict(self, home, away, home_pts, away_pts, base_probs, fair_odds, weather=None):
+    def predict(self, home, away, home_pts, away_pts, base_probs, fair_odds, weather=None,
+                home_top5=0.0, away_top5=0.0):
         (prob_h, prob_d, prob_a), weather_note = self._apply_weather(base_probs, weather, home, away)
+        prob_h, prob_d, prob_a = self._apply_top5(home_top5, away_top5, prob_h, prob_d, prob_a, strength=0.07)
         oH, oD, oA = fair_odds
 
         # 加载真实赔率
@@ -859,6 +918,13 @@ def generate_agent_predictions():
     rankings_df = pd.read_csv(rank_path)
     agents = create_agents()
 
+    # 加载五大联赛球员密度数据
+    top5_path = os.path.join(DATA_DIR, "team_top5.json")
+    top5_data = {}
+    if os.path.exists(top5_path):
+        with open(top5_path) as f:
+            top5_data = json.load(f)
+
     unfinished = predictions[predictions["is_finished"] == False]
     results = {}
     all_agent_preds = []
@@ -923,7 +989,10 @@ def generate_agent_predictions():
 
         for name, agent in agents.items():
             try:
-                pred = agent.predict(home, away, home_pts, away_pts, base_probs, fair_odds, weather)
+                home_top5 = top5_data.get(home, 0.10)
+                away_top5 = top5_data.get(away, 0.10)
+                pred = agent.predict(home, away, home_pts, away_pts, base_probs, fair_odds, weather,
+                                     home_top5=home_top5, away_top5=away_top5)
                 match_agents[name] = pred
                 all_agent_preds.append({
                     "date": str(row["date"])[:10],

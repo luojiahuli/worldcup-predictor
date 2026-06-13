@@ -14,5 +14,13 @@
     "actual_home_score": 2,
     "actual_away_score": 0,
     "actual_result": "H"
+  },
+  "United States_vs_Paraguay": {
+    "home_team": "United States",
+    "away_team": "Paraguay",
+    "date": "2026-06-12",
+    "actual_home_score": 4,
+    "actual_away_score": 1,
+    "actual_result": "H"
   }
 }

@@ -1,0 +1,21 @@
+{
+  "England": 0.91, "France": 0.91, "Brazil": 0.82, "Portugal": 0.82,
+  "Netherlands": 0.82, "Belgium": 0.73, "Germany": 0.82, "Spain": 0.82,
+  "Argentina": 0.73, "Uruguay": 0.55, "Croatia": 0.55, "Senegal": 0.45,
+  "Morocco": 0.45, "USA": 0.55, "United States": 0.55, "Switzerland": 0.55,
+  "Austria": 0.45, "Norway": 0.55, "Sweden": 0.45, "Serbia": 0.45,
+  "Japan": 0.36, "South Korea": 0.36, "Saudi Arabia": 0.18, "Iran": 0.27,
+  "Ecuador": 0.36, "Colombia": 0.36, "Ghana": 0.36, "Ivory Coast": 0.36,
+  "Egypt": 0.36, "Algeria": 0.36, "Tunisia": 0.27, "Cameroon": 0.36,
+  "Turkey": 0.36, "Scotland": 0.36, "Czechia": 0.36, "Paraguay": 0.27,
+  "Mexico": 0.27, "Canada": 0.18, "Costa Rica": 0.18, "Panama": 0.09,
+  "Australia": 0.18, "Iraq": 0.09, "Jordan": 0.09, "Qatar": 0.09,
+  "South Africa": 0.18, "Cape Verde Islands": 0.09, "Curaçao": 0.0,
+  "Haiti": 0.0, "Bosnia-Herzegovina": 0.18, "New Zealand": 0.09,
+  "Uzbekistan": 0.0, "Congo DR": 0.09, "Nigeria": 0.45, "Mali": 0.18,
+  "Poland": 0.45, "Ukraine": 0.36, "Denmark": 0.55, "Italy": 0.73,
+  "Hungary": 0.27, "Slovakia": 0.18, "Bulgaria": 0.18, "Wales": 0.36,
+  "Greece": 0.27, "Romania": 0.18, "Peru": 0.18, "Venezuela": 0.09,
+  "China": 0.0, "Oman": 0.0, "United Arab Emirates": 0.09,
+  "Burkina Faso": 0.09, "Mali": 0.09
+}

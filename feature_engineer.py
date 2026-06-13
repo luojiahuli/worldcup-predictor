@@ -28,6 +28,25 @@ def get_team_rank_points(team, rankings_df):
     return 1500
 
 
+# 五大联赛球员密度缓存
+_TOP5_CACHE = None
+
+def load_top5_data():
+    global _TOP5_CACHE
+    if _TOP5_CACHE is not None:
+        return _TOP5_CACHE
+    path = os.path.join(DATA_DIR, "team_top5.json")
+    if os.path.exists(path):
+        import json
+        with open(path) as f:
+            _TOP5_CACHE = json.load(f)
+        return _TOP5_CACHE
+    return {}
+
+def get_team_top5_ratio(team, top5_data):
+    return top5_data.get(team, 0.10)
+
+
 def compute_team_wc_history(all_matches, team, window=2):
     """计算球队在历史世界杯中的数据"""
     team_matches = all_matches[
@@ -138,6 +157,15 @@ def build_match_features(match_row, all_wc_matches, rankings_df):
     features["rank_diff"] = home_rank - away_rank
     features["rank_ratio"] = home_rank / max(away_rank, 1)
     features["rank_relative"] = (home_rank - away_rank) / (home_rank + away_rank + 1)
+
+    # 1b. 五大联赛球员密度特征
+    top5_data = load_top5_data()
+    home_top5 = get_team_top5_ratio(home, top5_data)
+    away_top5 = get_team_top5_ratio(away, top5_data)
+    features["home_top5_ratio"] = home_top5
+    features["away_top5_ratio"] = away_top5
+    features["top5_diff"] = home_top5 - away_top5
+    features["top5_relative"] = (home_top5 - away_top5) / (home_top5 + away_top5 + 0.01)
 
     # 2. 历史世界杯表现（如果数据存在）
     home_wc = compute_team_wc_history(all_wc_matches, home)
