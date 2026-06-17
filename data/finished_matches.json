@@ -1,13 +1,5 @@
 {
-  "South Korea_vs_Czechia": {
-    "home_team": "South Korea",
-    "away_team": "Czechia",
-    "date": "2026-06-12",
-    "actual_home_score": 2,
-    "actual_away_score": 1,
-    "actual_result": "H"
-  },
-  "Mexico_vs_South Africa": {
+  "Mexico_vs_South_Africa": {
     "home_team": "Mexico",
     "away_team": "South Africa",
     "date": "2026-06-11",
@@ -15,11 +7,179 @@
     "actual_away_score": 0,
     "actual_result": "H"
   },
-  "United States_vs_Paraguay": {
+  "South_Korea_vs_Czechia": {
+    "home_team": "South Korea",
+    "away_team": "Czechia",
+    "date": "2026-06-12",
+    "actual_home_score": 2,
+    "actual_away_score": 1,
+    "actual_result": "H"
+  },
+  "Canada_vs_Bosnia-Herzegovina": {
+    "home_team": "Canada",
+    "away_team": "Bosnia-Herzegovina",
+    "date": "2026-06-12",
+    "actual_home_score": 1,
+    "actual_away_score": 1,
+    "actual_result": "D"
+  },
+  "Qatar_vs_Switzerland": {
+    "home_team": "Qatar",
+    "away_team": "Switzerland",
+    "date": "2026-06-13",
+    "actual_home_score": 1,
+    "actual_away_score": 1,
+    "actual_result": "D"
+  },
+  "Brazil_vs_Morocco": {
+    "home_team": "Brazil",
+    "away_team": "Morocco",
+    "date": "2026-06-13",
+    "actual_home_score": 1,
+    "actual_away_score": 1,
+    "actual_result": "D"
+  },
+  "Haiti_vs_Scotland": {
+    "home_team": "Haiti",
+    "away_team": "Scotland",
+    "date": "2026-06-13",
+    "actual_home_score": 0,
+    "actual_away_score": 1,
+    "actual_result": "A"
+  },
+  "United_States_vs_Paraguay": {
     "home_team": "United States",
     "away_team": "Paraguay",
-    "date": "2026-06-12",
+    "date": "2026-06-13",
     "actual_home_score": 4,
+    "actual_away_score": 1,
+    "actual_result": "H"
+  },
+  "Australia_vs_Turkey": {
+    "home_team": "Australia",
+    "away_team": "Turkey",
+    "date": "2026-06-14",
+    "actual_home_score": 2,
+    "actual_away_score": 0,
+    "actual_result": "H"
+  },
+  "Germany_vs_Curaçao": {
+    "home_team": "Germany",
+    "away_team": "Curaçao",
+    "date": "2026-06-14",
+    "actual_home_score": 7,
+    "actual_away_score": 1,
+    "actual_result": "H"
+  },
+  "Netherlands_vs_Japan": {
+    "home_team": "Netherlands",
+    "away_team": "Japan",
+    "date": "2026-06-14",
+    "actual_home_score": 2,
+    "actual_away_score": 2,
+    "actual_result": "D"
+  },
+  "Sweden_vs_Tunisia": {
+    "home_team": "Sweden",
+    "away_team": "Tunisia",
+    "date": "2026-06-14",
+    "actual_home_score": 5,
+    "actual_away_score": 1,
+    "actual_result": "H"
+  },
+  "Belgium_vs_Egypt": {
+    "home_team": "Belgium",
+    "away_team": "Egypt",
+    "date": "2026-06-15",
+    "actual_home_score": 1,
+    "actual_away_score": 1,
+    "actual_result": "D"
+  },
+  "France_vs_Senegal": {
+    "home_team": "France",
+    "away_team": "Senegal",
+    "date": "2026-06-16",
+    "actual_home_score": 3,
+    "actual_away_score": 1,
+    "actual_result": "H"
+  },
+  "Iraq_vs_Norway": {
+    "home_team": "Iraq",
+    "away_team": "Norway",
+    "date": "2026-06-16",
+    "actual_home_score": 1,
+    "actual_away_score": 4,
+    "actual_result": "A"
+  },
+  "Argentina_vs_Algeria": {
+    "home_team": "Argentina",
+    "away_team": "Algeria",
+    "date": "2026-06-16",
+    "actual_home_score": 3,
+    "actual_away_score": 0,
+    "actual_result": "H"
+  },
+  "Austria_vs_Jordan": {
+    "home_team": "Austria",
+    "away_team": "Jordan",
+    "date": "2026-06-16",
+    "actual_home_score": 0,
+    "actual_away_score": 2,
+    "actual_result": "A"
+  },
+  "England_vs_Croatia": {
+    "home_team": "England",
+    "away_team": "Croatia",
+    "date": "2026-06-17",
+    "actual_home_score": 1,
+    "actual_away_score": 1,
+    "actual_result": "D"
+  },
+  "Ghana_vs_Panama": {
+    "home_team": "Ghana",
+    "away_team": "Panama",
+    "date": "2026-06-17",
+    "actual_home_score": 0,
+    "actual_away_score": 0,
+    "actual_result": "D"
+  },
+  "Ivory_Coast_vs_Ecuador": {
+    "home_team": "Ivory Coast",
+    "away_team": "Ecuador",
+    "date": "2026-06-14",
+    "actual_home_score": 1,
+    "actual_away_score": 0,
+    "actual_result": "H"
+  },
+  "Spain_vs_Cape_Verde_Islands": {
+    "home_team": "Spain",
+    "away_team": "Cape Verde Islands",
+    "date": "2026-06-15",
+    "actual_home_score": 0,
+    "actual_away_score": 0,
+    "actual_result": "D"
+  },
+  "Saudi_Arabia_vs_Uruguay": {
+    "home_team": "Saudi Arabia",
+    "away_team": "Uruguay",
+    "date": "2026-06-15",
+    "actual_home_score": 1,
+    "actual_away_score": 1,
+    "actual_result": "D"
+  },
+  "Iran_vs_New_Zealand": {
+    "home_team": "Iran",
+    "away_team": "New Zealand",
+    "date": "2026-06-15",
+    "actual_home_score": 2,
+    "actual_away_score": 2,
+    "actual_result": "D"
+  },
+  "Portugal_vs_Congo_DR": {
+    "home_team": "Portugal",
+    "away_team": "Congo DR",
+    "date": "2026-06-17",
+    "actual_home_score": 2,
     "actual_away_score": 1,
     "actual_result": "H"
   }
