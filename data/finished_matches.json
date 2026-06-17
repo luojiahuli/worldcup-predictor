@@ -123,25 +123,9 @@
     "home_team": "Austria",
     "away_team": "Jordan",
     "date": "2026-06-16",
-    "actual_home_score": 0,
-    "actual_away_score": 2,
-    "actual_result": "A"
-  },
-  "England_vs_Croatia": {
-    "home_team": "England",
-    "away_team": "Croatia",
-    "date": "2026-06-17",
-    "actual_home_score": 1,
+    "actual_home_score": 3,
     "actual_away_score": 1,
-    "actual_result": "D"
-  },
-  "Ghana_vs_Panama": {
-    "home_team": "Ghana",
-    "away_team": "Panama",
-    "date": "2026-06-17",
-    "actual_home_score": 0,
-    "actual_away_score": 0,
-    "actual_result": "D"
+    "actual_result": "H"
   },
   "Ivory_Coast_vs_Ecuador": {
     "home_team": "Ivory Coast",
@@ -174,13 +158,5 @@
     "actual_home_score": 2,
     "actual_away_score": 2,
     "actual_result": "D"
-  },
-  "Portugal_vs_Congo_DR": {
-    "home_team": "Portugal",
-    "away_team": "Congo DR",
-    "date": "2026-06-17",
-    "actual_home_score": 2,
-    "actual_away_score": 1,
-    "actual_result": "H"
   }
 }

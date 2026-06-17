@@ -1,12 +1,12 @@
 {
   "current_round": "group_2",
   "weights": {
-    "稳健派": 1.0954,
-    "激进派": 1.1698,
-    "价值派": 1.1038,
-    "防守派": 0.9337,
-    "数据派": 1.1199,
-    "爆冷派": 0.9449
+    "稳健派": 1.3776,
+    "激进派": 1.4118,
+    "价值派": 1.2333,
+    "防守派": 0.8845,
+    "数据派": 1.3642,
+    "爆冷派": 0.858
   },
   "round_history": {
     "group_1": {
@@ -87,34 +87,34 @@
     },
     "group_2": {
       "稳健派": {
-        "correct": 5,
-        "total": 11,
-        "accuracy": 0.4545
+        "correct": 12,
+        "total": 24,
+        "accuracy": 0.5
       },
       "激进派": {
-        "correct": 6,
-        "total": 11,
-        "accuracy": 0.5455
+        "correct": 13,
+        "total": 24,
+        "accuracy": 0.5417
       },
       "价值派": {
-        "correct": 6,
-        "total": 11,
-        "accuracy": 0.5455
+        "correct": 13,
+        "total": 24,
+        "accuracy": 0.5417
       },
       "防守派": {
-        "correct": 4,
-        "total": 11,
-        "accuracy": 0.3636
+        "correct": 9,
+        "total": 24,
+        "accuracy": 0.375
       },
       "数据派": {
-        "correct": 6,
-        "total": 11,
-        "accuracy": 0.5455
+        "correct": 14,
+        "total": 24,
+        "accuracy": 0.5833
       },
       "爆冷派": {
-        "correct": 2,
-        "total": 11,
-        "accuracy": 0.1818
+        "correct": 3,
+        "total": 24,
+        "accuracy": 0.125
       }
     }
   }
