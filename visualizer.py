@@ -524,17 +524,17 @@ def generate_dashboard(data):
     else:
         finished_review_section = ""
 
-    # 第一轮小组赛总结
+    # 已完赛比赛全面复盘
     round1_review_section = ""
     round1_data = data.get("round1_review")
     if round1_data:
         analysis = round1_data.get("analysis", {})
         upsets = round1_data.get("upsets", {})
         factors = round1_data.get("key_factors", {}).get("summary", {})
-        agent_r1 = round1_data.get("agent_round1", [])
+        round_stats = analysis.get("round_stats", {})
 
         acc = analysis.get("accuracy", 0)
-        n_finished = analysis.get("finished_matches", 0)
+        n_finished = analysis.get("total_matches", 0)
         n_correct = analysis.get("result_correct", 0)
         upset_count = upsets.get("total_upsets", 0)
         upset_rate = upsets.get("upset_rate", 0)
@@ -543,20 +543,23 @@ def generate_dashboard(data):
         avg_top5_gap_wrong = factors.get("avg_top5_gap_wrong", 0)
         avg_top5_gap_correct = factors.get("avg_top5_gap_correct", 0)
 
-        # 智能体第一轮表现
-        agent_r1_rows = ""
-        if agent_r1:
-            rows = []
-            for a in agent_r1:
-                acc_str = f'{a["accuracy"]:.0%}' if a["total"] > 0 else "-"
-                rows.append(
-                    f'<tr>'
-                    f'<td style="font-weight:600">{a["name"]}</td>'
-                    f'<td>{acc_str}</td>'
-                    f'<td>{a["correct"]}/{a["total"]}</td>'
-                    f'</tr>'
+        # 各轮次准确率条
+        round_bar_rows = ""
+        round_names_cn = {"group_1": "第一轮", "group_2": "第二轮", "group_3": "第三轮",
+                          "r16": "16强", "quarter": "8强", "semi": "半决赛", "final": "决赛"}
+        for rn in ["group_1", "group_2", "group_3", "r16", "quarter", "semi", "final"]:
+            if rn in round_stats:
+                rs = round_stats[rn]
+                rn_cn = round_names_cn.get(rn, rn)
+                bar_color = "var(--green)" if rs["accuracy"] >= 0.5 else "var(--red)"
+                round_bar_rows += (
+                    f'<div style="display:flex;align-items:center;gap:10px;margin-bottom:6px;font-size:12px">'
+                    f'<span style="width:50px;color:var(--text3)">{rn_cn}</span>'
+                    f'<div class="bc" style="flex:1;margin:0"><div class="b" style="width:{rs["accuracy"]*100:.0f}%;height:6px;background:{bar_color};border-radius:4px"></div></div>'
+                    f'<span style="width:60px;text-align:right;font-weight:600">{rs["accuracy"]:.0%}</span>'
+                    f'<span style="width:50px;text-align:right;color:var(--text3);font-size:10px">{rs["correct"]}/{rs["total"]}</span>'
+                    f'</div>'
                 )
-            agent_r1_rows = "\n".join(rows)
 
         # 爆冷列表
         upset_rows = ""
@@ -572,7 +575,7 @@ def generate_dashboard(data):
                 f'</tr>'
             )
 
-        # 预测准确/错误列表
+        # 预测列表
         pred_list_rows = ""
         for p in analysis.get("predictions", []):
             mark = "✅" if p["result_correct"] else "❌"
@@ -587,14 +590,11 @@ def generate_dashboard(data):
                 f'</tr>'
             )
 
-        factor_color_w = "var(--red)" if avg_rank_diff_wrong > avg_rank_diff_correct else "var(--green)"
-        factor_color_c = "var(--green)" if avg_rank_diff_correct < avg_rank_diff_wrong else "var(--red)"
-
         round1_review_section = f'''<div class="cd" style="border-left:3px solid var(--accent);margin-bottom:20px">
   <div class="cd-h">
     <span class="cd-h-dot" style="background:var(--accent)"></span>
-    <h2>第一轮小组赛总结 · June 11-14</h2>
-    <span class="cd-h-b">ROUND 1 REVIEW</span>
+    <h2>已完赛比赛全面复盘 · 截至 {today_str[:10]}</h2>
+    <span class="cd-h-b">MATCH REVIEW</span>
   </div>
   <div class="st" style="margin-bottom:16px">
     <div class="st-c">
@@ -607,58 +607,51 @@ def generate_dashboard(data):
     </div>
     <div class="st-c">
       <div class="st-v" style="color:var(--red)">{upset_count}</div>
-      <div class="st-l">爆冷场次 ({upset_rate:.0%})</div>
+      <div class="st-l">爆冷 ({upset_rate:.0%})</div>
     </div>
     <div class="st-c">
-      <div class="st-v" style="font-size:22px;color:var(--accent)">{avg_rank_diff_wrong:.0f}</div>
-      <div class="st-l">预测错误平均排名差</div>
+      <div class="st-v" style="font-size:22px;color:var(--accent)">{analysis.get("exact_score_accuracy", 0):.0%}</div>
+      <div class="st-l">精确比分准确率</div>
     </div>
   </div>
 
   <div class="l2" style="margin-bottom:16px">
     <div class="cd" style="margin-bottom:0">
-      <div class="cd-h"><span class="cd-h-dot"></span><h2>比赛预测明细</h2><span class="cd-h-b">MATCHES</span></div>
-      <div class="tw"><table>
+      <div class="cd-h"><span class="cd-h-dot"></span><h2>各轮次准确率</h2><span class="cd-h-b">ROUNDS</span></div>
+      <div style="padding:8px 4px">{round_bar_rows}</div>
+    </div>
+    <div class="cd" style="margin-bottom:0">
+      <div class="cd-h"><span class="cd-h-dot"></span><h2>关键因子分析</h2><span class="cd-h-b">FACTORS</span></div>
+      <div class="ag" style="grid-template-columns:1fr 1fr;gap:8px">
+        <div class="ac">
+          <div class="ac-n">排名差距</div>
+          <div class="ac-v">✅ 正确: 平均差 {avg_rank_diff_correct:.0f}分</div>
+          <div class="ac-v">❌ 错误: 平均差 {avg_rank_diff_wrong:.0f}分</div>
+          <div class="bc"><div class="b" style="width:{min(100, avg_rank_diff_wrong/max(avg_rank_diff_correct+avg_rank_diff_wrong,1)*200):.0f}%;background:var(--away)"></div></div>
+        </div>
+        <div class="ac">
+          <div class="ac-n">五大联赛密度</div>
+          <div class="ac-v">✅ 正确 top5差: {avg_top5_gap_correct:.2f}</div>
+          <div class="ac-v">❌ 错误 top5差: {avg_top5_gap_wrong:.2f}</div>
+          <div class="bc"><div class="b" style="width:{min(100, (avg_top5_gap_wrong+0.5)*50):.0f}%;background:var(--draw)"></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="l2" style="margin-bottom:0">
+    <div class="cd" style="margin-bottom:0">
+      <div class="cd-h"><span class="cd-h-dot"></span><h2>比赛明细</h2><span class="cd-h-b">ALL {n_finished} MATCHES</span></div>
+      <div class="tw" style="max-height:360px;overflow-y:auto"><table>
         <tr><th>日期</th><th>主队</th><th>比分</th><th>客队</th><th>预测→结果</th><th>结果</th></tr>
         {pred_list_rows}
       </table></div>
     </div>
     <div class="cd" style="margin-bottom:0">
       <div class="cd-h"><span class="cd-h-dot"></span><h2>爆冷比赛</h2><span class="cd-h-b">UPSETS</span></div>
-      <div class="tw"><table>
+      <div class="tw" style="max-height:360px;overflow-y:auto"><table>
         <tr><th>主队</th><th>比分</th><th>客队</th><th>置信度</th><th>爆冷原因</th></tr>
         {upset_rows if upset_rows else '<tr><td colspan="5"><div class="empty-state">暂无爆冷</div></td></tr>'}
-      </table></div>
-    </div>
-  </div>
-
-  <div class="ag" style="margin-bottom:16px">
-    <div class="ac">
-      <div class="ac-n">排名差距影响</div>
-      <div class="ac-v">预测正确时平均排名差 {avg_rank_diff_correct:.0f}分</div>
-      <div class="ac-v">预测错误时平均排名差 {avg_rank_diff_wrong:.0f}分</div>
-      <div class="bc"><div class="b" style="width:{(avg_rank_diff_wrong/(avg_rank_diff_wrong+avg_rank_diff_correct+1)*100):.0f}%;background:var(--away)"></div></div>
-      <div class="ac-v" style="color:var(--text3);font-size:10px">排名差越大越容易预测正确（强弱分明）</div>
-    </div>
-    <div class="ac">
-      <div class="ac-n">五大联赛密度影响</div>
-      <div class="ac-v">正确时 top5差距 {avg_top5_gap_correct:.2f}</div>
-      <div class="ac-v">错误时 top5差距 {avg_top5_gap_wrong:.2f}</div>
-      <div class="bc"><div class="b" style="width:{min(100,(avg_top5_gap_wrong+1)*50):.0f}%;background:var(--draw)"></div></div>
-      <div class="ac-v" style="color:var(--text3);font-size:10px">Top5优势但未取胜 → 模型高估了五大联赛效应</div>
-    </div>
-    <div class="ac">
-      <div class="ac-n">爆冷总结</div>
-      <div class="ac-v">{upset_count} 场爆冷 ({upset_rate:.0%})</div>
-      <div class="ac-v">巴西1-1摩洛哥 | 荷兰2-2日本</div>
-      <div class="ac-v">卡塔尔1-1瑞士 | 美国4-1巴拉圭</div>
-      <div class="ac-v" style="color:var(--text3);font-size:10px">强队首轮慢热 + 弱队防守反击奏效</div>
-    </div>
-    <div class="ac">
-      <div class="ac-n">智能体第一轮</div>
-      <div class="tw"><table>
-        <tr><th>智能体</th><th>准确率</th><th>正确/总</th></tr>
-        {agent_r1_rows if agent_r1_rows else '<tr><td colspan="3"><div style="color:var(--text3);text-align:center">暂无数据</div></td></tr>'}
       </table></div>
     </div>
   </div>
