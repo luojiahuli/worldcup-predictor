@@ -220,14 +220,16 @@ def generate_dashboard(data):
                 aa_val = row.get("actual_away_score", 0)
                 ah = int(ah_val) if not (isinstance(ah_val, float) and ah_val != ah_val) else 0
                 aa = int(aa_val) if not (isinstance(aa_val, float) and aa_val != aa_val) else 0
-                is_correct = row.get("correct", False)
-                is_result_correct = row.get("actual_result", "") == row.get("pred_result", "")
-                mark = "✅" if is_correct else ("⚠️" if is_result_correct else "❌")
+                is_correct = row.get("actual_result", "") == row.get("pred_result", "")
+                is_score_correct = (row.get("pred_home_score", -1) == row.get("actual_home_score", -2)
+                                    and row.get("pred_away_score", -1) == row.get("actual_away_score", -2))
+                score_tag = ' <span style="font-size:9px;color:var(--green)">✓比分</span>' if is_score_correct else ""
+                mark = f'✅{score_tag}' if is_correct else "❌"
                 date_str = str(row["date"])[:10]
                 home = row["home_team"]
                 away = row["away_team"]
                 pred_label = row.get("pred_label", "")
-                dir_color = "var(--green)" if is_result_correct else "#ef4444"
+                dir_color = "var(--green)" if is_correct else "#ef4444"
                 result_label = {'H': '主胜', 'D': '平局', 'A': '客胜'}.get(row.get("actual_result", ""), "-")
                 # Latest match: always expanded; older matches: collapsible
                 if idx == 0:
