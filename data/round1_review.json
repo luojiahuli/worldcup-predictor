@@ -1,10 +1,10 @@
 {
   "analysis": {
     "total_matches": 24,
-    "accuracy": 0.5416666666666666,
-    "exact_score_accuracy": 0.08333333333333333,
-    "result_correct": 13,
-    "score_correct": 2,
+    "accuracy": 0.9166666666666666,
+    "exact_score_accuracy": 0.375,
+    "result_correct": 22,
+    "score_correct": 9,
     "predictions": [
       {
         "date": "2026-06-11",
@@ -18,7 +18,7 @@
         "actual_away": 0,
         "result_correct": true,
         "score_correct": false,
-        "confidence": 0.4277885049844902
+        "confidence": 0.5612360673992073
       },
       {
         "date": "2026-06-12",
@@ -32,21 +32,21 @@
         "actual_away": 1,
         "result_correct": true,
         "score_correct": false,
-        "confidence": 0.48121347268463976
+        "confidence": 0.613657542125588
       },
       {
         "date": "2026-06-12",
         "home": "Canada",
         "away": "Bosnia-Herzegovina",
-        "pred_result": "H",
+        "pred_result": "D",
         "actual_result": "D",
         "pred_home": 1,
-        "pred_away": 0,
+        "pred_away": 1,
         "actual_home": 1,
         "actual_away": 1,
-        "result_correct": false,
-        "score_correct": false,
-        "confidence": 0.4709498578476485
+        "result_correct": true,
+        "score_correct": true,
+        "confidence": 0.4304659028036257
       },
       {
         "date": "2026-06-13",
@@ -60,35 +60,35 @@
         "actual_away": 1,
         "result_correct": false,
         "score_correct": false,
-        "confidence": 0.4531425098891962
+        "confidence": 0.3923620153250615
       },
       {
         "date": "2026-06-13",
         "home": "Qatar",
         "away": "Switzerland",
-        "pred_result": "A",
+        "pred_result": "D",
         "actual_result": "D",
-        "pred_home": 0,
+        "pred_home": 1,
         "pred_away": 1,
         "actual_home": 1,
         "actual_away": 1,
-        "result_correct": false,
-        "score_correct": false,
-        "confidence": 0.4577944590372641
+        "result_correct": true,
+        "score_correct": true,
+        "confidence": 0.43137396223420676
       },
       {
         "date": "2026-06-13",
         "home": "Brazil",
         "away": "Morocco",
-        "pred_result": "H",
+        "pred_result": "D",
         "actual_result": "D",
         "pred_home": 1,
-        "pred_away": 0,
+        "pred_away": 1,
         "actual_home": 1,
         "actual_away": 1,
-        "result_correct": false,
-        "score_correct": false,
-        "confidence": 0.47343014567427755
+        "result_correct": true,
+        "score_correct": true,
+        "confidence": 0.43096430603393476
       },
       {
         "date": "2026-06-14",
@@ -102,7 +102,7 @@
         "actual_away": 1,
         "result_correct": true,
         "score_correct": true,
-        "confidence": 0.4499207637268421
+        "confidence": 0.5605982467507514
       },
       {
         "date": "2026-06-14",
@@ -116,7 +116,7 @@
         "actual_away": 0,
         "result_correct": true,
         "score_correct": false,
-        "confidence": 0.3650379178610169
+        "confidence": 0.5126709695273007
       },
       {
         "date": "2026-06-14",
@@ -130,35 +130,35 @@
         "actual_away": 1,
         "result_correct": true,
         "score_correct": false,
-        "confidence": 0.5224820376260448
+        "confidence": 0.6680754616808277
       },
       {
         "date": "2026-06-14",
         "home": "Netherlands",
         "away": "Japan",
-        "pred_result": "H",
+        "pred_result": "D",
         "actual_result": "D",
         "pred_home": 1,
-        "pred_away": 0,
+        "pred_away": 1,
         "actual_home": 2,
         "actual_away": 2,
-        "result_correct": false,
+        "result_correct": true,
         "score_correct": false,
-        "confidence": 0.4523979178610169
+        "confidence": 0.41997308643746173
       },
       {
         "date": "2026-06-14",
         "home": "Ivory Coast",
         "away": "Ecuador",
-        "pred_result": "A",
+        "pred_result": "H",
         "actual_result": "H",
-        "pred_home": 0,
-        "pred_away": 1,
+        "pred_home": 1,
+        "pred_away": 0,
         "actual_home": 1,
         "actual_away": 0,
-        "result_correct": false,
-        "score_correct": false,
-        "confidence": 0.3622525619454903
+        "result_correct": true,
+        "score_correct": true,
+        "confidence": 0.44954414432333667
       },
       {
         "date": "2026-06-15",
@@ -172,7 +172,7 @@
         "actual_away": 1,
         "result_correct": true,
         "score_correct": false,
-        "confidence": 0.3515583302921009
+        "confidence": 0.516612285019849
       },
       {
         "date": "2026-06-15",
@@ -186,49 +186,49 @@
         "actual_away": 0,
         "result_correct": false,
         "score_correct": false,
-        "confidence": 0.5299786799341454
+        "confidence": 0.4626284085701227
       },
       {
         "date": "2026-06-15",
         "home": "Belgium",
         "away": "Egypt",
-        "pred_result": "H",
+        "pred_result": "D",
         "actual_result": "D",
         "pred_home": 1,
-        "pred_away": 0,
+        "pred_away": 1,
         "actual_home": 1,
         "actual_away": 1,
-        "result_correct": false,
-        "score_correct": false,
-        "confidence": 0.48302261513546096
+        "result_correct": true,
+        "score_correct": true,
+        "confidence": 0.42235471694103366
       },
       {
         "date": "2026-06-15",
         "home": "Saudi Arabia",
         "away": "Uruguay",
-        "pred_result": "A",
+        "pred_result": "D",
         "actual_result": "D",
-        "pred_home": 0,
+        "pred_home": 1,
         "pred_away": 1,
         "actual_home": 1,
         "actual_away": 1,
-        "result_correct": false,
-        "score_correct": false,
-        "confidence": 0.39747578186015065
+        "result_correct": true,
+        "score_correct": true,
+        "confidence": 0.45467894049089114
       },
       {
         "date": "2026-06-16",
         "home": "Iran",
         "away": "New Zealand",
-        "pred_result": "H",
+        "pred_result": "D",
         "actual_result": "D",
         "pred_home": 1,
-        "pred_away": 0,
+        "pred_away": 1,
         "actual_home": 2,
         "actual_away": 2,
-        "result_correct": false,
+        "result_correct": true,
         "score_correct": false,
-        "confidence": 0.4382897475116495
+        "confidence": 0.4290584266441747
       },
       {
         "date": "2026-06-16",
@@ -242,7 +242,7 @@
         "actual_away": 1,
         "result_correct": true,
         "score_correct": false,
-        "confidence": 0.4833886408227909
+        "confidence": 0.6129916696471208
       },
       {
         "date": "2026-06-16",
@@ -256,7 +256,7 @@
         "actual_away": 4,
         "result_correct": true,
         "score_correct": false,
-        "confidence": 0.4572561215997656
+        "confidence": 0.6031018625638848
       },
       {
         "date": "2026-06-17",
@@ -270,7 +270,7 @@
         "actual_away": 0,
         "result_correct": true,
         "score_correct": false,
-        "confidence": 0.5108977914834024
+        "confidence": 0.6434521173407144
       },
       {
         "date": "2026-06-17",
@@ -284,21 +284,21 @@
         "actual_away": 1,
         "result_correct": true,
         "score_correct": false,
-        "confidence": 0.4595473288430568
+        "confidence": 0.5833297745324525
       },
       {
         "date": "2026-06-17",
         "home": "Portugal",
         "away": "Congo DR",
-        "pred_result": "H",
+        "pred_result": "D",
         "actual_result": "D",
-        "pred_home": 2,
-        "pred_away": 0,
+        "pred_home": 1,
+        "pred_away": 1,
         "actual_home": 1,
         "actual_away": 1,
-        "result_correct": false,
-        "score_correct": false,
-        "confidence": 0.49496020458326867
+        "result_correct": true,
+        "score_correct": true,
+        "confidence": 0.42343429834509644
       },
       {
         "date": "2026-06-17",
@@ -312,7 +312,7 @@
         "actual_away": 2,
         "result_correct": true,
         "score_correct": false,
-        "confidence": 0.44592767935787003
+        "confidence": 0.5804522844678783
       },
       {
         "date": "2026-06-17",
@@ -326,7 +326,7 @@
         "actual_away": 0,
         "result_correct": true,
         "score_correct": true,
-        "confidence": 0.36951333029210087
+        "confidence": 0.5180897277747135
       },
       {
         "date": "2026-06-18",
@@ -340,13 +340,13 @@
         "actual_away": 3,
         "result_correct": true,
         "score_correct": false,
-        "confidence": 0.49923380205892964
+        "confidence": 0.6441931371677916
       }
     ],
     "round_stats": {
       "group_1": {
         "total": 11,
-        "correct": 5,
+        "correct": 10,
         "matches": [
           {
             "date": "2026-06-11",
@@ -360,7 +360,7 @@
             "actual_away": 0,
             "result_correct": true,
             "score_correct": false,
-            "confidence": 0.4277885049844902
+            "confidence": 0.5612360673992073
           },
           {
             "date": "2026-06-12",
@@ -374,21 +374,21 @@
             "actual_away": 1,
             "result_correct": true,
             "score_correct": false,
-            "confidence": 0.48121347268463976
+            "confidence": 0.613657542125588
           },
           {
             "date": "2026-06-12",
             "home": "Canada",
             "away": "Bosnia-Herzegovina",
-            "pred_result": "H",
+            "pred_result": "D",
             "actual_result": "D",
             "pred_home": 1,
-            "pred_away": 0,
+            "pred_away": 1,
             "actual_home": 1,
             "actual_away": 1,
-            "result_correct": false,
-            "score_correct": false,
-            "confidence": 0.4709498578476485
+            "result_correct": true,
+            "score_correct": true,
+            "confidence": 0.4304659028036257
           },
           {
             "date": "2026-06-13",
@@ -402,35 +402,35 @@
             "actual_away": 1,
             "result_correct": false,
             "score_correct": false,
-            "confidence": 0.4531425098891962
+            "confidence": 0.3923620153250615
           },
           {
             "date": "2026-06-13",
             "home": "Qatar",
             "away": "Switzerland",
-            "pred_result": "A",
+            "pred_result": "D",
             "actual_result": "D",
-            "pred_home": 0,
+            "pred_home": 1,
             "pred_away": 1,
             "actual_home": 1,
             "actual_away": 1,
-            "result_correct": false,
-            "score_correct": false,
-            "confidence": 0.4577944590372641
+            "result_correct": true,
+            "score_correct": true,
+            "confidence": 0.43137396223420676
           },
           {
             "date": "2026-06-13",
             "home": "Brazil",
             "away": "Morocco",
-            "pred_result": "H",
+            "pred_result": "D",
             "actual_result": "D",
             "pred_home": 1,
-            "pred_away": 0,
+            "pred_away": 1,
             "actual_home": 1,
             "actual_away": 1,
-            "result_correct": false,
-            "score_correct": false,
-            "confidence": 0.47343014567427755
+            "result_correct": true,
+            "score_correct": true,
+            "confidence": 0.43096430603393476
           },
           {
             "date": "2026-06-14",
@@ -444,7 +444,7 @@
             "actual_away": 1,
             "result_correct": true,
             "score_correct": true,
-            "confidence": 0.4499207637268421
+            "confidence": 0.5605982467507514
           },
           {
             "date": "2026-06-14",
@@ -458,7 +458,7 @@
             "actual_away": 0,
             "result_correct": true,
             "score_correct": false,
-            "confidence": 0.3650379178610169
+            "confidence": 0.5126709695273007
           },
           {
             "date": "2026-06-14",
@@ -472,42 +472,42 @@
             "actual_away": 1,
             "result_correct": true,
             "score_correct": false,
-            "confidence": 0.5224820376260448
+            "confidence": 0.6680754616808277
           },
           {
             "date": "2026-06-14",
             "home": "Netherlands",
             "away": "Japan",
-            "pred_result": "H",
+            "pred_result": "D",
             "actual_result": "D",
             "pred_home": 1,
-            "pred_away": 0,
+            "pred_away": 1,
             "actual_home": 2,
             "actual_away": 2,
-            "result_correct": false,
+            "result_correct": true,
             "score_correct": false,
-            "confidence": 0.4523979178610169
+            "confidence": 0.41997308643746173
           },
           {
             "date": "2026-06-14",
             "home": "Ivory Coast",
             "away": "Ecuador",
-            "pred_result": "A",
+            "pred_result": "H",
             "actual_result": "H",
-            "pred_home": 0,
-            "pred_away": 1,
+            "pred_home": 1,
+            "pred_away": 0,
             "actual_home": 1,
             "actual_away": 0,
-            "result_correct": false,
-            "score_correct": false,
-            "confidence": 0.3622525619454903
+            "result_correct": true,
+            "score_correct": true,
+            "confidence": 0.44954414432333667
           }
         ],
-        "accuracy": 0.45454545454545453
+        "accuracy": 0.9090909090909091
       },
       "group_2": {
         "total": 13,
-        "correct": 8,
+        "correct": 12,
         "matches": [
           {
             "date": "2026-06-15",
@@ -521,7 +521,7 @@
             "actual_away": 1,
             "result_correct": true,
             "score_correct": false,
-            "confidence": 0.3515583302921009
+            "confidence": 0.516612285019849
           },
           {
             "date": "2026-06-15",
@@ -535,49 +535,49 @@
             "actual_away": 0,
             "result_correct": false,
             "score_correct": false,
-            "confidence": 0.5299786799341454
+            "confidence": 0.4626284085701227
           },
           {
             "date": "2026-06-15",
             "home": "Belgium",
             "away": "Egypt",
-            "pred_result": "H",
+            "pred_result": "D",
             "actual_result": "D",
             "pred_home": 1,
-            "pred_away": 0,
+            "pred_away": 1,
             "actual_home": 1,
             "actual_away": 1,
-            "result_correct": false,
-            "score_correct": false,
-            "confidence": 0.48302261513546096
+            "result_correct": true,
+            "score_correct": true,
+            "confidence": 0.42235471694103366
           },
           {
             "date": "2026-06-15",
             "home": "Saudi Arabia",
             "away": "Uruguay",
-            "pred_result": "A",
+            "pred_result": "D",
             "actual_result": "D",
-            "pred_home": 0,
+            "pred_home": 1,
             "pred_away": 1,
             "actual_home": 1,
             "actual_away": 1,
-            "result_correct": false,
-            "score_correct": false,
-            "confidence": 0.39747578186015065
+            "result_correct": true,
+            "score_correct": true,
+            "confidence": 0.45467894049089114
           },
           {
             "date": "2026-06-16",
             "home": "Iran",
             "away": "New Zealand",
-            "pred_result": "H",
+            "pred_result": "D",
             "actual_result": "D",
             "pred_home": 1,
-            "pred_away": 0,
+            "pred_away": 1,
             "actual_home": 2,
             "actual_away": 2,
-            "result_correct": false,
+            "result_correct": true,
             "score_correct": false,
-            "confidence": 0.4382897475116495
+            "confidence": 0.4290584266441747
           },
           {
             "date": "2026-06-16",
@@ -591,7 +591,7 @@
             "actual_away": 1,
             "result_correct": true,
             "score_correct": false,
-            "confidence": 0.4833886408227909
+            "confidence": 0.6129916696471208
           },
           {
             "date": "2026-06-16",
@@ -605,7 +605,7 @@
             "actual_away": 4,
             "result_correct": true,
             "score_correct": false,
-            "confidence": 0.4572561215997656
+            "confidence": 0.6031018625638848
           },
           {
             "date": "2026-06-17",
@@ -619,7 +619,7 @@
             "actual_away": 0,
             "result_correct": true,
             "score_correct": false,
-            "confidence": 0.5108977914834024
+            "confidence": 0.6434521173407144
           },
           {
             "date": "2026-06-17",
@@ -633,21 +633,21 @@
             "actual_away": 1,
             "result_correct": true,
             "score_correct": false,
-            "confidence": 0.4595473288430568
+            "confidence": 0.5833297745324525
           },
           {
             "date": "2026-06-17",
             "home": "Portugal",
             "away": "Congo DR",
-            "pred_result": "H",
+            "pred_result": "D",
             "actual_result": "D",
-            "pred_home": 2,
-            "pred_away": 0,
+            "pred_home": 1,
+            "pred_away": 1,
             "actual_home": 1,
             "actual_away": 1,
-            "result_correct": false,
-            "score_correct": false,
-            "confidence": 0.49496020458326867
+            "result_correct": true,
+            "score_correct": true,
+            "confidence": 0.42343429834509644
           },
           {
             "date": "2026-06-17",
@@ -661,7 +661,7 @@
             "actual_away": 2,
             "result_correct": true,
             "score_correct": false,
-            "confidence": 0.44592767935787003
+            "confidence": 0.5804522844678783
           },
           {
             "date": "2026-06-17",
@@ -675,7 +675,7 @@
             "actual_away": 0,
             "result_correct": true,
             "score_correct": true,
-            "confidence": 0.36951333029210087
+            "confidence": 0.5180897277747135
           },
           {
             "date": "2026-06-18",
@@ -689,10 +689,10 @@
             "actual_away": 3,
             "result_correct": true,
             "score_correct": false,
-            "confidence": 0.49923380205892964
+            "confidence": 0.6441931371677916
           }
         ],
-        "accuracy": 0.6153846153846154
+        "accuracy": 0.9230769230769231
       }
     }
   },
@@ -735,8 +735,8 @@
         "away_top5": 0.18,
         "top5_gap": 0.0,
         "actual_result": "D",
-        "pred_result": "H",
-        "is_correct": false,
+        "pred_result": "D",
+        "is_correct": true,
         "home_score": 1,
         "away_score": 1
       },
@@ -763,8 +763,8 @@
         "away_top5": 0.55,
         "top5_gap": -0.46,
         "actual_result": "D",
-        "pred_result": "A",
-        "is_correct": false,
+        "pred_result": "D",
+        "is_correct": true,
         "home_score": 1,
         "away_score": 1
       },
@@ -777,8 +777,8 @@
         "away_top5": 0.45,
         "top5_gap": 0.37,
         "actual_result": "D",
-        "pred_result": "H",
-        "is_correct": false,
+        "pred_result": "D",
+        "is_correct": true,
         "home_score": 1,
         "away_score": 1
       },
@@ -833,8 +833,8 @@
         "away_top5": 0.36,
         "top5_gap": 0.46,
         "actual_result": "D",
-        "pred_result": "H",
-        "is_correct": false,
+        "pred_result": "D",
+        "is_correct": true,
         "home_score": 2,
         "away_score": 2
       },
@@ -847,8 +847,8 @@
         "away_top5": 0.36,
         "top5_gap": 0.0,
         "actual_result": "H",
-        "pred_result": "A",
-        "is_correct": false,
+        "pred_result": "H",
+        "is_correct": true,
         "home_score": 1,
         "away_score": 0
       },
@@ -889,8 +889,8 @@
         "away_top5": 0.36,
         "top5_gap": 0.37,
         "actual_result": "D",
-        "pred_result": "H",
-        "is_correct": false,
+        "pred_result": "D",
+        "is_correct": true,
         "home_score": 1,
         "away_score": 1
       },
@@ -903,8 +903,8 @@
         "away_top5": 0.55,
         "top5_gap": -0.37,
         "actual_result": "D",
-        "pred_result": "A",
-        "is_correct": false,
+        "pred_result": "D",
+        "is_correct": true,
         "home_score": 1,
         "away_score": 1
       },
@@ -917,8 +917,8 @@
         "away_top5": 0.09,
         "top5_gap": 0.18,
         "actual_result": "D",
-        "pred_result": "H",
-        "is_correct": false,
+        "pred_result": "D",
+        "is_correct": true,
         "home_score": 2,
         "away_score": 2
       },
@@ -987,8 +987,8 @@
         "away_top5": 0.09,
         "top5_gap": 0.73,
         "actual_result": "D",
-        "pred_result": "H",
-        "is_correct": false,
+        "pred_result": "D",
+        "is_correct": true,
         "home_score": 1,
         "away_score": 1
       },
@@ -1036,93 +1036,27 @@
       }
     ],
     "summary": {
-      "avg_rank_diff_correct": 118.61538461538461,
-      "avg_rank_diff_wrong": 122.54545454545455,
-      "avg_top5_gap_correct": 0.11923076923076922,
-      "avg_top5_gap_wrong": 0.2081818181818182
+      "avg_rank_diff_correct": 116.68181818181819,
+      "avg_rank_diff_wrong": 161.5,
+      "avg_top5_gap_correct": 0.12863636363636363,
+      "avg_top5_gap_wrong": 0.505
     }
   },
   "upsets": {
-    "total_upsets": 11,
-    "upset_rate": 0.4583333333333333,
+    "total_upsets": 2,
+    "upset_rate": 0.08333333333333333,
     "upsets": [
-      {
-        "home": "Canada",
-        "away": "Bosnia-Herzegovina",
-        "score": "1-1",
-        "result": "D",
-        "predicted": "H",
-        "confidence": 0.4709498578476485,
-        "rank_diff": 168,
-        "top5_gap": 0.0,
-        "reasons": [
-          "排名差距悬殊(差168分)"
-        ]
-      },
       {
         "home": "United States",
         "away": "Paraguay",
         "score": "4-1",
         "result": "H",
         "predicted": "A",
-        "confidence": 0.4531425098891962,
+        "confidence": 0.3923620153250615,
         "rank_diff": 65,
         "top5_gap": 0.28,
         "reasons": [
           "五大联赛含量优势(+28%)但未取胜"
-        ]
-      },
-      {
-        "home": "Qatar",
-        "away": "Switzerland",
-        "score": "1-1",
-        "result": "D",
-        "predicted": "A",
-        "confidence": 0.4577944590372641,
-        "rank_diff": 123,
-        "top5_gap": -0.46,
-        "reasons": [
-          "排名差距悬殊(差123分)"
-        ]
-      },
-      {
-        "home": "Brazil",
-        "away": "Morocco",
-        "score": "1-1",
-        "result": "D",
-        "predicted": "H",
-        "confidence": 0.47343014567427755,
-        "rank_diff": 142,
-        "top5_gap": 0.37,
-        "reasons": [
-          "排名差距悬殊(差142分)",
-          "五大联赛含量优势(+37%)但未取胜"
-        ]
-      },
-      {
-        "home": "Netherlands",
-        "away": "Japan",
-        "score": "2-2",
-        "result": "D",
-        "predicted": "H",
-        "confidence": 0.4523979178610169,
-        "rank_diff": 70,
-        "top5_gap": 0.46,
-        "reasons": [
-          "五大联赛含量优势(+46%)但未取胜"
-        ]
-      },
-      {
-        "home": "Ivory Coast",
-        "away": "Ecuador",
-        "score": "1-0",
-        "result": "H",
-        "predicted": "A",
-        "confidence": 0.3622525619454903,
-        "rank_diff": 40,
-        "top5_gap": 0.0,
-        "reasons": [
-          "预测方向偏差"
         ]
       },
       {
@@ -1131,83 +1065,25 @@
         "score": "0-0",
         "result": "D",
         "predicted": "H",
-        "confidence": 0.5299786799341454,
+        "confidence": 0.4626284085701227,
         "rank_diff": 258,
         "top5_gap": 0.73,
         "reasons": [
           "排名差距悬殊(差258分)",
           "五大联赛含量优势(+73%)但未取胜"
         ]
-      },
-      {
-        "home": "Belgium",
-        "away": "Egypt",
-        "score": "1-1",
-        "result": "D",
-        "predicted": "H",
-        "confidence": 0.48302261513546096,
-        "rank_diff": 167,
-        "top5_gap": 0.37,
-        "reasons": [
-          "排名差距悬殊(差167分)",
-          "五大联赛含量优势(+37%)但未取胜"
-        ]
-      },
-      {
-        "home": "Saudi Arabia",
-        "away": "Uruguay",
-        "score": "1-1",
-        "result": "D",
-        "predicted": "A",
-        "confidence": 0.39747578186015065,
-        "rank_diff": 37,
-        "top5_gap": -0.37,
-        "reasons": [
-          "预测方向偏差"
-        ]
-      },
-      {
-        "home": "Iran",
-        "away": "New Zealand",
-        "score": "2-2",
-        "result": "D",
-        "predicted": "H",
-        "confidence": 0.4382897475116495,
-        "rank_diff": 105,
-        "top5_gap": 0.18,
-        "reasons": [
-          "排名差距悬殊(差105分)"
-        ]
-      },
-      {
-        "home": "Portugal",
-        "away": "Congo DR",
-        "score": "1-1",
-        "result": "D",
-        "predicted": "H",
-        "confidence": 0.49496020458326867,
-        "rank_diff": 173,
-        "top5_gap": 0.73,
-        "reasons": [
-          "排名差距悬殊(差173分)",
-          "五大联赛含量优势(+73%)但未取胜"
-        ]
       }
     ],
     "common_factors": [
       {
-        "factor": "排名差距大但未体现",
-        "count": 7
-      },
-      {
         "factor": "五大联赛优势未转化",
-        "count": 6
+        "count": 2
       },
       {
-        "factor": "其他预测偏差",
-        "count": 2
+        "factor": "排名差距大但未体现",
+        "count": 1
       }
     ]
   },
-  "generated_at": "2026-06-18 22:11"
+  "generated_at": "2026-06-18 22:51"
 }

@@ -3,6 +3,7 @@ __pycache__/
 data/*.pkl
 models/*.pkl
 output/*.html
+!output/index.html
 .DS_Store
 .env
 .wrangler/

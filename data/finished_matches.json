@@ -1,194 +1,194 @@
 {
-  "Mexico_vs_South_Africa": {
+  "Mexico_South Africa_2026-06-11": {
     "home_team": "Mexico",
     "away_team": "South Africa",
     "date": "2026-06-11",
+    "actual_result": "H",
     "actual_home_score": 2,
-    "actual_away_score": 0,
-    "actual_result": "H"
+    "actual_away_score": 0
   },
-  "South_Korea_vs_Czechia": {
+  "South Korea_Czechia_2026-06-12": {
     "home_team": "South Korea",
     "away_team": "Czechia",
     "date": "2026-06-12",
+    "actual_result": "H",
     "actual_home_score": 2,
-    "actual_away_score": 1,
-    "actual_result": "H"
+    "actual_away_score": 1
   },
-  "Canada_vs_Bosnia-Herzegovina": {
+  "Canada_Bosnia-Herzegovina_2026-06-12": {
     "home_team": "Canada",
     "away_team": "Bosnia-Herzegovina",
     "date": "2026-06-12",
+    "actual_result": "D",
     "actual_home_score": 1,
-    "actual_away_score": 1,
-    "actual_result": "D"
+    "actual_away_score": 1
   },
-  "Qatar_vs_Switzerland": {
-    "home_team": "Qatar",
-    "away_team": "Switzerland",
-    "date": "2026-06-13",
-    "actual_home_score": 1,
-    "actual_away_score": 1,
-    "actual_result": "D"
-  },
-  "Brazil_vs_Morocco": {
-    "home_team": "Brazil",
-    "away_team": "Morocco",
-    "date": "2026-06-13",
-    "actual_home_score": 1,
-    "actual_away_score": 1,
-    "actual_result": "D"
-  },
-  "Haiti_vs_Scotland": {
-    "home_team": "Haiti",
-    "away_team": "Scotland",
-    "date": "2026-06-13",
-    "actual_home_score": 0,
-    "actual_away_score": 1,
-    "actual_result": "A"
-  },
-  "United_States_vs_Paraguay": {
+  "United States_Paraguay_2026-06-13": {
     "home_team": "United States",
     "away_team": "Paraguay",
     "date": "2026-06-13",
+    "actual_result": "H",
     "actual_home_score": 4,
-    "actual_away_score": 1,
-    "actual_result": "H"
+    "actual_away_score": 1
   },
-  "Australia_vs_Turkey": {
+  "Qatar_Switzerland_2026-06-13": {
+    "home_team": "Qatar",
+    "away_team": "Switzerland",
+    "date": "2026-06-13",
+    "actual_result": "D",
+    "actual_home_score": 1,
+    "actual_away_score": 1
+  },
+  "Brazil_Morocco_2026-06-13": {
+    "home_team": "Brazil",
+    "away_team": "Morocco",
+    "date": "2026-06-13",
+    "actual_result": "D",
+    "actual_home_score": 1,
+    "actual_away_score": 1
+  },
+  "Haiti_Scotland_2026-06-14": {
+    "home_team": "Haiti",
+    "away_team": "Scotland",
+    "date": "2026-06-14",
+    "actual_result": "A",
+    "actual_home_score": 0,
+    "actual_away_score": 1
+  },
+  "Australia_Turkey_2026-06-14": {
     "home_team": "Australia",
     "away_team": "Turkey",
     "date": "2026-06-14",
+    "actual_result": "H",
     "actual_home_score": 2,
-    "actual_away_score": 0,
-    "actual_result": "H"
+    "actual_away_score": 0
   },
-  "Germany_vs_Curaçao": {
+  "Germany_Cura\u00e7ao_2026-06-14": {
     "home_team": "Germany",
-    "away_team": "Curaçao",
+    "away_team": "Cura\u00e7ao",
     "date": "2026-06-14",
+    "actual_result": "H",
     "actual_home_score": 7,
-    "actual_away_score": 1,
-    "actual_result": "H"
+    "actual_away_score": 1
   },
-  "Netherlands_vs_Japan": {
+  "Netherlands_Japan_2026-06-14": {
     "home_team": "Netherlands",
     "away_team": "Japan",
     "date": "2026-06-14",
+    "actual_result": "D",
     "actual_home_score": 2,
-    "actual_away_score": 2,
-    "actual_result": "D"
+    "actual_away_score": 2
   },
-  "Sweden_vs_Tunisia": {
-    "home_team": "Sweden",
-    "away_team": "Tunisia",
-    "date": "2026-06-14",
-    "actual_home_score": 5,
-    "actual_away_score": 1,
-    "actual_result": "H"
-  },
-  "Belgium_vs_Egypt": {
-    "home_team": "Belgium",
-    "away_team": "Egypt",
-    "date": "2026-06-15",
-    "actual_home_score": 1,
-    "actual_away_score": 1,
-    "actual_result": "D"
-  },
-  "France_vs_Senegal": {
-    "home_team": "France",
-    "away_team": "Senegal",
-    "date": "2026-06-16",
-    "actual_home_score": 3,
-    "actual_away_score": 1,
-    "actual_result": "H"
-  },
-  "Iraq_vs_Norway": {
-    "home_team": "Iraq",
-    "away_team": "Norway",
-    "date": "2026-06-16",
-    "actual_home_score": 1,
-    "actual_away_score": 4,
-    "actual_result": "A"
-  },
-  "Argentina_vs_Algeria": {
-    "home_team": "Argentina",
-    "away_team": "Algeria",
-    "date": "2026-06-16",
-    "actual_home_score": 3,
-    "actual_away_score": 0,
-    "actual_result": "H"
-  },
-  "Austria_vs_Jordan": {
-    "home_team": "Austria",
-    "away_team": "Jordan",
-    "date": "2026-06-16",
-    "actual_home_score": 3,
-    "actual_away_score": 1,
-    "actual_result": "H"
-  },
-  "Ivory_Coast_vs_Ecuador": {
+  "Ivory Coast_Ecuador_2026-06-14": {
     "home_team": "Ivory Coast",
     "away_team": "Ecuador",
     "date": "2026-06-14",
+    "actual_result": "H",
     "actual_home_score": 1,
-    "actual_away_score": 0,
-    "actual_result": "H"
+    "actual_away_score": 0
   },
-  "Spain_vs_Cape_Verde_Islands": {
+  "Sweden_Tunisia_2026-06-15": {
+    "home_team": "Sweden",
+    "away_team": "Tunisia",
+    "date": "2026-06-15",
+    "actual_result": "H",
+    "actual_home_score": 5,
+    "actual_away_score": 1
+  },
+  "Spain_Cape Verde Islands_2026-06-15": {
     "home_team": "Spain",
     "away_team": "Cape Verde Islands",
     "date": "2026-06-15",
+    "actual_result": "D",
     "actual_home_score": 0,
-    "actual_away_score": 0,
-    "actual_result": "D"
+    "actual_away_score": 0
   },
-  "Saudi_Arabia_vs_Uruguay": {
+  "Belgium_Egypt_2026-06-15": {
+    "home_team": "Belgium",
+    "away_team": "Egypt",
+    "date": "2026-06-15",
+    "actual_result": "D",
+    "actual_home_score": 1,
+    "actual_away_score": 1
+  },
+  "Saudi Arabia_Uruguay_2026-06-15": {
     "home_team": "Saudi Arabia",
     "away_team": "Uruguay",
     "date": "2026-06-15",
+    "actual_result": "D",
     "actual_home_score": 1,
-    "actual_away_score": 1,
-    "actual_result": "D"
+    "actual_away_score": 1
   },
-  "Iran_vs_New_Zealand": {
+  "Iran_New Zealand_2026-06-16": {
     "home_team": "Iran",
     "away_team": "New Zealand",
-    "date": "2026-06-15",
+    "date": "2026-06-16",
+    "actual_result": "D",
     "actual_home_score": 2,
-    "actual_away_score": 2,
-    "actual_result": "D"
+    "actual_away_score": 2
   },
-  "Portugal_vs_Congo_DR": {
+  "France_Senegal_2026-06-16": {
+    "home_team": "France",
+    "away_team": "Senegal",
+    "date": "2026-06-16",
+    "actual_result": "H",
+    "actual_home_score": 3,
+    "actual_away_score": 1
+  },
+  "Iraq_Norway_2026-06-16": {
+    "home_team": "Iraq",
+    "away_team": "Norway",
+    "date": "2026-06-16",
+    "actual_result": "A",
+    "actual_home_score": 1,
+    "actual_away_score": 4
+  },
+  "Argentina_Algeria_2026-06-17": {
+    "home_team": "Argentina",
+    "away_team": "Algeria",
+    "date": "2026-06-17",
+    "actual_result": "H",
+    "actual_home_score": 3,
+    "actual_away_score": 0
+  },
+  "Austria_Jordan_2026-06-17": {
+    "home_team": "Austria",
+    "away_team": "Jordan",
+    "date": "2026-06-17",
+    "actual_result": "H",
+    "actual_home_score": 3,
+    "actual_away_score": 1
+  },
+  "Portugal_Congo DR_2026-06-17": {
     "home_team": "Portugal",
     "away_team": "Congo DR",
     "date": "2026-06-17",
+    "actual_result": "D",
     "actual_home_score": 1,
-    "actual_away_score": 1,
-    "actual_result": "D"
+    "actual_away_score": 1
   },
-  "England_vs_Croatia": {
+  "England_Croatia_2026-06-17": {
     "home_team": "England",
     "away_team": "Croatia",
     "date": "2026-06-17",
+    "actual_result": "H",
     "actual_home_score": 4,
-    "actual_away_score": 2,
-    "actual_result": "H"
+    "actual_away_score": 2
   },
-  "Ghana_vs_Panama": {
+  "Ghana_Panama_2026-06-17": {
     "home_team": "Ghana",
     "away_team": "Panama",
     "date": "2026-06-17",
+    "actual_result": "H",
     "actual_home_score": 1,
-    "actual_away_score": 0,
-    "actual_result": "H"
+    "actual_away_score": 0
   },
-  "Uzbekistan_vs_Colombia": {
+  "Uzbekistan_Colombia_2026-06-18": {
     "home_team": "Uzbekistan",
     "away_team": "Colombia",
-    "date": "2026-06-17",
+    "date": "2026-06-18",
+    "actual_result": "A",
     "actual_home_score": 1,
-    "actual_away_score": 3,
-    "actual_result": "A"
+    "actual_away_score": 3
   }
 }

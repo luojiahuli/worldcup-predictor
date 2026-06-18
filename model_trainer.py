@@ -26,14 +26,13 @@ CONFIDENCE_THRESHOLD = 0.42
 
 
 def elo_prob(pts_home, pts_away, draw_neutral=True):
-    """基于FIFA排名点数的Elo概率估算"""
+    """基于FIFA排名点数的Elo概率估算（降低平局概率以增加区分度）"""
     rating_diff = pts_home - pts_away
     expected_h = 1.0 / (1.0 + 10 ** (-rating_diff / 400.0))
     expected_a = 1.0 / (1.0 + 10 ** (rating_diff / 400.0))
-    # 平局概率从排名差距估算：差距越小，平局概率越高
-    draw_base = 0.22 + 0.20 * (1.0 - abs(rating_diff) / 800.0)
-    draw_base = max(0.18, min(0.35, draw_base))
-    # 调整
+    # 降低平局基础概率以增加主/客胜区分度
+    draw_base = 0.18 + 0.14 * (1.0 - abs(rating_diff) / 800.0)
+    draw_base = max(0.12, min(0.28, draw_base))
     remaining = 1.0 - draw_base
     prob_h = expected_h / (expected_h + expected_a) * remaining
     prob_a = expected_a / (expected_h + expected_a) * remaining
@@ -204,7 +203,7 @@ def train_rf(X_train, y_train, X_val, y_val, params=None):
     m = RandomForestClassifier(**p)
     m.fit(X_train, y_train)
     p_val = m.predict_proba(X_val)
-    return m, {"acc": float(accuracy_score(y_val, m.predict(X_val))), "logloss": float(log_loss(y_val, p_val))}
+    return m, {"acc": float(accuracy_score(y_val, m.predict(X_val))), "logloss": float(log_loss(y_val, p_val, labels=[0,1,2]))}
 
 
 def train_gb(X_train, y_train, X_val, y_val, params=None):
@@ -215,7 +214,7 @@ def train_gb(X_train, y_train, X_val, y_val, params=None):
     m = GradientBoostingClassifier(**p)
     m.fit(X_train, y_train)
     p_val = m.predict_proba(X_val)
-    return m, {"acc": float(accuracy_score(y_val, m.predict(X_val))), "logloss": float(log_loss(y_val, p_val))}
+    return m, {"acc": float(accuracy_score(y_val, m.predict(X_val))), "logloss": float(log_loss(y_val, p_val, labels=[0,1,2]))}
 
 
 def train_et(X_train, y_train, X_val, y_val, params=None):
@@ -226,17 +225,17 @@ def train_et(X_train, y_train, X_val, y_val, params=None):
     m = ExtraTreesClassifier(**p)
     m.fit(X_train, y_train)
     p_val = m.predict_proba(X_val)
-    return m, {"acc": float(accuracy_score(y_val, m.predict(X_val))), "logloss": float(log_loss(y_val, p_val))}
+    return m, {"acc": float(accuracy_score(y_val, m.predict(X_val))), "logloss": float(log_loss(y_val, p_val, labels=[0,1,2]))}
 
 
 def train_lr(X_train, y_train, X_val, y_val, params=None):
     from sklearn.linear_model import LogisticRegression
-    p = {"C": 5.0, "max_iter": 5000, "solver": "lbfgs", "random_state": 42, "multi_class": "multinomial"}
+    p = {"C": 5.0, "max_iter": 5000, "solver": "lbfgs", "random_state": 42}
     if params: p.update(params)
     m = LogisticRegression(**p)
     m.fit(X_train, y_train)
     p_val = m.predict_proba(X_val)
-    return m, {"acc": float(accuracy_score(y_val, m.predict(X_val))), "logloss": float(log_loss(y_val, p_val))}
+    return m, {"acc": float(accuracy_score(y_val, m.predict(X_val))), "logloss": float(log_loss(y_val, p_val, labels=[0,1,2]))}
 
 
 def train_mlp(X_train, y_train, X_val, y_val, params=None):
@@ -256,7 +255,7 @@ def train_mlp(X_train, y_train, X_val, y_val, params=None):
     m.fit(X_tr_sc, y_train)
     p_val = m.predict_proba(X_va_sc)
     acc = float(accuracy_score(y_val, m.predict(X_va_sc)))
-    ll = float(log_loss(y_val, p_val))
+    ll = float(log_loss(y_val, p_val, labels=[0,1,2]))
     return m, {"acc": acc, "logloss": ll, "scaler": sc}
 
 
@@ -399,7 +398,7 @@ def run_backtest(feature_df):
         en_p = weighted_ensemble([rf_p, gb_p, et_p, lr_p, mlp_p], w)
         en_pred = np.argmax(en_p, axis=1)
         en_acc = accuracy_score(y_va, en_pred)
-        en_ll = log_loss(y_va, en_p)
+        en_ll = log_loss(y_va, en_p, labels=[0,1,2])
 
         log.info(f"  RF={rf_met['acc']:.3f}(ll={rf_met['logloss']:.3f}) GB={gb_met['acc']:.3f}(ll={gb_met['logloss']:.3f})")
         log.info(f"  ET={et_met['acc']:.3f}(ll={et_met['logloss']:.3f}) LR={lr_met['acc']:.3f}(ll={lr_met['logloss']:.3f}) MLP={mlp_met['acc']:.3f}(ll={mlp_met['logloss']:.3f})")
@@ -496,6 +495,20 @@ def predict_matches(feature_df):
         feat_cols = final["feature_cols"]
         X_raw = feature_df[feat_cols].fillna(0).values
         scaler = pkg.get("scaler")
+
+        # 构建混合模型作为抗过拟合后备
+        from data_collector import load_data, load_rankings
+        import json
+        rankings_df = load_rankings()
+        top5_data = {}
+        top5_path = os.path.join(DATA_DIR, "team_top5.json")
+        if os.path.exists(top5_path):
+            with open(top5_path) as f:
+                top5_data = json.load(f)
+        params = load_hybrid_params()
+        hybrid_model = HybridRankingModel(rankings_df, top5_data=top5_data, params=params)
+        hybrid_prob = hybrid_model.predict_proba(feature_df)
+
         X = scaler.transform(X_raw) if scaler else X_raw
 
         rf_p = final["rf"].predict_proba(X)
@@ -509,7 +522,51 @@ def predict_matches(feature_df):
             mlp_p = final["mlp"].predict_proba(X_mlp)
         else:
             mlp_p = (rf_p + gb_p + et_p + lr_p) / 4  # fallback
-        ensemble_prob = (rf_p + gb_p + et_p + lr_p + mlp_p) / 5
+
+        # 混合模型权重：训练样本少时降低ML权重
+        n_train = len(feature_df[feature_df["is_finished"] == True]) if "is_finished" in feature_df.columns else 24
+        ml_weight = min(n_train / 80.0, 0.25)  # 最多25%权重给ML
+        log.info(f"混合预测: ML权重={ml_weight:.2f}, Hybrid权重={1-ml_weight:.2f} (训练样本={n_train})")
+
+        ensemble_prob = ml_weight * (rf_p + gb_p + et_p + lr_p + mlp_p) / 5 + (1 - ml_weight) * hybrid_prob
+
+        # 平局概率校正：排名差距大时降低平局概率
+        for i in range(len(ensemble_prob)):
+            home = str(feature_df.iloc[i].get("home_team", ""))
+            away = str(feature_df.iloc[i].get("away_team", ""))
+            hp = feature_df.iloc[i].get("home_rank_pts", 1500)
+            ap = feature_df.iloc[i].get("away_rank_pts", 1500)
+            rank_gap = abs(hp - ap)
+            # 获取伤病信息调整
+            player_data = {}
+            player_path = os.path.join(DATA_DIR, "player_status.json")
+            if os.path.exists(player_path):
+                with open(player_path) as f:
+                    player_data = json.load(f)
+            home_injury = player_data.get(home, {}).get("severity", 0)
+            away_injury = player_data.get(away, {}).get("severity", 0)
+            injury_shift = (away_injury - home_injury) * 0.05  # 对方伤病越多，主队胜率越高
+
+            if rank_gap > 150:
+                # 大排名差距降低平局概率
+                draw_reduction = min((rank_gap - 150) / 500.0 * 0.15, 0.15)
+                new_d = max(ensemble_prob[i][1] - draw_reduction, 0.08)
+                shift = ensemble_prob[i][1] - new_d
+                ensemble_prob[i][1] = new_d
+                if ensemble_prob[i][0] >= ensemble_prob[i][2]:
+                    ensemble_prob[i][0] += shift * 0.7 + injury_shift
+                    ensemble_prob[i][2] += shift * 0.3 - injury_shift
+                else:
+                    ensemble_prob[i][0] += shift * 0.3 + injury_shift
+                    ensemble_prob[i][2] += shift * 0.7 - injury_shift
+            elif rank_gap > 50 and injury_shift != 0:
+                ensemble_prob[i][0] += injury_shift
+                ensemble_prob[i][2] -= injury_shift
+
+            # 重新归一化
+            total = sum(ensemble_prob[i])
+            ensemble_prob[i] = ensemble_prob[i] / total
+
         ensemble_pred = np.argmax(ensemble_prob, axis=1)
 
     results = feature_df[["date", "home_team", "away_team"]].copy()
@@ -518,14 +575,13 @@ def predict_matches(feature_df):
     results["pred_A"] = ensemble_prob[:, 2]
     results["pred_result"] = [RESULT_INV[p] for p in ensemble_pred]
 
-    # 智能标签处理
+    # 智能标签处理：只有当最高概率和第二概率非常接近时才标平局
     smart_labels = []
     for i in range(len(results)):
         probs = ensemble_prob[i]
         sorted_p = sorted(probs, reverse=True)
-        if sorted_p[0] - sorted_p[1] < 0.05 and probs[1] > 0.30:
-            smart_labels.append("D")
-        elif sorted_p[0] - sorted_p[1] < 0.03:
+        # 只有在前两名差异极小且平局概率本身足够高时才标平局
+        if sorted_p[0] - sorted_p[1] < 0.02 and probs[1] > 0.30:
             smart_labels.append("D")
         else:
             smart_labels.append(RESULT_INV[ensemble_pred[i]])

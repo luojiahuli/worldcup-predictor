@@ -60,6 +60,88 @@ def get_team_top5_ratio(team, top5_data):
     return top5_data.get(team, 0.10)
 
 
+# ─── 社交媒体数据 ───────────────────────────────────────
+_SOCIAL_CACHE = None
+_MEDIA_CACHE = None
+
+def load_social_data():
+    global _SOCIAL_CACHE
+    if _SOCIAL_CACHE is not None:
+        return _SOCIAL_CACHE
+    path = os.path.join(DATA_DIR, "social_heat.csv")
+    if os.path.exists(path):
+        df = pd.read_csv(path)
+        _SOCIAL_CACHE = df.set_index("team").to_dict("index")
+        return _SOCIAL_CACHE
+    return {}
+
+def load_media_data():
+    global _MEDIA_CACHE
+    if _MEDIA_CACHE is not None:
+        return _MEDIA_CACHE
+    path = os.path.join(DATA_DIR, "media_sentiment.csv")
+    if os.path.exists(path):
+        df = pd.read_csv(path)
+        _MEDIA_CACHE = df.set_index("team").to_dict("index")
+        return _MEDIA_CACHE
+    return {}
+
+def get_social_features(team, social_data, media_data):
+    """获取球队社交媒体特征"""
+    s = social_data.get(team, {})
+    m = media_data.get(team, {})
+    return {
+        "heat_score": s.get("heat_score", 0.5),
+        "heat_change": s.get("heat_change", 0),
+        "sentiment_ratio": s.get("sentiment_ratio", 0.5),
+        "mention_count": s.get("mention_count", 0),
+        "media_sentiment": m.get("sentiment_score", 0.5),
+        "positive_ratio": m.get("positive_ratio", 0.5),
+        "news_volume": m.get("news_volume", 10),
+    }
+
+
+# ─── 关键球员状态 ──────────────────────────────────────
+_PLAYER_STATUS_CACHE = None
+
+def load_player_status():
+    global _PLAYER_STATUS_CACHE
+    if _PLAYER_STATUS_CACHE is not None:
+        return _PLAYER_STATUS_CACHE
+    path = os.path.join(DATA_DIR, "player_status.json")
+    if os.path.exists(path):
+        import json
+        with open(path) as f:
+            _PLAYER_STATUS_CACHE = json.load(f)
+        return _PLAYER_STATUS_CACHE
+    return {}
+
+def get_player_features(team, player_data):
+    """获取球队关键球员状态特征"""
+    info = player_data.get(team, {})
+    return {
+        "key_player_missing": info.get("missing_count", 0),
+        "injury_severity": info.get("severity", 0.0),
+        "star_player_available": info.get("star_available", 1.0),
+    }
+
+
+# ─── 真实赔率特征 ──────────────────────────────────────
+_REAL_ODDS_CACHE = None
+
+def load_real_odds():
+    global _REAL_ODDS_CACHE
+    if _REAL_ODDS_CACHE is not None:
+        return _REAL_ODDS_CACHE
+    path = os.path.join(DATA_DIR, "real_odds.json")
+    if os.path.exists(path):
+        import json
+        with open(path) as f:
+            _REAL_ODDS_CACHE = json.load(f)
+        return _REAL_ODDS_CACHE
+    return {}
+
+
 def compute_team_wc_history(all_matches, team, window=2):
     """计算球队在历史世界杯中的数据"""
     team_matches = all_matches[
@@ -235,6 +317,58 @@ def build_match_features(match_row, all_wc_matches, rankings_df):
         except:
             features[col.replace("odds_", "") + "_odds"] = 2.0
             features[col.replace("odds_", "") + "_implied"] = 0.33
+
+    # 5b. 社交媒体特征
+    social_data = load_social_data()
+    media_data = load_media_data()
+    home_social = get_social_features(home, social_data, media_data)
+    away_social = get_social_features(away, social_data, media_data)
+    for k, v in home_social.items():
+        features[f"home_{k}"] = v
+    for k, v in away_social.items():
+        features[f"away_{k}"] = v
+    features["heat_diff"] = home_social["heat_score"] - away_social["heat_score"]
+    features["sentiment_diff"] = home_social["sentiment_ratio"] - away_social["sentiment_ratio"]
+    features["media_sentiment_diff"] = home_social["media_sentiment"] - away_social["media_sentiment"]
+
+    # 5c. 关键球员状态特征
+    player_data = load_player_status()
+    home_player = get_player_features(home, player_data)
+    away_player = get_player_features(away, player_data)
+    for k, v in home_player.items():
+        features[f"home_{k}"] = v
+    for k, v in away_player.items():
+        features[f"away_{k}"] = v
+    features["injury_diff"] = home_player["injury_severity"] - away_player["injury_severity"]
+    features["star_diff"] = home_player["star_player_available"] - away_player["star_player_available"]
+
+    # 5d. 真实赔率特征（与模型隐含赔率对比）
+    real_odds = load_real_odds()
+    match_key = f"{home}_vs_{away}"
+    match_key_rev = f"{away}_vs_{home}"
+    odds_entry = real_odds.get(match_key, real_odds.get(match_key_rev, {}))
+    if odds_entry:
+        for k in ["home_odds", "draw_odds", "away_odds"]:
+            val = odds_entry.get(k, 0)
+            if val > 0:
+                features[f"real_{k}"] = val
+                features[f"real_{k.replace('_odds', '')}_implied"] = 1.0 / val
+            else:
+                features[f"real_{k}"] = 2.0
+                features[f"real_{k.replace('_odds', '')}_implied"] = 0.33
+        # 计算真实赔率与模型赔率的偏差
+        for suffix in ["home", "draw", "away"]:
+            model_key = f"{suffix}_implied"
+            real_key = f"real_{suffix}_implied"
+            if model_key in features and real_key in features:
+                features[f"odds_value_{suffix}"] = features[real_key] - features[model_key]
+    else:
+        features["real_home_odds"] = 2.0
+        features["real_draw_odds"] = 2.0
+        features["real_away_odds"] = 2.0
+        features["real_home_implied"] = 0.33
+        features["real_draw_implied"] = 0.33
+        features["real_away_implied"] = 0.33
 
     # 6. 目标变量
     try:
