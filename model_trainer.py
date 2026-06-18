@@ -239,6 +239,27 @@ def train_lr(X_train, y_train, X_val, y_val, params=None):
     return m, {"acc": float(accuracy_score(y_val, m.predict(X_val))), "logloss": float(log_loss(y_val, p_val))}
 
 
+def train_mlp(X_train, y_train, X_val, y_val, params=None):
+    """MLP神经网络分类器"""
+    from sklearn.neural_network import MLPClassifier
+    from sklearn.preprocessing import StandardScaler
+    # MLP需要独立缩放
+    sc = StandardScaler()
+    X_tr_sc = sc.fit_transform(X_train)
+    X_va_sc = sc.transform(X_val)
+    p = {"hidden_layer_sizes": (64, 32), "activation": "relu", "solver": "adam",
+         "max_iter": 2000, "random_state": 42, "early_stopping": True,
+         "validation_fraction": 0.15, "n_iter_no_change": 20, "batch_size": 32,
+         "alpha": 0.001}
+    if params: p.update(params)
+    m = MLPClassifier(**p)
+    m.fit(X_tr_sc, y_train)
+    p_val = m.predict_proba(X_va_sc)
+    acc = float(accuracy_score(y_val, m.predict(X_va_sc)))
+    ll = float(log_loss(y_val, p_val))
+    return m, {"acc": acc, "logloss": ll, "scaler": sc}
+
+
 def weighted_ensemble(probs_list, weights):
     w = np.array(weights) / sum(weights)
     return sum(p * wi for p, wi in zip(probs_list, w))
@@ -313,7 +334,7 @@ def run_backtest(feature_df):
         return None, None
 
     results, models_dict = [], {}
-    rf_ll, gb_ll, et_ll, lr_ll = [], [], [], []
+    rf_ll, gb_ll, et_ll, lr_ll, mlp_ll = [], [], [], [], []
 
     rf_configs = [
         {"n_estimators": 300, "max_depth": 10, "min_samples_split": 5},
@@ -356,25 +377,32 @@ def run_backtest(feature_df):
         best_lr = (m, met)
         lr_ll.append(met["logloss"])
 
+        m, met = train_mlp(X_tr, y_tr, X_va, y_va)
+        best_mlp = (m, met)
+        mlp_ll.append(met["logloss"])
+
         rf_m, rf_met = best_rf
         gb_m, gb_met = best_gb
         et_m, et_met = best_et
         lr_m, lr_met = best_lr
+        mlp_m, mlp_met = best_mlp
 
         rf_p = rf_m.predict_proba(X_va)
         gb_p = gb_m.predict_proba(X_va)
         et_p = et_m.predict_proba(X_va)
         lr_p = lr_m.predict_proba(X_va)
+        mlp_p = mlp_m.predict_proba(X_va)
 
         w = [1 / max(rf_met["logloss"], 0.01), 1 / max(gb_met["logloss"], 0.01),
-             1 / max(et_met["logloss"], 0.01), 1 / max(lr_met["logloss"], 0.01)]
-        en_p = weighted_ensemble([rf_p, gb_p, et_p, lr_p], w)
+             1 / max(et_met["logloss"], 0.01), 1 / max(lr_met["logloss"], 0.01),
+             1 / max(mlp_met["logloss"], 0.01)]
+        en_p = weighted_ensemble([rf_p, gb_p, et_p, lr_p, mlp_p], w)
         en_pred = np.argmax(en_p, axis=1)
         en_acc = accuracy_score(y_va, en_pred)
         en_ll = log_loss(y_va, en_p)
 
         log.info(f"  RF={rf_met['acc']:.3f}(ll={rf_met['logloss']:.3f}) GB={gb_met['acc']:.3f}(ll={gb_met['logloss']:.3f})")
-        log.info(f"  ET={et_met['acc']:.3f}(ll={et_met['logloss']:.3f}) LR={lr_met['acc']:.3f}(ll={lr_met['logloss']:.3f})")
+        log.info(f"  ET={et_met['acc']:.3f}(ll={et_met['logloss']:.3f}) LR={lr_met['acc']:.3f}(ll={lr_met['logloss']:.3f}) MLP={mlp_met['acc']:.3f}(ll={mlp_met['logloss']:.3f})")
         log.info(f"  Ensemble: ACC={en_acc:.3f} LogLoss={en_ll:.3f}")
 
         vdf = df_sorted.iloc[va].copy()
@@ -389,11 +417,11 @@ def run_backtest(feature_df):
             "predictions": vdf[["date", "home_team", "away_team", "result",
                                 "pred_H", "pred_D", "pred_A", "pred_r", "correct"]].copy(),
             "metrics": {
-                "rf": rf_met, "gb": gb_met, "et": et_met, "lr": lr_met,
+                "rf": rf_met, "gb": gb_met, "et": et_met, "lr": lr_met, "mlp": mlp_met,
                 "ensemble": {"accuracy": float(en_acc), "log_loss": float(en_ll)},
             },
         })
-        models_dict[f"fold_{fi}"] = {"rf": rf_m, "gb": gb_m, "et": et_m, "lr": lr_m, "feature_cols": feat_cols}
+        models_dict[f"fold_{fi}"] = {"rf": rf_m, "gb": gb_m, "et": et_m, "lr": lr_m, "mlp": mlp_m, "mlp_scaler": mlp_met.get("scaler"), "feature_cols": feat_cols}
 
     avg_en = np.mean([r["metrics"]["ensemble"]["accuracy"] for r in results])
     avg_en_ll = np.mean([r["metrics"]["ensemble"]["log_loss"] for r in results])
@@ -404,6 +432,7 @@ def run_backtest(feature_df):
     log.info(f"  GradBoost:        {np.mean([r['metrics']['gb']['acc'] for r in results]):.3f}")
     log.info(f"  ExtraTrees:       {np.mean([r['metrics']['et']['acc'] for r in results]):.3f}")
     log.info(f"  Logistic:         {np.mean([r['metrics']['lr']['acc'] for r in results]):.3f}")
+    log.info(f"  MLP(神经网络):    {np.mean([r['metrics']['mlp']['acc'] for r in results]):.3f}")
     log.info(f"  Ensemble(加权):   {avg_en:.3f} | LL={avg_en_ll:.3f}")
     log.info(f"{'='*50}")
 
@@ -415,9 +444,12 @@ def run_backtest(feature_df):
         ("gb", train_gb, {"n_estimators": 300, "max_depth": 5, "learning_rate": 0.03}),
         ("et", train_et, {}),
         ("lr", train_lr, {"C": 1.0}),
+        ("mlp", train_mlp, {}),
     ]:
-        m, _ = fn(X, y, X[:5], y[:5], cfg)
+        m, met_info = fn(X, y, X[:5], y[:5], cfg)
         final[name] = m
+        if name == "mlp" and "scaler" in met_info:
+            final["mlp_scaler"] = met_info["scaler"]
     final["feature_cols"] = feat_cols
 
     models_dict["final"] = final
@@ -470,7 +502,14 @@ def predict_matches(feature_df):
         gb_p = final["gb"].predict_proba(X)
         et_p = final["et"].predict_proba(X)
         lr_p = final["lr"].predict_proba(X)
-        ensemble_prob = (rf_p + gb_p + et_p + lr_p) / 4
+        # MLP needs separate scaling
+        mlp_scaler = final.get("mlp_scaler")
+        if mlp_scaler is not None and "mlp" in final:
+            X_mlp = mlp_scaler.transform(X)
+            mlp_p = final["mlp"].predict_proba(X_mlp)
+        else:
+            mlp_p = (rf_p + gb_p + et_p + lr_p) / 4  # fallback
+        ensemble_prob = (rf_p + gb_p + et_p + lr_p + mlp_p) / 5
         ensemble_pred = np.argmax(ensemble_prob, axis=1)
 
     results = feature_df[["date", "home_team", "away_team"]].copy()

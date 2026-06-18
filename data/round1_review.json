@@ -1,0 +1,468 @@
+{
+  "analysis": {
+    "total_matches": 11,
+    "finished_matches": 11,
+    "accuracy": 0.45454545454545453,
+    "exact_score_accuracy": 0.09090909090909091,
+    "result_correct": 5,
+    "score_correct": 1,
+    "predictions": [
+      {
+        "date": "2026-06-11",
+        "home": "Mexico",
+        "away": "South Africa",
+        "pred_result": "H",
+        "actual_result": "H",
+        "pred_home": 1,
+        "pred_away": 0,
+        "actual_home": 2,
+        "actual_away": 0,
+        "result_correct": true,
+        "score_correct": false,
+        "confidence": 0.4277885049844902
+      },
+      {
+        "date": "2026-06-12",
+        "home": "South Korea",
+        "away": "Czechia",
+        "pred_result": "H",
+        "actual_result": "H",
+        "pred_home": 1,
+        "pred_away": 0,
+        "actual_home": 2,
+        "actual_away": 1,
+        "result_correct": true,
+        "score_correct": false,
+        "confidence": 0.48121347268463976
+      },
+      {
+        "date": "2026-06-12",
+        "home": "Canada",
+        "away": "Bosnia-Herzegovina",
+        "pred_result": "H",
+        "actual_result": "D",
+        "pred_home": 1,
+        "pred_away": 0,
+        "actual_home": 1,
+        "actual_away": 1,
+        "result_correct": false,
+        "score_correct": false,
+        "confidence": 0.4709498578476485
+      },
+      {
+        "date": "2026-06-13",
+        "home": "United States",
+        "away": "Paraguay",
+        "pred_result": "A",
+        "actual_result": "H",
+        "pred_home": 0,
+        "pred_away": 1,
+        "actual_home": 4,
+        "actual_away": 1,
+        "result_correct": false,
+        "score_correct": false,
+        "confidence": 0.4531425098891962
+      },
+      {
+        "date": "2026-06-13",
+        "home": "Qatar",
+        "away": "Switzerland",
+        "pred_result": "A",
+        "actual_result": "D",
+        "pred_home": 0,
+        "pred_away": 1,
+        "actual_home": 1,
+        "actual_away": 1,
+        "result_correct": false,
+        "score_correct": false,
+        "confidence": 0.4577944590372641
+      },
+      {
+        "date": "2026-06-13",
+        "home": "Brazil",
+        "away": "Morocco",
+        "pred_result": "H",
+        "actual_result": "D",
+        "pred_home": 1,
+        "pred_away": 0,
+        "actual_home": 1,
+        "actual_away": 1,
+        "result_correct": false,
+        "score_correct": false,
+        "confidence": 0.47343014567427755
+      },
+      {
+        "date": "2026-06-14",
+        "home": "Haiti",
+        "away": "Scotland",
+        "pred_result": "A",
+        "actual_result": "A",
+        "pred_home": 0,
+        "pred_away": 1,
+        "actual_home": 0,
+        "actual_away": 1,
+        "result_correct": true,
+        "score_correct": true,
+        "confidence": 0.4499207637268421
+      },
+      {
+        "date": "2026-06-14",
+        "home": "Australia",
+        "away": "Turkey",
+        "pred_result": "H",
+        "actual_result": "H",
+        "pred_home": 1,
+        "pred_away": 0,
+        "actual_home": 2,
+        "actual_away": 0,
+        "result_correct": true,
+        "score_correct": false,
+        "confidence": 0.3650379178610169
+      },
+      {
+        "date": "2026-06-14",
+        "home": "Germany",
+        "away": "Curaçao",
+        "pred_result": "H",
+        "actual_result": "H",
+        "pred_home": 1,
+        "pred_away": 0,
+        "actual_home": 7,
+        "actual_away": 1,
+        "result_correct": true,
+        "score_correct": false,
+        "confidence": 0.5224820376260448
+      },
+      {
+        "date": "2026-06-14",
+        "home": "Netherlands",
+        "away": "Japan",
+        "pred_result": "H",
+        "actual_result": "D",
+        "pred_home": 1,
+        "pred_away": 0,
+        "actual_home": 2,
+        "actual_away": 2,
+        "result_correct": false,
+        "score_correct": false,
+        "confidence": 0.4523979178610169
+      },
+      {
+        "date": "2026-06-14",
+        "home": "Ivory Coast",
+        "away": "Ecuador",
+        "pred_result": "A",
+        "actual_result": "H",
+        "pred_home": 0,
+        "pred_away": 1,
+        "actual_home": 1,
+        "actual_away": 0,
+        "result_correct": false,
+        "score_correct": false,
+        "confidence": 0.3622525619454903
+      }
+    ]
+  },
+  "key_factors": {
+    "matches": [
+      {
+        "home": "Mexico",
+        "away": "South Africa",
+        "rank_diff": 103,
+        "abs_rank_diff": 103,
+        "home_top5": 0.27,
+        "away_top5": 0.18,
+        "top5_gap": 0.09,
+        "actual_result": "H",
+        "pred_result": "H",
+        "is_correct": true,
+        "home_score": 2,
+        "away_score": 0
+      },
+      {
+        "home": "South Korea",
+        "away": "Czechia",
+        "rank_diff": 77,
+        "abs_rank_diff": 77,
+        "home_top5": 0.36,
+        "away_top5": 0.36,
+        "top5_gap": 0.0,
+        "actual_result": "H",
+        "pred_result": "H",
+        "is_correct": true,
+        "home_score": 2,
+        "away_score": 1
+      },
+      {
+        "home": "Canada",
+        "away": "Bosnia-Herzegovina",
+        "rank_diff": 168,
+        "abs_rank_diff": 168,
+        "home_top5": 0.18,
+        "away_top5": 0.18,
+        "top5_gap": 0.0,
+        "actual_result": "D",
+        "pred_result": "H",
+        "is_correct": false,
+        "home_score": 1,
+        "away_score": 1
+      },
+      {
+        "home": "United States",
+        "away": "Paraguay",
+        "rank_diff": 65,
+        "abs_rank_diff": 65,
+        "home_top5": 0.55,
+        "away_top5": 0.27,
+        "top5_gap": 0.28,
+        "actual_result": "H",
+        "pred_result": "A",
+        "is_correct": false,
+        "home_score": 4,
+        "away_score": 1
+      },
+      {
+        "home": "Qatar",
+        "away": "Switzerland",
+        "rank_diff": -123,
+        "abs_rank_diff": 123,
+        "home_top5": 0.09,
+        "away_top5": 0.55,
+        "top5_gap": -0.46,
+        "actual_result": "D",
+        "pred_result": "A",
+        "is_correct": false,
+        "home_score": 1,
+        "away_score": 1
+      },
+      {
+        "home": "Brazil",
+        "away": "Morocco",
+        "rank_diff": 142,
+        "abs_rank_diff": 142,
+        "home_top5": 0.82,
+        "away_top5": 0.45,
+        "top5_gap": 0.37,
+        "actual_result": "D",
+        "pred_result": "H",
+        "is_correct": false,
+        "home_score": 1,
+        "away_score": 1
+      },
+      {
+        "home": "Haiti",
+        "away": "Scotland",
+        "rank_diff": -118,
+        "abs_rank_diff": 118,
+        "home_top5": 0.0,
+        "away_top5": 0.36,
+        "top5_gap": -0.36,
+        "actual_result": "A",
+        "pred_result": "A",
+        "is_correct": true,
+        "home_score": 0,
+        "away_score": 1
+      },
+      {
+        "home": "Australia",
+        "away": "Turkey",
+        "rank_diff": 70,
+        "abs_rank_diff": 70,
+        "home_top5": 0.18,
+        "away_top5": 0.36,
+        "top5_gap": -0.18,
+        "actual_result": "H",
+        "pred_result": "H",
+        "is_correct": true,
+        "home_score": 2,
+        "away_score": 0
+      },
+      {
+        "home": "Germany",
+        "away": "Curaçao",
+        "rank_diff": 245,
+        "abs_rank_diff": 245,
+        "home_top5": 0.82,
+        "away_top5": 0.0,
+        "top5_gap": 0.82,
+        "actual_result": "H",
+        "pred_result": "H",
+        "is_correct": true,
+        "home_score": 7,
+        "away_score": 1
+      },
+      {
+        "home": "Netherlands",
+        "away": "Japan",
+        "rank_diff": 70,
+        "abs_rank_diff": 70,
+        "home_top5": 0.82,
+        "away_top5": 0.36,
+        "top5_gap": 0.46,
+        "actual_result": "D",
+        "pred_result": "H",
+        "is_correct": false,
+        "home_score": 2,
+        "away_score": 2
+      },
+      {
+        "home": "Ivory Coast",
+        "away": "Ecuador",
+        "rank_diff": -40,
+        "abs_rank_diff": 40,
+        "home_top5": 0.36,
+        "away_top5": 0.36,
+        "top5_gap": 0.0,
+        "actual_result": "H",
+        "pred_result": "A",
+        "is_correct": false,
+        "home_score": 1,
+        "away_score": 0
+      }
+    ],
+    "summary": {
+      "avg_rank_diff_correct": 122.6,
+      "avg_rank_diff_wrong": 101.33333333333333,
+      "avg_top5_gap_correct": 0.07399999999999998,
+      "avg_top5_gap_wrong": 0.10833333333333334
+    }
+  },
+  "upsets": {
+    "total_upsets": 6,
+    "upset_rate": 0.5454545454545454,
+    "upsets": [
+      {
+        "home": "Canada",
+        "away": "Bosnia-Herzegovina",
+        "score": "1-1",
+        "result": "D",
+        "predicted": "H",
+        "confidence": 0.4709498578476485,
+        "rank_diff": 168,
+        "top5_gap": 0.0,
+        "reasons": [
+          "排名差距悬殊(差168分)"
+        ]
+      },
+      {
+        "home": "United States",
+        "away": "Paraguay",
+        "score": "4-1",
+        "result": "H",
+        "predicted": "A",
+        "confidence": 0.4531425098891962,
+        "rank_diff": 65,
+        "top5_gap": 0.28,
+        "reasons": [
+          "五大联赛含量优势(+28%)但未取胜"
+        ]
+      },
+      {
+        "home": "Qatar",
+        "away": "Switzerland",
+        "score": "1-1",
+        "result": "D",
+        "predicted": "A",
+        "confidence": 0.4577944590372641,
+        "rank_diff": 123,
+        "top5_gap": -0.46,
+        "reasons": [
+          "排名差距悬殊(差123分)"
+        ]
+      },
+      {
+        "home": "Brazil",
+        "away": "Morocco",
+        "score": "1-1",
+        "result": "D",
+        "predicted": "H",
+        "confidence": 0.47343014567427755,
+        "rank_diff": 142,
+        "top5_gap": 0.37,
+        "reasons": [
+          "排名差距悬殊(差142分)",
+          "五大联赛含量优势(+37%)但未取胜"
+        ]
+      },
+      {
+        "home": "Netherlands",
+        "away": "Japan",
+        "score": "2-2",
+        "result": "D",
+        "predicted": "H",
+        "confidence": 0.4523979178610169,
+        "rank_diff": 70,
+        "top5_gap": 0.46,
+        "reasons": [
+          "五大联赛含量优势(+46%)但未取胜"
+        ]
+      },
+      {
+        "home": "Ivory Coast",
+        "away": "Ecuador",
+        "score": "1-0",
+        "result": "H",
+        "predicted": "A",
+        "confidence": 0.3622525619454903,
+        "rank_diff": 40,
+        "top5_gap": 0.0,
+        "reasons": [
+          "预测方向错误"
+        ]
+      }
+    ],
+    "common_factors": [
+      {
+        "factor": "排名差距大但未体现",
+        "count": 3
+      },
+      {
+        "factor": "五大联赛优势未转化",
+        "count": 3
+      },
+      {
+        "factor": "其他预测偏差",
+        "count": 1
+      }
+    ]
+  },
+  "agent_round1": [
+    {
+      "name": "稳健派",
+      "correct": 0,
+      "total": 0,
+      "accuracy": 0
+    },
+    {
+      "name": "激进派",
+      "correct": 0,
+      "total": 0,
+      "accuracy": 0
+    },
+    {
+      "name": "价值派",
+      "correct": 0,
+      "total": 0,
+      "accuracy": 0
+    },
+    {
+      "name": "防守派",
+      "correct": 0,
+      "total": 0,
+      "accuracy": 0
+    },
+    {
+      "name": "数据派",
+      "correct": 0,
+      "total": 0,
+      "accuracy": 0
+    },
+    {
+      "name": "爆冷派",
+      "correct": 0,
+      "total": 0,
+      "accuracy": 0
+    }
+  ],
+  "generated_at": "2026-06-18 22:03"
+}
