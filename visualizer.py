@@ -201,8 +201,7 @@ def generate_dashboard(data):
                     "color": RESULT_COLORS.get(row.get("pred_result", ""), "#888"),
                 })
 
-    # === 已完成比赛复盘 ===
-    finished_review_rows = ""
+    # === 已完成比赛计数 ===
     finished_count = 0
     correct_count = 0
     if predictions is not None and len(predictions) > 0:
@@ -210,72 +209,6 @@ def generate_dashboard(data):
         finished_count = len(finished)
         if finished_count > 0:
             correct_count = int((finished["actual_result"] == finished["pred_result"]).sum())
-            review_rows = []
-            # Sort by date descending so latest match is first
-            finished_sorted = finished.sort_values("date", ascending=False)
-            for idx, (_, row) in enumerate(finished_sorted.iterrows()):
-                hs = int(row.get("pred_home_score", 0))
-                as_ = int(row.get("pred_away_score", 0))
-                ah_val = row.get("actual_home_score", 0)
-                aa_val = row.get("actual_away_score", 0)
-                ah = int(ah_val) if not (isinstance(ah_val, float) and ah_val != ah_val) else 0
-                aa = int(aa_val) if not (isinstance(aa_val, float) and aa_val != aa_val) else 0
-                is_correct = row.get("actual_result", "") == row.get("pred_result", "")
-                is_score_correct = (row.get("pred_home_score", -1) == row.get("actual_home_score", -2)
-                                    and row.get("pred_away_score", -1) == row.get("actual_away_score", -2))
-                score_tag = ' <span style="font-size:9px;color:var(--green)">✓比分</span>' if is_score_correct else ""
-                mark = f'✅{score_tag}' if is_correct else "❌"
-                date_str = str(row["date"])[:10]
-                home = row["home_team"]
-                away = row["away_team"]
-                pred_label = row.get("pred_label", "")
-                dir_color = "var(--green)" if is_correct else "#ef4444"
-                result_label = {'H': '主胜', 'D': '平局', 'A': '客胜'}.get(row.get("actual_result", ""), "-")
-                # Latest match: always expanded; older matches: collapsible
-                if idx == 0:
-                    review_rows.append(f'''<div class="fmc" style="border:1px solid var(--border);border-left:3px solid {dir_color};border-radius:8px;margin-bottom:8px;overflow:hidden;background:var(--card)">
-  <div class="fmc-h" onclick="var n=this.nextElementSibling;n.style.display=n.style.display==='none'?'block':'none'" style="display:flex;align-items:center;gap:10px;padding:10px 14px;cursor:pointer;user-select:none">
-    <span style="font-weight:600;font-size:13px">{home}</span>
-    <span style="color:var(--text3);font-size:11px">vs</span>
-    <span style="font-weight:600;font-size:13px">{away}</span>
-    <span style="font-size:10px;color:var(--text3);background:var(--bg2);padding:1px 6px;border-radius:4px">{date_str}</span>
-    <span style="margin-left:auto;display:flex;align-items:center;gap:10px">
-      <span style="font-size:16px;font-weight:700;color:var(--green)">{ah}-{aa}</span>
-      <span>{mark}</span>
-      <span style="font-size:10px;color:var(--text3)">▼</span>
-    </span>
-  </div>
-  <div class="fmc-b" style="display:none;padding:10px 14px;border-top:1px solid var(--border);font-size:12px">
-    <table style="width:100%">
-      <tr><td style="color:var(--text3);padding:3px 8px">预测结果</td><td style="padding:3px 8px;color:{dir_color};font-weight:600">{pred_label}</td>
-          <td style="color:var(--text3);padding:3px 8px">实际结果</td><td style="padding:3px 8px;font-weight:600">{result_label}</td></tr>
-      <tr><td style="color:var(--text3);padding:3px 8px">预测比分</td><td style="padding:3px 8px;font-weight:600">{hs}-{as_}</td>
-          <td style="color:var(--text3);padding:3px 8px">实际比分</td><td style="padding:3px 8px;font-weight:600;color:var(--green)">{ah}-{aa}</td></tr>
-    </table>
-  </div>
-</div>''')
-                else:
-                    review_rows.append(f'''<details style="margin-bottom:6px" {"open" if idx == 1 else ""}>
-  <summary style="display:flex;align-items:center;gap:10px;padding:8px 14px;background:var(--card);border:1px solid var(--border);border-radius:8px;cursor:pointer;font-size:12px;list-style:none">
-    <span style="font-weight:500;font-size:13px">{home}</span>
-    <span style="color:var(--text3)">vs</span>
-    <span style="font-weight:500;font-size:13px">{away}</span>
-    <span style="font-size:10px;color:var(--text3)">{date_str}</span>
-    <span style="margin-left:auto;display:flex;align-items:center;gap:10px">
-      <span style="font-size:14px;font-weight:600;color:var(--green)">{ah}-{aa}</span>
-      <span>{mark}</span>
-    </span>
-  </summary>
-  <div style="padding:10px 14px;border:1px solid var(--border);border-top:none;border-radius:0 0 8px 8px;font-size:12px;margin-top:-1px">
-    <table style="width:100%">
-      <tr><td style="color:var(--text3);padding:3px 8px">预测结果</td><td style="padding:3px 8px;color:{dir_color};font-weight:600">{pred_label}</td>
-          <td style="color:var(--text3);padding:3px 8px">实际结果</td><td style="padding:3px 8px;font-weight:600">{result_label}</td></tr>
-      <tr><td style="color:var(--text3);padding:3px 8px">预测比分</td><td style="padding:3px 8px;font-weight:600">{hs}-{as_}</td>
-          <td style="color:var(--text3);padding:3px 8px">实际比分</td><td style="padding:3px 8px;font-weight:600;color:var(--green)">{ah}-{aa}</td></tr>
-    </table>
-  </div>
-</details>''')
-            finished_review_rows = "\n".join(review_rows)
 
     # === 最新比赛日分析 ===
     matchday_date_str = ""
@@ -510,21 +443,6 @@ def generate_dashboard(data):
                 cum.append(bank)
             cum_ret = cum
     cum_ret_str = json.dumps(cum_ret)
-
-    # 比赛复盘section
-    if finished_review_rows:
-        finished_review_section = f'''<div class="cd cd-md" style="border-left:3px solid var(--green)">
-  <div class="cd-h">
-    <span class="cd-h-dot" style="background:var(--green)"></span>
-    <h2>已完成比赛复盘</h2>
-    <span class="cd-h-b" style="background:var(--green)">{finished_count} MATCHES &middot; {correct_count}/{finished_count} CORRECT</span>
-  </div>
-  <div style="padding:4px 0">
-    {finished_review_rows}
-  </div>
-</div>'''
-    else:
-        finished_review_section = ""
 
     # 已完赛比赛全面复盘
     round1_review_section = ""
@@ -819,13 +737,11 @@ tr:hover td{{background:rgba(255,255,255,.02);color:var(--text)}}
   </div>
 </header>
 
-<!-- Round 1 Review -->
-{round1_review_section}
 
-<!-- Match Review -->
-{finished_review_section}
+	<!-- Round 1 Review -->
+	{round1_review_section}
 
-<!-- Latest Matchday -->
+	<!-- Latest Matchday -->
 <div class="cd cd-md">
   <div class="cd-h">
     <span class="cd-h-dot"></span>
