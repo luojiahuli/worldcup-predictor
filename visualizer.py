@@ -203,7 +203,7 @@ def generate_dashboard(data):
         finished = predictions[predictions["is_finished"] == True]
         finished_count = len(finished)
         if finished_count > 0:
-            correct_count = int(finished["correct"].sum())
+            correct_count = int((finished["actual_result"] == finished["pred_result"]).sum())
             review_rows = []
             # Sort by date descending so latest match is first
             finished_sorted = finished.sort_values("date", ascending=False)
@@ -365,20 +365,27 @@ def generate_dashboard(data):
     round_acc = (agent_weights_data.get("agent_round_accuracy", {}).get(current_round_name, {})
                 if agent_weights_data else {})
 
-    # 排行榜
+    # 排行榜 — 按真实准确率排序
     if agent_leaderboard:
-        lb_rows = []
+        # 计算每个智能体的轮次准确率用于排序
+        lb_with_acc = []
         for entry in agent_leaderboard:
+            name = entry["name"]
+            ra = round_acc.get(name, {})
+            acc = ra.get("accuracy", 0) if ra.get("total", 0) > 0 else entry.get("accuracy", 0)
+            lb_with_acc.append((entry, acc))
+        lb_with_acc.sort(key=lambda x: -x[1])
+
+        lb_rows = []
+        for rank_idx, (entry, real_acc) in enumerate(lb_with_acc, 1):
             dist = f"H{entry.get('H_pct',0)*100:.0f}/D{entry.get('D_pct',0)*100:.0f}/A{entry.get('A_pct',0)*100:.0f}"
             color = entry.get("color", "#888")
             name = entry["name"]
             weight = current_weights.get(name, 1.0)
-            ra = round_acc.get(name, {})
-            real_acc = ra.get("accuracy", 0)
-            real_acc_str = f'{real_acc:.0%}' if real_acc > 0 and ra.get("total", 0) > 0 else "-"
+            real_acc_str = f'{real_acc:.0%}' if real_acc > 0 else "-"
             lb_rows.append(
                 f'<tr>'
-                f'<td style="color:{color};font-weight:600">#{entry["rank"]}</td>'
+                f'<td style="color:{color};font-weight:600">#{rank_idx}</td>'
                 f'<td style="color:{color};font-weight:600">{name}</td>'
                 f'<td>{dist}</td>'
                 f'<td>{entry.get("avg_confidence",0)*100:.0f}%</td>'

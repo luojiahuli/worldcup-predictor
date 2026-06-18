@@ -234,3 +234,691 @@ NotImplementedError: (<StringDtype(storage='python', na_value=nan)>, array(['202
        '2026-06-27', '2026-06-27', '2026-06-27', '2026-06-27',
        '2026-06-27', '2026-06-27', '2026-06-28', '2026-06-28'],
       dtype=object))
+[06:42:32] ===== 世界杯2026 每日更新 =====
+[06:42:32] 获取最新赔率数据...
+/Users/mac13/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+[2026-06-14 06:42:35,316] ==================================================
+[2026-06-14 06:42:35,316] 获取实时赔率 (The Odds API)...
+[2026-06-14 06:42:35,316] ==================================================
+[2026-06-14 06:42:37,105] 获取到 67 场比赛赔率
+[2026-06-14 06:42:37,122] 赔率已保存: 67 场比赛 (来自 33 家博彩公司)
+[2026-06-14 06:42:37,725] 🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆
+[2026-06-14 06:42:37,725] 🏆  世界杯2026预测系统 v1.0
+[2026-06-14 06:42:37,725] 🏆  运行时间: 2026-06-14 06:42:37
+[2026-06-14 06:42:37,725] 🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆
+[2026-06-14 06:42:37,725] 
+============================================================
+[2026-06-14 06:42:37,725] 步骤 1/6: 数据采集
+[2026-06-14 06:42:37,725] ============================================================
+[2026-06-14 06:42:37,725] 数据缓存已存在
+[2026-06-14 06:42:37,725] 
+============================================================
+[2026-06-14 06:42:37,725] 步骤 2/6: 特征工程
+[2026-06-14 06:42:37,725] ============================================================
+[2026-06-14 06:42:37,726] 特征矩阵已缓存
+[2026-06-14 06:42:37,726] 
+============================================================
+[2026-06-14 06:42:37,726] 步骤 3/6: 模型训练与回测
+[2026-06-14 06:42:37,726] ============================================================
+[2026-06-14 06:42:37,726] 模型已存在 (如需重新训练请删除 models/ 目录)
+Traceback (most recent call last):
+  File "/Users/mac13/workspace/worldcup_predictor/main.py", line 316, in <module>
+    run_pipeline()
+  File "/Users/mac13/workspace/worldcup_predictor/main.py", line 286, in run_pipeline
+    if not step_model_training():
+  File "/Users/mac13/workspace/worldcup_predictor/main.py", line 85, in step_model_training
+    feature_df = pickle.load(f)
+  File "pandas/_libs/arrays.pyx", line 85, in pandas._libs.arrays.NDArrayBacked.__setstate__
+  File "pandas/_libs/arrays.pyx", line 103, in pandas._libs.arrays.NDArrayBacked.__setstate__
+NotImplementedError: (<StringDtype(storage='python', na_value=nan)>, array(['H', 'U', 'U', 'U', 'U', 'U', 'U', 'U', 'U', 'U', 'U', 'U', 'U',
+       'U', 'U', 'U', 'U', 'U', 'U', 'U', 'U', 'U', 'U', 'U', 'U', 'U',
+       'U', 'U', 'U', 'U', 'U', 'U', 'U', 'U', 'U', 'U', 'U', 'U', 'U',
+       'U', 'U', 'U', 'U', 'U', 'U', 'U', 'U', 'U', 'U', 'U', 'U', 'U',
+       'U', 'U', 'U', 'U', 'U', 'U', 'U', 'U', 'U', 'U', 'U', 'U', 'U',
+       'U', 'U', 'U', 'U', 'U', 'U', 'U'], dtype=object))
+[06:42:37] main.py 失败
+[2026-06-14 06:42:38,313] ==================================================
+[2026-06-14 06:42:38,313] 多智能体预测系统
+[2026-06-14 06:42:38,313] ==================================================
+Traceback (most recent call last):
+  File "/Users/mac13/workspace/worldcup_predictor/agents.py", line 1369, in <module>
+    results, leaderboard = generate_agent_predictions()
+  File "/Users/mac13/workspace/worldcup_predictor/agents.py", line 1049, in generate_agent_predictions
+    predictions = pickle.load(open(pred_path, "rb"))
+  File "pandas/_libs/arrays.pyx", line 85, in pandas._libs.arrays.NDArrayBacked.__setstate__
+  File "pandas/_libs/arrays.pyx", line 103, in pandas._libs.arrays.NDArrayBacked.__setstate__
+NotImplementedError: (<StringDtype(storage='python', na_value=nan)>, array(['2026-06-11', '2026-06-12', '2026-06-12', '2026-06-13',
+       '2026-06-13', '2026-06-13', '2026-06-14', '2026-06-14',
+       '2026-06-14', '2026-06-14', '2026-06-14', '2026-06-15',
+       '2026-06-15', '2026-06-15', '2026-06-15', '2026-06-16',
+       '2026-06-16', '2026-06-16', '2026-06-17', '2026-06-17',
+       '2026-06-17', '2026-06-17', '2026-06-17', '2026-06-18',
+       '2026-06-18', '2026-06-18', '2026-06-18', '2026-06-19',
+       '2026-06-19', '2026-06-19', '2026-06-20', '2026-06-20',
+       '2026-06-20', '2026-06-20', '2026-06-21', '2026-06-21',
+       '2026-06-21', '2026-06-21', '2026-06-21', '2026-06-22',
+       '2026-06-22', '2026-06-22', '2026-06-23', '2026-06-23',
+       '2026-06-23', '2026-06-23', '2026-06-23', '2026-06-24',
+       '2026-06-24', '2026-06-24', '2026-06-24', '2026-06-24',
+       '2026-06-25', '2026-06-25', '2026-06-25', '2026-06-25',
+       '2026-06-25', '2026-06-25', '2026-06-26', '2026-06-26',
+       '2026-06-26', '2026-06-26', '2026-06-27', '2026-06-27',
+       '2026-06-27', '2026-06-27', '2026-06-27', '2026-06-27',
+       '2026-06-27', '2026-06-27', '2026-06-28', '2026-06-28'],
+      dtype=object))
+[06:42:38] agents.py 失败
+[06:42:38] 应用已完成比赛结果...
+Applying 4 finished match(es)...
+Traceback (most recent call last):
+  File "/Users/mac13/workspace/worldcup_predictor/apply_finished.py", line 319, in <module>
+    main()
+  File "/Users/mac13/workspace/worldcup_predictor/apply_finished.py", line 293, in main
+    apply_to_pickle(finished)
+  File "/Users/mac13/workspace/worldcup_predictor/apply_finished.py", line 39, in apply_to_pickle
+    df = pickle.load(f)
+  File "pandas/_libs/arrays.pyx", line 85, in pandas._libs.arrays.NDArrayBacked.__setstate__
+  File "pandas/_libs/arrays.pyx", line 103, in pandas._libs.arrays.NDArrayBacked.__setstate__
+NotImplementedError: (<StringDtype(storage='python', na_value=nan)>, array(['2026-06-11', '2026-06-12', '2026-06-12', '2026-06-13',
+       '2026-06-13', '2026-06-13', '2026-06-14', '2026-06-14',
+       '2026-06-14', '2026-06-14', '2026-06-14', '2026-06-15',
+       '2026-06-15', '2026-06-15', '2026-06-15', '2026-06-16',
+       '2026-06-16', '2026-06-16', '2026-06-17', '2026-06-17',
+       '2026-06-17', '2026-06-17', '2026-06-17', '2026-06-18',
+       '2026-06-18', '2026-06-18', '2026-06-18', '2026-06-19',
+       '2026-06-19', '2026-06-19', '2026-06-20', '2026-06-20',
+       '2026-06-20', '2026-06-20', '2026-06-21', '2026-06-21',
+       '2026-06-21', '2026-06-21', '2026-06-21', '2026-06-22',
+       '2026-06-22', '2026-06-22', '2026-06-23', '2026-06-23',
+       '2026-06-23', '2026-06-23', '2026-06-23', '2026-06-24',
+       '2026-06-24', '2026-06-24', '2026-06-24', '2026-06-24',
+       '2026-06-25', '2026-06-25', '2026-06-25', '2026-06-25',
+       '2026-06-25', '2026-06-25', '2026-06-26', '2026-06-26',
+       '2026-06-26', '2026-06-26', '2026-06-27', '2026-06-27',
+       '2026-06-27', '2026-06-27', '2026-06-27', '2026-06-27',
+       '2026-06-27', '2026-06-27', '2026-06-28', '2026-06-28'],
+      dtype=object))
+[06:42:38] apply_finished.py 失败
+[06:42:38] 当前智能体权重:
+    轮次: group_1
+      稳健派: 1.000
+      激进派: 1.000
+      价值派: 1.000
+      防守派: 1.000
+      数据派: 1.000
+      爆冷派: 1.000
+Traceback (most recent call last):
+  File "<string>", line 3, in <module>
+  File "/Users/mac13/workspace/worldcup_predictor/visualizer.py", line 31, in load_all_data
+    data["predictions"] = pickle.load(f)
+  File "pandas/_libs/arrays.pyx", line 85, in pandas._libs.arrays.NDArrayBacked.__setstate__
+  File "pandas/_libs/arrays.pyx", line 103, in pandas._libs.arrays.NDArrayBacked.__setstate__
+NotImplementedError: (<StringDtype(storage='python', na_value=nan)>, array(['2026-06-11', '2026-06-12', '2026-06-12', '2026-06-13',
+       '2026-06-13', '2026-06-13', '2026-06-14', '2026-06-14',
+       '2026-06-14', '2026-06-14', '2026-06-14', '2026-06-15',
+       '2026-06-15', '2026-06-15', '2026-06-15', '2026-06-16',
+       '2026-06-16', '2026-06-16', '2026-06-17', '2026-06-17',
+       '2026-06-17', '2026-06-17', '2026-06-17', '2026-06-18',
+       '2026-06-18', '2026-06-18', '2026-06-18', '2026-06-19',
+       '2026-06-19', '2026-06-19', '2026-06-20', '2026-06-20',
+       '2026-06-20', '2026-06-20', '2026-06-21', '2026-06-21',
+       '2026-06-21', '2026-06-21', '2026-06-21', '2026-06-22',
+       '2026-06-22', '2026-06-22', '2026-06-23', '2026-06-23',
+       '2026-06-23', '2026-06-23', '2026-06-23', '2026-06-24',
+       '2026-06-24', '2026-06-24', '2026-06-24', '2026-06-24',
+       '2026-06-25', '2026-06-25', '2026-06-25', '2026-06-25',
+       '2026-06-25', '2026-06-25', '2026-06-26', '2026-06-26',
+       '2026-06-26', '2026-06-26', '2026-06-27', '2026-06-27',
+       '2026-06-27', '2026-06-27', '2026-06-27', '2026-06-27',
+       '2026-06-27', '2026-06-27', '2026-06-28', '2026-06-28'],
+      dtype=object))
+[05:20:44] ===== 世界杯2026 每日更新 =====
+[05:20:44] 获取最新赔率数据...
+/Users/mac13/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+[2026-06-15 05:20:46,902] ==================================================
+[2026-06-15 05:20:46,902] 获取实时赔率 (The Odds API)...
+[2026-06-15 05:20:46,902] ==================================================
+[2026-06-15 05:20:47,963] 获取到 63 场比赛赔率
+[2026-06-15 05:20:47,975] 赔率已保存: 63 场比赛 (来自 33 家博彩公司)
+[2026-06-15 05:20:50,157] 🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆
+[2026-06-15 05:20:50,157] 🏆  世界杯2026预测系统 v1.0
+[2026-06-15 05:20:50,157] 🏆  运行时间: 2026-06-15 05:20:50
+[2026-06-15 05:20:50,157] 🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆
+[2026-06-15 05:20:50,157] 
+============================================================
+[2026-06-15 05:20:50,157] 步骤 1/6: 数据采集
+[2026-06-15 05:20:50,157] ============================================================
+[2026-06-15 05:20:50,157] 数据缓存已存在
+[2026-06-15 05:20:50,157] 
+============================================================
+[2026-06-15 05:20:50,157] 步骤 2/6: 特征工程
+[2026-06-15 05:20:50,157] ============================================================
+[2026-06-15 05:20:50,157] 特征矩阵已缓存
+[2026-06-15 05:20:50,157] 
+============================================================
+[2026-06-15 05:20:50,157] 步骤 3/6: 模型训练与回测
+[2026-06-15 05:20:50,158] ============================================================
+[2026-06-15 05:20:50,158] 模型已存在 (如需重新训练请删除 models/ 目录)
+Traceback (most recent call last):
+  File "/Users/mac13/workspace/worldcup_predictor/main.py", line 316, in <module>
+    run_pipeline()
+  File "/Users/mac13/workspace/worldcup_predictor/main.py", line 286, in run_pipeline
+    if not step_model_training():
+  File "/Users/mac13/workspace/worldcup_predictor/main.py", line 85, in step_model_training
+    feature_df = pickle.load(f)
+  File "pandas/_libs/arrays.pyx", line 85, in pandas._libs.arrays.NDArrayBacked.__setstate__
+  File "pandas/_libs/arrays.pyx", line 103, in pandas._libs.arrays.NDArrayBacked.__setstate__
+NotImplementedError: (<StringDtype(storage='python', na_value=nan)>, array(['H', 'U', 'U', 'U', 'U', 'U', 'U', 'U', 'U', 'U', 'U', 'U', 'U',
+       'U', 'U', 'U', 'U', 'U', 'U', 'U', 'U', 'U', 'U', 'U', 'U', 'U',
+       'U', 'U', 'U', 'U', 'U', 'U', 'U', 'U', 'U', 'U', 'U', 'U', 'U',
+       'U', 'U', 'U', 'U', 'U', 'U', 'U', 'U', 'U', 'U', 'U', 'U', 'U',
+       'U', 'U', 'U', 'U', 'U', 'U', 'U', 'U', 'U', 'U', 'U', 'U', 'U',
+       'U', 'U', 'U', 'U', 'U', 'U', 'U'], dtype=object))
+[05:20:50] main.py 失败
+[2026-06-15 05:20:51,345] ==================================================
+[2026-06-15 05:20:51,346] 多智能体预测系统
+[2026-06-15 05:20:51,346] ==================================================
+Traceback (most recent call last):
+  File "/Users/mac13/workspace/worldcup_predictor/agents.py", line 1369, in <module>
+    results, leaderboard = generate_agent_predictions()
+  File "/Users/mac13/workspace/worldcup_predictor/agents.py", line 1049, in generate_agent_predictions
+    predictions = pickle.load(open(pred_path, "rb"))
+  File "pandas/_libs/arrays.pyx", line 85, in pandas._libs.arrays.NDArrayBacked.__setstate__
+  File "pandas/_libs/arrays.pyx", line 103, in pandas._libs.arrays.NDArrayBacked.__setstate__
+NotImplementedError: (<StringDtype(storage='python', na_value=nan)>, array(['2026-06-11', '2026-06-12', '2026-06-12', '2026-06-13',
+       '2026-06-13', '2026-06-13', '2026-06-14', '2026-06-14',
+       '2026-06-14', '2026-06-14', '2026-06-14', '2026-06-15',
+       '2026-06-15', '2026-06-15', '2026-06-15', '2026-06-16',
+       '2026-06-16', '2026-06-16', '2026-06-17', '2026-06-17',
+       '2026-06-17', '2026-06-17', '2026-06-17', '2026-06-18',
+       '2026-06-18', '2026-06-18', '2026-06-18', '2026-06-19',
+       '2026-06-19', '2026-06-19', '2026-06-20', '2026-06-20',
+       '2026-06-20', '2026-06-20', '2026-06-21', '2026-06-21',
+       '2026-06-21', '2026-06-21', '2026-06-21', '2026-06-22',
+       '2026-06-22', '2026-06-22', '2026-06-23', '2026-06-23',
+       '2026-06-23', '2026-06-23', '2026-06-23', '2026-06-24',
+       '2026-06-24', '2026-06-24', '2026-06-24', '2026-06-24',
+       '2026-06-25', '2026-06-25', '2026-06-25', '2026-06-25',
+       '2026-06-25', '2026-06-25', '2026-06-26', '2026-06-26',
+       '2026-06-26', '2026-06-26', '2026-06-27', '2026-06-27',
+       '2026-06-27', '2026-06-27', '2026-06-27', '2026-06-27',
+       '2026-06-27', '2026-06-27', '2026-06-28', '2026-06-28'],
+      dtype=object))
+[05:20:51] agents.py 失败
+[05:20:51] 应用已完成比赛结果...
+Applying 4 finished match(es)...
+Traceback (most recent call last):
+  File "/Users/mac13/workspace/worldcup_predictor/apply_finished.py", line 319, in <module>
+    main()
+  File "/Users/mac13/workspace/worldcup_predictor/apply_finished.py", line 293, in main
+    apply_to_pickle(finished)
+  File "/Users/mac13/workspace/worldcup_predictor/apply_finished.py", line 39, in apply_to_pickle
+    df = pickle.load(f)
+  File "pandas/_libs/arrays.pyx", line 85, in pandas._libs.arrays.NDArrayBacked.__setstate__
+  File "pandas/_libs/arrays.pyx", line 103, in pandas._libs.arrays.NDArrayBacked.__setstate__
+NotImplementedError: (<StringDtype(storage='python', na_value=nan)>, array(['2026-06-11', '2026-06-12', '2026-06-12', '2026-06-13',
+       '2026-06-13', '2026-06-13', '2026-06-14', '2026-06-14',
+       '2026-06-14', '2026-06-14', '2026-06-14', '2026-06-15',
+       '2026-06-15', '2026-06-15', '2026-06-15', '2026-06-16',
+       '2026-06-16', '2026-06-16', '2026-06-17', '2026-06-17',
+       '2026-06-17', '2026-06-17', '2026-06-17', '2026-06-18',
+       '2026-06-18', '2026-06-18', '2026-06-18', '2026-06-19',
+       '2026-06-19', '2026-06-19', '2026-06-20', '2026-06-20',
+       '2026-06-20', '2026-06-20', '2026-06-21', '2026-06-21',
+       '2026-06-21', '2026-06-21', '2026-06-21', '2026-06-22',
+       '2026-06-22', '2026-06-22', '2026-06-23', '2026-06-23',
+       '2026-06-23', '2026-06-23', '2026-06-23', '2026-06-24',
+       '2026-06-24', '2026-06-24', '2026-06-24', '2026-06-24',
+       '2026-06-25', '2026-06-25', '2026-06-25', '2026-06-25',
+       '2026-06-25', '2026-06-25', '2026-06-26', '2026-06-26',
+       '2026-06-26', '2026-06-26', '2026-06-27', '2026-06-27',
+       '2026-06-27', '2026-06-27', '2026-06-27', '2026-06-27',
+       '2026-06-27', '2026-06-27', '2026-06-28', '2026-06-28'],
+      dtype=object))
+[05:20:52] apply_finished.py 失败
+[05:20:52] 当前智能体权重:
+    轮次: group_1
+      稳健派: 1.000
+      激进派: 1.000
+      价值派: 1.000
+      防守派: 1.000
+      数据派: 1.000
+      爆冷派: 1.000
+Traceback (most recent call last):
+  File "<string>", line 3, in <module>
+  File "/Users/mac13/workspace/worldcup_predictor/visualizer.py", line 31, in load_all_data
+    data["predictions"] = pickle.load(f)
+  File "pandas/_libs/arrays.pyx", line 85, in pandas._libs.arrays.NDArrayBacked.__setstate__
+  File "pandas/_libs/arrays.pyx", line 103, in pandas._libs.arrays.NDArrayBacked.__setstate__
+NotImplementedError: (<StringDtype(storage='python', na_value=nan)>, array(['2026-06-11', '2026-06-12', '2026-06-12', '2026-06-13',
+       '2026-06-13', '2026-06-13', '2026-06-14', '2026-06-14',
+       '2026-06-14', '2026-06-14', '2026-06-14', '2026-06-15',
+       '2026-06-15', '2026-06-15', '2026-06-15', '2026-06-16',
+       '2026-06-16', '2026-06-16', '2026-06-17', '2026-06-17',
+       '2026-06-17', '2026-06-17', '2026-06-17', '2026-06-18',
+       '2026-06-18', '2026-06-18', '2026-06-18', '2026-06-19',
+       '2026-06-19', '2026-06-19', '2026-06-20', '2026-06-20',
+       '2026-06-20', '2026-06-20', '2026-06-21', '2026-06-21',
+       '2026-06-21', '2026-06-21', '2026-06-21', '2026-06-22',
+       '2026-06-22', '2026-06-22', '2026-06-23', '2026-06-23',
+       '2026-06-23', '2026-06-23', '2026-06-23', '2026-06-24',
+       '2026-06-24', '2026-06-24', '2026-06-24', '2026-06-24',
+       '2026-06-25', '2026-06-25', '2026-06-25', '2026-06-25',
+       '2026-06-25', '2026-06-25', '2026-06-26', '2026-06-26',
+       '2026-06-26', '2026-06-26', '2026-06-27', '2026-06-27',
+       '2026-06-27', '2026-06-27', '2026-06-27', '2026-06-27',
+       '2026-06-27', '2026-06-27', '2026-06-28', '2026-06-28'],
+      dtype=object))
+[05:59:43] ===== 世界杯2026 每日更新 =====
+[05:59:43] 获取最新赔率数据...
+/Users/mac13/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+[2026-06-16 05:59:46,658] ==================================================
+[2026-06-16 05:59:46,658] 获取实时赔率 (The Odds API)...
+[2026-06-16 05:59:46,658] ==================================================
+[2026-06-16 05:59:48,143] 获取到 58 场比赛赔率
+[2026-06-16 05:59:48,158] 赔率已保存: 58 场比赛 (来自 33 家博彩公司)
+[2026-06-16 05:59:47,176] 🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆
+[2026-06-16 05:59:47,176] 🏆  世界杯2026预测系统 v1.0
+[2026-06-16 05:59:47,177] 🏆  运行时间: 2026-06-16 05:59:47
+[2026-06-16 05:59:47,177] 🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆
+[2026-06-16 05:59:47,177] 
+============================================================
+[2026-06-16 05:59:47,177] 步骤 1/6: 数据采集
+[2026-06-16 05:59:47,177] ============================================================
+[2026-06-16 05:59:47,177] 数据缓存已存在
+[2026-06-16 05:59:47,177] 
+============================================================
+[2026-06-16 05:59:47,177] 步骤 2/6: 特征工程
+[2026-06-16 05:59:47,177] ============================================================
+[2026-06-16 05:59:47,177] 特征矩阵已缓存
+[2026-06-16 05:59:47,177] 
+============================================================
+[2026-06-16 05:59:47,177] 步骤 3/6: 模型训练与回测
+[2026-06-16 05:59:47,177] ============================================================
+[2026-06-16 05:59:47,177] 模型已存在 (如需重新训练请删除 models/ 目录)
+Traceback (most recent call last):
+  File "/Users/mac13/workspace/worldcup_predictor/main.py", line 316, in <module>
+    run_pipeline()
+  File "/Users/mac13/workspace/worldcup_predictor/main.py", line 286, in run_pipeline
+    if not step_model_training():
+  File "/Users/mac13/workspace/worldcup_predictor/main.py", line 85, in step_model_training
+    feature_df = pickle.load(f)
+  File "pandas/_libs/arrays.pyx", line 85, in pandas._libs.arrays.NDArrayBacked.__setstate__
+  File "pandas/_libs/arrays.pyx", line 103, in pandas._libs.arrays.NDArrayBacked.__setstate__
+NotImplementedError: (<StringDtype(storage='python', na_value=nan)>, array(['H', 'U', 'U', 'U', 'U', 'U', 'U', 'U', 'U', 'U', 'U', 'U', 'U',
+       'U', 'U', 'U', 'U', 'U', 'U', 'U', 'U', 'U', 'U', 'U', 'U', 'U',
+       'U', 'U', 'U', 'U', 'U', 'U', 'U', 'U', 'U', 'U', 'U', 'U', 'U',
+       'U', 'U', 'U', 'U', 'U', 'U', 'U', 'U', 'U', 'U', 'U', 'U', 'U',
+       'U', 'U', 'U', 'U', 'U', 'U', 'U', 'U', 'U', 'U', 'U', 'U', 'U',
+       'U', 'U', 'U', 'U', 'U', 'U', 'U'], dtype=object))
+[05:59:47] main.py 失败
+[2026-06-16 05:59:48,189] ==================================================
+[2026-06-16 05:59:48,189] 多智能体预测系统
+[2026-06-16 05:59:48,189] ==================================================
+Traceback (most recent call last):
+  File "/Users/mac13/workspace/worldcup_predictor/agents.py", line 1369, in <module>
+    results, leaderboard = generate_agent_predictions()
+  File "/Users/mac13/workspace/worldcup_predictor/agents.py", line 1049, in generate_agent_predictions
+    predictions = pickle.load(open(pred_path, "rb"))
+  File "pandas/_libs/arrays.pyx", line 85, in pandas._libs.arrays.NDArrayBacked.__setstate__
+  File "pandas/_libs/arrays.pyx", line 103, in pandas._libs.arrays.NDArrayBacked.__setstate__
+NotImplementedError: (<StringDtype(storage='python', na_value=nan)>, array(['2026-06-11', '2026-06-12', '2026-06-12', '2026-06-13',
+       '2026-06-13', '2026-06-13', '2026-06-14', '2026-06-14',
+       '2026-06-14', '2026-06-14', '2026-06-14', '2026-06-15',
+       '2026-06-15', '2026-06-15', '2026-06-15', '2026-06-16',
+       '2026-06-16', '2026-06-16', '2026-06-17', '2026-06-17',
+       '2026-06-17', '2026-06-17', '2026-06-17', '2026-06-18',
+       '2026-06-18', '2026-06-18', '2026-06-18', '2026-06-19',
+       '2026-06-19', '2026-06-19', '2026-06-20', '2026-06-20',
+       '2026-06-20', '2026-06-20', '2026-06-21', '2026-06-21',
+       '2026-06-21', '2026-06-21', '2026-06-21', '2026-06-22',
+       '2026-06-22', '2026-06-22', '2026-06-23', '2026-06-23',
+       '2026-06-23', '2026-06-23', '2026-06-23', '2026-06-24',
+       '2026-06-24', '2026-06-24', '2026-06-24', '2026-06-24',
+       '2026-06-25', '2026-06-25', '2026-06-25', '2026-06-25',
+       '2026-06-25', '2026-06-25', '2026-06-26', '2026-06-26',
+       '2026-06-26', '2026-06-26', '2026-06-27', '2026-06-27',
+       '2026-06-27', '2026-06-27', '2026-06-27', '2026-06-27',
+       '2026-06-27', '2026-06-27', '2026-06-28', '2026-06-28'],
+      dtype=object))
+[05:59:48] agents.py 失败
+[05:59:48] 应用已完成比赛结果...
+Applying 4 finished match(es)...
+Traceback (most recent call last):
+  File "/Users/mac13/workspace/worldcup_predictor/apply_finished.py", line 319, in <module>
+    main()
+  File "/Users/mac13/workspace/worldcup_predictor/apply_finished.py", line 293, in main
+    apply_to_pickle(finished)
+  File "/Users/mac13/workspace/worldcup_predictor/apply_finished.py", line 39, in apply_to_pickle
+    df = pickle.load(f)
+  File "pandas/_libs/arrays.pyx", line 85, in pandas._libs.arrays.NDArrayBacked.__setstate__
+  File "pandas/_libs/arrays.pyx", line 103, in pandas._libs.arrays.NDArrayBacked.__setstate__
+NotImplementedError: (<StringDtype(storage='python', na_value=nan)>, array(['2026-06-11', '2026-06-12', '2026-06-12', '2026-06-13',
+       '2026-06-13', '2026-06-13', '2026-06-14', '2026-06-14',
+       '2026-06-14', '2026-06-14', '2026-06-14', '2026-06-15',
+       '2026-06-15', '2026-06-15', '2026-06-15', '2026-06-16',
+       '2026-06-16', '2026-06-16', '2026-06-17', '2026-06-17',
+       '2026-06-17', '2026-06-17', '2026-06-17', '2026-06-18',
+       '2026-06-18', '2026-06-18', '2026-06-18', '2026-06-19',
+       '2026-06-19', '2026-06-19', '2026-06-20', '2026-06-20',
+       '2026-06-20', '2026-06-20', '2026-06-21', '2026-06-21',
+       '2026-06-21', '2026-06-21', '2026-06-21', '2026-06-22',
+       '2026-06-22', '2026-06-22', '2026-06-23', '2026-06-23',
+       '2026-06-23', '2026-06-23', '2026-06-23', '2026-06-24',
+       '2026-06-24', '2026-06-24', '2026-06-24', '2026-06-24',
+       '2026-06-25', '2026-06-25', '2026-06-25', '2026-06-25',
+       '2026-06-25', '2026-06-25', '2026-06-26', '2026-06-26',
+       '2026-06-26', '2026-06-26', '2026-06-27', '2026-06-27',
+       '2026-06-27', '2026-06-27', '2026-06-27', '2026-06-27',
+       '2026-06-27', '2026-06-27', '2026-06-28', '2026-06-28'],
+      dtype=object))
+[05:59:49] apply_finished.py 失败
+[05:59:49] 当前智能体权重:
+    轮次: group_1
+      稳健派: 1.000
+      激进派: 1.000
+      价值派: 1.000
+      防守派: 1.000
+      数据派: 1.000
+      爆冷派: 1.000
+Traceback (most recent call last):
+  File "<string>", line 3, in <module>
+  File "/Users/mac13/workspace/worldcup_predictor/visualizer.py", line 31, in load_all_data
+    data["predictions"] = pickle.load(f)
+  File "pandas/_libs/arrays.pyx", line 85, in pandas._libs.arrays.NDArrayBacked.__setstate__
+  File "pandas/_libs/arrays.pyx", line 103, in pandas._libs.arrays.NDArrayBacked.__setstate__
+NotImplementedError: (<StringDtype(storage='python', na_value=nan)>, array(['2026-06-11', '2026-06-12', '2026-06-12', '2026-06-13',
+       '2026-06-13', '2026-06-13', '2026-06-14', '2026-06-14',
+       '2026-06-14', '2026-06-14', '2026-06-14', '2026-06-15',
+       '2026-06-15', '2026-06-15', '2026-06-15', '2026-06-16',
+       '2026-06-16', '2026-06-16', '2026-06-17', '2026-06-17',
+       '2026-06-17', '2026-06-17', '2026-06-17', '2026-06-18',
+       '2026-06-18', '2026-06-18', '2026-06-18', '2026-06-19',
+       '2026-06-19', '2026-06-19', '2026-06-20', '2026-06-20',
+       '2026-06-20', '2026-06-20', '2026-06-21', '2026-06-21',
+       '2026-06-21', '2026-06-21', '2026-06-21', '2026-06-22',
+       '2026-06-22', '2026-06-22', '2026-06-23', '2026-06-23',
+       '2026-06-23', '2026-06-23', '2026-06-23', '2026-06-24',
+       '2026-06-24', '2026-06-24', '2026-06-24', '2026-06-24',
+       '2026-06-25', '2026-06-25', '2026-06-25', '2026-06-25',
+       '2026-06-25', '2026-06-25', '2026-06-26', '2026-06-26',
+       '2026-06-26', '2026-06-26', '2026-06-27', '2026-06-27',
+       '2026-06-27', '2026-06-27', '2026-06-27', '2026-06-27',
+       '2026-06-27', '2026-06-27', '2026-06-28', '2026-06-28'],
+      dtype=object))
+[06:38:52] ===== 世界杯2026 每日更新 =====
+[06:38:52] 获取最新赔率数据...
+/Users/mac13/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+[2026-06-17 06:38:54,266] ==================================================
+[2026-06-17 06:38:54,266] 获取实时赔率 (The Odds API)...
+[2026-06-17 06:38:54,266] ==================================================
+[2026-06-17 06:38:54,278] 获取赔率失败: HTTPSConnectionPool(host='api.the-odds-api.com', port=443): Max retries exceeded with url: /v4/sports/soccer_fifa_world_cup/odds?apiKey=99459d111ea685ab723b0385811713be&regions=us%2Cuk%2Ceu&markets=h2h%2Ctotals (Caused by NameResolutionError("HTTPSConnection(host='api.the-odds-api.com', port=443): Failed to resolve 'api.the-odds-api.com' ([Errno 8] nodename nor servname provided, or not known)"))
+[2026-06-17 06:38:55,119] 🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆
+[2026-06-17 06:38:55,119] 🏆  世界杯2026预测系统 v1.0
+[2026-06-17 06:38:55,120] 🏆  运行时间: 2026-06-17 06:38:55
+[2026-06-17 06:38:55,120] 🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆
+[2026-06-17 06:38:55,120] 
+============================================================
+[2026-06-17 06:38:55,120] 步骤 1/6: 数据采集
+[2026-06-17 06:38:55,120] ============================================================
+[2026-06-17 06:38:55,120] 数据缓存已存在
+[2026-06-17 06:38:55,120] 
+============================================================
+[2026-06-17 06:38:55,120] 步骤 2/6: 特征工程
+[2026-06-17 06:38:55,120] ============================================================
+[2026-06-17 06:38:55,120] 特征矩阵已缓存
+[2026-06-17 06:38:55,120] 
+============================================================
+[2026-06-17 06:38:55,120] 步骤 3/6: 模型训练与回测
+[2026-06-17 06:38:55,120] ============================================================
+[2026-06-17 06:38:55,120] 模型已存在 (如需重新训练请删除 models/ 目录)
+Traceback (most recent call last):
+  File "/Users/mac13/workspace/worldcup_predictor/main.py", line 316, in <module>
+    run_pipeline()
+  File "/Users/mac13/workspace/worldcup_predictor/main.py", line 286, in run_pipeline
+    if not step_model_training():
+  File "/Users/mac13/workspace/worldcup_predictor/main.py", line 85, in step_model_training
+    feature_df = pickle.load(f)
+  File "pandas/_libs/arrays.pyx", line 85, in pandas._libs.arrays.NDArrayBacked.__setstate__
+  File "pandas/_libs/arrays.pyx", line 103, in pandas._libs.arrays.NDArrayBacked.__setstate__
+NotImplementedError: (<StringDtype(storage='python', na_value=nan)>, array(['H', 'U', 'U', 'U', 'U', 'U', 'U', 'U', 'U', 'U', 'U', 'U', 'U',
+       'U', 'U', 'U', 'U', 'U', 'U', 'U', 'U', 'U', 'U', 'U', 'U', 'U',
+       'U', 'U', 'U', 'U', 'U', 'U', 'U', 'U', 'U', 'U', 'U', 'U', 'U',
+       'U', 'U', 'U', 'U', 'U', 'U', 'U', 'U', 'U', 'U', 'U', 'U', 'U',
+       'U', 'U', 'U', 'U', 'U', 'U', 'U', 'U', 'U', 'U', 'U', 'U', 'U',
+       'U', 'U', 'U', 'U', 'U', 'U', 'U'], dtype=object))
+[06:38:55] main.py 失败
+[2026-06-17 06:38:55,889] ==================================================
+[2026-06-17 06:38:55,889] 多智能体预测系统
+[2026-06-17 06:38:55,889] ==================================================
+Traceback (most recent call last):
+  File "/Users/mac13/workspace/worldcup_predictor/agents.py", line 1369, in <module>
+    results, leaderboard = generate_agent_predictions()
+  File "/Users/mac13/workspace/worldcup_predictor/agents.py", line 1049, in generate_agent_predictions
+    predictions = pickle.load(open(pred_path, "rb"))
+  File "pandas/_libs/arrays.pyx", line 85, in pandas._libs.arrays.NDArrayBacked.__setstate__
+  File "pandas/_libs/arrays.pyx", line 103, in pandas._libs.arrays.NDArrayBacked.__setstate__
+NotImplementedError: (<StringDtype(storage='python', na_value=nan)>, array(['2026-06-11', '2026-06-12', '2026-06-12', '2026-06-13',
+       '2026-06-13', '2026-06-13', '2026-06-14', '2026-06-14',
+       '2026-06-14', '2026-06-14', '2026-06-14', '2026-06-15',
+       '2026-06-15', '2026-06-15', '2026-06-15', '2026-06-16',
+       '2026-06-16', '2026-06-16', '2026-06-17', '2026-06-17',
+       '2026-06-17', '2026-06-17', '2026-06-17', '2026-06-18',
+       '2026-06-18', '2026-06-18', '2026-06-18', '2026-06-19',
+       '2026-06-19', '2026-06-19', '2026-06-20', '2026-06-20',
+       '2026-06-20', '2026-06-20', '2026-06-21', '2026-06-21',
+       '2026-06-21', '2026-06-21', '2026-06-21', '2026-06-22',
+       '2026-06-22', '2026-06-22', '2026-06-23', '2026-06-23',
+       '2026-06-23', '2026-06-23', '2026-06-23', '2026-06-24',
+       '2026-06-24', '2026-06-24', '2026-06-24', '2026-06-24',
+       '2026-06-25', '2026-06-25', '2026-06-25', '2026-06-25',
+       '2026-06-25', '2026-06-25', '2026-06-26', '2026-06-26',
+       '2026-06-26', '2026-06-26', '2026-06-27', '2026-06-27',
+       '2026-06-27', '2026-06-27', '2026-06-27', '2026-06-27',
+       '2026-06-27', '2026-06-27', '2026-06-28', '2026-06-28'],
+      dtype=object))
+[06:38:55] agents.py 失败
+[06:38:55] 应用已完成比赛结果...
+Applying 4 finished match(es)...
+Traceback (most recent call last):
+  File "/Users/mac13/workspace/worldcup_predictor/apply_finished.py", line 319, in <module>
+    main()
+  File "/Users/mac13/workspace/worldcup_predictor/apply_finished.py", line 293, in main
+    apply_to_pickle(finished)
+  File "/Users/mac13/workspace/worldcup_predictor/apply_finished.py", line 39, in apply_to_pickle
+    df = pickle.load(f)
+  File "pandas/_libs/arrays.pyx", line 85, in pandas._libs.arrays.NDArrayBacked.__setstate__
+  File "pandas/_libs/arrays.pyx", line 103, in pandas._libs.arrays.NDArrayBacked.__setstate__
+NotImplementedError: (<StringDtype(storage='python', na_value=nan)>, array(['2026-06-11', '2026-06-12', '2026-06-12', '2026-06-13',
+       '2026-06-13', '2026-06-13', '2026-06-14', '2026-06-14',
+       '2026-06-14', '2026-06-14', '2026-06-14', '2026-06-15',
+       '2026-06-15', '2026-06-15', '2026-06-15', '2026-06-16',
+       '2026-06-16', '2026-06-16', '2026-06-17', '2026-06-17',
+       '2026-06-17', '2026-06-17', '2026-06-17', '2026-06-18',
+       '2026-06-18', '2026-06-18', '2026-06-18', '2026-06-19',
+       '2026-06-19', '2026-06-19', '2026-06-20', '2026-06-20',
+       '2026-06-20', '2026-06-20', '2026-06-21', '2026-06-21',
+       '2026-06-21', '2026-06-21', '2026-06-21', '2026-06-22',
+       '2026-06-22', '2026-06-22', '2026-06-23', '2026-06-23',
+       '2026-06-23', '2026-06-23', '2026-06-23', '2026-06-24',
+       '2026-06-24', '2026-06-24', '2026-06-24', '2026-06-24',
+       '2026-06-25', '2026-06-25', '2026-06-25', '2026-06-25',
+       '2026-06-25', '2026-06-25', '2026-06-26', '2026-06-26',
+       '2026-06-26', '2026-06-26', '2026-06-27', '2026-06-27',
+       '2026-06-27', '2026-06-27', '2026-06-27', '2026-06-27',
+       '2026-06-27', '2026-06-27', '2026-06-28', '2026-06-28'],
+      dtype=object))
+[06:38:57] apply_finished.py 失败
+[06:38:57] 当前智能体权重:
+    轮次: group_1
+      稳健派: 1.000
+      激进派: 1.000
+      价值派: 1.000
+      防守派: 1.000
+      数据派: 1.000
+      爆冷派: 1.000
+Traceback (most recent call last):
+  File "<string>", line 3, in <module>
+  File "/Users/mac13/workspace/worldcup_predictor/visualizer.py", line 31, in load_all_data
+    data["predictions"] = pickle.load(f)
+  File "pandas/_libs/arrays.pyx", line 85, in pandas._libs.arrays.NDArrayBacked.__setstate__
+  File "pandas/_libs/arrays.pyx", line 103, in pandas._libs.arrays.NDArrayBacked.__setstate__
+NotImplementedError: (<StringDtype(storage='python', na_value=nan)>, array(['2026-06-11', '2026-06-12', '2026-06-12', '2026-06-13',
+       '2026-06-13', '2026-06-13', '2026-06-14', '2026-06-14',
+       '2026-06-14', '2026-06-14', '2026-06-14', '2026-06-15',
+       '2026-06-15', '2026-06-15', '2026-06-15', '2026-06-16',
+       '2026-06-16', '2026-06-16', '2026-06-17', '2026-06-17',
+       '2026-06-17', '2026-06-17', '2026-06-17', '2026-06-18',
+       '2026-06-18', '2026-06-18', '2026-06-18', '2026-06-19',
+       '2026-06-19', '2026-06-19', '2026-06-20', '2026-06-20',
+       '2026-06-20', '2026-06-20', '2026-06-21', '2026-06-21',
+       '2026-06-21', '2026-06-21', '2026-06-21', '2026-06-22',
+       '2026-06-22', '2026-06-22', '2026-06-23', '2026-06-23',
+       '2026-06-23', '2026-06-23', '2026-06-23', '2026-06-24',
+       '2026-06-24', '2026-06-24', '2026-06-24', '2026-06-24',
+       '2026-06-25', '2026-06-25', '2026-06-25', '2026-06-25',
+       '2026-06-25', '2026-06-25', '2026-06-26', '2026-06-26',
+       '2026-06-26', '2026-06-26', '2026-06-27', '2026-06-27',
+       '2026-06-27', '2026-06-27', '2026-06-27', '2026-06-27',
+       '2026-06-27', '2026-06-27', '2026-06-28', '2026-06-28'],
+      dtype=object))
+[05:17:02] ===== 世界杯2026 每日更新 =====
+[05:17:02] 获取最新赔率数据...
+/Users/mac13/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+[2026-06-18 05:17:04,766] ==================================================
+[2026-06-18 05:17:04,766] 获取实时赔率 (The Odds API)...
+[2026-06-18 05:17:04,766] ==================================================
+[2026-06-18 05:17:04,796] 获取赔率失败: HTTPSConnectionPool(host='api.the-odds-api.com', port=443): Max retries exceeded with url: /v4/sports/soccer_fifa_world_cup/odds?apiKey=99459d111ea685ab723b0385811713be&regions=us%2Cuk%2Ceu&markets=h2h%2Ctotals (Caused by NameResolutionError("HTTPSConnection(host='api.the-odds-api.com', port=443): Failed to resolve 'api.the-odds-api.com' ([Errno 8] nodename nor servname provided, or not known)"))
+[2026-06-18 05:17:06,061] 🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆
+[2026-06-18 05:17:06,061] 🏆  世界杯2026预测系统 v1.0
+[2026-06-18 05:17:06,061] 🏆  运行时间: 2026-06-18 05:17:06
+[2026-06-18 05:17:06,061] 🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆🏆
+[2026-06-18 05:17:06,061] 
+============================================================
+[2026-06-18 05:17:06,061] 步骤 1/6: 数据采集
+[2026-06-18 05:17:06,062] ============================================================
+[2026-06-18 05:17:06,062] 数据缓存已存在
+[2026-06-18 05:17:06,062] 
+============================================================
+[2026-06-18 05:17:06,062] 步骤 2/6: 特征工程
+[2026-06-18 05:17:06,062] ============================================================
+[2026-06-18 05:17:06,062] 特征矩阵已缓存
+[2026-06-18 05:17:06,063] 
+============================================================
+[2026-06-18 05:17:06,063] 步骤 3/6: 模型训练与回测
+[2026-06-18 05:17:06,063] ============================================================
+[2026-06-18 05:17:06,063] 模型已存在 (如需重新训练请删除 models/ 目录)
+Traceback (most recent call last):
+  File "/Users/mac13/workspace/worldcup_predictor/main.py", line 316, in <module>
+    run_pipeline()
+  File "/Users/mac13/workspace/worldcup_predictor/main.py", line 286, in run_pipeline
+    if not step_model_training():
+  File "/Users/mac13/workspace/worldcup_predictor/main.py", line 85, in step_model_training
+    feature_df = pickle.load(f)
+  File "pandas/_libs/arrays.pyx", line 85, in pandas._libs.arrays.NDArrayBacked.__setstate__
+  File "pandas/_libs/arrays.pyx", line 103, in pandas._libs.arrays.NDArrayBacked.__setstate__
+NotImplementedError: (<StringDtype(storage='python', na_value=nan)>, array(['H', 'U', 'U', 'U', 'U', 'U', 'U', 'U', 'U', 'U', 'U', 'U', 'U',
+       'U', 'U', 'U', 'U', 'U', 'U', 'U', 'U', 'U', 'U', 'U', 'U', 'U',
+       'U', 'U', 'U', 'U', 'U', 'U', 'U', 'U', 'U', 'U', 'U', 'U', 'U',
+       'U', 'U', 'U', 'U', 'U', 'U', 'U', 'U', 'U', 'U', 'U', 'U', 'U',
+       'U', 'U', 'U', 'U', 'U', 'U', 'U', 'U', 'U', 'U', 'U', 'U', 'U',
+       'U', 'U', 'U', 'U', 'U', 'U', 'U'], dtype=object))
+[05:17:06] main.py 失败
+[2026-06-18 05:17:06,777] ==================================================
+[2026-06-18 05:17:06,777] 多智能体预测系统
+[2026-06-18 05:17:06,777] ==================================================
+Traceback (most recent call last):
+  File "/Users/mac13/workspace/worldcup_predictor/agents.py", line 1369, in <module>
+    results, leaderboard = generate_agent_predictions()
+  File "/Users/mac13/workspace/worldcup_predictor/agents.py", line 1049, in generate_agent_predictions
+    predictions = pickle.load(open(pred_path, "rb"))
+  File "pandas/_libs/arrays.pyx", line 85, in pandas._libs.arrays.NDArrayBacked.__setstate__
+  File "pandas/_libs/arrays.pyx", line 103, in pandas._libs.arrays.NDArrayBacked.__setstate__
+NotImplementedError: (<StringDtype(storage='python', na_value=nan)>, array(['2026-06-11', '2026-06-12', '2026-06-12', '2026-06-13',
+       '2026-06-13', '2026-06-13', '2026-06-14', '2026-06-14',
+       '2026-06-14', '2026-06-14', '2026-06-14', '2026-06-15',
+       '2026-06-15', '2026-06-15', '2026-06-15', '2026-06-16',
+       '2026-06-16', '2026-06-16', '2026-06-17', '2026-06-17',
+       '2026-06-17', '2026-06-17', '2026-06-17', '2026-06-18',
+       '2026-06-18', '2026-06-18', '2026-06-18', '2026-06-19',
+       '2026-06-19', '2026-06-19', '2026-06-20', '2026-06-20',
+       '2026-06-20', '2026-06-20', '2026-06-21', '2026-06-21',
+       '2026-06-21', '2026-06-21', '2026-06-21', '2026-06-22',
+       '2026-06-22', '2026-06-22', '2026-06-23', '2026-06-23',
+       '2026-06-23', '2026-06-23', '2026-06-23', '2026-06-24',
+       '2026-06-24', '2026-06-24', '2026-06-24', '2026-06-24',
+       '2026-06-25', '2026-06-25', '2026-06-25', '2026-06-25',
+       '2026-06-25', '2026-06-25', '2026-06-26', '2026-06-26',
+       '2026-06-26', '2026-06-26', '2026-06-27', '2026-06-27',
+       '2026-06-27', '2026-06-27', '2026-06-27', '2026-06-27',
+       '2026-06-27', '2026-06-27', '2026-06-28', '2026-06-28'],
+      dtype=object))
+[05:17:06] agents.py 失败
+[05:17:06] 应用已完成比赛结果...
+Applying 20 finished match(es)...
+Traceback (most recent call last):
+  File "/Users/mac13/workspace/worldcup_predictor/apply_finished.py", line 319, in <module>
+    main()
+  File "/Users/mac13/workspace/worldcup_predictor/apply_finished.py", line 293, in main
+    apply_to_pickle(finished)
+  File "/Users/mac13/workspace/worldcup_predictor/apply_finished.py", line 39, in apply_to_pickle
+    df = pickle.load(f)
+  File "pandas/_libs/arrays.pyx", line 85, in pandas._libs.arrays.NDArrayBacked.__setstate__
+  File "pandas/_libs/arrays.pyx", line 103, in pandas._libs.arrays.NDArrayBacked.__setstate__
+NotImplementedError: (<StringDtype(storage='python', na_value=nan)>, array(['2026-06-11', '2026-06-12', '2026-06-12', '2026-06-13',
+       '2026-06-13', '2026-06-13', '2026-06-14', '2026-06-14',
+       '2026-06-14', '2026-06-14', '2026-06-14', '2026-06-15',
+       '2026-06-15', '2026-06-15', '2026-06-15', '2026-06-16',
+       '2026-06-16', '2026-06-16', '2026-06-17', '2026-06-17',
+       '2026-06-17', '2026-06-17', '2026-06-17', '2026-06-18',
+       '2026-06-18', '2026-06-18', '2026-06-18', '2026-06-19',
+       '2026-06-19', '2026-06-19', '2026-06-20', '2026-06-20',
+       '2026-06-20', '2026-06-20', '2026-06-21', '2026-06-21',
+       '2026-06-21', '2026-06-21', '2026-06-21', '2026-06-22',
+       '2026-06-22', '2026-06-22', '2026-06-23', '2026-06-23',
+       '2026-06-23', '2026-06-23', '2026-06-23', '2026-06-24',
+       '2026-06-24', '2026-06-24', '2026-06-24', '2026-06-24',
+       '2026-06-25', '2026-06-25', '2026-06-25', '2026-06-25',
+       '2026-06-25', '2026-06-25', '2026-06-26', '2026-06-26',
+       '2026-06-26', '2026-06-26', '2026-06-27', '2026-06-27',
+       '2026-06-27', '2026-06-27', '2026-06-27', '2026-06-27',
+       '2026-06-27', '2026-06-27', '2026-06-28', '2026-06-28'],
+      dtype=object))
+[05:17:07] apply_finished.py 失败
+[05:17:07] 当前智能体权重:
+    轮次: group_2
+      稳健派: 1.378
+      激进派: 1.412
+      价值派: 1.233
+      防守派: 0.884
+      数据派: 1.364
+      爆冷派: 0.858
+Traceback (most recent call last):
+  File "<string>", line 3, in <module>
+  File "/Users/mac13/workspace/worldcup_predictor/visualizer.py", line 31, in load_all_data
+    data["predictions"] = pickle.load(f)
+  File "pandas/_libs/arrays.pyx", line 85, in pandas._libs.arrays.NDArrayBacked.__setstate__
+  File "pandas/_libs/arrays.pyx", line 103, in pandas._libs.arrays.NDArrayBacked.__setstate__
+NotImplementedError: (<StringDtype(storage='python', na_value=nan)>, array(['2026-06-11', '2026-06-12', '2026-06-12', '2026-06-13',
+       '2026-06-13', '2026-06-13', '2026-06-14', '2026-06-14',
+       '2026-06-14', '2026-06-14', '2026-06-14', '2026-06-15',
+       '2026-06-15', '2026-06-15', '2026-06-15', '2026-06-16',
+       '2026-06-16', '2026-06-16', '2026-06-17', '2026-06-17',
+       '2026-06-17', '2026-06-17', '2026-06-17', '2026-06-18',
+       '2026-06-18', '2026-06-18', '2026-06-18', '2026-06-19',
+       '2026-06-19', '2026-06-19', '2026-06-20', '2026-06-20',
+       '2026-06-20', '2026-06-20', '2026-06-21', '2026-06-21',
+       '2026-06-21', '2026-06-21', '2026-06-21', '2026-06-22',
+       '2026-06-22', '2026-06-22', '2026-06-23', '2026-06-23',
+       '2026-06-23', '2026-06-23', '2026-06-23', '2026-06-24',
+       '2026-06-24', '2026-06-24', '2026-06-24', '2026-06-24',
+       '2026-06-25', '2026-06-25', '2026-06-25', '2026-06-25',
+       '2026-06-25', '2026-06-25', '2026-06-26', '2026-06-26',
+       '2026-06-26', '2026-06-26', '2026-06-27', '2026-06-27',
+       '2026-06-27', '2026-06-27', '2026-06-27', '2026-06-27',
+       '2026-06-27', '2026-06-27', '2026-06-28', '2026-06-28'],
+      dtype=object))
