@@ -21,4 +21,4 @@ jobs:
           account-id: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           project-name: worldcup-predictor
           directory: output
-          git-depth: 0
+          branch: main
