@@ -112,6 +112,73 @@ def step_prediction():
     if results is None:
         return None
 
+    # 保护已完赛比赛的旧预测结果（避免pipeline重跑时覆盖用户的预测/手动修正）
+    # 优先从备份文件恢复，备份包含原始OLD模型预测
+    pred_path = os.path.join(DATA_DIR, "wc_predictions.pkl")
+    backup_path = os.path.join(DATA_DIR, "wc_predictions_old_backup.pkl")
+    source_path = backup_path if os.path.exists(backup_path) else pred_path
+    if os.path.exists(source_path):
+        try:
+            with open(source_path, "rb") as f:
+                old_preds = pickle.load(f)
+            if isinstance(old_preds, pd.DataFrame) and "is_finished" in old_preds.columns:
+                # 确保 results 包含所有需要的列
+                for col in ['actual_home_score', 'actual_away_score', 'score_correct', 'correct']:
+                    if col not in results.columns:
+                        results[col] = None if col != 'score_correct' and col != 'correct' else False
+                preserved = 0
+                preserve_cols = ['pred_H', 'pred_D', 'pred_A', 'pred_result', 'pred_label',
+                                 'confidence', 'fair_odds_H', 'fair_odds_D', 'fair_odds_A',
+                                 'pred_home_score', 'pred_away_score', 'value_score',
+                                 'actual_home_score', 'actual_away_score', 'actual_result',
+                                 'correct', 'score_correct']
+                for idx, row in results.iterrows():
+                    if row.get("is_finished") == True or row.get("is_finished") == 1:
+                        old_match = old_preds[
+                            (old_preds["home_team"] == row["home_team"]) &
+                            (old_preds["away_team"] == row["away_team"])
+                        ]
+                        if len(old_match) > 0:
+                            old_row = old_match.iloc[0]
+                            for col in preserve_cols:
+                                if col in old_row.index and pd.notna(old_row[col]):
+                                    results.at[idx, col] = old_row[col]
+                            preserved += 1
+                if preserved > 0:
+                    source_name = "备份" if source_path == backup_path else "当前"
+                    log.info(f"已从{source_name}文件保留 {preserved} 场已完赛比赛的旧预测结果")
+        except Exception as e:
+            log.warning(f"保留旧预测失败: {e}")
+
+    # 从历史完赛数据补全 actual_home_score/actual_away_score（备份可能缺失）
+    all_wc_path = os.path.join(DATA_DIR, "all_wc_matches.pkl")
+    if os.path.exists(all_wc_path):
+        try:
+            with open(all_wc_path, "rb") as f:
+                all_wc = pickle.load(f)
+            for col in ['actual_home_score', 'actual_away_score', 'score_correct']:
+                if col not in results.columns:
+                    results[col] = None if col != 'score_correct' else False
+            filled = 0
+            for idx, row in results.iterrows():
+                if row.get("is_finished") == True and (pd.isna(row.get("actual_home_score")) or pd.isna(row.get("actual_away_score"))):
+                    h, a = row["home_team"], row["away_team"]
+                    actual = all_wc[(all_wc["Home"] == h) & (all_wc["Away"] == a) & (all_wc["HomeGoals"] >= 0)]
+                    if len(actual) > 0:
+                        ah = int(actual.iloc[0]["HomeGoals"])
+                        aa = int(actual.iloc[0]["AwayGoals"])
+                        results.at[idx, "actual_home_score"] = ah
+                        results.at[idx, "actual_away_score"] = aa
+                        actual_r = "H" if ah > aa else ("D" if ah == aa else "A")
+                        results.at[idx, "actual_result"] = actual_r
+                        results.at[idx, "correct"] = (row["pred_result"] == actual_r)
+                        results.at[idx, "score_correct"] = (row["pred_home_score"] == ah and row["pred_away_score"] == aa)
+                        filled += 1
+            if filled > 0:
+                log.info(f"从历史数据补全 {filled} 场已完赛比赛的实际比分")
+        except Exception as e:
+            log.warning(f"补全实际比分失败: {e}")
+
     # 合并历史完赛数据（防止 pipeline 覆盖手动更新的比赛结果）
     finished_path = os.path.join(DATA_DIR, "finished_matches.json")
     if os.path.exists(finished_path):

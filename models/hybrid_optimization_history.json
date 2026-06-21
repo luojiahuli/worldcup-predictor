@@ -2328,6 +2328,11 @@
       "actual": "D"
     },
     {
+      "home": "United States",
+      "away": "Paraguay",
+      "actual": "H"
+    },
+    {
       "home": "Qatar",
       "away": "Switzerland",
       "actual": "D"
@@ -2341,11 +2346,6 @@
       "home": "Haiti",
       "away": "Scotland",
       "actual": "A"
-    },
-    {
-      "home": "United States",
-      "away": "Paraguay",
-      "actual": "H"
     },
     {
       "home": "Australia",
@@ -2363,13 +2363,33 @@
       "actual": "D"
     },
     {
+      "home": "Ivory Coast",
+      "away": "Ecuador",
+      "actual": "H"
+    },
+    {
       "home": "Sweden",
       "away": "Tunisia",
       "actual": "H"
     },
     {
+      "home": "Spain",
+      "away": "Cape Verde Islands",
+      "actual": "D"
+    },
+    {
       "home": "Belgium",
       "away": "Egypt",
+      "actual": "D"
+    },
+    {
+      "home": "Saudi Arabia",
+      "away": "Uruguay",
+      "actual": "D"
+    },
+    {
+      "home": "Iran",
+      "away": "New Zealand",
       "actual": "D"
     },
     {
@@ -2393,26 +2413,6 @@
       "actual": "H"
     },
     {
-      "home": "Ivory Coast",
-      "away": "Ecuador",
-      "actual": "H"
-    },
-    {
-      "home": "Spain",
-      "away": "Cape Verde Islands",
-      "actual": "D"
-    },
-    {
-      "home": "Saudi Arabia",
-      "away": "Uruguay",
-      "actual": "D"
-    },
-    {
-      "home": "Iran",
-      "away": "New Zealand",
-      "actual": "D"
-    },
-    {
       "home": "Portugal",
       "away": "Congo DR",
       "actual": "D"
@@ -2433,5 +2433,5 @@
       "actual": "A"
     }
   ],
-  "optimized_at": "2026-06-18T22:48:24.008398"
+  "optimized_at": "2026-06-21T21:46:10.999934"
 }
