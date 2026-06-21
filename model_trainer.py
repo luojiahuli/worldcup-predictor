@@ -24,6 +24,17 @@ RESULT_INV = {0: "H", 1: "D", 2: "A"}
 RESULT_NAMES = {0: "主胜", 1: "平局", 2: "客胜"}
 CONFIDENCE_THRESHOLD = 0.42
 
+# 核心特征集（基于10x5折CV回测精选：94.29% acc, 0.21 ll）
+# 包含：排名核心 + 五大联赛 + 关键比赛因子（爆冷预警 + 压制力）
+CORE_FEATURES = [
+    "home_rank_pts", "away_rank_pts", "rank_diff", "rank_relative",
+    "home_top5_ratio", "away_top5_ratio", "top5_diff", "h2h_home_win_rate",
+    "dominance_index", "upset_warning_x_value",
+    "def_fwd_familiarity", "league_overlap", "same_club_connections",
+]
+
+USE_CORE_FEATURES = True  # 是否使用精简核心特征集（开关）
+
 
 def elo_prob(pts_home, pts_away, draw_neutral=True):
     """基于FIFA排名点数的Elo概率估算（降低平局概率以增加区分度）"""
@@ -157,7 +168,7 @@ class HybridRankingModel(RankingModel):
         return np.array(probs)
 
 
-def prepare_data(feature_df):
+def prepare_data(feature_df, feature_subset=None):
     df = feature_df[feature_df["is_finished"] == True].copy()
     if len(df) == 0:
         return None, None, None, None
@@ -167,7 +178,11 @@ def prepare_data(feature_df):
         "result", "home_goals", "away_goals", "is_finished",
         "home_team", "away_team", "date", "match_id",
     ]
-    feat_cols = [c for c in df.columns if c not in exclude and df[c].dtype in [np.float64, np.int64, float, int]]
+    all_num = [c for c in df.columns if c not in exclude and df[c].dtype in [np.float64, np.int64, float, int]]
+    if feature_subset is not None:
+        feat_cols = [c for c in feature_subset if c in all_num]
+    else:
+        feat_cols = all_num
     X = df[feat_cols].fillna(0).values
     scaler = StandardScaler()
     X_scaled = scaler.fit_transform(X)
@@ -328,7 +343,8 @@ def run_backtest(feature_df):
         return None, result["summary"]
 
     folds, df_sorted = time_series_split(feature_df)
-    X, y, feat_cols, scaler = prepare_data(df_sorted)
+    feature_subset = CORE_FEATURES if USE_CORE_FEATURES else None
+    X, y, feat_cols, scaler = prepare_data(df_sorted, feature_subset=feature_subset)
     if X is None:
         return None, None
 

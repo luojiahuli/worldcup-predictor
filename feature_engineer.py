@@ -101,6 +101,156 @@ def get_social_features(team, social_data, media_data):
     }
 
 
+# ─── 英超球员密度 ──────────────────────────────────────
+_EPL_CACHE = None
+
+def load_epl_data():
+    global _EPL_CACHE
+    if _EPL_CACHE is not None:
+        return _EPL_CACHE
+    path = os.path.join(DATA_DIR, "epl_density.json")
+    if os.path.exists(path):
+        import json
+        with open(path) as f:
+            _EPL_CACHE = json.load(f)
+        return _EPL_CACHE
+    return {}
+
+def get_team_epl_ratio(team, epl_data):
+    return epl_data.get(team, 0.10)
+
+
+# ─── 主帅特征 ──────────────────────────────────────────
+_COACH_CACHE = None
+
+def load_coach_data():
+    global _COACH_CACHE
+    if _COACH_CACHE is not None:
+        return _COACH_CACHE
+    path = os.path.join(DATA_DIR, "coaches.json")
+    if os.path.exists(path):
+        import json
+        with open(path) as f:
+            _COACH_CACHE = json.load(f)
+        return _COACH_CACHE
+    return {}
+
+def get_coach_features(team, coach_data):
+    info = coach_data.get(team, {})
+    return {
+        "coach_reputation": info.get("reputation", 0.55),
+        "coach_tactical": info.get("tactical_flex", 0.55),
+        "coach_big_match": info.get("big_match", 0.50),
+    }
+
+
+# ─── 球员数据库（身价/明星/阵容深度） ──────────────────
+_PLAYER_DB_CACHE = None
+
+def load_player_database():
+    """加载完整球员数据库"""
+    global _PLAYER_DB_CACHE
+    if _PLAYER_DB_CACHE is not None:
+        return _PLAYER_DB_CACHE
+    path = os.path.join(DATA_DIR, "player_database.json")
+    if os.path.exists(path):
+        import json
+        with open(path) as f:
+            data = json.load(f)
+        _PLAYER_DB_CACHE = {k: v for k, v in data.items() if not k.startswith("_")}
+        return _PLAYER_DB_CACHE
+    return {}
+
+def get_player_db_features(team, player_db):
+    """从球员数据库提取团队级特征"""
+    info = player_db.get(team, {})
+    star_players = info.get("star_players", [])
+
+    if star_players:
+        ratings = [p.get("rating", 75) for p in star_players]
+        top_rating = max(ratings) if ratings else 75
+        avg_top3 = sum(ratings) / len(ratings) if ratings else 75
+        total_goals = sum(p.get("goals_intl", 0) for p in star_players)
+    else:
+        top_rating, avg_top3, total_goals = 75, 75, 0
+
+    return {
+        "top_player_rating": top_rating,
+        "top3_avg_rating": avg_top3,
+        "star_goals": total_goals,
+        "squad_value": info.get("squad_value_euros", 100_000_000),
+        "avg_age": info.get("avg_age", 27.0),
+        "avg_rating": info.get("avg_rating", 78.0),
+        "key_player_form": info.get("key_player_form", 7.5),
+        "attack_strength": info.get("attack_strength", 0.65),
+        "defense_strength": info.get("defense_strength", 0.65),
+        "midfield_strength": info.get("midfield_strength", 0.65),
+    }
+
+
+# ─── 球员联赛熟悉度特征 ────────────────────────────────
+def compute_familiarity_features(home_team, away_team, player_db):
+    """计算两队球员的联赛熟悉程度：同联赛交锋过 = 熟悉对手"""
+    home_info = player_db.get(home_team, {})
+    away_info = player_db.get(away_team, {})
+    home_players = home_info.get("star_players", [])
+    away_players = away_info.get("star_players", [])
+
+    if not home_players or not away_players:
+        return {"home_def_vs_away_fwd_fam": 0, "away_def_vs_home_fwd_fam": 0,
+                "def_fwd_familiarity": 0, "league_overlap": 0, "same_club_connections": 0}
+
+    # 按位置分组
+    def _by_pos(players):
+        groups = {"DF": [], "FW": [], "MF": [], "GK": []}
+        for p in players:
+            groups.get(p.get("pos", "MF"), groups["MF"]).append(p)
+        return groups
+
+    home_pos = _by_pos(home_players)
+    away_pos = _by_pos(away_players)
+
+    def _league_overlap_rating(players_a, players_b):
+        """计算两组球员的联赛重叠（按评分加权）"""
+        if not players_a or not players_b:
+            return 0.0
+        total, count = 0.0, 0
+        for pa in players_a:
+            for pb in players_b:
+                if pa.get("league") and pa["league"] == pb.get("league"):
+                    avg_r = (pa.get("rating", 75) + pb.get("rating", 75)) / 2.0
+                    total += avg_r / 100.0
+                count += 1
+        return total / max(count, 1)
+
+    # 1) 主队后卫 vs 客队前锋（主队后卫熟悉客队前锋）
+    home_df_vs_away_fw = _league_overlap_rating(home_pos["DF"], away_pos["FW"])
+
+    # 2) 客队后卫 vs 主队前锋（客队后卫熟悉主队前锋）
+    away_df_vs_home_fw = _league_overlap_rating(away_pos["DF"], home_pos["FW"])
+
+    # 3) 所有球员的通用联赛重叠
+    all_overlap = _league_overlap_rating(home_players, away_players)
+
+    # 4) 同俱乐部连接（不同国家队但同一俱乐部，如皇马队友）
+    club_pairs, total_club_pairs = 0.0, 0
+    for hp in home_players:
+        for ap in away_players:
+            total_club_pairs += 1
+            if hp.get("club") and hp["club"] == ap.get("club"):
+                avg_r = (hp.get("rating", 75) + ap.get("rating", 75)) / 2.0
+                club_pairs += avg_r / 100.0
+    same_club = club_pairs / max(total_club_pairs, 1)
+
+    return {
+        "home_def_vs_away_fwd_fam": round(home_df_vs_away_fw, 4),
+        "away_def_vs_home_fwd_fam": round(away_df_vs_home_fw, 4),
+        "def_fwd_familiarity": round(home_df_vs_away_fw - away_df_vs_home_fw, 4),
+        "league_overlap": round(all_overlap, 4),
+        "same_club_connections": round(same_club, 4),
+    }
+
+
 # ─── 关键球员状态 ──────────────────────────────────────
 _PLAYER_STATUS_CACHE = None
 
@@ -342,7 +492,73 @@ def build_match_features(match_row, all_wc_matches, rankings_df):
     features["injury_diff"] = home_player["injury_severity"] - away_player["injury_severity"]
     features["star_diff"] = home_player["star_player_available"] - away_player["star_player_available"]
 
-    # 5d. 真实赔率特征（与模型隐含赔率对比）
+    # 5d-bis. 英超球员密度特征
+    epl_data = load_epl_data()
+    home_epl = get_team_epl_ratio(home, epl_data)
+    away_epl = get_team_epl_ratio(away, epl_data)
+    features["home_epl_ratio"] = home_epl
+    features["away_epl_ratio"] = away_epl
+    features["epl_diff"] = home_epl - away_epl
+    features["epl_relative"] = (home_epl - away_epl) / (home_epl + away_epl + 0.01)
+
+    # 5d-ter. 主帅特征
+    coach_data = load_coach_data()
+    home_coach = get_coach_features(home, coach_data)
+    away_coach = get_coach_features(away, coach_data)
+    for k, v in home_coach.items():
+        features[f"home_{k}"] = v
+    for k, v in away_coach.items():
+        features[f"away_{k}"] = v
+    features["coach_reputation_diff"] = home_coach["coach_reputation"] - away_coach["coach_reputation"]
+    features["coach_tactical_diff"] = home_coach["coach_tactical"] - away_coach["coach_tactical"]
+    features["coach_big_match_diff"] = home_coach["coach_big_match"] - away_coach["coach_big_match"]
+
+    # 5d-quater. 球员数据库特征（身价/头号/阵容深度）
+    player_db = load_player_database()
+    home_pdb = get_player_db_features(home, player_db)
+    away_pdb = get_player_db_features(away, player_db)
+    for k, v in home_pdb.items():
+        features[f"home_{k}"] = v
+    for k, v in away_pdb.items():
+        features[f"away_{k}"] = v
+    features["top_player_diff"] = home_pdb["top_player_rating"] - away_pdb["top_player_rating"]
+    features["top3_rating_diff"] = home_pdb["top3_avg_rating"] - away_pdb["top3_avg_rating"]
+    features["squad_value_diff"] = home_pdb["squad_value"] - away_pdb["squad_value"]
+    features["squad_value_log_diff"] = np.log10(home_pdb["squad_value"] + 1) - np.log10(away_pdb["squad_value"] + 1)
+    features["attack_strength_diff"] = home_pdb["attack_strength"] - away_pdb["attack_strength"]
+    features["defense_strength_diff"] = home_pdb["defense_strength"] - away_pdb["defense_strength"]
+    features["midfield_strength_diff"] = home_pdb["midfield_strength"] - away_pdb["midfield_strength"]
+    features["key_form_diff"] = home_pdb["key_player_form"] - away_pdb["key_player_form"]
+    features["avg_age_diff"] = home_pdb["avg_age"] - away_pdb["avg_age"]
+    features["avg_rating_diff"] = home_pdb["avg_rating"] - away_pdb["avg_rating"]
+
+    # 5d-quinquies. 关键比赛因子（基于实际比赛分析得出）
+    rank_diff = features.get("rank_diff", 0)
+    coach_rep_diff = features["coach_reputation_diff"]
+    coach_big_diff = features["coach_big_match_diff"]
+
+    # 爆冷预警：强队+弱教练 vs 弱队+强教练
+    # 当主队排名占优但教练声誉反向时，倾向平局/客胜
+    rank_advantage = 1 if rank_diff > 30 else 0
+    coach_under_signal = -1 if coach_rep_diff < 0 else 1
+    features["upset_warning"] = rank_advantage * coach_under_signal if rank_advantage else 0
+    features["upset_warning_x_value"] = features["upset_warning"] * features["squad_value_log_diff"]
+
+    # 压制力指数：身价差 × 教练优势（综合指标）
+    features["dominance_index"] = features["squad_value_log_diff"] * coach_rep_diff
+
+    # 主帅大赛能力交互：教练大赛差 × 排名差
+    features["big_match_pressure"] = coach_big_diff * (rank_diff / 100.0)
+
+    # 头号状态差 × 排名差（爆冷预测：状态差距+排名接近）
+    features["form_pressure"] = features["key_form_diff"] * (rank_diff / 200.0)
+
+    # 5d-sexties. 球员联赛熟悉度特征（后卫vs前锋交锋经验）
+    familiarity = compute_familiarity_features(home, away, player_db)
+    for k, v in familiarity.items():
+        features[k] = v
+
+    # 5e. 真实赔率特征（与模型隐含赔率对比）
     real_odds = load_real_odds()
     match_key = f"{home}_vs_{away}"
     match_key_rev = f"{away}_vs_{home}"

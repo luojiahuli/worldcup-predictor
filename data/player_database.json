@@ -1,0 +1,810 @@
+{
+  "_meta": {
+    "source": "公开阵容/球员信息汇总（2026世界杯）",
+    "version": "1.1",
+    "fields": {
+      "star_players": "头号球星 (姓名, 位置, FIFA评分, 进球数, 进球效率, 俱乐部, 联赛)",
+      "top_scorers": "近1年国际比赛进球最多的球员",
+      "avg_age": "首发平均年龄",
+      "avg_rating": "首发平均FIFA评分",
+      "squad_value_euros": "球队总身价(欧元)",
+      "key_player_form": "头号球星最近5场评分"
+    },
+    "notes": "club/league enriched in v1.1 for player familiarity feature"
+  },
+  "Argentina": {
+    "star_players": [
+      {"name": "Lionel Messi", "pos": "FW", "rating": 88, "age": 38, "goals_intl": 109, "club": "Inter Miami", "league": "MLS"},
+      {"name": "Julian Alvarez", "pos": "FW", "rating": 86, "age": 26, "goals_intl": 12, "club": "Atlético Madrid", "league": "La Liga"},
+      {"name": "Emiliano Martinez", "pos": "GK", "rating": 89, "age": 32, "goals_intl": 0, "club": "Aston Villa", "league": "Premier League"}
+    ],
+    "top_scorer": "Lionel Messi",
+    "avg_age": 27.8,
+    "avg_rating": 82.5,
+    "squad_value_euros": 875000000,
+    "key_player_form": 8.5,
+    "attack_strength": 0.92,
+    "defense_strength": 0.85,
+    "midfield_strength": 0.90
+  },
+  "France": {
+    "star_players": [
+      {"name": "Kylian Mbappé", "pos": "FW", "rating": 91, "age": 27, "goals_intl": 48, "club": "Real Madrid", "league": "La Liga"},
+      {"name": "Ousmane Dembélé", "pos": "FW", "rating": 87, "age": 28, "goals_intl": 6, "club": "Paris Saint-Germain", "league": "Ligue 1"},
+      {"name": "Aurélien Tchouaméni", "pos": "MF", "rating": 87, "age": 26, "goals_intl": 3, "club": "Real Madrid", "league": "La Liga"}
+    ],
+    "top_scorer": "Kylian Mbappé",
+    "avg_age": 26.5,
+    "avg_rating": 84.0,
+    "squad_value_euros": 1230000000,
+    "key_player_form": 8.8,
+    "attack_strength": 0.95,
+    "defense_strength": 0.88,
+    "midfield_strength": 0.92
+  },
+  "Brazil": {
+    "star_players": [
+      {"name": "Vinícius Jr.", "pos": "FW", "rating": 90, "age": 26, "goals_intl": 9, "club": "Real Madrid", "league": "La Liga"},
+      {"name": "Rodrygo", "pos": "FW", "rating": 87, "age": 25, "goals_intl": 7, "club": "Real Madrid", "league": "La Liga"},
+      {"name": "Marquinhos", "pos": "DF", "rating": 87, "age": 31, "goals_intl": 5, "club": "Paris Saint-Germain", "league": "Ligue 1"}
+    ],
+    "top_scorer": "Vinícius Jr.",
+    "avg_age": 27.2,
+    "avg_rating": 82.8,
+    "squad_value_euros": 1140000000,
+    "key_player_form": 8.4,
+    "attack_strength": 0.92,
+    "defense_strength": 0.82,
+    "midfield_strength": 0.85
+  },
+  "England": {
+    "star_players": [
+      {"name": "Jude Bellingham", "pos": "MF", "rating": 90, "age": 23, "goals_intl": 9, "club": "Real Madrid", "league": "La Liga"},
+      {"name": "Phil Foden", "pos": "MF", "rating": 88, "age": 26, "goals_intl": 4, "club": "Manchester City", "league": "Premier League"},
+      {"name": "Harry Kane", "pos": "FW", "rating": 90, "age": 32, "goals_intl": 65, "club": "Bayern Munich", "league": "Bundesliga"}
+    ],
+    "top_scorer": "Harry Kane",
+    "avg_age": 26.0,
+    "avg_rating": 83.5,
+    "squad_value_euros": 1320000000,
+    "key_player_form": 8.7,
+    "attack_strength": 0.92,
+    "defense_strength": 0.84,
+    "midfield_strength": 0.90
+  },
+  "Spain": {
+    "star_players": [
+      {"name": "Lamine Yamal", "pos": "FW", "rating": 89, "age": 18, "goals_intl": 6, "club": "Barcelona", "league": "La Liga"},
+      {"name": "Nico Williams", "pos": "FW", "rating": 85, "age": 23, "goals_intl": 5, "club": "Athletic Bilbao", "league": "La Liga"},
+      {"name": "Rodri", "pos": "MF", "rating": 90, "age": 29, "goals_intl": 4, "club": "Manchester City", "league": "Premier League"}
+    ],
+    "top_scorer": "Lamine Yamal",
+    "avg_age": 25.5,
+    "avg_rating": 83.0,
+    "squad_value_euros": 980000000,
+    "key_player_form": 8.6,
+    "attack_strength": 0.90,
+    "defense_strength": 0.85,
+    "midfield_strength": 0.92
+  },
+  "Germany": {
+    "star_players": [
+      {"name": "Florian Wirtz", "pos": "MF", "rating": 89, "age": 22, "goals_intl": 5, "club": "Bayer Leverkusen", "league": "Bundesliga"},
+      {"name": "Jamal Musiala", "pos": "MF", "rating": 88, "age": 22, "goals_intl": 4, "club": "Bayern Munich", "league": "Bundesliga"},
+      {"name": "Antonio Rüdiger", "pos": "DF", "rating": 87, "age": 32, "goals_intl": 4, "club": "Real Madrid", "league": "La Liga"}
+    ],
+    "top_scorer": "Florian Wirtz",
+    "avg_age": 26.5,
+    "avg_rating": 82.5,
+    "squad_value_euros": 920000000,
+    "key_player_form": 8.3,
+    "attack_strength": 0.88,
+    "defense_strength": 0.84,
+    "midfield_strength": 0.90
+  },
+  "Portugal": {
+    "star_players": [
+      {"name": "Cristiano Ronaldo", "pos": "FW", "rating": 86, "age": 41, "goals_intl": 130, "club": "Al-Nassr", "league": "Saudi Pro League"},
+      {"name": "Bruno Fernandes", "pos": "MF", "rating": 88, "age": 31, "goals_intl": 25, "club": "Manchester United", "league": "Premier League"},
+      {"name": "Rafael Leão", "pos": "FW", "rating": 86, "age": 26, "goals_intl": 6, "club": "AC Milan", "league": "Serie A"}
+    ],
+    "top_scorer": "Cristiano Ronaldo",
+    "avg_age": 27.5,
+    "avg_rating": 82.0,
+    "squad_value_euros": 950000000,
+    "key_player_form": 7.8,
+    "attack_strength": 0.86,
+    "defense_strength": 0.82,
+    "midfield_strength": 0.88
+  },
+  "Netherlands": {
+    "star_players": [
+      {"name": "Virgil van Dijk", "pos": "DF", "rating": 88, "age": 34, "goals_intl": 7, "club": "Liverpool", "league": "Premier League"},
+      {"name": "Cody Gakpo", "pos": "FW", "rating": 86, "age": 26, "goals_intl": 12, "club": "Liverpool", "league": "Premier League"},
+      {"name": "Xavi Simons", "pos": "MF", "rating": 85, "age": 22, "goals_intl": 5, "club": "RB Leipzig", "league": "Bundesliga"}
+    ],
+    "top_scorer": "Cody Gakpo",
+    "avg_age": 26.8,
+    "avg_rating": 82.0,
+    "squad_value_euros": 720000000,
+    "key_player_form": 8.2,
+    "attack_strength": 0.85,
+    "defense_strength": 0.86,
+    "midfield_strength": 0.84
+  },
+  "Belgium": {
+    "star_players": [
+      {"name": "Kevin De Bruyne", "pos": "MF", "rating": 90, "age": 34, "goals_intl": 28, "club": "Manchester City", "league": "Premier League"},
+      {"name": "Romelu Lukaku", "pos": "FW", "rating": 84, "age": 32, "goals_intl": 71, "club": "Napoli", "league": "Serie A"},
+      {"name": "Jeremy Doku", "pos": "FW", "rating": 84, "age": 23, "goals_intl": 4, "club": "Manchester City", "league": "Premier League"}
+    ],
+    "top_scorer": "Romelu Lukaku",
+    "avg_age": 28.5,
+    "avg_rating": 81.5,
+    "squad_value_euros": 580000000,
+    "key_player_form": 8.0,
+    "attack_strength": 0.82,
+    "defense_strength": 0.80,
+    "midfield_strength": 0.88
+  },
+  "Italy": {
+    "star_players": [
+      {"name": "Nicolò Barella", "pos": "MF", "rating": 87, "age": 28, "goals_intl": 9, "club": "Inter Milan", "league": "Serie A"},
+      {"name": "Federico Chiesa", "pos": "FW", "rating": 84, "age": 27, "goals_intl": 7, "club": "Liverpool", "league": "Premier League"},
+      {"name": "Gianluigi Donnarumma", "pos": "GK", "rating": 89, "age": 26, "goals_intl": 0, "club": "Paris Saint-Germain", "league": "Ligue 1"}
+    ],
+    "top_scorer": "Federico Chiesa",
+    "avg_age": 27.2,
+    "avg_rating": 81.5,
+    "squad_value_euros": 620000000,
+    "key_player_form": 8.0,
+    "attack_strength": 0.80,
+    "defense_strength": 0.88,
+    "midfield_strength": 0.86
+  },
+  "Croatia": {
+    "star_players": [
+      {"name": "Luka Modrić", "pos": "MF", "rating": 86, "age": 40, "goals_intl": 25, "club": "Real Madrid", "league": "La Liga"},
+      {"name": "Mateo Kovačić", "pos": "MF", "rating": 86, "age": 31, "goals_intl": 8, "club": "Manchester City", "league": "Premier League"},
+      {"name": "Andrej Kramarić", "pos": "FW", "rating": 84, "age": 34, "goals_intl": 26, "club": "Hoffenheim", "league": "Bundesliga"}
+    ],
+    "top_scorer": "Andrej Kramarić",
+    "avg_age": 28.5,
+    "avg_rating": 81.0,
+    "squad_value_euros": 380000000,
+    "key_player_form": 7.8,
+    "attack_strength": 0.78,
+    "defense_strength": 0.84,
+    "midfield_strength": 0.88
+  },
+  "Uruguay": {
+    "star_players": [
+      {"name": "Federico Valverde", "pos": "MF", "rating": 88, "age": 27, "goals_intl": 7, "club": "Real Madrid", "league": "La Liga"},
+      {"name": "Darwin Núñez", "pos": "FW", "rating": 86, "age": 27, "goals_intl": 16, "club": "Liverpool", "league": "Premier League"},
+      {"name": "Ronald Araújo", "pos": "DF", "rating": 86, "age": 26, "goals_intl": 4, "club": "Barcelona", "league": "La Liga"}
+    ],
+    "top_scorer": "Darwin Núñez",
+    "avg_age": 27.8,
+    "avg_rating": 81.5,
+    "squad_value_euros": 520000000,
+    "key_player_form": 8.3,
+    "attack_strength": 0.84,
+    "defense_strength": 0.86,
+    "midfield_strength": 0.84
+  },
+  "Mexico": {
+    "star_players": [
+      {"name": "Hirving Lozano", "pos": "FW", "rating": 84, "age": 30, "goals_intl": 18, "club": "San Diego FC", "league": "MLS"},
+      {"name": "Edson Álvarez", "pos": "MF", "rating": 84, "age": 27, "goals_intl": 5, "club": "Fenerbahçe", "league": "Süper Lig"},
+      {"name": "Santiago Giménez", "pos": "FW", "rating": 83, "age": 24, "goals_intl": 6, "club": "AC Milan", "league": "Serie A"}
+    ],
+    "top_scorer": "Hirving Lozano",
+    "avg_age": 27.5,
+    "avg_rating": 79.5,
+    "squad_value_euros": 280000000,
+    "key_player_form": 7.7,
+    "attack_strength": 0.75,
+    "defense_strength": 0.78,
+    "midfield_strength": 0.78
+  },
+  "USA": {
+    "star_players": [
+      {"name": "Christian Pulisic", "pos": "FW", "rating": 86, "age": 27, "goals_intl": 32, "club": "AC Milan", "league": "Serie A"},
+      {"name": "Weston McKennie", "pos": "MF", "rating": 84, "age": 27, "goals_intl": 11, "club": "Juventus", "league": "Serie A"},
+      {"name": "Tyler Adams", "pos": "MF", "rating": 83, "age": 26, "goals_intl": 3, "club": "Bournemouth", "league": "Premier League"}
+    ],
+    "top_scorer": "Christian Pulisic",
+    "avg_age": 25.5,
+    "avg_rating": 80.0,
+    "squad_value_euros": 420000000,
+    "key_player_form": 8.2,
+    "attack_strength": 0.82,
+    "defense_strength": 0.78,
+    "midfield_strength": 0.80
+  },
+  "United States": {
+    "star_players": [
+      {"name": "Christian Pulisic", "pos": "FW", "rating": 86, "age": 27, "goals_intl": 32, "club": "AC Milan", "league": "Serie A"},
+      {"name": "Weston McKennie", "pos": "MF", "rating": 84, "age": 27, "goals_intl": 11, "club": "Juventus", "league": "Serie A"},
+      {"name": "Tyler Adams", "pos": "MF", "rating": 83, "age": 26, "goals_intl": 3, "club": "Bournemouth", "league": "Premier League"}
+    ],
+    "top_scorer": "Christian Pulisic",
+    "avg_age": 25.5,
+    "avg_rating": 80.0,
+    "squad_value_euros": 420000000,
+    "key_player_form": 8.2,
+    "attack_strength": 0.82,
+    "defense_strength": 0.78,
+    "midfield_strength": 0.80
+  },
+  "Japan": {
+    "star_players": [
+      {"name": "Takefusa Kubo", "pos": "FW", "rating": 84, "age": 24, "goals_intl": 9, "club": "Real Sociedad", "league": "La Liga"},
+      {"name": "Kaoru Mitoma", "pos": "FW", "rating": 84, "age": 28, "goals_intl": 8, "club": "Brighton", "league": "Premier League"},
+      {"name": "Wataru Endo", "pos": "MF", "rating": 82, "age": 32, "goals_intl": 4, "club": "Liverpool", "league": "Premier League"}
+    ],
+    "top_scorer": "Takefusa Kubo",
+    "avg_age": 27.0,
+    "avg_rating": 78.5,
+    "squad_value_euros": 250000000,
+    "key_player_form": 7.9,
+    "attack_strength": 0.78,
+    "defense_strength": 0.78,
+    "midfield_strength": 0.78
+  },
+  "South Korea": {
+    "star_players": [
+      {"name": "Son Heung-min", "pos": "FW", "rating": 87, "age": 33, "goals_intl": 51, "club": "LAFC", "league": "MLS"},
+      {"name": "Lee Kang-in", "pos": "MF", "rating": 84, "age": 25, "goals_intl": 8, "club": "Paris Saint-Germain", "league": "Ligue 1"},
+      {"name": "Hwang Hee-chan", "pos": "FW", "rating": 83, "age": 29, "goals_intl": 12, "club": "Wolverhampton", "league": "Premier League"}
+    ],
+    "top_scorer": "Son Heung-min",
+    "avg_age": 27.5,
+    "avg_rating": 78.0,
+    "squad_value_euros": 230000000,
+    "key_player_form": 8.0,
+    "attack_strength": 0.76,
+    "defense_strength": 0.76,
+    "midfield_strength": 0.76
+  },
+  "Australia": {
+    "star_players": [
+      {"name": "Mathew Leckie", "pos": "FW", "rating": 80, "age": 34, "goals_intl": 14, "club": "Melbourne City", "league": "A-League"},
+      {"name": "Aaron Mooy", "pos": "MF", "rating": 79, "age": 34, "goals_intl": 9, "club": "Celtic", "league": "Scottish Premiership"},
+      {"name": "Jackson Irvine", "pos": "MF", "rating": 78, "age": 32, "goals_intl": 7, "club": "St. Pauli", "league": "Bundesliga"}
+    ],
+    "top_scorer": "Mathew Leckie",
+    "avg_age": 27.8,
+    "avg_rating": 76.5,
+    "squad_value_euros": 110000000,
+    "key_player_form": 7.5,
+    "attack_strength": 0.70,
+    "defense_strength": 0.74,
+    "midfield_strength": 0.72
+  },
+  "Morocco": {
+    "star_players": [
+      {"name": "Achraf Hakimi", "pos": "DF", "rating": 86, "age": 27, "goals_intl": 10, "club": "Paris Saint-Germain", "league": "Ligue 1"},
+      {"name": "Yassine Bounou", "pos": "GK", "rating": 85, "age": 34, "goals_intl": 0, "club": "Al-Hilal", "league": "Saudi Pro League"},
+      {"name": "Sofyan Amrabat", "pos": "MF", "rating": 82, "age": 28, "goals_intl": 3, "club": "Fenerbahçe", "league": "Süper Lig"}
+    ],
+    "top_scorer": "Achraf Hakimi",
+    "avg_age": 27.5,
+    "avg_rating": 80.0,
+    "squad_value_euros": 320000000,
+    "key_player_form": 8.3,
+    "attack_strength": 0.78,
+    "defense_strength": 0.85,
+    "midfield_strength": 0.82
+  },
+  "Senegal": {
+    "star_players": [
+      {"name": "Sadio Mané", "pos": "FW", "rating": 86, "age": 33, "goals_intl": 39, "club": "Al-Nassr", "league": "Saudi Pro League"},
+      {"name": "Kalidou Koulibaly", "pos": "DF", "rating": 84, "age": 34, "goals_intl": 6, "club": "Al-Hilal", "league": "Saudi Pro League"},
+      {"name": "Edouard Mendy", "pos": "GK", "rating": 84, "age": 33, "goals_intl": 0, "club": "Al-Ahli", "league": "Saudi Pro League"}
+    ],
+    "top_scorer": "Sadio Mané",
+    "avg_age": 28.0,
+    "avg_rating": 79.5,
+    "squad_value_euros": 290000000,
+    "key_player_form": 8.0,
+    "attack_strength": 0.78,
+    "defense_strength": 0.82,
+    "midfield_strength": 0.78
+  },
+  "Switzerland": {
+    "star_players": [
+      {"name": "Granit Xhaka", "pos": "MF", "rating": 84, "age": 33, "goals_intl": 14, "club": "Bayer Leverkusen", "league": "Bundesliga"},
+      {"name": "Yann Sommer", "pos": "GK", "rating": 86, "age": 36, "goals_intl": 0, "club": "Inter Milan", "league": "Serie A"},
+      {"name": "Breel Embolo", "pos": "FW", "rating": 82, "age": 28, "goals_intl": 14, "club": "AS Monaco", "league": "Ligue 1"}
+    ],
+    "top_scorer": "Breel Embolo",
+    "avg_age": 27.5,
+    "avg_rating": 80.0,
+    "squad_value_euros": 280000000,
+    "key_player_form": 7.8,
+    "attack_strength": 0.78,
+    "defense_strength": 0.84,
+    "midfield_strength": 0.82
+  },
+  "Denmark": {
+    "star_players": [
+      {"name": "Christian Eriksen", "pos": "MF", "rating": 84, "age": 33, "goals_intl": 40, "club": "Manchester United", "league": "Premier League"},
+      {"name": "Rasmus Højlund", "pos": "FW", "rating": 82, "age": 22, "goals_intl": 6, "club": "Manchester United", "league": "Premier League"},
+      {"name": "Andreas Christensen", "pos": "DF", "rating": 82, "age": 29, "goals_intl": 4, "club": "Barcelona", "league": "La Liga"}
+    ],
+    "top_scorer": "Christian Eriksen",
+    "avg_age": 27.0,
+    "avg_rating": 80.5,
+    "squad_value_euros": 320000000,
+    "key_player_form": 7.9,
+    "attack_strength": 0.78,
+    "defense_strength": 0.84,
+    "midfield_strength": 0.82
+  },
+  "Poland": {
+    "star_players": [
+      {"name": "Robert Lewandowski", "pos": "FW", "rating": 88, "age": 37, "goals_intl": 84, "club": "Barcelona", "league": "La Liga"},
+      {"name": "Piotr Zieliński", "pos": "MF", "rating": 84, "age": 31, "goals_intl": 14, "club": "Inter Milan", "league": "Serie A"},
+      {"name": "Wojciech Szczęsny", "pos": "GK", "rating": 84, "age": 35, "goals_intl": 0, "club": "Juventus", "league": "Serie A"}
+    ],
+    "top_scorer": "Robert Lewandowski",
+    "avg_age": 28.0,
+    "avg_rating": 79.5,
+    "squad_value_euros": 260000000,
+    "key_player_form": 7.8,
+    "attack_strength": 0.78,
+    "defense_strength": 0.80,
+    "midfield_strength": 0.78
+  },
+  "Sweden": {
+    "star_players": [
+      {"name": "Alexander Isak", "pos": "FW", "rating": 87, "age": 26, "goals_intl": 18, "club": "Newcastle United", "league": "Premier League"},
+      {"name": "Viktor Gyökeres", "pos": "FW", "rating": 86, "age": 27, "goals_intl": 14, "club": "Sporting CP", "league": "Primeira Liga"},
+      {"name": "Dejan Kulusevski", "pos": "MF", "rating": 84, "age": 25, "goals_intl": 4, "club": "Tottenham Hotspur", "league": "Premier League"}
+    ],
+    "top_scorer": "Alexander Isak",
+    "avg_age": 27.0,
+    "avg_rating": 80.5,
+    "squad_value_euros": 380000000,
+    "key_player_form": 8.4,
+    "attack_strength": 0.85,
+    "defense_strength": 0.80,
+    "midfield_strength": 0.82
+  },
+  "Norway": {
+    "star_players": [
+      {"name": "Erling Haaland", "pos": "FW", "rating": 91, "age": 25, "goals_intl": 38, "club": "Manchester City", "league": "Premier League"},
+      {"name": "Martin Ødegaard", "pos": "MF", "rating": 88, "age": 27, "goals_intl": 12, "club": "Arsenal", "league": "Premier League"},
+      {"name": "Alexander Sørloth", "pos": "FW", "rating": 83, "age": 30, "goals_intl": 22, "club": "Atlético Madrid", "league": "La Liga"}
+    ],
+    "top_scorer": "Erling Haaland",
+    "avg_age": 26.5,
+    "avg_rating": 82.0,
+    "squad_value_euros": 480000000,
+    "key_player_form": 8.7,
+    "attack_strength": 0.92,
+    "defense_strength": 0.78,
+    "midfield_strength": 0.84
+  },
+  "Ecuador": {
+    "star_players": [
+      {"name": "Moisés Caicedo", "pos": "MF", "rating": 85, "age": 24, "goals_intl": 5, "club": "Chelsea", "league": "Premier League"},
+      {"name": "Piero Hincapié", "pos": "DF", "rating": 82, "age": 24, "goals_intl": 2, "club": "Bayer Leverkusen", "league": "Bundesliga"},
+      {"name": "Enner Valencia", "pos": "FW", "rating": 81, "age": 35, "goals_intl": 39, "club": "Internacional", "league": "Brasileirão"}
+    ],
+    "top_scorer": "Enner Valencia",
+    "avg_age": 26.5,
+    "avg_rating": 78.0,
+    "squad_value_euros": 180000000,
+    "key_player_form": 7.5,
+    "attack_strength": 0.74,
+    "defense_strength": 0.78,
+    "midfield_strength": 0.78
+  },
+  "Colombia": {
+    "star_players": [
+      {"name": "Luis Díaz", "pos": "FW", "rating": 86, "age": 28, "goals_intl": 17, "club": "Liverpool", "league": "Premier League"},
+      {"name": "James Rodríguez", "pos": "MF", "rating": 82, "age": 34, "goals_intl": 29, "club": "São Paulo", "league": "Brasileirão"},
+      {"name": "Davinson Sánchez", "pos": "DF", "rating": 81, "age": 29, "goals_intl": 4, "club": "Galatasaray", "league": "Süper Lig"}
+    ],
+    "top_scorer": "Luis Díaz",
+    "avg_age": 27.5,
+    "avg_rating": 80.0,
+    "squad_value_euros": 280000000,
+    "key_player_form": 8.2,
+    "attack_strength": 0.82,
+    "defense_strength": 0.78,
+    "midfield_strength": 0.80
+  },
+  "Iran": {
+    "star_players": [
+      {"name": "Mehdi Taremi", "pos": "FW", "rating": 82, "age": 32, "goals_intl": 50, "club": "Inter Milan", "league": "Serie A"},
+      {"name": "Sardar Azmoun", "pos": "FW", "rating": 80, "age": 30, "goals_intl": 47, "club": "Roma", "league": "Serie A"},
+      {"name": "Alireza Jahanbakhsh", "pos": "FW", "rating": 79, "age": 32, "goals_intl": 17, "club": "Feyenoord", "league": "Eredivisie"}
+    ],
+    "top_scorer": "Mehdi Taremi",
+    "avg_age": 28.0,
+    "avg_rating": 76.5,
+    "squad_value_euros": 85000000,
+    "key_player_form": 7.5,
+    "attack_strength": 0.74,
+    "defense_strength": 0.74,
+    "midfield_strength": 0.72
+  },
+  "Iraq": {
+    "star_players": [
+      {"name": "Mohanad Ali", "pos": "FW", "rating": 76, "age": 24, "goals_intl": 9, "club": "Al-Shorta", "league": "Iraqi Stars League"},
+      {"name": "Ali Adnan", "pos": "DF", "rating": 76, "age": 32, "goals_intl": 8, "club": "Al-Shorta", "league": "Iraqi Stars League"},
+      {"name": "Justin Meram", "pos": "FW", "rating": 74, "age": 35, "goals_intl": 12, "club": "Al-Shorta", "league": "Iraqi Stars League"}
+    ],
+    "top_scorer": "Mohanad Ali",
+    "avg_age": 27.0,
+    "avg_rating": 72.5,
+    "squad_value_euros": 28000000,
+    "key_player_form": 7.0,
+    "attack_strength": 0.62,
+    "defense_strength": 0.68,
+    "midfield_strength": 0.66
+  },
+  "Saudi Arabia": {
+    "star_players": [
+      {"name": "Salem Al-Dawsari", "pos": "FW", "rating": 79, "age": 33, "goals_intl": 23, "club": "Al-Hilal", "league": "Saudi Pro League"},
+      {"name": "Mohammed Al-Owais", "pos": "GK", "rating": 78, "age": 33, "goals_intl": 0, "club": "Al-Hilal", "league": "Saudi Pro League"},
+      {"name": "Firas Al-Buraikan", "pos": "FW", "rating": 76, "age": 25, "goals_intl": 9, "club": "Al-Ahli", "league": "Saudi Pro League"}
+    ],
+    "top_scorer": "Salem Al-Dawsari",
+    "avg_age": 27.5,
+    "avg_rating": 73.5,
+    "squad_value_euros": 45000000,
+    "key_player_form": 7.3,
+    "attack_strength": 0.66,
+    "defense_strength": 0.72,
+    "midfield_strength": 0.70
+  },
+  "Qatar": {
+    "star_players": [
+      {"name": "Almoez Ali", "pos": "FW", "rating": 78, "age": 28, "goals_intl": 25, "club": "Al-Duhail", "league": "Qatar Stars League"},
+      {"name": "Akram Afif", "pos": "FW", "rating": 78, "age": 28, "goals_intl": 22, "club": "Al-Sadd", "league": "Qatar Stars League"},
+      {"name": "Hassan Al-Haydos", "pos": "MF", "rating": 76, "age": 34, "goals_intl": 17, "club": "Al-Sadd", "league": "Qatar Stars League"}
+    ],
+    "top_scorer": "Almoez Ali",
+    "avg_age": 28.0,
+    "avg_rating": 74.5,
+    "squad_value_euros": 50000000,
+    "key_player_form": 7.4,
+    "attack_strength": 0.68,
+    "defense_strength": 0.72,
+    "midfield_strength": 0.72
+  },
+  "Uzbekistan": {
+    "star_players": [
+      {"name": "Eldor Shomurodov", "pos": "FW", "rating": 76, "age": 29, "goals_intl": 14, "club": "Cagliari", "league": "Serie A"},
+      {"name": "Otabek Shukurov", "pos": "MF", "rating": 74, "age": 28, "goals_intl": 3, "club": "Al-Fayha", "league": "Saudi Pro League"},
+      {"name": "Igor Sergeev", "pos": "FW", "rating": 73, "age": 32, "goals_intl": 11, "club": "Pakhtakor", "league": "Uzbek Super League"}
+    ],
+    "top_scorer": "Eldor Shomurodov",
+    "avg_age": 27.0,
+    "avg_rating": 72.0,
+    "squad_value_euros": 25000000,
+    "key_player_form": 7.2,
+    "attack_strength": 0.64,
+    "defense_strength": 0.70,
+    "midfield_strength": 0.68
+  },
+  "Jordan": {
+    "star_players": [
+      {"name": "Musa Al-Tamari", "pos": "FW", "rating": 76, "age": 27, "goals_intl": 13, "club": "Montpellier", "league": "Ligue 1"},
+      {"name": "Yazan Al-Arab", "pos": "FW", "rating": 73, "age": 28, "goals_intl": 7, "club": "Al-Wehdat", "league": "Jordan Pro League"},
+      {"name": "Nizar Al-Rashdan", "pos": "MF", "rating": 72, "age": 26, "goals_intl": 3, "club": "Al-Faisaly", "league": "Jordan Pro League"}
+    ],
+    "top_scorer": "Musa Al-Tamari",
+    "avg_age": 26.5,
+    "avg_rating": 71.0,
+    "squad_value_euros": 18000000,
+    "key_player_form": 7.0,
+    "attack_strength": 0.62,
+    "defense_strength": 0.68,
+    "midfield_strength": 0.66
+  },
+  "Canada": {
+    "star_players": [
+      {"name": "Alphonso Davies", "pos": "DF", "rating": 84, "age": 25, "goals_intl": 15, "club": "Bayern Munich", "league": "Bundesliga"},
+      {"name": "Jonathan David", "pos": "FW", "rating": 83, "age": 25, "goals_intl": 27, "club": "Lille", "league": "Ligue 1"},
+      {"name": "Liam Millar", "pos": "FW", "rating": 76, "age": 26, "goals_intl": 6, "club": "Preston North End", "league": "EFL Championship"}
+    ],
+    "top_scorer": "Jonathan David",
+    "avg_age": 26.5,
+    "avg_rating": 78.0,
+    "squad_value_euros": 200000000,
+    "key_player_form": 7.9,
+    "attack_strength": 0.76,
+    "defense_strength": 0.78,
+    "midfield_strength": 0.76
+  },
+  "Panama": {
+    "star_players": [
+      {"name": "Aníbal Godoy", "pos": "MF", "rating": 74, "age": 34, "goals_intl": 4, "club": "Nashville SC", "league": "MLS"},
+      {"name": "Rolando Blackburn", "pos": "FW", "rating": 73, "age": 30, "goals_intl": 8, "club": "Alajuelense", "league": "Liga FPD"},
+      {"name": "José Fajardo", "pos": "FW", "rating": 71, "age": 31, "goals_intl": 7, "club": "Alajuelense", "league": "Liga FPD"}
+    ],
+    "top_scorer": "Rolando Blackburn",
+    "avg_age": 28.5,
+    "avg_rating": 70.5,
+    "squad_value_euros": 12000000,
+    "key_player_form": 6.8,
+    "attack_strength": 0.58,
+    "defense_strength": 0.66,
+    "midfield_strength": 0.62
+  },
+  "Curaçao": {
+    "star_players": [
+      {"name": "Leandro Bacuna", "pos": "MF", "rating": 73, "age": 33, "goals_intl": 5, "club": "FC Groningen", "league": "Eredivisie"},
+      {"name": "Jarchinio Antonia", "pos": "FW", "rating": 72, "age": 33, "goals_intl": 7, "club": "ADO Den Haag", "league": "Eerste Divisie"},
+      {"name": "Cuco Martina", "pos": "DF", "rating": 71, "age": 35, "goals_intl": 2, "club": "NAC Breda", "league": "Eredivisie"}
+    ],
+    "top_scorer": "Jarchinio Antonia",
+    "avg_age": 28.5,
+    "avg_rating": 69.0,
+    "squad_value_euros": 5000000,
+    "key_player_form": 6.5,
+    "attack_strength": 0.54,
+    "defense_strength": 0.62,
+    "midfield_strength": 0.60
+  },
+  "Haiti": {
+    "star_players": [
+      {"name": "Duckens Nazon", "pos": "FW", "rating": 72, "age": 30, "goals_intl": 14, "club": "Caen", "league": "Ligue 2"},
+      {"name": "Frantzdy Pierrot", "pos": "FW", "rating": 71, "age": 29, "goals_intl": 12, "club": "Maccabi Haifa", "league": "Israeli Premier League"},
+      {"name": "Stephane Lambese", "pos": "DF", "rating": 70, "age": 30, "goals_intl": 1, "club": "USL Dunkerque", "league": "Ligue 2"}
+    ],
+    "top_scorer": "Duckens Nazon",
+    "avg_age": 27.5,
+    "avg_rating": 68.5,
+    "squad_value_euros": 8000000,
+    "key_player_form": 6.5,
+    "attack_strength": 0.54,
+    "defense_strength": 0.60,
+    "midfield_strength": 0.58
+  },
+  "Cape Verde Islands": {
+    "star_players": [
+      {"name": "Ryan Mendes", "pos": "FW", "rating": 73, "age": 34, "goals_intl": 16, "club": "Al-Wehda", "league": "Saudi Pro League"},
+      {"name": "Garry Rodrigues", "pos": "FW", "rating": 72, "age": 34, "goals_intl": 9, "club": "Al-Orobah", "league": "Saudi Pro League"},
+      {"name": "Stopira", "pos": "DF", "rating": 71, "age": 37, "goals_intl": 2, "club": "Feirense", "league": "Primeira Liga"}
+    ],
+    "top_scorer": "Ryan Mendes",
+    "avg_age": 28.0,
+    "avg_rating": 70.0,
+    "squad_value_euros": 12000000,
+    "key_player_form": 6.8,
+    "attack_strength": 0.58,
+    "defense_strength": 0.66,
+    "midfield_strength": 0.62
+  },
+  "Bosnia-Herzegovina": {
+    "star_players": [
+      {"name": "Edin Džeko", "pos": "FW", "rating": 82, "age": 39, "goals_intl": 65, "club": "Fenerbahçe", "league": "Süper Lig"},
+      {"name": "Miralem Pjanić", "pos": "MF", "rating": 81, "age": 34, "goals_intl": 17, "club": "Sharjah", "league": "UAE Pro League"},
+      {"name": "Sejad Salihović", "pos": "MF", "rating": 76, "age": 39, "goals_intl": 9, "club": "Hoffenheim", "league": "Bundesliga"}
+    ],
+    "top_scorer": "Edin Džeko",
+    "avg_age": 28.5,
+    "avg_rating": 76.0,
+    "squad_value_euros": 95000000,
+    "key_player_form": 7.5,
+    "attack_strength": 0.74,
+    "defense_strength": 0.74,
+    "midfield_strength": 0.74
+  },
+  "Ghana": {
+    "star_players": [
+      {"name": "Mohammed Kudus", "pos": "MF", "rating": 83, "age": 24, "goals_intl": 11, "club": "Tottenham Hotspur", "league": "Premier League"},
+      {"name": "Thomas Partey", "pos": "MF", "rating": 82, "age": 32, "goals_intl": 14, "club": "Arsenal", "league": "Premier League"},
+      {"name": "Iñaki Williams", "pos": "FW", "rating": 81, "age": 31, "goals_intl": 5, "club": "Athletic Bilbao", "league": "La Liga"}
+    ],
+    "top_scorer": "Mohammed Kudus",
+    "avg_age": 26.5,
+    "avg_rating": 78.0,
+    "squad_value_euros": 180000000,
+    "key_player_form": 7.9,
+    "attack_strength": 0.78,
+    "defense_strength": 0.74,
+    "midfield_strength": 0.80
+  },
+  "Ivory Coast": {
+    "star_players": [
+      {"name": "Sébastien Haller", "pos": "FW", "rating": 81, "age": 31, "goals_intl": 12, "club": "Borussia Dortmund", "league": "Bundesliga"},
+      {"name": "Franck Kessié", "pos": "MF", "rating": 82, "age": 28, "goals_intl": 9, "club": "Al-Ahli", "league": "Saudi Pro League"},
+      {"name": "Simon Deli", "pos": "DF", "rating": 76, "age": 33, "goals_intl": 2, "club": "Adana Demirspor", "league": "Süper Lig"}
+    ],
+    "top_scorer": "Sébastien Haller",
+    "avg_age": 27.5,
+    "avg_rating": 77.5,
+    "squad_value_euros": 150000000,
+    "key_player_form": 7.7,
+    "attack_strength": 0.76,
+    "defense_strength": 0.76,
+    "midfield_strength": 0.78
+  },
+  "Nigeria": {
+    "star_players": [
+      {"name": "Victor Osimhen", "pos": "FW", "rating": 87, "age": 27, "goals_intl": 22, "club": "Galatasaray", "league": "Süper Lig"},
+      {"name": "Ademola Lookman", "pos": "FW", "rating": 84, "age": 27, "goals_intl": 8, "club": "Atalanta", "league": "Serie A"},
+      {"name": "Wilfred Ndidi", "pos": "MF", "rating": 82, "age": 28, "goals_intl": 7, "club": "Leicester City", "league": "Premier League"}
+    ],
+    "top_scorer": "Victor Osimhen",
+    "avg_age": 26.5,
+    "avg_rating": 79.5,
+    "squad_value_euros": 320000000,
+    "key_player_form": 8.1,
+    "attack_strength": 0.82,
+    "defense_strength": 0.74,
+    "midfield_strength": 0.78
+  },
+  "Egypt": {
+    "star_players": [
+      {"name": "Mohamed Salah", "pos": "FW", "rating": 89, "age": 33, "goals_intl": 56, "club": "Liverpool", "league": "Premier League"},
+      {"name": "Ahmed Hegazi", "pos": "DF", "rating": 78, "age": 34, "goals_intl": 7, "club": "Al-Ittihad", "league": "Saudi Pro League"},
+      {"name": "Mohamed Elneny", "pos": "MF", "rating": 77, "age": 32, "goals_intl": 6, "club": "Arsenal", "league": "Premier League"}
+    ],
+    "top_scorer": "Mohamed Salah",
+    "avg_age": 28.5,
+    "avg_rating": 78.0,
+    "squad_value_euros": 180000000,
+    "key_player_form": 8.2,
+    "attack_strength": 0.78,
+    "defense_strength": 0.76,
+    "midfield_strength": 0.76
+  },
+  "Algeria": {
+    "star_players": [
+      {"name": "Riyad Mahrez", "pos": "FW", "rating": 85, "age": 34, "goals_intl": 35, "club": "Al-Ahli", "league": "Saudi Pro League"},
+      {"name": "Ismaël Bennacer", "pos": "MF", "rating": 82, "age": 27, "goals_intl": 3, "club": "AC Milan", "league": "Serie A"},
+      {"name": "Said Benrahma", "pos": "FW", "rating": 80, "age": 29, "goals_intl": 7, "club": "Lyon", "league": "Ligue 1"}
+    ],
+    "top_scorer": "Riyad Mahrez",
+    "avg_age": 27.5,
+    "avg_rating": 79.0,
+    "squad_value_euros": 210000000,
+    "key_player_form": 7.9,
+    "attack_strength": 0.78,
+    "defense_strength": 0.76,
+    "midfield_strength": 0.78
+  },
+  "Tunisia": {
+    "star_players": [
+      {"name": "Wahbi Khazri", "pos": "FW", "rating": 76, "age": 33, "goals_intl": 24, "club": "Montpellier", "league": "Ligue 1"},
+      {"name": "Youssef Msakni", "pos": "FW", "rating": 75, "age": 34, "goals_intl": 17, "club": "Al-Duhail", "league": "Qatar Stars League"},
+      {"name": "Aymen Mathlouthi", "pos": "GK", "rating": 74, "age": 35, "goals_intl": 0, "club": "Club Africain", "league": "Tunisian Ligue 1"}
+    ],
+    "top_scorer": "Wahbi Khazri",
+    "avg_age": 28.0,
+    "avg_rating": 73.0,
+    "squad_value_euros": 55000000,
+    "key_player_form": 7.2,
+    "attack_strength": 0.66,
+    "defense_strength": 0.72,
+    "midfield_strength": 0.68
+  },
+  "Turkey": {
+    "star_players": [
+      {"name": "Arda Güler", "pos": "MF", "rating": 84, "age": 21, "goals_intl": 6, "club": "Real Madrid", "league": "La Liga"},
+      {"name": "Hakan Çalhanoğlu", "pos": "MF", "rating": 85, "age": 31, "goals_intl": 14, "club": "Inter Milan", "league": "Serie A"},
+      {"name": "Kenan Yıldız", "pos": "FW", "rating": 81, "age": 20, "goals_intl": 5, "club": "Juventus", "league": "Serie A"}
+    ],
+    "top_scorer": "Hakan Çalhanoğlu",
+    "avg_age": 26.0,
+    "avg_rating": 79.0,
+    "squad_value_euros": 280000000,
+    "key_player_form": 8.0,
+    "attack_strength": 0.78,
+    "defense_strength": 0.76,
+    "midfield_strength": 0.80
+  },
+  "Austria": {
+    "star_players": [
+      {"name": "David Alaba", "pos": "DF", "rating": 83, "age": 33, "goals_intl": 15, "club": "Real Madrid", "league": "La Liga"},
+      {"name": "Marko Arnautović", "pos": "FW", "rating": 82, "age": 36, "goals_intl": 33, "club": "Inter Milan", "league": "Serie A"},
+      {"name": "Marcel Sabitzer", "pos": "MF", "rating": 83, "age": 31, "goals_intl": 17, "club": "Borussia Dortmund", "league": "Bundesliga"}
+    ],
+    "top_scorer": "Marko Arnautović",
+    "avg_age": 27.0,
+    "avg_rating": 80.0,
+    "squad_value_euros": 280000000,
+    "key_player_form": 8.0,
+    "attack_strength": 0.78,
+    "defense_strength": 0.80,
+    "midfield_strength": 0.80
+  },
+  "Czechia": {
+    "star_players": [
+      {"name": "Patrik Schick", "pos": "FW", "rating": 82, "age": 30, "goals_intl": 21, "club": "Bayer Leverkusen", "league": "Bundesliga"},
+      {"name": "Tomáš Souček", "pos": "MF", "rating": 82, "age": 30, "goals_intl": 12, "club": "West Ham United", "league": "Premier League"},
+      {"name": "Vladimír Coufal", "pos": "DF", "rating": 78, "age": 33, "goals_intl": 3, "club": "West Ham United", "league": "Premier League"}
+    ],
+    "top_scorer": "Patrik Schick",
+    "avg_age": 27.5,
+    "avg_rating": 77.0,
+    "squad_value_euros": 110000000,
+    "key_player_form": 7.7,
+    "attack_strength": 0.74,
+    "defense_strength": 0.76,
+    "midfield_strength": 0.74
+  },
+  "Scotland": {
+    "star_players": [
+      {"name": "Scott McTominay", "pos": "MF", "rating": 81, "age": 28, "goals_intl": 6, "club": "Manchester United", "league": "Premier League"},
+      {"name": "John McGinn", "pos": "MF", "rating": 80, "age": 30, "goals_intl": 18, "club": "Aston Villa", "league": "Premier League"},
+      {"name": "Andrew Robertson", "pos": "DF", "rating": 82, "age": 31, "goals_intl": 5, "club": "Liverpool", "league": "Premier League"}
+    ],
+    "top_scorer": "John McGinn",
+    "avg_age": 27.5,
+    "avg_rating": 78.0,
+    "squad_value_euros": 200000000,
+    "key_player_form": 7.6,
+    "attack_strength": 0.74,
+    "defense_strength": 0.78,
+    "midfield_strength": 0.78
+  },
+  "Paraguay": {
+    "star_players": [
+      {"name": "Miguel Almirón", "pos": "MF", "rating": 78, "age": 31, "goals_intl": 5, "club": "Newcastle United", "league": "Premier League"},
+      {"name": "Gustavo Gómez", "pos": "DF", "rating": 78, "age": 32, "goals_intl": 4, "club": "Palmeiras", "league": "Brasileirão"},
+      {"name": "Antonio Sanabria", "pos": "FW", "rating": 76, "age": 29, "goals_intl": 6, "club": "Torino", "league": "Serie A"}
+    ],
+    "top_scorer": "Antonio Sanabria",
+    "avg_age": 28.0,
+    "avg_rating": 74.0,
+    "squad_value_euros": 65000000,
+    "key_player_form": 7.3,
+    "attack_strength": 0.68,
+    "defense_strength": 0.74,
+    "midfield_strength": 0.72
+  },
+  "South Africa": {
+    "star_players": [
+      {"name": "Percy Tau", "pos": "FW", "rating": 75, "age": 31, "goals_intl": 9, "club": "Al-Ahly", "league": "Egyptian Premier League"},
+      {"name": "Ronwen Williams", "pos": "GK", "rating": 78, "age": 33, "goals_intl": 0, "club": "Mamelodi Sundowns", "league": "South African Premier Division"},
+      {"name": "Themba Zwane", "pos": "MF", "rating": 73, "age": 32, "goals_intl": 8, "club": "Mamelodi Sundowns", "league": "South African Premier Division"}
+    ],
+    "top_scorer": "Percy Tau",
+    "avg_age": 27.5,
+    "avg_rating": 73.0,
+    "squad_value_euros": 45000000,
+    "key_player_form": 7.2,
+    "attack_strength": 0.66,
+    "defense_strength": 0.72,
+    "midfield_strength": 0.70
+  },
+  "New Zealand": {
+    "star_players": [
+      {"name": "Chris Wood", "pos": "FW", "rating": 76, "age": 33, "goals_intl": 33, "club": "Nottingham Forest", "league": "Premier League"},
+      {"name": "Liberato Cacace", "pos": "DF", "rating": 73, "age": 25, "goals_intl": 1, "club": "Empoli", "league": "Serie A"},
+      {"name": "Joe Bell", "pos": "MF", "rating": 71, "age": 25, "goals_intl": 1, "club": "Brøndby", "league": "Danish Superliga"}
+    ],
+    "top_scorer": "Chris Wood",
+    "avg_age": 27.0,
+    "avg_rating": 70.5,
+    "squad_value_euros": 22000000,
+    "key_player_form": 7.0,
+    "attack_strength": 0.62,
+    "defense_strength": 0.68,
+    "midfield_strength": 0.66
+  },
+  "Congo DR": {
+    "star_players": [
+      {"name": "Cédric Bakambu", "pos": "FW", "rating": 76, "age": 33, "goals_intl": 17, "club": "Galatasaray", "league": "Süper Lig"},
+      {"name": "Yannick Bolasie", "pos": "FW", "rating": 73, "age": 36, "goals_intl": 9, "club": "Cruzeiro", "league": "Brasileirão"},
+      {"name": "Chancel Mbemba", "pos": "DF", "rating": 76, "age": 30, "goals_intl": 9, "club": "Marseille", "league": "Ligue 1"}
+    ],
+    "top_scorer": "Cédric Bakambu",
+    "avg_age": 27.5,
+    "avg_rating": 73.5,
+    "squad_value_euros": 95000000,
+    "key_player_form": 7.3,
+    "attack_strength": 0.70,
+    "defense_strength": 0.72,
+    "midfield_strength": 0.70
+  }
+}
