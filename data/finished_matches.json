@@ -190,5 +190,13 @@
     "actual_result": "A",
     "actual_home_score": 1,
     "actual_away_score": 3
+  },
+  "New Zealand_Egypt_2026-06-22": {
+    "home_team": "New Zealand",
+    "away_team": "Egypt",
+    "date": "2026-06-22",
+    "actual_result": "A",
+    "actual_home_score": 1,
+    "actual_away_score": 3
   }
 }

@@ -1,12 +1,12 @@
 {
-  "current_round": "group_2",
+  "current_round": "group_3",
   "weights": {
-    "稳健派": 3.0,
-    "激进派": 3.0,
-    "价值派": 2.1624,
-    "防守派": 0.613,
-    "数据派": 2.6978,
-    "爆冷派": 0.6471
+    "稳健派": 1.2,
+    "激进派": 1.2,
+    "价值派": 1.2,
+    "防守派": 0.9226,
+    "数据派": 1.2,
+    "爆冷派": 0.9294
   },
   "round_history": {
     "group_1": {
@@ -48,6 +48,48 @@
           "correct": 0,
           "total": 0,
           "accuracy": 0
+        }
+      }
+    },
+    "group_2": {
+      "weights": {
+        "稳健派": 3.0,
+        "激进派": 3.0,
+        "价值派": 2.1624,
+        "防守派": 0.613,
+        "数据派": 2.6978,
+        "爆冷派": 0.6471
+      },
+      "accuracy": {
+        "稳健派": {
+          "correct": 32,
+          "total": 56,
+          "accuracy": 0.5714
+        },
+        "激进派": {
+          "correct": 33,
+          "total": 56,
+          "accuracy": 0.5893
+        },
+        "价值派": {
+          "correct": 33,
+          "total": 56,
+          "accuracy": 0.5893
+        },
+        "防守派": {
+          "correct": 19,
+          "total": 56,
+          "accuracy": 0.3393
+        },
+        "数据派": {
+          "correct": 36,
+          "total": 56,
+          "accuracy": 0.6429
+        },
+        "爆冷派": {
+          "correct": 5,
+          "total": 56,
+          "accuracy": 0.0893
         }
       }
     }
@@ -115,6 +157,38 @@
         "correct": 5,
         "total": 56,
         "accuracy": 0.0893
+      }
+    },
+    "group_3": {
+      "稳健派": {
+        "correct": 0,
+        "total": 0,
+        "accuracy": 0
+      },
+      "激进派": {
+        "correct": 0,
+        "total": 0,
+        "accuracy": 0
+      },
+      "价值派": {
+        "correct": 0,
+        "total": 0,
+        "accuracy": 0
+      },
+      "防守派": {
+        "correct": 0,
+        "total": 0,
+        "accuracy": 0
+      },
+      "数据派": {
+        "correct": 0,
+        "total": 0,
+        "accuracy": 0
+      },
+      "爆冷派": {
+        "correct": 0,
+        "total": 0,
+        "accuracy": 0
       }
     }
   }
