@@ -63,9 +63,9 @@
     "actual_home_score": 2,
     "actual_away_score": 0
   },
-  "Germany_Cura\u00e7ao_2026-06-14": {
+  "Germany_Curaçao_2026-06-14": {
     "home_team": "Germany",
-    "away_team": "Cura\u00e7ao",
+    "away_team": "Curaçao",
     "date": "2026-06-14",
     "actual_result": "H",
     "actual_home_score": 7,
@@ -198,5 +198,13 @@
     "actual_result": "A",
     "actual_home_score": 1,
     "actual_away_score": 3
+  },
+  "Colombia_Congo DR_2026-06-24": {
+    "home_team": "Colombia",
+    "away_team": "Congo DR",
+    "date": "2026-06-24",
+    "actual_result": "H",
+    "actual_home_score": 1,
+    "actual_away_score": 0
   }
 }
