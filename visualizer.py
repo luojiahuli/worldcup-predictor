@@ -6,6 +6,7 @@ import pandas as pd
 import numpy as np
 import os, json, logging, pickle
 from datetime import datetime
+from feature_engineer import compute_positioning_note, _get_group_info
 
 logging.basicConfig(level=logging.INFO, format='[%(asctime)s] %(message)s')
 log = logging.getLogger(__name__)
@@ -93,6 +94,18 @@ def load_all_data():
         with open(r1_path, "r") as f:
             data["round1_review"] = json.load(f)
 
+    # 完整赛程（用于计算淘汰赛落位分析）
+    wc_path = os.path.join(DATA_DIR, "all_wc_matches.pkl")
+    if os.path.exists(wc_path):
+        with open(wc_path, "rb") as f:
+            data["all_wc_matches"] = pickle.load(f)
+
+    # 出线/出局状态
+    qual_path = os.path.join(DATA_DIR, "qualification_status.json")
+    if os.path.exists(qual_path):
+        with open(qual_path, "r") as f:
+            data["qualification"] = json.load(f)
+
     return data
 
 
@@ -168,6 +181,9 @@ def generate_dashboard(data):
     social_trends = data.get("social_trends", {})
     real_odds_data = data.get("real_odds", {})
     real_odds_matches = real_odds_data.get("matches", {}) if real_odds_data else {}
+    all_wc_matches = data.get("all_wc_matches")
+    group_standings = _get_group_info(all_wc_matches) if all_wc_matches is not None and len(all_wc_matches) > 0 else {}
+    qual_data = data.get("qualification", {})
 
     # === 计算指标 ===
     avg_acc = 0
@@ -231,6 +247,13 @@ def generate_dashboard(data):
                 matchday_date_str = f"{matchday_date_str} ~ {last_date}"
 
             # === 预测卡片网格 ===
+            # 预计算小组赛落位分析
+            match_lookup = {}
+            if all_wc_matches is not None:
+                for _, mr in all_wc_matches.iterrows():
+                    h, a = mr.get("Home"), mr.get("Away")
+                    if pd.notna(h) and pd.notna(a):
+                        match_lookup[(h, a)] = mr
             cards = []
             for _, row in md_matches.iterrows():
                 conf = float(row["confidence"])
@@ -245,11 +268,32 @@ def generate_dashboard(data):
                 ph = float(row["pred_H"])
                 pd_ = float(row["pred_D"])
                 pa = float(row["pred_A"])
+                gd = hs - as_
+                if pred_r == "H":
+                    gd_label = f"净胜{gd}球"
+                elif pred_r == "A":
+                    gd_label = f"净胜{abs(gd)}球"
+                else:
+                    gd_label = "平局"
+                # 淘汰赛落位分析
+                pos_note_html = ""
+                m_key = (row["home_team"], row["away_team"])
+                if m_key in match_lookup:
+                    mr = match_lookup[m_key]
+                    if mr.get("比赛日") == 3:
+                        note = compute_positioning_note(row["home_team"], row["away_team"], mr, all_wc_matches, group_standings)
+                        parts = []
+                        if note["home_note"]: parts.append(f"{row['home_team']}: {note['home_note']}")
+                        if note["away_note"]: parts.append(f"{row['away_team']}: {note['away_note']}")
+                        if note["positioning_battle"]: parts.append(note["positioning_battle"])
+                        if parts:
+                            pos_note_html = f'<div class="pc-pos-wrap"><div class="pc-pos-toggle" onclick="togglePos(this)">落位分析 ▶</div><div class="pc-pos">{"；".join(parts)}</div></div>'
                 cards.append(
                     f'<div class="pc">'
                     f'<div class="pc-d">{str(row["date"])[:10]}</div>'
                     f'<div class="pc-t">{row["home_team"]} <span style="color:var(--text3)">vs</span> {row["away_team"]}</div>'
-                    f'<div class="pc-pr" style="color:{color}">{pred_label} {hs}-{as_}<span>置信度{conf*100:.0f}%</span></div>'
+                    f'{pos_note_html}'
+                    f'<div class="pc-pr" style="color:{color}">{pred_label} {gd_label}<span>置信度{conf*100:.0f}%</span></div>'
                     f'<div class="pc-prb">'
                     f'<div class="pc-prb-b"><div class="p" style="color:var(--home)">{ph*100:.0f}%</div><div class="l">主胜</div><div class="o">{oH:.2f}</div></div>'
                     f'<div class="pc-prb-b"><div class="p" style="color:var(--draw)">{pd_*100:.0f}%</div><div class="l">平局</div><div class="o">{oD:.2f}</div></div>'
@@ -297,6 +341,14 @@ def generate_dashboard(data):
                 elif pred_r == "A": kelly = (pred_a * oA - 1) / (oA - 1) if oA > 1 else 0
                 else: kelly = (pred_d * oD - 1) / (oD - 1) if oD > 1 else 0
                 kelly = max(0, kelly)
+                # 淘汰赛落位分析
+                m_key = (home, away)
+                if m_key in match_lookup:
+                    mr = match_lookup[m_key]
+                    if mr.get("比赛日") == 3:
+                        note = compute_positioning_note(home, away, mr, all_wc_matches, group_standings)
+                        if note["positioning_battle"]:
+                            reasons.append(note["positioning_battle"])
                 if kelly > 0.15: bet = f"推荐{row['pred_label']}，仓位10-15%"
                 elif kelly > 0.08: bet = f"可投{row['pred_label']}，仓位5-10%"
                 elif kelly > 0.03: bet = f"小注{row['pred_label']}，仓位3-5%"
@@ -311,12 +363,19 @@ def generate_dashboard(data):
                 if real:
                     rH, rD, rA = real["odds_H"], real["odds_D"], real["odds_A"]
                     odds_display = f"模型{oH:.2f}/{oD:.2f}/{oA:.2f}<br><span style=font-size:9px;color:var(--accent2)>市场{rH:.2f}/{rD:.2f}/{rA:.2f}</span>"
+                gd = hs - as_
+                if pred_r == "H":
+                    gd_sign = f"+{gd}"
+                elif pred_r == "A":
+                    gd_sign = f"{gd}"  # negative already
+                else:
+                    gd_sign = "0"
                 rows_html.append(
                     f'<tr><td>{str(row["date"])[:10]}</td>'
                     f'<td style="font-weight:600">{home}</td>'
                     f'<td style="font-weight:600">{away}</td>'
                     f'<td style="color:{color};font-weight:600">{row["pred_label"]}</td>'
-                    f'<td style="font-weight:600;color:var(--text2)">{hs}-{as_}</td>'
+                    f'<td style="font-weight:600;color:var(--text2)">{gd_sign}</td>'
                     f'<td>{conf*100:.0f}%</td>'
                     f'<td>{odds_display}</td>'
                     f'<td class="reason-cell">{"；".join(reasons)}</td>'
@@ -394,13 +453,15 @@ def generate_dashboard(data):
                     a = agents[agent_name]
                     a_color = AGENT_COLORS.get(agent_name, "#888")
                     is_consensus = "✓" if a.get("result") == consensus_result else ""
+                    gd = a.get("home_score",0) - a.get("away_score",0)
+                    gd_label = f"净胜{abs(gd)}球" if gd != 0 else "平局"
                     agent_rows += (
                         f'<div class="ar" style="border-left-color:{a_color}">'
                         f'<div class="ar-h">'
                         f'<span class="ar-n" style="color:{a_color}">{agent_name}</span>'
                         f'<span class="ar-r" style="color:{RESULT_COLORS.get(a.get("result",""),"#888")}">'
                         f'{RESULT_NAMES.get(a.get("result",""),"")}</span>'
-                        f'<span class="ar-s">{a.get("home_score",0)}-{a.get("away_score",0)}</span>'
+                        f'<span class="ar-s">{gd_label}</span>'
                         f'<span class="ar-c">{a.get("confidence",0)*100:.0f}%</span>'
                         f'{f"<span class=ar-cons>共识</span>" if is_consensus else ""}'
                         f'</div>'
@@ -482,6 +543,9 @@ def generate_dashboard(data):
 
     # === 三轮模型迭代复盘（历史准确率） ===
     rounds_review_section = ""
+    n_total = 0
+    all_pred_rows = ""
+    all_review_rows = ""
     if predictions is not None and finished_count > 0:
         finished = predictions[predictions["is_finished"] == True].sort_values("date").copy()
         n_total = len(finished)
@@ -586,14 +650,6 @@ def generate_dashboard(data):
     </div>
   </div>
 
-  <!-- 比赛明细 -->
-  <div class="cd" style="margin-bottom:0">
-    <div class="cd-h"><span class="cd-h-dot"></span><h2>比赛明细 &amp; 实际赛果</h2><span class="cd-h-b">ALL {n_total} MATCHES</span></div>
-    <div class="tw" style="max-height:400px;overflow-y:auto"><table>
-      <tr><th>日期</th><th>主队</th><th>比分</th><th>客队</th><th>赛果</th></tr>
-      {all_pred_rows}
-    </table></div>
-  </div>
 </div>'''
 
     html = f'''<!DOCTYPE html>
@@ -662,6 +718,11 @@ table,.num{{font-variant-numeric:tabular-nums}}
 .pc-prb-b .p{{font-size:16px;font-weight:600}}
 .pc-prb-b .l{{font-size:9px;color:var(--text3);margin-top:2px}}
 .pc-prb-b .o{{font-size:9px;color:var(--text3);margin-top:2px}}
+.pc-pos-wrap{{margin:2px 0 4px}}
+.pc-pos-toggle{{font-size:10px;color:var(--text3);cursor:pointer;padding:2px 0;user-select:none;transition:color .2s;display:inline-flex;align-items:center;gap:2px}}
+.pc-pos-toggle:hover{{color:var(--accent)}}
+.pc-pos{{font-size:11px;color:var(--draw);padding:4px 10px;margin:4px 0 0;line-height:1.4;background:rgba(245,166,35,.06);border-radius:6px;border-left:2px solid rgba(245,166,35,.25);display:none}}
+.pc-pos.open{{display:block}}
 .pc-cb{{height:4px;background:var(--border);border-radius:3px;overflow:hidden;margin-top:auto}}
 .pc-cb .f{{height:100%;border-radius:3px;transition:width .8s cubic-bezier(.16,1,.3,1)}}
 
@@ -834,6 +895,37 @@ tr:hover td{{background:rgba(255,255,255,.02);color:var(--text)}}
 
 	<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2492910744108706" crossorigin="anonymous"></script>
 
+  <!-- 出线/出局状态 -->
+  <div class="cd" style="margin-bottom:16px">
+    <div class="cd-h"><span class="cd-h-dot" style="background:var(--green)"></span><h2>出线 &amp; 出局球队 · 小组赛第二轮后</h2><span class="cd-h-b">June 24</span></div>
+    <div class="l2" style="gap:12px">
+      <div class="cd" style="margin-bottom:0;border-left:3px solid var(--green)">
+        <div class="cd-h"><h3 style="font-size:13px;color:var(--green)">✅ 已出线 ({len(qual_data.get('qualified',[]))})</h3></div>
+        <div style="padding:8px 10px;display:flex;flex-wrap:wrap;gap:6px">
+          {''.join(f'<span style="padding:3px 8px;background:rgba(34,197,94,.1);border-radius:4px;font-size:12px;font-weight:500">{q["team"]}</span>' for q in qual_data.get('qualified',[]))}
+        </div>
+      </div>
+      <div class="cd" style="margin-bottom:0;border-left:3px solid var(--home)">
+        <div class="cd-h"><h3 style="font-size:13px;color:var(--home)">❌ 已出局 ({len(qual_data.get('eliminated',[]))})</h3></div>
+        <div style="padding:8px 10px;display:flex;flex-wrap:wrap;gap:6px">
+          {''.join(f'<span style="padding:3px 8px;background:rgba(239,68,68,.1);border-radius:4px;font-size:12px;font-weight:500">{e["team"]}</span>' for e in qual_data.get('eliminated',[]))}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 比赛明细 -->
+  <div class="cd" style="margin-bottom:0">
+    <div class="cd-h"><span class="cd-h-dot"></span><h2>比赛明细 &amp; 实际赛果</h2><span class="cd-h-b">ALL {n_total} MATCHES</span></div>
+    <div class="tw" style="max-height:400px;overflow-y:auto"><table>
+      <tr><th>日期</th><th>主队</th><th>比分</th><th>客队</th><th>赛果</th></tr>
+      {all_pred_rows}
+    </table></div>
+  </div>
+
+<script>
+function togglePos(el){{var c=el.nextElementSibling;if(c){{var o=c.classList.contains('open');c.classList.toggle('open');el.textContent=o?'落位分析 ▶':'落位分析 ▼';}}}}
+</script>
 </body>
 </html>'''
 
