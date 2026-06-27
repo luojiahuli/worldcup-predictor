@@ -31,6 +31,27 @@ CORE_FEATURES = [
     "home_top5_ratio", "away_top5_ratio", "top5_diff", "h2h_home_win_rate",
     "dominance_index", "upset_warning_x_value",
     "def_fwd_familiarity", "league_overlap", "same_club_connections",
+    # 动量特征
+    "home_last_result", "away_last_result",
+    "home_last_gf", "away_last_gf", "home_last_ga", "away_last_ga",
+    "home_unbeaten_streak", "away_unbeaten_streak",
+    "home_win_streak", "away_win_streak",
+    "home_rest_days", "away_rest_days", "rest_days_diff",
+    "home_recent_2gf", "away_recent_2gf",
+    "home_recent_2ga", "away_recent_2ga",
+    "recent_gf_diff", "recent_ga_diff",
+    "opponent_strength_diff",
+    # 小组积分 & 淘汰赛落位
+    "home_group_pts", "away_group_pts", "home_group_gd", "away_group_gd",
+    "home_group_pos", "away_group_pos",
+    "home_group_gf", "away_group_gf",
+    "is_final_group_match",
+    "home_positioning_incentive", "away_positioning_incentive",
+    "positioning_incentive_diff",
+    # 赔率时间序列变化
+    "odds_h_volatility", "odds_d_volatility", "odds_a_volatility",
+    "odds_h_trend", "odds_d_trend", "odds_a_trend",
+    "odds_max_swing", "odds_momentum",
 ]
 
 USE_CORE_FEATURES = True  # 是否使用精简核心特征集（开关）
@@ -469,6 +490,14 @@ def run_backtest(feature_df):
 
     models_dict["final"] = final
 
+    # 训练比分回归模型
+    log.info("\n训练比分回归模型...")
+    score_model = train_score_regressor(feature_df)
+    if score_model:
+        models_dict["score_regressor"] = score_model
+        sm = score_model["metrics"]
+        log.info(f"  净胜球准确率={sm['gd_accuracy']*100:.1f}% | ±1球准确率={sm['gd_accuracy_1']*100:.1f}%")
+
     summary = {
         "avg_accuracy": float(avg_en),
         "avg_log_loss": float(avg_en_ll),
@@ -609,8 +638,18 @@ def predict_matches(feature_df):
     results["fair_odds_D"] = 1.0 / np.clip(results["pred_D"], 0.01, 0.99)
     results["fair_odds_A"] = 1.0 / np.clip(results["pred_A"], 0.01, 0.99)
 
-    # 比分预测：优先使用真实赔率 O/U 数据 + Poisson 分布
-    # 后备使用 ELO 期望进球
+    # 比分预测：优先使用回归模型，后备使用 Poisson
+    score_model = pkg["models"].get("score_regressor") if "models" in pkg else None
+    reg_h_scores, reg_a_scores = None, None
+    if score_model:
+        try:
+            reg_h, reg_a = predict_scores_model(feature_df, score_model)
+            reg_h_scores = np.round(reg_h).astype(int)
+            reg_a_scores = np.round(reg_a).astype(int)
+            log.info(f"比分回归模型预测完成")
+        except Exception as e:
+            log.warning(f"比分回归模型预测失败: {e}")
+
     h2h_keys = ["pred_H", "pred_D", "pred_A"]
     has_h2h = all(c in results.columns for c in h2h_keys)
     try:
@@ -619,6 +658,12 @@ def predict_matches(feature_df):
         get_score_prediction = None
     home_scores, away_scores = [], []
     for i, row in results.iterrows():
+        # 回归模型优先级最高
+        if reg_h_scores is not None and i < len(reg_h_scores):
+            home_scores.append(int(reg_h_scores[i]))
+            away_scores.append(int(reg_a_scores[i]))
+            continue
+        # 后备：真实赔率 O/U + Poisson
         h2h = (row["pred_H"], row["pred_D"], row["pred_A"]) if has_h2h else None
         hg, ag, sp, exph, expa = (1, 0, 0, 1.4, 0.8)
         if get_score_prediction is not None:
@@ -627,7 +672,6 @@ def predict_matches(feature_df):
             except:
                 pass
         else:
-            # 后备：用 ELO
             hp = feature_df["home_rank_pts"].iloc[i] if "home_rank_pts" in feature_df.columns else 1500
             ap = feature_df["away_rank_pts"].iloc[i] if "away_rank_pts" in feature_df.columns else 1500
             exp_h, exp_a = exp_goals_from_elo(int(hp), int(ap))
@@ -637,6 +681,24 @@ def predict_matches(feature_df):
         away_scores.append(ag)
     results["pred_home_score"] = home_scores
     results["pred_away_score"] = away_scores
+
+    # 比分与赛果一致性修正：确保预测比分与预测方向一致
+    for i in range(len(results)):
+        pr = results["pred_result"].iloc[i]
+        hs = int(results["pred_home_score"].iloc[i])
+        as_ = int(results["pred_away_score"].iloc[i])
+        if pr == "H" and hs <= as_:
+            hs = max(hs, as_ + 1)  # 客场比分不变，主场至少多1
+            log.debug(f"  比分修正 {results['home_team'].iloc[i]} vs {results['away_team'].iloc[i]}: {results['pred_home_score'].iloc[i]}-{results['pred_away_score'].iloc[i]} → {hs}-{as_}")
+            results.at[i, "pred_home_score"] = hs
+        elif pr == "A" and as_ <= hs:
+            as_ = max(as_, hs + 1)
+            log.debug(f"  比分修正 {results['home_team'].iloc[i]} vs {results['away_team'].iloc[i]}: {results['pred_home_score'].iloc[i]}-{results['pred_away_score'].iloc[i]} → {hs}-{as_}")
+            results.at[i, "pred_away_score"] = as_
+        elif pr == "D" and hs != as_:
+            avg = round((hs + as_) / 2)
+            results.at[i, "pred_home_score"] = avg
+            results.at[i, "pred_away_score"] = avg
 
     # 价值评分
     results["value_score"] = 0.0
@@ -805,6 +867,144 @@ def optimize_hybrid_params(finished_matches, top5_data, rankings_df, param_grid=
         log.info(f"混合参数已保存: {params_path}")
 
     return {"best_params": best_params, "best_score": best_score, "history": history}
+
+
+# ═══════════════════════════════════════════════════════════
+# 比分回归预测模型（预测实际进球数→净胜球）
+# ═══════════════════════════════════════════════════════════
+
+def prepare_score_data(feature_df):
+    """准备比分回归训练数据"""
+    finished = feature_df[feature_df["is_finished"] == True].copy()
+    if len(finished) == 0:
+        return None, None, None, None
+
+    # 使用核心特征
+    feat_cols = [c for c in CORE_FEATURES if c in finished.columns]
+    X = finished[feat_cols].fillna(0)
+    y_home = finished["home_goals"].values.astype(int)
+    y_away = finished["away_goals"].values.astype(int)
+    y_gd = y_home - y_away  # 净胜球
+
+    return X, y_home, y_away, y_gd, feat_cols
+
+
+def train_score_regressor(feature_df):
+    """
+    训练比分回归模型（RF + GB）
+    返回: {model_home, model_away, scaler, feature_cols, metrics}
+    """
+    result = prepare_score_data(feature_df)
+    if result[0] is None:
+        log.warning("无完赛数据，无法训练比分模型")
+        return None
+
+    X, y_home, y_away, y_gd, feat_cols = result
+    from sklearn.model_selection import cross_val_score, KFold
+    from sklearn.preprocessing import StandardScaler
+    from sklearn.ensemble import RandomForestRegressor, GradientBoostingRegressor
+
+    scaler = StandardScaler()
+    X_scaled = scaler.fit_transform(X)
+
+    # RF回归器 - 预测主队进球
+    rf_home = RandomForestRegressor(
+        n_estimators=300, max_depth=8, min_samples_leaf=2,
+        random_state=42, n_jobs=-1
+    )
+    # RF回归器 - 预测客队进球
+    rf_away = RandomForestRegressor(
+        n_estimators=300, max_depth=8, min_samples_leaf=2,
+        random_state=42, n_jobs=-1
+    )
+    # GB回归器 - 预测主队进球
+    gb_home = GradientBoostingRegressor(
+        n_estimators=200, max_depth=4, learning_rate=0.05,
+        random_state=42
+    )
+    # GB回归器 - 预测客队进球
+    gb_away = GradientBoostingRegressor(
+        n_estimators=200, max_depth=4, learning_rate=0.05,
+        random_state=42
+    )
+
+    # 交叉验证评估
+    cv = KFold(n_splits=min(5, len(X) // 3), shuffle=True, random_state=42)
+    for name, model, y in [
+        ("RF_home", rf_home, y_home),
+        ("RF_away", rf_away, y_away),
+        ("GB_home", gb_home, y_home),
+        ("GB_away", gb_away, y_away),
+    ]:
+        try:
+            scores = cross_val_score(model, X_scaled, y, cv=cv, scoring="neg_mean_absolute_error")
+            log.info(f"  {name}: MAE={-scores.mean():.3f} (+-{scores.std():.3f})")
+        except Exception as e:
+            log.warning(f"  {name} CV failed: {e}")
+
+    # 全量训练
+    rf_home.fit(X_scaled, y_home)
+    rf_away.fit(X_scaled, y_away)
+    gb_home.fit(X_scaled, y_home)
+    gb_away.fit(X_scaled, y_away)
+
+    # 训练集评估
+    pred_h_rf = rf_home.predict(X_scaled)
+    pred_a_rf = rf_away.predict(X_scaled)
+    pred_h_gb = gb_home.predict(X_scaled)
+    pred_a_gb = gb_away.predict(X_scaled)
+
+    # 集成：RF + GB 平均
+    pred_h = (pred_h_rf + pred_h_gb) / 2
+    pred_a = (pred_a_rf + pred_a_gb) / 2
+
+    gd_pred = np.round(pred_h - pred_a).astype(int)
+    gd_actual = y_gd
+    gd_acc = (gd_pred == gd_actual).mean()
+    gd_acc1 = (np.abs(gd_pred - gd_actual) <= 1).mean()
+    mae_gd = np.abs(gd_pred - gd_actual).mean()
+
+    log.info(f"\n比分回归模型训练完成:")
+    log.info(f"  净胜球准确率: {gd_acc*100:.1f}%")
+    log.info(f"  净胜球±1球准确率: {gd_acc1*100:.1f}%")
+    log.info(f"  净胜球MAE: {mae_gd:.2f}")
+    log.info(f"  训练样本: {len(X)}")
+
+    return {
+        "rf_home": rf_home,
+        "rf_away": rf_away,
+        "gb_home": gb_home,
+        "gb_away": gb_away,
+        "scaler": scaler,
+        "feature_cols": feat_cols,
+        "metrics": {
+            "gd_accuracy": round(float(gd_acc), 4),
+            "gd_accuracy_1": round(float(gd_acc1), 4),
+            "gd_mae": round(float(mae_gd), 4),
+            "n_train": len(X),
+        }
+    }
+
+
+def predict_scores_model(feature_df, score_model):
+    """使用比分回归模型预测分数"""
+    if score_model is None:
+        return None, None
+
+    feat_cols = score_model["feature_cols"]
+    X = feature_df[feat_cols].fillna(0)
+    X_scaled = score_model["scaler"].transform(X)
+
+    pred_h_rf = score_model["rf_home"].predict(X_scaled)
+    pred_a_rf = score_model["rf_away"].predict(X_scaled)
+    pred_h_gb = score_model["gb_home"].predict(X_scaled)
+    pred_a_gb = score_model["gb_away"].predict(X_scaled)
+
+    # 集成平均
+    pred_h = (pred_h_rf + pred_h_gb) / 2
+    pred_a = (pred_a_rf + pred_a_gb) / 2
+
+    return pred_h, pred_a
 
 
 if __name__ == "__main__":

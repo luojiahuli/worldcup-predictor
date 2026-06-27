@@ -291,6 +291,32 @@ def load_real_odds():
         return _REAL_ODDS_CACHE
     return {}
 
+_ODDS_HISTORY_CACHE = None
+
+
+def _load_odds_history():
+    global _ODDS_HISTORY_CACHE
+    if _ODDS_HISTORY_CACHE is not None:
+        return _ODDS_HISTORY_CACHE
+    path = os.path.join(DATA_DIR, "odds_history.json")
+    if os.path.exists(path):
+        import json
+        with open(path) as f:
+            _ODDS_HISTORY_CACHE = json.load(f)
+        return _ODDS_HISTORY_CACHE
+    return None
+
+
+def _set_odds_movement_defaults(features):
+    features["odds_h_volatility"] = 0.0
+    features["odds_d_volatility"] = 0.0
+    features["odds_a_volatility"] = 0.0
+    features["odds_h_trend"] = 0.0
+    features["odds_d_trend"] = 0.0
+    features["odds_a_trend"] = 0.0
+    features["odds_max_swing"] = 0.0
+    features["odds_momentum"] = 0.0
+
 
 def compute_team_wc_history(all_matches, team, window=2):
     """计算球队在历史世界杯中的数据"""
@@ -385,6 +411,309 @@ def compute_recent_form(all_matches, team, match_date=None, window=5):
         "form_pts": np.mean(pts_list),
         "form_n": n,
         "form_streak": sum(1 for p in pts_list[-3:] if p == 3) / 3 if len(pts_list) >= 3 else 0.33,
+    }
+
+
+# ─── 动量特征辅助函数 ──────────────────────────────────
+
+def _get_team_matches_sorted(all_matches, team, match_date=None):
+    """获取球队已完赛比赛（按日期倒序），返回 [{gf, ga, date}]"""
+    hist = all_matches.copy()
+    if match_date is not None and "Date" in hist.columns:
+        try:
+            cut = pd.to_datetime(match_date)
+            hist = hist[hist["Date"].apply(
+                lambda x: pd.notna(x) and pd.to_datetime(x) < cut if isinstance(x, (datetime, pd.Timestamp, str)) else False
+            )]
+        except:
+            pass
+    team_matches = hist[
+        ((hist["Home"] == team) | (hist["Away"] == team)) &
+        (hist["HomeGoals"] >= 0)
+    ]
+    if "Date" in team_matches.columns:
+        team_matches = team_matches.sort_values("Date", ascending=False)
+    results = []
+    for _, row in team_matches.iterrows():
+        sh, sa = int(row.get("HomeGoals", -1)), int(row.get("AwayGoals", -1))
+        if sh < 0 or sa < 0:
+            continue
+        if row["Home"] == team:
+            results.append({"gf": sh, "ga": sa, "date": row.get("Date", "")})
+        else:
+            results.append({"gf": sa, "ga": sh, "date": row.get("Date", "")})
+    return results
+
+
+def _unbeaten_streak(matches):
+    """计算连续不败场次"""
+    streak = 0
+    for m in matches:
+        if m["gf"] >= m["ga"]:
+            streak += 1
+        else:
+            break
+    return streak
+
+
+def _win_streak(matches):
+    """计算连续胜利场次"""
+    streak = 0
+    for m in matches:
+        if m["gf"] > m["ga"]:
+            streak += 1
+        else:
+            break
+    return streak
+
+
+def _avg_opponent_rank(all_matches, team, match_date, rankings_df):
+    """最近2个对手的平均FIFA排名分"""
+    matches = _get_team_matches_sorted(all_matches, team, match_date)[:2]
+    if not matches:
+        return 1500
+    total_rank = 0
+    n = 0
+    for m in matches:
+        opp = _get_opponent_from_match(all_matches, team, m["date"])
+        if opp:
+            total_rank += get_team_rank_points(opp, rankings_df)
+            n += 1
+    return total_rank / n if n > 0 else 1500
+
+
+def _get_opponent_from_match(all_matches, team, match_date):
+    """从比赛记录中获取对手"""
+    try:
+        date_str = str(match_date)[:10] if match_date else ""
+        for _, row in all_matches.iterrows():
+            rdate = str(row.get("Date", ""))[:10]
+            if rdate == date_str or (match_date and abs((pd.to_datetime(match_date) - pd.to_datetime(rdate)).days) < 2):
+                if row.get("Home") == team:
+                    return row.get("Away")
+                elif row.get("Away") == team:
+                    return row.get("Home")
+    except:
+        pass
+    return None
+
+
+def _rest_days(all_matches, team, match_date):
+    """距离上一场比赛的天数"""
+    if match_date is None:
+        return 4
+    try:
+        current = pd.to_datetime(match_date)
+        prev = _get_team_matches_sorted(all_matches, team, match_date)
+        if len(prev) > 0 and prev[0].get("date"):
+            prev_date = pd.to_datetime(prev[0]["date"])
+            return (current - prev_date).days
+    except:
+        pass
+    return 4  # default
+
+
+# ─── 小组积分榜 & 淘汰赛落位 ─────────────────────────────
+
+# 2026世界杯16强配对分组（相邻两组进入同一半区）
+# A/B配对 → A1vsB2/B1vsA2胜者 在16强相遇
+# C/D、E/F、G/H、I/J、K/L 同理
+_GROUP_PAIRINGS = {
+    "GROUP_A": "GROUP_B", "GROUP_B": "GROUP_A",
+    "GROUP_C": "GROUP_D", "GROUP_D": "GROUP_C",
+    "GROUP_E": "GROUP_F", "GROUP_F": "GROUP_E",
+    "GROUP_G": "GROUP_H", "GROUP_H": "GROUP_G",
+    "GROUP_I": "GROUP_J", "GROUP_J": "GROUP_I",
+    "GROUP_K": "GROUP_L", "GROUP_L": "GROUP_K",
+}
+
+
+def _get_group_info(all_matches):
+    """从已完赛比赛中计算各队当前小组积分榜"""
+    standings = {}
+    for _, row in all_matches.iterrows():
+        group = row.get("group")
+        if pd.isna(group):
+            continue
+        h, a = row["Home"], row["Away"]
+        hg = row.get("HomeGoals")
+        ag = row.get("AwayGoals")
+        if pd.isna(hg) or hg is None or float(hg) < 0:
+            continue
+        hg, ag = int(float(hg)), int(float(ag))
+        for t in [h, a]:
+            if t not in standings:
+                standings[t] = {"pts": 0, "gf": 0, "ga": 0, "gd": 0, "group": group, "played": 0}
+        standings[h]["gf"] += hg; standings[h]["ga"] += ag
+        standings[a]["gf"] += ag; standings[a]["ga"] += hg
+        if hg > ag:
+            standings[h]["pts"] += 3
+        elif hg == ag:
+            standings[h]["pts"] += 1; standings[a]["pts"] += 1
+        else:
+            standings[a]["pts"] += 3
+        standings[h]["played"] += 1; standings[a]["played"] += 1
+
+    # 计算各组内排名
+    group_positions = {}
+    for t, info in standings.items():
+        g = info["group"]
+        if g not in group_positions:
+            group_positions[g] = []
+        group_positions[g].append((t, info["pts"], info["gd"], info["gf"]))
+
+    for g, teams in group_positions.items():
+        teams.sort(key=lambda x: (-x[1], -x[2], -x[3]))
+        for pos, (t, _, _, _) in enumerate(teams, 1):
+            standings[t]["pos"] = pos
+
+    for t in standings:
+        standings[t]["gd"] = standings[t]["gf"] - standings[t]["ga"]
+
+    return standings
+
+
+def _get_team_group(team, all_matches):
+    """查找球队所在小组"""
+    for _, row in all_matches.iterrows():
+        group = row.get("group")
+        if pd.isna(group):
+            continue
+        if row["Home"] == team or row["Away"] == team:
+            return group
+    return None
+
+
+def _get_strongest_team_in_group(group, standings, rankings_df):
+    """找到指定小组中排位最靠前的球队"""
+    group_teams = {t for t, info in standings.items() if info.get("group") == group}
+    if not group_teams:
+        return None
+    return max(group_teams, key=lambda t: get_team_rank_points(t, rankings_df))
+
+
+def _positioning_incentive(match_row, team, standings, all_wc_matches):
+    """
+    计算球队在小组赛最后一轮的淘汰赛落位压力
+    返回 0-3 分数，越高表示落位考虑越重要
+    """
+    group = _get_team_group(team, all_wc_matches)
+    if group is None:
+        return 0
+
+    info = standings.get(team)
+    if info is None:
+        return 0
+
+    pts = info["pts"]
+    pos = info["pos"]
+    played = info.get("played", 0)
+
+    # 只对已经踢了2场的球队计算（小组赛第二轮之后/第三轮之前）
+    if played < 2:
+        return 0
+
+    # 基本压力：出线压力（还需要积分）
+    # 12组每组4队，前2名出线 + 8个最好小组第3
+    if pos <= 2:
+        qual_pressure = 0.5  # 在出线区，但未锁定
+    elif pos == 3:
+        qual_pressure = 2.0  # 小组第3，需要抢分
+    else:
+        qual_pressure = 2.5  # 小组第4，形势危急
+
+    # 小组头名之争：第1和第2积分接近
+    paired = _GROUP_PAIRINGS.get(group)
+    if paired and pos == 1:
+        # 小组第1在32强碰上对面小组第2，16强碰对面第1
+        # 如果对面小组第1非常强，小组第1的落位有一定压力
+        qual_pressure += 0.3  # 锁定头名的额外动力
+    elif paired and pos == 2:
+        # 小组第2可能在32强碰上对面小组第1（更强），也有压力
+        qual_pressure += 0.5  # 争取头名的动力
+
+    return round(min(3.0, qual_pressure), 2)
+
+
+def compute_positioning_note(home_team, away_team, match_row, all_wc_matches, standings=None):
+    """
+    生成小组赛末轮的淘汰赛落位分析文字说明
+    返回 dict: {home_note, away_note, positioning_battle}
+    """
+    if standings is None:
+        standings = _get_group_info(all_wc_matches)
+    matchday = match_row.get("比赛日", 0)
+    if matchday != 3:
+        return {"home_note": "", "away_note": "", "positioning_battle": ""}
+
+    home_info = standings.get(home_team)
+    away_info = standings.get(away_team)
+    if not home_info or not away_info:
+        return {"home_note": "", "away_note": "", "positioning_battle": ""}
+
+    home_pts, home_pos = home_info["pts"], home_info["pos"]
+    away_pts, away_pos = away_info["pts"], away_info["pos"]
+    home_gd, away_gd = home_info["gd"], away_info["gd"]
+    group = _get_team_group(home_team, all_wc_matches)
+
+    notes = {}
+    for team, pts, pos, gd_ in [
+        (home_team, home_pts, home_pos, home_gd),
+        (away_team, away_pts, away_pos, away_gd),
+    ]:
+        note_parts = []
+        # 判定是否已出局（0分 + 垫底 → 数学上已无法出线）
+        is_eliminated = (pts == 0 and pos >= 3) or (pts == 0 and pos == 4)
+        if is_eliminated:
+            note_parts.append(f"暂列第{pos}({pts}分)，已提前出局")
+        else:
+            # 出线形势
+            if pos == 1:
+                if pts >= 6:
+                    note_parts.append("已基本锁定出线")
+                else:
+                    note_parts.append(f"暂列第1({pts}分)，争头名")
+            elif pos == 2:
+                if pts >= 4:
+                    note_parts.append(f"暂列第2({pts}分)，保平争胜")
+                else:
+                    note_parts.append(f"暂列第2({pts}分)，出线不稳")
+            elif pos == 3:
+                note_parts.append(f"暂列第3({pts}分)，背水一战")
+            else:
+                note_parts.append(f"暂列第4({pts}分)，形势危急")
+
+        # 淘汰赛落位
+        if group and pos <= 2:
+            paired = _GROUP_PAIRINGS.get(group)
+            if paired:
+                note_parts.append(f"若出线将进入{paired.replace('GROUP_', '')}组半区")
+
+        notes[team] = "；".join(note_parts)
+
+    # 对决性质（需要已出局判定）
+    h_elim = (home_pts == 0 and home_pos >= 3)
+    a_elim = (away_pts == 0 and away_pos >= 3)
+    battle = ""
+    if h_elim and a_elim:
+        battle = "荣誉之战，双方均已提前出局"
+    elif h_elim:
+        battle = f"{home_team}已提前出局，{away_team}全力争胜"
+    elif a_elim:
+        battle = f"{away_team}已提前出局，{home_team}全力争胜"
+    elif home_pos <= 2 and away_pos <= 2:
+        battle = "出线关键战，双方都输不起"
+    elif home_pos <= 2 and away_pos > 2:
+        battle = f"{home_team}力争晋级，{away_team}为荣誉而战"
+    elif home_pos > 2 and away_pos <= 2:
+        battle = f"{away_team}力争晋级，{home_team}为荣誉而战"
+    else:
+        battle = "荣誉之战，双方都需一场胜利"
+
+    return {
+        "home_note": notes.get(home_team, ""),
+        "away_note": notes.get(away_team, ""),
+        "positioning_battle": battle,
     }
 
 
@@ -585,6 +914,114 @@ def build_match_features(match_row, all_wc_matches, rankings_df):
         features["real_home_implied"] = 0.33
         features["real_draw_implied"] = 0.33
         features["real_away_implied"] = 0.33
+
+    # 5e2. 赔率时间序列变化特征（从 odds_history.json 提取）
+    odds_hist = _load_odds_history()
+    if odds_hist is not None and match_key in odds_hist:
+        movement = odds_hist[match_key].get("movement", [])
+        if len(movement) >= 2:
+            odds_h_vals = [m.get("odds_H", 2.0) for m in movement]
+            odds_d_vals = [m.get("odds_D", 3.0) for m in movement]
+            odds_a_vals = [m.get("odds_A", 3.0) for m in movement]
+            probs_h = [m.get("prob_H", 0.33) for m in movement]
+
+            features["odds_h_volatility"] = float(np.std(odds_h_vals))
+            features["odds_d_volatility"] = float(np.std(odds_d_vals))
+            features["odds_a_volatility"] = float(np.std(odds_a_vals))
+            features["odds_h_trend"] = odds_h_vals[-1] - odds_h_vals[0]
+            features["odds_d_trend"] = odds_d_vals[-1] - odds_d_vals[0]
+            features["odds_a_trend"] = odds_a_vals[-1] - odds_a_vals[0]
+            swings = [abs(odds_h_vals[i+1] - odds_h_vals[i]) for i in range(len(odds_h_vals)-1)]
+            features["odds_max_swing"] = max(swings) if swings else 0.0
+            if len(probs_h) >= 3:
+                features["odds_momentum"] = probs_h[-1] - probs_h[-4]
+            else:
+                features["odds_momentum"] = probs_h[-1] - probs_h[0]
+        else:
+            _set_odds_movement_defaults(features)
+    else:
+        _set_odds_movement_defaults(features)
+
+    # 5f. 动量 + 赛前动态特征
+    h_form = compute_recent_form(all_wc_matches, home, match_date)
+    a_form = compute_recent_form(all_wc_matches, away, match_date)
+    h_matches = _get_team_matches_sorted(all_wc_matches, home, match_date)
+    a_matches = _get_team_matches_sorted(all_wc_matches, away, match_date)
+
+    # 5f1. 最近一场结果与进球
+    if len(h_matches) > 0:
+        last = h_matches[0]
+        features["home_last_gf"] = last["gf"]
+        features["home_last_ga"] = last["ga"]
+        features["home_last_result"] = 1 if last["gf"] > last["ga"] else (0 if last["gf"] == last["ga"] else -1)
+    else:
+        features["home_last_gf"] = 0
+        features["home_last_ga"] = 0
+        features["home_last_result"] = 0
+
+    if len(a_matches) > 0:
+        last = a_matches[0]
+        features["away_last_gf"] = last["gf"]
+        features["away_last_ga"] = last["ga"]
+        features["away_last_result"] = 1 if last["gf"] > last["ga"] else (0 if last["gf"] == last["ga"] else -1)
+    else:
+        features["away_last_gf"] = 0
+        features["away_last_ga"] = 0
+        features["away_last_result"] = 0
+
+    # 5f2. 连续不败/连胜场次
+    features["home_unbeaten_streak"] = _unbeaten_streak(h_matches)
+    features["away_unbeaten_streak"] = _unbeaten_streak(a_matches)
+    features["home_win_streak"] = _win_streak(h_matches)
+    features["away_win_streak"] = _win_streak(a_matches)
+
+    # 5f3. 对手强度调整（最近对手的平均FIFA排名分）
+    features["home_opponent_strength"] = _avg_opponent_rank(all_wc_matches, home, match_date, rankings_df)
+    features["away_opponent_strength"] = _avg_opponent_rank(all_wc_matches, away, match_date, rankings_df)
+    features["opponent_strength_diff"] = features["home_opponent_strength"] - features["away_opponent_strength"]
+
+    # 5f4. 休息天数（距离上一场比赛）
+    features["home_rest_days"] = _rest_days(all_wc_matches, home, match_date)
+    features["away_rest_days"] = _rest_days(all_wc_matches, away, match_date)
+    features["rest_days_diff"] = features["home_rest_days"] - features["away_rest_days"]
+
+    # 5f5. 近期总进球趋势（近2场总进球和）
+    h_total_gf = sum(m["gf"] for m in h_matches[:2])
+    a_total_gf = sum(m["gf"] for m in a_matches[:2])
+    h_total_ga = sum(m["ga"] for m in h_matches[:2])
+    a_total_ga = sum(m["ga"] for m in a_matches[:2])
+    features["home_recent_2gf"] = h_total_gf
+    features["away_recent_2gf"] = a_total_gf
+    features["home_recent_2ga"] = h_total_ga
+    features["away_recent_2ga"] = a_total_ga
+    features["recent_gf_diff"] = h_total_gf - a_total_gf
+    features["recent_ga_diff"] = h_total_ga - a_total_ga
+
+    # 5f7. 淘汰赛落位特征（小组赛最后一轮专用）
+    # 计算当前小组积分榜
+    group_info = _get_group_info(all_wc_matches)
+    h_group_info = group_info.get(home, {})
+    a_group_info = group_info.get(away, {})
+    features["home_group_pts"] = h_group_info.get("pts", 0)
+    features["away_group_pts"] = a_group_info.get("pts", 0)
+    features["home_group_gd"] = h_group_info.get("gd", 0)
+    features["away_group_gd"] = a_group_info.get("gd", 0)
+    features["home_group_pos"] = h_group_info.get("pos", 3)
+    features["away_group_pos"] = a_group_info.get("pos", 3)
+    features["home_group_gf"] = h_group_info.get("gf", 0)
+    features["away_group_gf"] = a_group_info.get("gf", 0)
+
+    # 判断是否为小组赛最后一轮
+    matchday = match_row.get("比赛日", 0)
+    features["is_final_group_match"] = 1 if matchday == 3 else 0
+
+    # 计算淘汰赛落位压力（小组第1vs第2在16强对手差异）
+    # 2026年扩军48队/12组，16强配对应考虑相邻组落位
+    h_incentive = _positioning_incentive(match_row, home, group_info, all_wc_matches)
+    a_incentive = _positioning_incentive(match_row, away, group_info, all_wc_matches)
+    features["home_positioning_incentive"] = h_incentive
+    features["away_positioning_incentive"] = a_incentive
+    features["positioning_incentive_diff"] = h_incentive - a_incentive
 
     # 6. 目标变量
     try:
