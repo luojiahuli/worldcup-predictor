@@ -1,71 +1,475 @@
 {
-  "_updated": "2026-06-24",
-  "_source": "Web search aggregated (CCTV, Vanguard, Herald Scotland, GameReactor)",
-  "_note": "After matchday 2 (June 24, 2026). 48 teams, 12 groups. Top 2 + 8 best 3rd-placed advance to R32.",
+  "_updated": "2026-07-02",
+  "_source": "Web search aggregated (thethaovanhoa.vn, Sky Sports, Yahoo Sports)",
+  "_note": "After all 72 group stage matches (June 28, 2026). 48 teams, 12 groups. Top 2 + 8 best 3rd-placed advance to R32.",
   "qualified": [
-    {"team": "Mexico", "group": "A", "pts": 6, "pos": 1, "note": "2连胜锁定A组第1"},
-    {"team": "United States", "group": "D", "pts": 6, "pos": 1, "note": "2连胜锁定D组第1"},
-    {"team": "Germany", "group": "E", "pts": 6, "pos": 1, "note": "2连胜锁定E组第1"},
-    {"team": "Argentina", "group": "J", "pts": 6, "pos": 1, "note": "2连胜锁定J组第1"},
-    {"team": "France", "group": "I", "pts": 6, "pos": 1, "note": "2连胜提前出线"},
-    {"team": "Norway", "group": "I", "pts": 6, "pos": 2, "note": "2连胜提前出线"},
-    {"team": "Colombia", "group": "K", "pts": 6, "pos": 1, "note": "2连胜锁定K组第1"}
+    {
+      "team": "Mexico",
+      "group": "A",
+      "pts": 9,
+      "pos": 1,
+      "note": "3\u6218\u5168\u80dc\u5c0f\u7ec4\u7b2c1"
+    },
+    {
+      "team": "South Africa",
+      "group": "A",
+      "pts": 4,
+      "pos": 2,
+      "note": "\u5c0f\u7ec4\u7b2c2\u51fa\u7ebf"
+    },
+    {
+      "team": "Switzerland",
+      "group": "B",
+      "pts": 7,
+      "pos": 1,
+      "note": "\u5c0f\u7ec4\u7b2c1\u51fa\u7ebf"
+    },
+    {
+      "team": "Canada",
+      "group": "B",
+      "pts": 4,
+      "pos": 2,
+      "note": "\u5c0f\u7ec4\u7b2c2\u51fa\u7ebf"
+    },
+    {
+      "team": "Bosnia-Herzegovina",
+      "group": "B",
+      "pts": 4,
+      "pos": 3,
+      "note": "\u6210\u7ee9\u6700\u597d\u7684\u5c0f\u7ec4\u7b2c3\u4e4b\u4e00"
+    },
+    {
+      "team": "Brazil",
+      "group": "C",
+      "pts": 7,
+      "pos": 1,
+      "note": "\u5c0f\u7ec4\u7b2c1\u51fa\u7ebf"
+    },
+    {
+      "team": "Morocco",
+      "group": "C",
+      "pts": 7,
+      "pos": 2,
+      "note": "\u5c0f\u7ec4\u7b2c2\u51fa\u7ebf"
+    },
+    {
+      "team": "United States",
+      "group": "D",
+      "pts": 6,
+      "pos": 1,
+      "note": "\u5c0f\u7ec4\u7b2c1\u51fa\u7ebf"
+    },
+    {
+      "team": "Australia",
+      "group": "D",
+      "pts": 4,
+      "pos": 2,
+      "note": "\u5c0f\u7ec4\u7b2c2\u51fa\u7ebf"
+    },
+    {
+      "team": "Paraguay",
+      "group": "D",
+      "pts": 4,
+      "pos": 3,
+      "note": "\u6210\u7ee9\u6700\u597d\u7684\u5c0f\u7ec4\u7b2c3\u4e4b\u4e00"
+    },
+    {
+      "team": "Germany",
+      "group": "E",
+      "pts": 6,
+      "pos": 1,
+      "note": "\u5c0f\u7ec4\u7b2c1\u51fa\u7ebf"
+    },
+    {
+      "team": "Ivory Coast",
+      "group": "E",
+      "pts": 6,
+      "pos": 2,
+      "note": "\u5c0f\u7ec4\u7b2c2\u51fa\u7ebf"
+    },
+    {
+      "team": "Ecuador",
+      "group": "E",
+      "pts": 4,
+      "pos": 3,
+      "note": "\u6210\u7ee9\u6700\u597d\u7684\u5c0f\u7ec4\u7b2c3\u4e4b\u4e00"
+    },
+    {
+      "team": "Netherlands",
+      "group": "F",
+      "pts": 7,
+      "pos": 1,
+      "note": "\u5c0f\u7ec4\u7b2c1\u51fa\u7ebf"
+    },
+    {
+      "team": "Japan",
+      "group": "F",
+      "pts": 5,
+      "pos": 2,
+      "note": "\u5c0f\u7ec4\u7b2c2\u51fa\u7ebf"
+    },
+    {
+      "team": "Sweden",
+      "group": "F",
+      "pts": 4,
+      "pos": 3,
+      "note": "\u6210\u7ee9\u6700\u597d\u7684\u5c0f\u7ec4\u7b2c3\u4e4b\u4e00"
+    },
+    {
+      "team": "Belgium",
+      "group": "G",
+      "pts": 5,
+      "pos": 1,
+      "note": "\u5c0f\u7ec4\u7b2c1\u51fa\u7ebf"
+    },
+    {
+      "team": "Egypt",
+      "group": "G",
+      "pts": 5,
+      "pos": 2,
+      "note": "\u5c0f\u7ec4\u7b2c2\u51fa\u7ebf"
+    },
+    {
+      "team": "Spain",
+      "group": "H",
+      "pts": 7,
+      "pos": 1,
+      "note": "\u5c0f\u7ec4\u7b2c1\u51fa\u7ebf"
+    },
+    {
+      "team": "Cape Verde Islands",
+      "group": "H",
+      "pts": 3,
+      "pos": 2,
+      "note": "\u5c0f\u7ec4\u7b2c2\u51fa\u7ebf"
+    },
+    {
+      "team": "France",
+      "group": "I",
+      "pts": 9,
+      "pos": 1,
+      "note": "3\u6218\u5168\u80dc\u5c0f\u7ec4\u7b2c1"
+    },
+    {
+      "team": "Norway",
+      "group": "I",
+      "pts": 6,
+      "pos": 2,
+      "note": "\u5c0f\u7ec4\u7b2c2\u51fa\u7ebf"
+    },
+    {
+      "team": "Senegal",
+      "group": "I",
+      "pts": 3,
+      "pos": 3,
+      "note": "\u6210\u7ee9\u6700\u597d\u7684\u5c0f\u7ec4\u7b2c3\u4e4b\u4e00"
+    },
+    {
+      "team": "Argentina",
+      "group": "J",
+      "pts": 9,
+      "pos": 1,
+      "note": "3\u6218\u5168\u80dc\u5c0f\u7ec4\u7b2c1"
+    },
+    {
+      "team": "Austria",
+      "group": "J",
+      "pts": 4,
+      "pos": 2,
+      "note": "\u5c0f\u7ec4\u7b2c2\u51fa\u7ebf"
+    },
+    {
+      "team": "Algeria",
+      "group": "J",
+      "pts": 4,
+      "pos": 3,
+      "note": "\u6210\u7ee9\u6700\u597d\u7684\u5c0f\u7ec4\u7b2c3\u4e4b\u4e00"
+    },
+    {
+      "team": "Colombia",
+      "group": "K",
+      "pts": 7,
+      "pos": 1,
+      "note": "\u5c0f\u7ec4\u7b2c1\u51fa\u7ebf"
+    },
+    {
+      "team": "Portugal",
+      "group": "K",
+      "pts": 5,
+      "pos": 2,
+      "note": "\u5c0f\u7ec4\u7b2c2\u51fa\u7ebf"
+    },
+    {
+      "team": "Congo DR",
+      "group": "K",
+      "pts": 4,
+      "pos": 3,
+      "note": "\u6210\u7ee9\u6700\u597d\u7684\u5c0f\u7ec4\u7b2c3\u4e4b\u4e00"
+    },
+    {
+      "team": "England",
+      "group": "L",
+      "pts": 7,
+      "pos": 1,
+      "note": "\u5c0f\u7ec4\u7b2c1\u51fa\u7ebf"
+    },
+    {
+      "team": "Croatia",
+      "group": "L",
+      "pts": 6,
+      "pos": 2,
+      "note": "\u5c0f\u7ec4\u7b2c2\u51fa\u7ebf"
+    },
+    {
+      "team": "Ghana",
+      "group": "L",
+      "pts": 4,
+      "pos": 3,
+      "note": "\u6210\u7ee9\u6700\u597d\u7684\u5c0f\u7ec4\u7b2c3\u4e4b\u4e00"
+    }
   ],
   "eliminated": [
-    {"team": "Haiti", "group": "C", "pts": 0, "pos": 4, "note": "2战0分，提前出局"},
-    {"team": "Turkey", "group": "D", "pts": 0, "pos": 4, "note": "2战0分0进球，提前出局"},
-    {"team": "Tunisia", "group": "F", "pts": 0, "pos": 4, "note": "2战0分净胜球-8，提前出局"},
-    {"team": "Jordan", "group": "J", "pts": 0, "pos": 4, "note": "2战0分，提前出局"},
-    {"team": "Panama", "group": "L", "pts": 0, "pos": 4, "note": "2战0分0进球，提前出局"}
+    {
+      "team": "Czechia",
+      "group": "A",
+      "pts": 1,
+      "pos": 4,
+      "note": "1\u5e732\u8d1f"
+    },
+    {
+      "team": "South Korea",
+      "group": "A",
+      "pts": 3,
+      "pos": 3,
+      "note": "3\u5206\u672a\u8fdb\u524d8\u5c0f\u7ec4\u7b2c3"
+    },
+    {
+      "team": "Qatar",
+      "group": "B",
+      "pts": 1,
+      "pos": 4,
+      "note": "1\u5e732\u8d1f"
+    },
+    {
+      "team": "Scotland",
+      "group": "C",
+      "pts": 3,
+      "pos": 3,
+      "note": "3\u5206\u672a\u8fdb\u524d8\u5c0f\u7ec4\u7b2c3"
+    },
+    {
+      "team": "Haiti",
+      "group": "C",
+      "pts": 0,
+      "pos": 4,
+      "note": "3\u6218\u5168\u8d25"
+    },
+    {
+      "team": "Turkey",
+      "group": "D",
+      "pts": 3,
+      "pos": 4,
+      "note": "3\u5206\u5c0f\u7ec4\u7b2c4"
+    },
+    {
+      "team": "Cura\u00e7ao",
+      "group": "E",
+      "pts": 1,
+      "pos": 4,
+      "note": "1\u5e732\u8d1f"
+    },
+    {
+      "team": "Tunisia",
+      "group": "F",
+      "pts": 0,
+      "pos": 4,
+      "note": "3\u6218\u5168\u8d25"
+    },
+    {
+      "team": "Iran",
+      "group": "G",
+      "pts": 3,
+      "pos": 3,
+      "note": "3\u5e73\u4f46\u672a\u8fdb\u524d8\u5c0f\u7ec4\u7b2c3"
+    },
+    {
+      "team": "New Zealand",
+      "group": "G",
+      "pts": 1,
+      "pos": 4,
+      "note": "1\u5e732\u8d1f"
+    },
+    {
+      "team": "Uruguay",
+      "group": "H",
+      "pts": 2,
+      "pos": 3,
+      "note": "2\u5e731\u8d1f"
+    },
+    {
+      "team": "Saudi Arabia",
+      "group": "H",
+      "pts": 2,
+      "pos": 4,
+      "note": "2\u5e731\u8d1f"
+    },
+    {
+      "team": "Iraq",
+      "group": "I",
+      "pts": 0,
+      "pos": 4,
+      "note": "3\u6218\u5168\u8d25"
+    },
+    {
+      "team": "Jordan",
+      "group": "J",
+      "pts": 0,
+      "pos": 4,
+      "note": "3\u6218\u5168\u8d25"
+    },
+    {
+      "team": "Uzbekistan",
+      "group": "K",
+      "pts": 0,
+      "pos": 4,
+      "note": "3\u6218\u5168\u8d25"
+    },
+    {
+      "team": "Panama",
+      "group": "L",
+      "pts": 0,
+      "pos": 4,
+      "note": "3\u6218\u5168\u8d25"
+    }
   ],
-  "teams": {
-    "Mexico": {"status": "qualified", "group": "A", "pts": 6, "pos": 1, "note": "已锁定小组第1"},
-    "South Korea": {"status": "contending", "group": "A", "pts": 3, "pos": 2},
-    "Czechia": {"status": "contending", "group": "A", "pts": 1, "pos": 3},
-    "South Africa": {"status": "contending", "group": "A", "pts": 1, "pos": 4},
-    "Canada": {"status": "contending", "group": "B", "pts": 4, "pos": 1, "note": "净胜球优势"},
-    "Switzerland": {"status": "contending", "group": "B", "pts": 4, "pos": 2},
-    "Bosnia-Herzegovina": {"status": "contending", "group": "B", "pts": 1, "pos": 3},
-    "Qatar": {"status": "contending", "group": "B", "pts": 1, "pos": 4},
-    "Brazil": {"status": "contending", "group": "C", "pts": 4, "pos": 1},
-    "Morocco": {"status": "contending", "group": "C", "pts": 4, "pos": 2},
-    "Scotland": {"status": "contending", "group": "C", "pts": 3, "pos": 3},
-    "Haiti": {"status": "eliminated", "group": "C", "pts": 0, "pos": 4, "note": "2战0分"},
-    "United States": {"status": "qualified", "group": "D", "pts": 6, "pos": 1, "note": "已锁定小组第1"},
-    "Australia": {"status": "contending", "group": "D", "pts": 3, "pos": 2},
-    "Paraguay": {"status": "contending", "group": "D", "pts": 3, "pos": 3},
-    "Turkey": {"status": "eliminated", "group": "D", "pts": 0, "pos": 4, "note": "2战0分"},
-    "Germany": {"status": "qualified", "group": "E", "pts": 6, "pos": 1, "note": "已锁定小组第1"},
-    "Ivory Coast": {"status": "contending", "group": "E", "pts": 3, "pos": 2},
-    "Ecuador": {"status": "contending", "group": "E", "pts": 1, "pos": 3},
-    "Curaçao": {"status": "contending", "group": "E", "pts": 1, "pos": 4},
-    "Netherlands": {"status": "contending", "group": "F", "pts": 4, "pos": 1},
-    "Japan": {"status": "contending", "group": "F", "pts": 4, "pos": 2},
-    "Sweden": {"status": "contending", "group": "F", "pts": 3, "pos": 3},
-    "Tunisia": {"status": "eliminated", "group": "F", "pts": 0, "pos": 4, "note": "2战0分"},
-    "Egypt": {"status": "contending", "group": "G", "pts": 4, "pos": 1},
-    "Iran": {"status": "contending", "group": "G", "pts": 2, "pos": 2},
-    "Belgium": {"status": "contending", "group": "G", "pts": 2, "pos": 3},
-    "New Zealand": {"status": "contending", "group": "G", "pts": 1, "pos": 4},
-    "Spain": {"status": "contending", "group": "H", "pts": 4, "pos": 1},
-    "Uruguay": {"status": "contending", "group": "H", "pts": 2, "pos": 2},
-    "Cape Verde Islands": {"status": "contending", "group": "H", "pts": 2, "pos": 3},
-    "Saudi Arabia": {"status": "contending", "group": "H", "pts": 1, "pos": 4},
-    "France": {"status": "qualified", "group": "I", "pts": 6, "pos": 1, "note": "已提前出线"},
-    "Norway": {"status": "qualified", "group": "I", "pts": 6, "pos": 2, "note": "已提前出线"},
-    "Senegal": {"status": "contending", "group": "I", "pts": 0, "pos": 3},
-    "Iraq": {"status": "contending", "group": "I", "pts": 0, "pos": 4},
-    "Argentina": {"status": "qualified", "group": "J", "pts": 6, "pos": 1, "note": "已锁定小组第1"},
-    "Austria": {"status": "contending", "group": "J", "pts": 3, "pos": 2},
-    "Algeria": {"status": "contending", "group": "J", "pts": 3, "pos": 3},
-    "Jordan": {"status": "eliminated", "group": "J", "pts": 0, "pos": 4, "note": "2战0分"},
-    "Colombia": {"status": "qualified", "group": "K", "pts": 6, "pos": 1, "note": "已锁定小组第1"},
-    "Portugal": {"status": "contending", "group": "K", "pts": 4, "pos": 2},
-    "Congo DR": {"status": "contending", "group": "K", "pts": 1, "pos": 3},
-    "Uzbekistan": {"status": "contending", "group": "K", "pts": 0, "pos": 4},
-    "England": {"status": "contending", "group": "L", "pts": 4, "pos": 1},
-    "Ghana": {"status": "contending", "group": "L", "pts": 4, "pos": 2},
-    "Croatia": {"status": "contending", "group": "L", "pts": 3, "pos": 3},
-    "Panama": {"status": "eliminated", "group": "L", "pts": 0, "pos": 4, "note": "2战0分"}
-  }
+  "r32_matchups": [
+    {
+      "match": 73,
+      "home": "South Africa",
+      "away": "Canada",
+      "date": "2026-06-28",
+      "venue": "Los Angeles",
+      "result": "0-1"
+    },
+    {
+      "match": 76,
+      "home": "Brazil",
+      "away": "Japan",
+      "date": "2026-06-29",
+      "venue": "Houston",
+      "result": "2-1"
+    },
+    {
+      "match": 74,
+      "home": "Germany",
+      "away": "Paraguay",
+      "date": "2026-06-29",
+      "venue": "Boston",
+      "result": "1-1 (3-4 pens)"
+    },
+    {
+      "match": 75,
+      "home": "Netherlands",
+      "away": "Morocco",
+      "date": "2026-06-30",
+      "venue": "Monterrey",
+      "result": "1-1 (2-3 pens)"
+    },
+    {
+      "match": 78,
+      "home": "Ivory Coast",
+      "away": "Norway",
+      "date": "2026-06-30",
+      "venue": "Dallas",
+      "result": "1-2"
+    },
+    {
+      "match": 77,
+      "home": "France",
+      "away": "Sweden",
+      "date": "2026-06-30",
+      "venue": "New Jersey",
+      "result": "3-0"
+    },
+    {
+      "match": 79,
+      "home": "Mexico",
+      "away": "Ecuador",
+      "date": "2026-07-01",
+      "venue": "Mexico City",
+      "result": "2-0"
+    },
+    {
+      "match": 80,
+      "home": "England",
+      "away": "Congo DR",
+      "date": "2026-07-01",
+      "venue": "Atlanta",
+      "result": "2-1"
+    },
+    {
+      "match": 82,
+      "home": "Belgium",
+      "away": "Senegal",
+      "date": "2026-07-01",
+      "venue": "Seattle",
+      "result": "3-2"
+    },
+    {
+      "match": 81,
+      "home": "United States",
+      "away": "Bosnia-Herzegovina",
+      "date": "2026-07-02",
+      "venue": "San Francisco",
+      "result": "2-0"
+    },
+    {
+      "match": 84,
+      "home": "Spain",
+      "away": "Austria",
+      "date": "2026-07-02",
+      "venue": "Los Angeles",
+      "result": "TBD"
+    },
+    {
+      "match": 83,
+      "home": "Croatia",
+      "away": "Portugal",
+      "date": "2026-07-03",
+      "venue": "Toronto",
+      "result": "TBD"
+    },
+    {
+      "match": 85,
+      "home": "Switzerland",
+      "away": "Algeria",
+      "date": "2026-07-03",
+      "venue": "Vancouver",
+      "result": "TBD"
+    },
+    {
+      "match": 88,
+      "home": "Australia",
+      "away": "Egypt",
+      "date": "2026-07-03",
+      "venue": "Dallas",
+      "result": "TBD"
+    },
+    {
+      "match": 86,
+      "home": "Argentina",
+      "away": "Cape Verde Islands",
+      "date": "2026-07-03",
+      "venue": "Miami",
+      "result": "TBD"
+    },
+    {
+      "match": 87,
+      "home": "Colombia",
+      "away": "Ghana",
+      "date": "2026-07-04",
+      "venue": "Kansas City",
+      "result": "TBD"
+    }
+  ]
 }

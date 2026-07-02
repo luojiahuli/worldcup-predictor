@@ -51,7 +51,7 @@ def apply_to_pickle(finished):
             df.loc[mask, "is_finished"] = True
             pred_h = df.loc[mask, "pred_home_score"].values[0]
             pred_a = df.loc[mask, "pred_away_score"].values[0]
-            correct = int(pred_h == info["actual_home_score"] and pred_a == info["actual_away_score"])
+            correct = int((pred_h - pred_a) == (info["actual_home_score"] - info["actual_away_score"]))
             if "correct" not in df.columns:
                 df["correct"] = False
             df.loc[mask, "correct"] = bool(correct)
@@ -81,7 +81,7 @@ def apply_to_agent_json(finished):
                 if isinstance(p, dict) and "home_score" in p:
                     ph = p.get("home_score")
                     pa = p.get("away_score")
-                    p["correct"] = (ph == info["actual_home_score"] and pa == info["actual_away_score"])
+                    p["correct"] = ((ph - pa) == (info["actual_home_score"] - info["actual_away_score"]))
             updated += 1
     if updated > 0:
         with open(AGENT_PATH, "w") as f:

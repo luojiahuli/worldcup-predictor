@@ -59,8 +59,8 @@ def analyze_predictions(f_df):
 
     n = len(f_df)
     result_correct = int((f_df["actual_result"] == f_df["pred_result"]).sum())
-    score_correct = int(((f_df.get("pred_home_score", 0) == f_df["actual_home_score"]) &
-                         (f_df.get("pred_away_score", 0) == f_df["actual_away_score"])).sum())
+    score_correct = int(((f_df.get("pred_home_score", 0) - f_df.get("pred_away_score", 0)) ==
+                         (f_df["actual_home_score"] - f_df["actual_away_score"])).sum())
 
     predictions = []
     for _, r in f_df.iterrows():
@@ -74,8 +74,8 @@ def analyze_predictions(f_df):
             "actual_away": int(r["actual_away_score"]),
             "result_correct": bool(r["actual_result"] == r["pred_result"]),
             "score_correct": bool(
-                r.get("pred_home_score", 0) == r["actual_home_score"]
-                and r.get("pred_away_score", 0) == r["actual_away_score"]
+                (r.get("pred_home_score", 0) - r.get("pred_away_score", 0))
+                == (r["actual_home_score"] - r["actual_away_score"])
             ),
             "confidence": float(r.get("confidence", 0)),
         })

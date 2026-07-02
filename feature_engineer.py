@@ -174,6 +174,18 @@ def get_player_db_features(team, player_db):
     else:
         top_rating, avg_top3, total_goals = 75, 75, 0
 
+    # 顶级射手特征：找前锋(FW)位置中评分最高的
+    fw_players = [p for p in star_players if p.get("pos") == "FW"] if star_players else []
+    if fw_players:
+        fw_ratings = [p.get("rating", 75) for p in fw_players]
+        top_striker_rating = max(fw_ratings)
+        top_striker_goals = max((p.get("goals_intl", 0) for p in fw_players), default=0)
+        elite_striker_flag = 1.0 if top_striker_rating >= 88 else 0.0
+    else:
+        top_striker_rating = 75.0
+        top_striker_goals = 0
+        elite_striker_flag = 0.0
+
     return {
         "top_player_rating": top_rating,
         "top3_avg_rating": avg_top3,
@@ -185,6 +197,9 @@ def get_player_db_features(team, player_db):
         "attack_strength": info.get("attack_strength", 0.65),
         "defense_strength": info.get("defense_strength", 0.65),
         "midfield_strength": info.get("midfield_strength", 0.65),
+        "top_striker_rating": top_striker_rating,
+        "top_striker_goals": top_striker_goals,
+        "elite_striker_flag": elite_striker_flag,
     }
 
 
@@ -465,6 +480,72 @@ def _win_streak(matches):
         else:
             break
     return streak
+
+
+def _team_defensive_metrics(matches):
+    """从球队比赛列表中计算防守稳健性指标"""
+    n = len(matches)
+    if n == 0:
+        return {"clean_sheet_rate": 0.15, "avg_conceded": 1.5, "draw_rate": 0.2}
+    ga_list = [m["ga"] for m in matches]
+    gf_list = [m["gf"] for m in matches]
+    clean_sheets = sum(1 for ga in ga_list if ga == 0)
+    draws = sum(1 for i in range(len(gf_list)) if gf_list[i] == ga_list[i])
+    return {
+        "clean_sheet_rate": clean_sheets / n,
+        "avg_conceded": np.mean(ga_list),
+        "draw_rate": draws / n,
+    }
+
+
+def _team_wc_experience(all_matches, team):
+    """计算球队世界杯历史经验（总场次、总参赛次数）"""
+    team_games = all_matches[
+        ((all_matches["Home"] == team) | (all_matches["Away"] == team)) &
+        (all_matches["HomeGoals"] >= 0)
+    ]
+    n_matches = len(team_games)
+    if n_matches == 0:
+        return {"wc_experience_matches": 1, "wc_experience_tournaments": 0}
+    seasons = team_games["赛季"].unique() if "赛季" in team_games.columns else []
+    n_tournaments = len([s for s in seasons if s != "2026"])  # exclude current
+    return {"wc_experience_matches": min(n_matches, 30), "wc_experience_tournaments": n_tournaments}
+
+
+def _is_neutral_site(match_row, home):
+    """判断是否为中立场地比赛（非主队主场）"""
+    # 如果有明确的 neutral 列，直接使用
+    neutral = match_row.get("neutral", None)
+    if pd.notna(neutral):
+        return 1 if neutral else 0
+    # 检查比赛阶段：世界杯 knockouts / group 在非主队国家基本都是中立
+    stage = str(match_row.get("stage", "")).upper()
+    if "FRIENDLY" in stage or "QUALIFICATION" in stage:
+        return 0  # 友谊赛/预选赛通常分主客场
+    # 世界杯正赛阶段，除了东道主的比赛，都是中立场地
+    # 简化处理：淘汰赛全是中立，小组赛中非东道主比赛是中立
+    # 这里保守返回 1（中立），模型自行学习权重
+    return 1
+
+
+def _team_neutral_draw_rate(all_matches, team):
+    """在世界杯正赛中该队的中立场平局率"""
+    neutral_matches = all_matches[
+        ((all_matches["Home"] == team) | (all_matches["Away"] == team)) &
+        (all_matches["HomeGoals"] >= 0)
+    ]
+    if len(neutral_matches) == 0:
+        return 0.2
+    draws = 0
+    total = 0
+    for _, r in neutral_matches.iterrows():
+        hg, ag = int(r["HomeGoals"]), int(r["AwayGoals"])
+        is_neutral = True  # World Cup matches are neutral
+        if is_neutral:
+            total += 1
+            if hg == ag:
+                draws += 1
+    return draws / max(total, 1)
 
 
 def _avg_opponent_rank(all_matches, team, match_date, rankings_df):
@@ -860,6 +941,10 @@ def build_match_features(match_row, all_wc_matches, rankings_df):
     features["key_form_diff"] = home_pdb["key_player_form"] - away_pdb["key_player_form"]
     features["avg_age_diff"] = home_pdb["avg_age"] - away_pdb["avg_age"]
     features["avg_rating_diff"] = home_pdb["avg_rating"] - away_pdb["avg_rating"]
+    features["top_striker_diff"] = home_pdb["top_striker_rating"] - away_pdb["top_striker_rating"]
+    features["top_striker_goals_diff"] = home_pdb["top_striker_goals"] - away_pdb["top_striker_goals"]
+    features["elite_striker_home"] = home_pdb["elite_striker_flag"]
+    features["elite_striker_away"] = away_pdb["elite_striker_flag"]
 
     # 5d-quinquies. 关键比赛因子（基于实际比赛分析得出）
     rank_diff = features.get("rank_diff", 0)
@@ -979,6 +1064,49 @@ def build_match_features(match_row, all_wc_matches, rankings_df):
     features["home_opponent_strength"] = _avg_opponent_rank(all_wc_matches, home, match_date, rankings_df)
     features["away_opponent_strength"] = _avg_opponent_rank(all_wc_matches, away, match_date, rankings_df)
     features["opponent_strength_diff"] = features["home_opponent_strength"] - features["away_opponent_strength"]
+
+    # 5f3b. 防守稳健性指标（针对爆冷/平局校准）
+    h_def = _team_defensive_metrics(h_matches)
+    a_def = _team_defensive_metrics(a_matches)
+    features["home_clean_sheet_rate"] = h_def["clean_sheet_rate"]
+    features["away_clean_sheet_rate"] = a_def["clean_sheet_rate"]
+    features["home_avg_conceded"] = h_def["avg_conceded"]
+    features["away_avg_conceded"] = a_def["avg_conceded"]
+    features["home_draw_rate"] = h_def["draw_rate"]
+    features["away_draw_rate"] = a_def["draw_rate"]
+    features["clean_sheet_diff"] = h_def["clean_sheet_rate"] - a_def["clean_sheet_rate"]
+    features["draw_rate_diff"] = h_def["draw_rate"] - a_def["draw_rate"]
+
+    # 5f3c. 世界杯经验特征
+    h_exp = _team_wc_experience(all_wc_matches, home)
+    a_exp = _team_wc_experience(all_wc_matches, away)
+    features["home_wc_exp_matches"] = h_exp["wc_experience_matches"]
+    features["away_wc_exp_matches"] = a_exp["wc_experience_matches"]
+    features["home_wc_exp_tournaments"] = h_exp["wc_experience_tournaments"]
+    features["away_wc_exp_tournaments"] = a_exp["wc_experience_tournaments"]
+    features["wc_exp_diff"] = h_exp["wc_experience_matches"] - a_exp["wc_experience_matches"]
+
+    # 5f3d. 中立场地感知（世界杯比赛基本上都是中立场）
+    is_neutral = _is_neutral_site(match_row, home)
+    features["is_neutral_site"] = is_neutral
+    # 中立场时，"away"队伍没有真正的客场劣势，修正 away 优势
+    # 通过 rank_diff 与中立场交互实现
+    features["neutral_rank_interaction"] = is_neutral * features.get("rank_diff", 0) / 100.0
+
+    # 5f3e. 防守弱旅标识：弱队（低排名）+ 高clean sheet率 → 大巴队倾向平局
+    rank_gap = abs(features.get("rank_diff", 0))
+    home_is_underdog = features.get("rank_diff", 0) < -50  # home is much weaker
+    away_is_underdog = features.get("rank_diff", 0) > 50   # away is much weaker
+    home_park_bus = 1 if home_is_underdog and h_def["clean_sheet_rate"] > 0.25 else 0
+    away_park_bus = 1 if away_is_underdog and a_def["clean_sheet_rate"] > 0.25 else 0
+    features["home_park_bus_flag"] = home_park_bus
+    features["away_park_bus_flag"] = away_park_bus
+    # 当防守弱旅面对强队，draw probability should increase
+    features["park_bus_draw_boost"] = (home_park_bus + away_park_bus) * min(rank_gap / 200.0, 1.0)
+
+    # 5f3f. 中立场平局率（历史世界杯数据）
+    features["home_neutral_draw_rate"] = _team_neutral_draw_rate(all_wc_matches, home)
+    features["away_neutral_draw_rate"] = _team_neutral_draw_rate(all_wc_matches, away)
 
     # 5f4. 休息天数（距离上一场比赛）
     features["home_rest_days"] = _rest_days(all_wc_matches, home, match_date)

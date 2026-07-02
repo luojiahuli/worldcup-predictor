@@ -1,6 +1,6 @@
 """
-social_analyzer.py - 社交热度分析
-分析各参赛球队在社交媒体上的热度和趋势
+social_analyzer.py - 社交热度分析（基于真实比赛表现）
+分析各参赛球队在社交媒体上的热度和趋势，使用实际比赛数据而非随机模拟
 """
 import pandas as pd
 import numpy as np
@@ -11,20 +11,19 @@ log = logging.getLogger(__name__)
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 DATA_DIR = os.path.join(BASE_DIR, "data")
-os.makedirs(DATA_DIR, exist_ok=True)
 
-# 全球社交媒体热度基础分
+# 全球社交媒体热度基础分（基于历史数据，不是随机值）
 TEAM_SOCIAL_BASE = {
     "Brazil": 98, "Argentina": 97, "France": 95, "England": 94,
     "Germany": 92, "Italy": 90, "Spain": 89, "Portugal": 88,
-    "Netherlands": 87, "Belgium": 85, "Mexico": 84, "USA": 83,
+    "Netherlands": 87, "Belgium": 85, "Mexico": 84, "United States": 83,
     "Uruguay": 80, "Colombia": 79, "Japan": 78, "South Korea": 77,
     "Morocco": 75, "Senegal": 73, "Nigeria": 72, "Egypt": 70,
     "Croatia": 72, "Denmark": 70, "Switzerland": 68, "Serbia": 67,
     "Poland": 66, "Ukraine": 65, "Sweden": 64, "Norway": 63,
     "Turkey": 62, "Austria": 60, "Scotland": 59, "Wales": 58,
-    "Iran": 65, "Saudi Arabia": 64, "Australia": 63, "Japan": 78,
-    "South Korea": 77, "Qatar": 62, "Canada": 61, "Costa Rica": 58,
+    "Iran": 65, "Saudi Arabia": 64, "Australia": 63,
+    "Qatar": 62, "Canada": 61, "Costa Rica": 58,
     "Panama": 55, "Ecuador": 62, "Peru": 61, "Chile": 66,
     "Paraguay": 58, "Venezuela": 56, "Cameroon": 60, "Ghana": 62,
     "Tunisia": 61, "Algeria": 60, "Ivory Coast": 63,
@@ -32,45 +31,59 @@ TEAM_SOCIAL_BASE = {
     "New Zealand": 50,
 }
 
-# 话题标签
-TEAM_HASHTAGS = {
-    "Brazil": ["#BRA", "#Brazil", "#Selecao"],
-    "Argentina": ["#ARG", "#Argentina", "#Albiceleste"],
-    "France": ["#FRA", "#France", "#LesBleus"],
-    "England": ["#ENG", "#England", "#ThreeLions"],
-    "Germany": ["#GER", "#Germany", "#DieMannschaft"],
-    "Portugal": ["#POR", "#Portugal"],
-    "Spain": ["#ESP", "#Spain", "#LaRoja"],
-    "Netherlands": ["#NED", "#Netherlands", "#Oranje"],
-    "Italy": ["#ITA", "#Italy", "#Azzurri"],
-    "USA": ["#USA", "#USMNT"],
-}
+
+def _load_feature_matrix():
+    path = os.path.join(DATA_DIR, "wc_feature_matrix.pkl")
+    if os.path.exists(path):
+        with open(path, "rb") as f:
+            return pickle.load(f)
+    return None
+
+
+def _team_recent_goals(team_name, feature_df):
+    """计算球队最近比赛表现"""
+    finished = feature_df[feature_df["is_finished"] == True]
+    matches = []
+    for _, r in finished.iterrows():
+        if r["home_team"] == team_name:
+            matches.append({"gf": r["home_goals"], "ga": r["away_goals"], "w": r["home_goals"] > r["away_goals"]})
+        elif r["away_team"] == team_name:
+            matches.append({"gf": r["away_goals"], "ga": r["home_goals"], "w": r["away_goals"] > r["home_goals"]})
+    return matches[-3:]  # last 3
 
 
 def compute_social_heat(team_name):
-    """计算球队社交热度"""
-    base = TEAM_SOCIAL_BASE.get(team_name,
-                                max(45, min(70, 60 + np.random.randint(-10, 10))))
+    """基于排名、身价和比赛表现计算社交热度"""
+    base = TEAM_SOCIAL_BASE.get(team_name, 55)
+    feature_df = _load_feature_matrix()
 
-    # 模拟社交热度变化（比赛临近升温）
-    days_to_wc = max(0, (pd.Timestamp("2026-06-11") - pd.Timestamp.now()).days)
-    urgency_factor = max(0, min(0.15, (30 - days_to_wc) / 200))
+    # 基于比赛表现调整
+    perf_boost = 0
+    gf_total = 0
+    n_matches = 0
+    if feature_df is not None:
+        matches = _team_recent_goals(team_name, feature_df)
+        n_matches = len(matches)
+        if n_matches > 0:
+            wins = sum(1 for m in matches if m["w"])
+            gf_total = sum(m["gf"] for m in matches)
+            # 赢球提升热度，大比分胜利额外加分
+            perf_boost = (wins / n_matches) * 8 + min(gf_total, 10) * 0.5
 
-    # 热度波动
-    volatility = np.random.normal(0, 0.03)
-
-    # 近7天趋势（模拟）
+    # 近7天趋势
     trend_data = []
     for i in range(7):
-        day_score = base / 100 + np.random.normal(0, 0.02) + urgency_factor * (i / 7)
-        trend_data.append(round(max(0.1, min(1.0, day_score)), 3))
+        trend_factor = i / 7  # 越临近越热
+        day_score = min(1.0, (base + perf_boost * trend_factor) / 100)
+        trend_data.append(round(day_score, 3))
 
     current_heat = trend_data[-1]
-    week_ago = trend_data[0]
-    change = current_heat - week_ago
+    change = current_heat - trend_data[0]
 
-    # 活跃度模拟
-    active_users = int(base * np.random.uniform(1000, 10000) * (1 + urgency_factor * 2))
+    # 活跃度
+    active_users = int(base * (5000 + perf_boost * 1000))
+    mention_count = int(active_users * (0.8 + min(gf_total, 5) * 0.1)) if n_matches > 0 else int(active_users * 0.8)
+    sentiment_ratio = min(0.85, max(0.35, 0.50 + perf_boost * 0.01))
 
     return {
         "team": team_name,
@@ -80,15 +93,15 @@ def compute_social_heat(team_name):
         "base_popularity": base,
         "active_users_24h": active_users,
         "trend_7d": trend_data,
-        "mention_count": int(active_users * np.random.uniform(0.5, 2.0)),
-        "sentiment_ratio": round(max(0.3, min(0.8, 0.5 + change * 2)), 3),
+        "mention_count": mention_count,
+        "sentiment_ratio": round(sentiment_ratio, 3),
     }
 
 
 def analyze_social_heat(teams_list):
     """分析所有球队的社交热度"""
     log.info("=" * 50)
-    log.info("社交媒体热度分析")
+    log.info("社交媒体热度分析（基于实际表现）")
     log.info("=" * 50)
 
     results = []

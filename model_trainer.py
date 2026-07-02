@@ -52,6 +52,21 @@ CORE_FEATURES = [
     "odds_h_volatility", "odds_d_volatility", "odds_a_volatility",
     "odds_h_trend", "odds_d_trend", "odds_a_trend",
     "odds_max_swing", "odds_momentum",
+    # 顶级射手特征
+    "top_striker_diff", "top_striker_goals_diff",
+    "elite_striker_home", "elite_striker_away",
+    # 防守稳健性（平局/爆冷校准）
+    "home_clean_sheet_rate", "away_clean_sheet_rate",
+    "home_avg_conceded", "away_avg_conceded",
+    "clean_sheet_diff", "home_draw_rate", "away_draw_rate",
+    # 世界杯经验
+    "home_wc_exp_matches", "away_wc_exp_matches",
+    "home_wc_exp_tournaments", "away_wc_exp_tournaments",
+    "wc_exp_diff",
+    # 中立场校准
+    "is_neutral_site", "neutral_rank_interaction",
+    "park_bus_draw_boost",
+    "home_neutral_draw_rate", "away_neutral_draw_rate",
 ]
 
 USE_CORE_FEATURES = True  # 是否使用精简核心特征集（开关）
@@ -625,8 +640,9 @@ def predict_matches(feature_df):
     for i in range(len(results)):
         probs = ensemble_prob[i]
         sorted_p = sorted(probs, reverse=True)
-        # 只有在前两名差异极小且平局概率本身足够高时才标平局
-        if sorted_p[0] - sorted_p[1] < 0.02 and probs[1] > 0.30:
+        # 只有在前两名差异极小且平局概率在前2时才标平局
+        draw_in_top2 = int(np.argmax(probs)) == 1 or int(np.argsort(probs)[-2]) == 1
+        if sorted_p[0] - sorted_p[1] < 0.03 and draw_in_top2:
             smart_labels.append("D")
         else:
             smart_labels.append(RESULT_INV[ensemble_pred[i]])

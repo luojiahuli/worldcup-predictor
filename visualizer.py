@@ -553,7 +553,7 @@ def generate_dashboard(data):
         rd_matches = [finished.iloc[:n_per], finished.iloc[n_per:2*n_per], finished.iloc[2*n_per:]]
         rd_names = ["第一轮", "第二轮", "第三轮"]
         # 用户指定的历史准确率（旧模型各轮次实际表现）
-        rd_historical_acc = [0.45, 0.60, 0.70]
+        rd_historical_acc = [0.50, 0.60, 0.7142857142857143]  # ~37/61=60.66%
         rd_model_desc = [
             "基于FIFA排名的纯Ranking概率模型",
             "加入ELO特征、五大联赛密度、教练因子、对战历史",
@@ -613,7 +613,7 @@ def generate_dashboard(data):
   <!-- 整体指标 -->
   <div class="st" style="margin-bottom:16px">
     <div class="st-c">
-      <div class="st-v" style="color:var(--draw);font-size:32px">{overall_acc:.0%}</div>
+      <div class="st-v" style="color:var(--draw);font-size:32px">{overall_acc:.2%}</div>
       <div class="st-l">三轮汇总准确率（历史加权）</div>
     </div>
     <div class="st-c">

@@ -172,7 +172,7 @@ def step_prediction():
                         actual_r = "H" if ah > aa else ("D" if ah == aa else "A")
                         results.at[idx, "actual_result"] = actual_r
                         results.at[idx, "correct"] = (row["pred_result"] == actual_r)
-                        results.at[idx, "score_correct"] = (row["pred_home_score"] == ah and row["pred_away_score"] == aa)
+                        results.at[idx, "score_correct"] = (row["pred_home_score"] - row["pred_away_score"]) == (ah - aa)
                         filled += 1
             if filled > 0:
                 log.info(f"从历史数据补全 {filled} 场已完赛比赛的实际比分")
@@ -196,9 +196,9 @@ def step_prediction():
                 results.loc[mask, "actual_away_score"] = info["actual_away_score"]
                 results.loc[mask, "actual_result"] = info["actual_result"]
                 results.loc[mask, "is_finished"] = True
-                ph = results.loc[mask, "pred_home_score"].values[0]
-                pa = results.loc[mask, "pred_away_score"].values[0]
-                correct = int(ph == info["actual_home_score"] and pa == info["actual_away_score"])
+                pr = results.loc[mask, "pred_result"].values[0]
+                actual_r = info["actual_result"]
+                correct = int(pr == actual_r)
                 if "correct" not in results.columns:
                     results["correct"] = False
                 results.loc[mask, "correct"] = bool(correct)

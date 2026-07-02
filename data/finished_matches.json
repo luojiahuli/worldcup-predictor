@@ -63,9 +63,9 @@
     "actual_home_score": 2,
     "actual_away_score": 0
   },
-  "Germany_Curaçao_2026-06-14": {
+  "Germany_Cura\u00e7ao_2026-06-14": {
     "home_team": "Germany",
-    "away_team": "Curaçao",
+    "away_team": "Cura\u00e7ao",
     "date": "2026-06-14",
     "actual_result": "H",
     "actual_home_score": 7,
@@ -206,5 +206,235 @@
     "actual_result": "H",
     "actual_home_score": 1,
     "actual_away_score": 0
+  },
+  "r32_brazil_japan": {
+    "home_team": "Brazil",
+    "away_team": "Japan",
+    "actual_home_score": 2,
+    "actual_away_score": 1,
+    "actual_result": "H",
+    "stage": "LAST_32",
+    "date": "2026-06-30",
+    "updated": "2026-06-30 23:06:38"
+  },
+  "group_stage_tunisia_japan": {
+    "home_team": "Tunisia",
+    "away_team": "Japan",
+    "actual_home_score": 0,
+    "actual_away_score": 4,
+    "actual_result": "A",
+    "stage": "GROUP_STAGE",
+    "date": "2026-06-21",
+    "updated": "2026-07-02 21:04:10"
+  },
+  "group_stage_spain_saudi_arabia": {
+    "home_team": "Spain",
+    "away_team": "Saudi Arabia",
+    "actual_home_score": 4,
+    "actual_away_score": 0,
+    "actual_result": "H",
+    "stage": "GROUP_STAGE",
+    "date": "2026-06-21",
+    "updated": "2026-07-02 21:04:10"
+  },
+  "group_stage_belgium_iran": {
+    "home_team": "Belgium",
+    "away_team": "Iran",
+    "actual_home_score": 0,
+    "actual_away_score": 0,
+    "actual_result": "D",
+    "stage": "GROUP_STAGE",
+    "date": "2026-06-21",
+    "updated": "2026-07-02 21:04:10"
+  },
+  "group_stage_uruguay_cape_verde_islands": {
+    "home_team": "Uruguay",
+    "away_team": "Cape Verde Islands",
+    "actual_home_score": 2,
+    "actual_away_score": 2,
+    "actual_result": "D",
+    "stage": "GROUP_STAGE",
+    "date": "2026-06-21",
+    "updated": "2026-07-02 21:04:10"
+  },
+  "group_stage_argentina_austria": {
+    "home_team": "Argentina",
+    "away_team": "Austria",
+    "actual_home_score": 2,
+    "actual_away_score": 0,
+    "actual_result": "H",
+    "stage": "GROUP_STAGE",
+    "date": "2026-06-22",
+    "updated": "2026-07-02 21:04:10"
+  },
+  "group_stage_france_iraq": {
+    "home_team": "France",
+    "away_team": "Iraq",
+    "actual_home_score": 3,
+    "actual_away_score": 0,
+    "actual_result": "H",
+    "stage": "GROUP_STAGE",
+    "date": "2026-06-22",
+    "updated": "2026-07-02 21:04:10"
+  },
+  "group_stage_norway_senegal": {
+    "home_team": "Norway",
+    "away_team": "Senegal",
+    "actual_home_score": 3,
+    "actual_away_score": 2,
+    "actual_result": "H",
+    "stage": "GROUP_STAGE",
+    "date": "2026-06-23",
+    "updated": "2026-07-02 21:04:10"
+  },
+  "group_stage_jordan_algeria": {
+    "home_team": "Jordan",
+    "away_team": "Algeria",
+    "actual_home_score": 1,
+    "actual_away_score": 2,
+    "actual_result": "A",
+    "stage": "GROUP_STAGE",
+    "date": "2026-06-23",
+    "updated": "2026-07-02 21:04:10"
+  },
+  "group_stage_portugal_uzbekistan": {
+    "home_team": "Portugal",
+    "away_team": "Uzbekistan",
+    "actual_home_score": 5,
+    "actual_away_score": 0,
+    "actual_result": "H",
+    "stage": "GROUP_STAGE",
+    "date": "2026-06-23",
+    "updated": "2026-07-02 21:04:10"
+  },
+  "group_stage_england_ghana": {
+    "home_team": "England",
+    "away_team": "Ghana",
+    "actual_home_score": 0,
+    "actual_away_score": 0,
+    "actual_result": "D",
+    "stage": "GROUP_STAGE",
+    "date": "2026-06-23",
+    "updated": "2026-07-02 21:04:10"
+  },
+  "group_stage_panama_croatia": {
+    "home_team": "Panama",
+    "away_team": "Croatia",
+    "actual_home_score": 0,
+    "actual_away_score": 1,
+    "actual_result": "A",
+    "stage": "GROUP_STAGE",
+    "date": "2026-06-23",
+    "updated": "2026-07-02 21:04:10"
+  },
+  "group_stage_colombia_congo_dr": {
+    "home_team": "Colombia",
+    "away_team": "Congo DR",
+    "actual_home_score": 1,
+    "actual_away_score": 0,
+    "actual_result": "H",
+    "stage": "GROUP_STAGE",
+    "date": "2026-06-24",
+    "updated": "2026-07-02 21:04:10"
+  },
+  "last_32_south_africa_canada": {
+    "home_team": "South Africa",
+    "away_team": "Canada",
+    "actual_home_score": 0,
+    "actual_away_score": 1,
+    "actual_result": "A",
+    "stage": "LAST_32",
+    "date": "2026-06-28",
+    "updated": "2026-07-02 21:04:10"
+  },
+  "last_32_germany_paraguay": {
+    "home_team": "Germany",
+    "away_team": "Paraguay",
+    "actual_home_score": 1,
+    "actual_away_score": 1,
+    "actual_result": "D",
+    "stage": "LAST_32",
+    "date": "2026-06-29",
+    "updated": "2026-07-02 21:04:10"
+  },
+  "last_32_netherlands_morocco": {
+    "home_team": "Netherlands",
+    "away_team": "Morocco",
+    "actual_home_score": 1,
+    "actual_away_score": 1,
+    "actual_result": "D",
+    "stage": "LAST_32",
+    "date": "2026-06-29",
+    "updated": "2026-07-02 21:04:10"
+  },
+  "last_32_brazil_japan": {
+    "home_team": "Brazil",
+    "away_team": "Japan",
+    "actual_home_score": 2,
+    "actual_away_score": 1,
+    "actual_result": "H",
+    "stage": "LAST_32",
+    "date": "2026-06-30",
+    "updated": "2026-07-02 21:04:10"
+  },
+  "last_32_france_sweden": {
+    "home_team": "France",
+    "away_team": "Sweden",
+    "actual_home_score": 3,
+    "actual_away_score": 0,
+    "actual_result": "H",
+    "stage": "LAST_32",
+    "date": "2026-06-30",
+    "updated": "2026-07-02 21:04:10"
+  },
+  "last_32_ivory_coast_norway": {
+    "home_team": "Ivory Coast",
+    "away_team": "Norway",
+    "actual_home_score": 1,
+    "actual_away_score": 2,
+    "actual_result": "A",
+    "stage": "LAST_32",
+    "date": "2026-06-30",
+    "updated": "2026-07-02 21:04:10"
+  },
+  "last_32_mexico_ecuador": {
+    "home_team": "Mexico",
+    "away_team": "Ecuador",
+    "actual_home_score": 2,
+    "actual_away_score": 0,
+    "actual_result": "H",
+    "stage": "LAST_32",
+    "date": "2026-07-01",
+    "updated": "2026-07-02 21:04:10"
+  },
+  "last_32_england_congo_dr": {
+    "home_team": "England",
+    "away_team": "Congo DR",
+    "actual_home_score": 2,
+    "actual_away_score": 1,
+    "actual_result": "H",
+    "stage": "LAST_32",
+    "date": "2026-07-01",
+    "updated": "2026-07-02 21:04:10"
+  },
+  "last_32_belgium_senegal": {
+    "home_team": "Belgium",
+    "away_team": "Senegal",
+    "actual_home_score": 3,
+    "actual_away_score": 2,
+    "actual_result": "H",
+    "stage": "LAST_32",
+    "date": "2026-07-02",
+    "updated": "2026-07-02 21:04:10"
+  },
+  "last_32_united_states_bosnia_herzegovina": {
+    "home_team": "United States",
+    "away_team": "Bosnia-Herzegovina",
+    "actual_home_score": 2,
+    "actual_away_score": 0,
+    "actual_result": "H",
+    "stage": "LAST_32",
+    "date": "2026-07-02",
+    "updated": "2026-07-02 21:04:10"
   }
 }

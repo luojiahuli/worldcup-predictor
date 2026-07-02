@@ -1,87 +1,110 @@
 """
-media_analyzer.py - 媒体情感分析
-分析各参赛球队的新闻热度和情感倾向
+media_analyzer.py - 媒体情感分析（基于实际比赛表现）
+分析各参赛球队的新闻热度和情感倾向，使用实际比赛数据而非随机模拟
 """
 import pandas as pd
 import numpy as np
-import os, json, logging, requests, time, re
-from datetime import datetime, timedelta
+import os, logging, pickle
 
 logging.basicConfig(level=logging.INFO, format='[%(asctime)s] %(message)s')
 log = logging.getLogger(__name__)
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 DATA_DIR = os.path.join(BASE_DIR, "data")
-os.makedirs(DATA_DIR, exist_ok=True)
-
-# 情感词典（足球相关）
-SENTIMENT_WORDS = {
-    "positive": [
-        "胜利", "夺冠", "晋级", "强势", "复苏", "崛起", "连胜", "爆发", "精彩", "出色",
-        "胜利", "冠军", "晋级", "强", "复苏", "崛起", "连胜", "爆发", "精彩", "出色",
-        "win", "champion", "qualified", "strong", "brilliant", "dominant",
-        "impressive", "unstoppable", "favorite", "star", "legend", "glory",
-        "confident", "formidable", "dangerous", "clinical", "flawless",
-    ],
-    "negative": [
-        "伤病", "失利", "淘汰", "低迷", "危机", "内讧", "争议", "禁赛", "伤病", "出局",
-        "injured", "defeat", "eliminated", "crisis", "struggling", "controversy",
-        "suspended", "absence", "weakness", "vulnerable", "collapse", "upset",
-        "pressure", "doubt", "uncertain", "fragile", "unprepared", "chaos",
-    ],
-}
-
-TEAM_ALIASES = {
-    "USA": ["United States", "USMNT", "America", "US"],
-    "England": ["England", "Three Lions"],
-    "Brazil": ["Brazil", "Seleção", "Brasil"],
-    "Argentina": ["Argentina", "Albiceleste"],
-    "Germany": ["Germany", "Deutschland", "Mannschaft"],
-    "France": ["France", "Les Bleus"],
-    "Italy": ["Italy", "Azzurri"],
-    "Spain": ["Spain", "La Roja", "España"],
-    "Netherlands": ["Netherlands", "Holland", "Dutch", "Oranje"],
-    "Portugal": ["Portugal", "Seleção"],
-    "Belgium": ["Belgium", "Red Devils"],
-    "South Korea": ["South Korea", "Korea Republic"],
-    "Japan": ["Japan", "Samurai Blue"],
-    "Australia": ["Australia", "Socceroos"],
-    "Mexico": ["Mexico", "El Tri"],
-    "Ivory Coast": ["Ivory Coast", "Côte d'Ivoire", "Cote d'Ivoire"],
-    "Congo DR": ["Congo DR", "DR Congo"],
-}
 
 
-def analyze_news_sentiment(team_name, days_back=7):
-    """通过新闻标题分析球队情感（使用WebSearch模拟）"""
-    aliases = TEAM_ALIASES.get(team_name, [team_name])
-    search_terms = [team_name]
+def _load_feature_matrix():
+    """加载特征矩阵获取比赛数据"""
+    path = os.path.join(DATA_DIR, "wc_feature_matrix.pkl")
+    if os.path.exists(path):
+        with open(path, "rb") as f:
+            return pickle.load(f)
+    return None
 
-    # 情感得分模拟（基于关键词匹配模式）
-    # 实际上这里会调用新闻API，这里使用基于规则的模式
-    base_sentiment = np.random.normal(0.55, 0.12)
-    base_volume = np.random.randint(5, 30)
 
-    # 排名靠前的球队通常有更多正面报道
-    rankings_df = None
-    ranking_path = os.path.join(DATA_DIR, "fifa_rankings.csv")
-    if os.path.exists(ranking_path):
-        rankings_df = pd.read_csv(ranking_path)
+def _load_rankings():
+    """加载FIFA排名"""
+    path = os.path.join(DATA_DIR, "fifa_rankings.csv")
+    if os.path.exists(path):
+        return pd.read_csv(path)
+    return None
+
+
+def _team_recent_performance(team_name, feature_df):
+    """计算球队最近2场表现指标"""
+    finished = feature_df[feature_df["is_finished"] == True]
+    as_home = finished[finished["home_team"] == team_name]
+    as_away = finished[finished["away_team"] == team_name]
+
+    matches = []
+    for _, r in as_home.iterrows():
+        matches.append({
+            "gf": r["home_goals"], "ga": r["away_goals"],
+            "result": "W" if r["home_goals"] > r["away_goals"] else ("D" if r["home_goals"] == r["away_goals"] else "L"),
+            "opponent": r["away_team"],
+        })
+    for _, r in as_away.iterrows():
+        matches.append({
+            "gf": r["away_goals"], "ga": r["home_goals"],
+            "result": "W" if r["away_goals"] > r["home_goals"] else ("D" if r["away_goals"] == r["home_goals"] else "L"),
+            "opponent": r["home_team"],
+        })
+    # Sort by date if available
+    matches = matches[-3:] if len(matches) > 3 else matches  # last 3
+
+    if not matches:
+        return {"avg_gf": 0, "avg_ga": 0, "win_rate": 0, "n": 0}
+
+    return {
+        "avg_gf": sum(m["gf"] for m in matches) / len(matches),
+        "avg_ga": sum(m["ga"] for m in matches) / len(matches),
+        "win_rate": sum(1 for m in matches if m["result"] == "W") / len(matches),
+        "n": len(matches),
+    }
+
+
+def analyze_news_sentiment(team_name):
+    """基于实际比赛表现计算球队媒体情感"""
+    feature_df = _load_feature_matrix()
+    rankings_df = _load_rankings()
+
+    # 默认值
+    base_sentiment = 0.50
+    base_volume = 15
+    positive_ratio = 0.55
+
+    # 基于排名的基线
+    if rankings_df is not None:
         rank_row = rankings_df[rankings_df["Team"] == team_name]
         if len(rank_row) > 0:
             rank_pos = rank_row.index[0] + 1
-            # 排名越靠前，正面倾向略高
-            base_sentiment = min(0.85, base_sentiment + (50 - rank_pos) * 0.003)
-            base_volume = max(5, min(50, int(30 - rank_pos * 0.3)))
+            rank_score = max(0, 1 - rank_pos / 60)  # 0-1 归一化
+            base_sentiment = 0.45 + rank_score * 0.30
+            base_volume = max(8, int(10 + rank_score * 30))
+
+    # 基于实际比赛表现调整
+    if feature_df is not None:
+        perf = _team_recent_performance(team_name, feature_df)
+        if perf["n"] > 0:
+            # 赢球提升情感，进球多提升热度
+            perf_boost = perf["win_rate"] * 0.20 - (perf["avg_ga"] - perf["avg_gf"]) * 0.03
+            base_sentiment = min(0.92, max(0.15, base_sentiment + perf_boost))
+            # 进球多→新闻多，失球多→新闻也多（负面新闻）
+            volume_boost = perf["avg_gf"] * 2 + perf["avg_ga"] * 1.5
+            base_volume = max(5, min(50, int(base_volume + volume_boost)))
+            # 正负面比例取决于近期战绩
+            positive_ratio = min(0.85, max(0.20, 0.50 + perf["win_rate"] * 0.30 - perf["avg_ga"] * 0.02))
+
+    hotness = min(1.0, base_volume / 40)
 
     return {
         "team": team_name,
-        "sentiment_score": round(max(0.1, min(0.9, base_sentiment)), 3),
+        "sentiment_score": round(base_sentiment, 3),
         "news_volume": base_volume,
-        "positive_ratio": round(max(0.2, min(0.8, base_sentiment + np.random.uniform(-0.1, 0.1))), 3),
-        "negative_ratio": round(max(0.1, min(0.5, 1.0 - base_sentiment + np.random.uniform(-0.05, 0.05))), 3),
-        "trending": "up" if base_sentiment > 0.5 else "down",
-        "hotness": round(min(1.0, base_volume / 30), 3),
+        "positive_ratio": round(positive_ratio, 3),
+        "negative_ratio": round(max(0.05, min(0.50, 1.0 - positive_ratio - 0.10)), 3),
+        "trending": "up" if base_sentiment > 0.55 else ("down" if base_sentiment < 0.40 else "stable"),
+        "hotness": round(hotness, 3),
         "sample_count": base_volume,
     }
 
@@ -89,7 +112,7 @@ def analyze_news_sentiment(team_name, days_back=7):
 def analyze_all_teams(teams_list):
     """分析所有球队的媒体情感"""
     log.info("=" * 50)
-    log.info("媒体情感分析")
+    log.info("媒体情感分析（基于实际表现）")
     log.info("=" * 50)
 
     results = []

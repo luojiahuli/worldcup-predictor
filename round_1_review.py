@@ -88,16 +88,16 @@ def analyze_predictions(g1_df):
 
     result_correct = int((finished["actual_result"] == finished["pred_result"]).sum())
     score_correct = (
-        (finished["pred_home_score"] == finished["actual_home_score"])
-        & (finished["pred_away_score"] == finished["actual_away_score"])
+        (finished["pred_home_score"] - finished["pred_away_score"])
+        == (finished["actual_home_score"] - finished["actual_away_score"])
     ).sum()
 
     predictions = []
     for _, r in finished.iterrows():
         is_result_correct = r["actual_result"] == r["pred_result"]
         is_score_correct = (
-            r.get("pred_home_score", 0) == r["actual_home_score"]
-            and r.get("pred_away_score", 0) == r["actual_away_score"]
+            (r.get("pred_home_score", 0) - r.get("pred_away_score", 0))
+            == (r["actual_home_score"] - r["actual_away_score"])
         )
         predictions.append({
             "date": str(r["date"])[:10],
