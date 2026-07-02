@@ -217,15 +217,6 @@ def generate_dashboard(data):
                     "color": RESULT_COLORS.get(row.get("pred_result", ""), "#888"),
                 })
 
-    # === 已完成比赛计数 ===
-    finished_count = 0
-    correct_count = 0
-    if predictions is not None and len(predictions) > 0:
-        finished = predictions[predictions["is_finished"] == True]
-        finished_count = len(finished)
-        if finished_count > 0:
-            correct_count = int((finished["actual_result"] == finished["pred_result"]).sum())
-
     # === 全部预测比赛分析 ===
     matchday_date_str = ""
     matchday_html_rows = ""
@@ -541,117 +532,6 @@ def generate_dashboard(data):
             cum_ret = cum
     cum_ret_str = json.dumps(cum_ret)
 
-    # === 三轮模型迭代复盘（历史准确率） ===
-    rounds_review_section = ""
-    n_total = 0
-    all_pred_rows = ""
-    all_review_rows = ""
-    if predictions is not None and finished_count > 0:
-        finished = predictions[predictions["is_finished"] == True].sort_values("date").copy()
-        n_total = len(finished)
-        n_per = n_total // 3
-        rd_matches = [finished.iloc[:n_per], finished.iloc[n_per:2*n_per], finished.iloc[2*n_per:]]
-        rd_names = ["第一轮", "第二轮", "第三轮"]
-        # 用户指定的历史准确率（旧模型各轮次实际表现）
-        rd_historical_acc = [0.50, 0.60, 0.7142857142857143]  # ~37/61=60.66%
-        rd_model_desc = [
-            "基于FIFA排名的纯Ranking概率模型",
-            "加入ELO特征、五大联赛密度、教练因子、对战历史",
-            "核心特征子集(10维)+球员数据库+关键比赛因子",
-        ]
-        # 按各轮次匹配数加权计算汇总准确率
-        rd_totals = [len(rd_matches[0]), len(rd_matches[1]), len(rd_matches[2])]
-        estimated_correct = sum(rd_historical_acc[i] * rd_totals[i] for i in range(3))
-        overall_acc = estimated_correct / n_total if n_total > 0 else 0
-
-        round_bar_rows = ""
-        all_pred_rows = ""
-        upset_rows = ""
-        upset_count = 0
-        rank_path = os.path.join(DATA_DIR, "fifa_rankings.csv")
-        rankings_lookup = {}
-        if os.path.exists(rank_path):
-            rdf = pd.read_csv(rank_path)
-            rankings_lookup = dict(zip(rdf["Team"], rdf["Rank"]))
-
-        for rd_idx, (rd, rn, hist_acc, desc) in enumerate(zip(rd_matches, rd_names, rd_historical_acc, rd_model_desc)):
-            rd_total = len(rd)
-            bar_color = "var(--red)" if hist_acc < 0.5 else "var(--draw)" if hist_acc < 0.65 else "var(--green)"
-            estimated_c = round(hist_acc * rd_total)
-            round_label = f'~{estimated_c}/{rd_total}' if abs(hist_acc * rd_total - estimated_c) < 0.5 else f'{estimated_c}/{rd_total}'
-
-            round_bar_rows += (
-                f'<div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;font-size:12px">'
-                f'<span style="width:50px;color:var(--text3);font-weight:600">{rn}</span>'
-                f'<div class="bc" style="flex:1;margin:0;height:8px"><div class="b" style="width:{hist_acc*100:.0f}%;height:8px;background:{bar_color};border-radius:4px"></div></div>'
-                f'<span style="width:60px;text-align:right;font-weight:600;color:{bar_color}">{hist_acc:.0%}</span>'
-                f'<span style="width:50px;text-align:right;color:var(--text3);font-size:10px">{round_label}</span>'
-                f'</div>'
-            )
-
-            for _, row in rd.iterrows():
-                # 匹配实际结果
-                actual_h = int(row["actual_home_score"])
-                actual_a = int(row["actual_away_score"])
-                all_pred_rows += (
-                    f'<tr>'
-                    f'<td style="font-size:10px;color:var(--text3)">{str(row["date"])[5:]}</td>'
-                    f'<td style="font-weight:600">{row["home_team"]}</td>'
-                    f'<td style="font-weight:600;font-variant-numeric:tabular-nums">{actual_h}-{actual_a}</td>'
-                    f'<td style="font-weight:600">{row["away_team"]}</td>'
-                    f'<td style="font-size:11px">{row["actual_result"]}</td>'
-                    f'</tr>'
-                )
-
-        rounds_review_section = f'''<div class="cd" style="border-left:3px solid var(--accent);margin-bottom:20px">
-  <div class="cd-h">
-    <span class="cd-h-dot" style="background:var(--accent)"></span>
-    <h2>已完赛比赛全面复盘 · 截至 {today_str[:10]}</h2>
-    <span class="cd-h-b">MATCH REVIEW</span>
-  </div>
-
-  <!-- 整体指标 -->
-  <div class="st" style="margin-bottom:16px">
-    <div class="st-c">
-      <div class="st-v" style="color:var(--draw);font-size:32px">{overall_acc:.2%}</div>
-      <div class="st-l">三轮汇总准确率（历史加权）</div>
-    </div>
-    <div class="st-c">
-      <div class="st-v" style="color:var(--text2);font-size:24px">{n_total}</div>
-      <div class="st-l">总完赛场次</div>
-    </div>
-    <div class="st-c">
-      <div class="st-v" style="color:var(--accent)">3</div>
-      <div class="st-l">模型迭代轮次</div>
-    </div>
-    <div class="st-c">
-      <div class="st-v" style="font-size:20px;color:var(--green)">80%</div>
-      <div class="st-l">新模型回测准确率</div>
-    </div>
-  </div>
-
-  <!-- 三轮对比 -->
-  <div class="l2" style="margin-bottom:16px">
-    <div class="cd" style="margin-bottom:0">
-      <div class="cd-h"><span class="cd-h-dot"></span><h2>三轮模型迭代准确率</h2><span class="cd-h-b">OLD MODEL</span></div>
-      <div style="padding:8px 4px">{round_bar_rows}</div>
-    </div>
-    <div class="cd" style="margin-bottom:0">
-      <div class="cd-h"><span class="cd-h-dot"></span><h2>模型迭代说明</h2><span class="cd-h-b">EVOLUTION</span></div>
-      <div class="ag" style="grid-template-columns:1fr;gap:8px">
-        <div class="ac">
-          <div class="ac-v" style="font-size:11px;color:var(--text2);line-height:1.8">
-            <div style="margin-bottom:6px"><span style="color:var(--red);font-weight:600">① 第一轮 45%</span> — {rd_model_desc[0]}</div>
-            <div style="margin-bottom:6px"><span style="color:var(--draw);font-weight:600">② 第二轮 60%</span> — {rd_model_desc[1]}</div>
-            <div style="margin-bottom:6px"><span style="color:var(--green);font-weight:600">③ 第三轮 70%</span> — {rd_model_desc[2]}</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-</div>'''
-
     html = f'''<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
@@ -818,9 +698,6 @@ tr:hover td{{background:rgba(255,255,255,.02);color:var(--text)}}
 </header>
 
 
-	<!-- 三轮复盘 -->
-	{rounds_review_section}
-
 	<!-- Latest Matchday -->
 <div class="cd cd-md">
   <div class="cd-h">
@@ -914,15 +791,7 @@ tr:hover td{{background:rgba(255,255,255,.02);color:var(--text)}}
     </div>
   </div>
 
-  <!-- 比赛明细 -->
-  <div class="cd" style="margin-bottom:0">
-    <div class="cd-h"><span class="cd-h-dot"></span><h2>比赛明细 &amp; 实际赛果</h2><span class="cd-h-b">ALL {n_total} MATCHES</span></div>
-    <div class="tw" style="max-height:400px;overflow-y:auto"><table>
-      <tr><th>日期</th><th>主队</th><th>比分</th><th>客队</th><th>赛果</th></tr>
-      {all_pred_rows}
-    </table></div>
-  </div>
-
+  
 <script>
 function togglePos(el){{var c=el.nextElementSibling;if(c){{var o=c.classList.contains('open');c.classList.toggle('open');el.textContent=o?'落位分析 ▶':'落位分析 ▼';}}}}
 </script>
