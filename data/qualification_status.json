@@ -1,5 +1,5 @@
 {
-  "_updated": "2026-07-02",
+  "_updated": "2026-07-12",
   "_source": "Web search aggregated (thethaovanhoa.vn, Sky Sports, Yahoo Sports)",
   "_note": "After all 72 group stage matches (June 28, 2026). 48 teams, 12 groups. Top 2 + 8 best 3rd-placed advance to R32.",
   "qualified": [
@@ -470,6 +470,27 @@
       "date": "2026-07-04",
       "venue": "Kansas City",
       "result": "TBD"
+    }
+  ],
+  "knockout_results": {
+    "r32_complete": true,
+    "r16_complete": true,
+    "qf_complete": true
+  },
+  "sf_matchups": [
+    {
+      "match": 100,
+      "home": "France",
+      "away": "Spain",
+      "date": "2026-07-14",
+      "status": "TIMED"
+    },
+    {
+      "match": 101,
+      "home": "England",
+      "away": "Argentina",
+      "date": "2026-07-15",
+      "status": "TIMED"
     }
   ]
 }

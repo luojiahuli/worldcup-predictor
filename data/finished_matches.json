@@ -436,5 +436,185 @@
     "stage": "LAST_32",
     "date": "2026-07-02",
     "updated": "2026-07-02 21:04:10"
+  },
+  "last_32_spain_austria": {
+    "home_team": "Spain",
+    "away_team": "Austria",
+    "actual_home_score": 3,
+    "actual_away_score": 0,
+    "actual_result": "H",
+    "stage": "LAST_32",
+    "date": "2026-07-02",
+    "updated": "2026-07-12 22:05:16"
+  },
+  "last_32_croatia_portugal": {
+    "home_team": "Croatia",
+    "away_team": "Portugal",
+    "actual_home_score": 1,
+    "actual_away_score": 2,
+    "actual_result": "A",
+    "stage": "LAST_32",
+    "date": "2026-07-03",
+    "updated": "2026-07-12 22:05:16"
+  },
+  "last_32_switzerland_algeria": {
+    "home_team": "Switzerland",
+    "away_team": "Algeria",
+    "actual_home_score": 2,
+    "actual_away_score": 0,
+    "actual_result": "H",
+    "stage": "LAST_32",
+    "date": "2026-07-03",
+    "updated": "2026-07-12 22:05:16"
+  },
+  "last_32_australia_egypt": {
+    "home_team": "Australia",
+    "away_team": "Egypt",
+    "actual_home_score": 1,
+    "actual_away_score": 1,
+    "actual_result": "D",
+    "stage": "LAST_32",
+    "date": "2026-07-03",
+    "updated": "2026-07-12 22:05:16"
+  },
+  "last_32_argentina_cape_verde_islands": {
+    "home_team": "Argentina",
+    "away_team": "Cape Verde Islands",
+    "actual_home_score": 3,
+    "actual_away_score": 2,
+    "actual_result": "H",
+    "stage": "LAST_32",
+    "date": "2026-07-04",
+    "updated": "2026-07-12 22:05:16"
+  },
+  "last_32_colombia_ghana": {
+    "home_team": "Colombia",
+    "away_team": "Ghana",
+    "actual_home_score": 1,
+    "actual_away_score": 0,
+    "actual_result": "H",
+    "stage": "LAST_32",
+    "date": "2026-07-04",
+    "updated": "2026-07-12 22:05:16"
+  },
+  "last_16_morocco_canada": {
+    "home_team": "Morocco",
+    "away_team": "Canada",
+    "actual_home_score": 3,
+    "actual_away_score": 0,
+    "actual_result": "H",
+    "stage": "LAST_16",
+    "date": "2026-07-04",
+    "updated": "2026-07-12 22:05:16"
+  },
+  "last_16_france_paraguay": {
+    "home_team": "France",
+    "away_team": "Paraguay",
+    "actual_home_score": 1,
+    "actual_away_score": 0,
+    "actual_result": "H",
+    "stage": "LAST_16",
+    "date": "2026-07-04",
+    "updated": "2026-07-12 22:05:16"
+  },
+  "last_16_norway_brazil": {
+    "home_team": "Norway",
+    "away_team": "Brazil",
+    "actual_home_score": 2,
+    "actual_away_score": 1,
+    "actual_result": "H",
+    "stage": "LAST_16",
+    "date": "2026-07-05",
+    "updated": "2026-07-12 22:05:16"
+  },
+  "last_16_england_mexico": {
+    "home_team": "England",
+    "away_team": "Mexico",
+    "actual_home_score": 3,
+    "actual_away_score": 2,
+    "actual_result": "H",
+    "stage": "LAST_16",
+    "date": "2026-07-06",
+    "updated": "2026-07-12 22:05:16"
+  },
+  "last_16_spain_portugal": {
+    "home_team": "Spain",
+    "away_team": "Portugal",
+    "actual_home_score": 1,
+    "actual_away_score": 0,
+    "actual_result": "H",
+    "stage": "LAST_16",
+    "date": "2026-07-06",
+    "updated": "2026-07-12 22:05:16"
+  },
+  "last_16_belgium_united_states": {
+    "home_team": "Belgium",
+    "away_team": "United States",
+    "actual_home_score": 4,
+    "actual_away_score": 1,
+    "actual_result": "H",
+    "stage": "LAST_16",
+    "date": "2026-07-07",
+    "updated": "2026-07-12 22:05:16"
+  },
+  "last_16_argentina_egypt": {
+    "home_team": "Argentina",
+    "away_team": "Egypt",
+    "actual_home_score": 3,
+    "actual_away_score": 2,
+    "actual_result": "H",
+    "stage": "LAST_16",
+    "date": "2026-07-07",
+    "updated": "2026-07-12 22:05:16"
+  },
+  "last_16_switzerland_colombia": {
+    "home_team": "Switzerland",
+    "away_team": "Colombia",
+    "actual_home_score": 0,
+    "actual_away_score": 0,
+    "actual_result": "D",
+    "stage": "LAST_16",
+    "date": "2026-07-07",
+    "updated": "2026-07-12 22:05:16"
+  },
+  "quarter_finals_france_morocco": {
+    "home_team": "France",
+    "away_team": "Morocco",
+    "actual_home_score": 2,
+    "actual_away_score": 0,
+    "actual_result": "H",
+    "stage": "QUARTER_FINALS",
+    "date": "2026-07-09",
+    "updated": "2026-07-12 22:05:16"
+  },
+  "quarter_finals_spain_belgium": {
+    "home_team": "Spain",
+    "away_team": "Belgium",
+    "actual_home_score": 2,
+    "actual_away_score": 1,
+    "actual_result": "H",
+    "stage": "QUARTER_FINALS",
+    "date": "2026-07-10",
+    "updated": "2026-07-12 22:05:16"
+  },
+  "quarter_finals_england_norway": {
+    "home_team": "England",
+    "away_team": "Norway",
+    "actual_home_score": 2,
+    "actual_away_score": 1,
+    "actual_result": "H",
+    "stage": "QUARTER_FINALS",
+    "date": "2026-07-11",
+    "updated": "2026-07-12 22:05:16"
+  },
+  "quarter_finals_argentina_switzerland": {
+    "home_team": "Argentina",
+    "away_team": "Switzerland",
+    "actual_home_score": 3,
+    "actual_away_score": 1,
+    "actual_result": "H",
+    "stage": "QUARTER_FINALS",
+    "date": "2026-07-12",
+    "updated": "2026-07-12 22:05:16"
   }
 }
