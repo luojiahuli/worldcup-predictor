@@ -405,7 +405,7 @@
       "away": "Congo DR",
       "date": "2026-07-01",
       "venue": "Atlanta",
-      "result": "2-1"
+      "result": "2-2"
     },
     {
       "match": 82,
@@ -475,7 +475,8 @@
   "knockout_results": {
     "r32_complete": true,
     "r16_complete": true,
-    "qf_complete": true
+    "qf_complete": true,
+    "sf_complete": true
   },
   "sf_matchups": [
     {
@@ -492,5 +493,12 @@
       "date": "2026-07-15",
       "status": "TIMED"
     }
-  ]
+  ],
+  "qf_results": {
+    "england_norway": "1-1 (1-1 AET, 2-1 FT)",
+    "argentina_switzerland": "1-1 (1-1 AET, 3-1 FT)"
+  },
+  "sf_results": {
+    "france_spain": "0-2"
+  }
 }

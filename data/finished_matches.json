@@ -420,9 +420,9 @@
   "last_32_belgium_senegal": {
     "home_team": "Belgium",
     "away_team": "Senegal",
-    "actual_home_score": 3,
+    "actual_home_score": 2,
     "actual_away_score": 2,
-    "actual_result": "H",
+    "actual_result": "D",
     "stage": "LAST_32",
     "date": "2026-07-02",
     "updated": "2026-07-02 21:04:10"
@@ -600,9 +600,9 @@
   "quarter_finals_england_norway": {
     "home_team": "England",
     "away_team": "Norway",
-    "actual_home_score": 2,
+    "actual_home_score": 1,
     "actual_away_score": 1,
-    "actual_result": "H",
+    "actual_result": "D",
     "stage": "QUARTER_FINALS",
     "date": "2026-07-11",
     "updated": "2026-07-12 22:05:16"
@@ -610,11 +610,20 @@
   "quarter_finals_argentina_switzerland": {
     "home_team": "Argentina",
     "away_team": "Switzerland",
-    "actual_home_score": 3,
+    "actual_home_score": 1,
     "actual_away_score": 1,
-    "actual_result": "H",
+    "actual_result": "D",
     "stage": "QUARTER_FINALS",
     "date": "2026-07-12",
     "updated": "2026-07-12 22:05:16"
+  },
+  "semi_finals_france_spain": {
+    "home_team": "France",
+    "away_team": "Spain",
+    "date": "2026-07-14",
+    "actual_result": "A",
+    "actual_home_score": 0,
+    "actual_away_score": 2,
+    "stage": "SEMI_FINALS"
   }
 }

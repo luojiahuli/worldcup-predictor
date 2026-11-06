@@ -192,6 +192,71 @@ def generate_dashboard(data):
         avg_acc = np.mean([r["metrics"]["ensemble"]["accuracy"] for r in backtest])
         n_matches = sum(len(r["predictions"]) for r in backtest)
 
+    # === 历史数据统计 ===
+    total_finished = 0; hw_rate = 0; dr_rate = 0; aw_rate = 0
+    avg_goals = 0; total_goals = 0
+    stages_data = []
+    goals_dist = [0]*10
+    finished_detail_rows = ""
+    if all_wc_matches is not None and len(all_wc_matches) > 0:
+        fm = all_wc_matches[all_wc_matches['HomeGoals'] >= 0]
+        if len(fm) > 0:
+            total_finished = len(fm)
+            hw = int((fm['HomeGoals'] > fm['AwayGoals']).sum())
+            dr = int((fm['HomeGoals'] == fm['AwayGoals']).sum())
+            aw = int((fm['HomeGoals'] < fm['AwayGoals']).sum())
+            tg = int(fm['HomeGoals'].sum() + fm['AwayGoals'].sum())
+            hw_rate = hw/total_finished; dr_rate = dr/total_finished; aw_rate = aw/total_finished
+            avg_goals = round(tg/total_finished, 2); total_goals = tg
+            for _, r in fm.iterrows():
+                goals_dist[min(int(r['HomeGoals']+r['AwayGoals']), 9)] += 1
+            stage_map = {'GROUP_STAGE':'小组赛','LAST_32':'32强','LAST_16':'16强','QUARTER_FINALS':'8强'}
+            for sn, sl in stage_map.items():
+                sm = fm[fm['stage'] == sn]
+                if len(sm) > 0:
+                    stages_data.append({'l':sl,'n':len(sm),'hw':int((sm['HomeGoals']>sm['AwayGoals']).sum()),'dr':int((sm['HomeGoals']==sm['AwayGoals']).sum()),'aw':int((sm['HomeGoals']<sm['AwayGoals']).sum()),'g':int(sm['HomeGoals'].sum()+sm['AwayGoals'].sum())})
+            unmatched = fm[~fm['stage'].isin(list(stage_map.keys())) | fm['stage'].isna()]
+            if len(unmatched) > 0 and not any(s['l']=='小组赛' for s in stages_data):
+                stages_data.insert(0, {'l':'小组赛','n':len(unmatched),'hw':int((unmatched['HomeGoals']>unmatched['AwayGoals']).sum()),'dr':int((unmatched['HomeGoals']==unmatched['AwayGoals']).sum()),'aw':int((unmatched['HomeGoals']<unmatched['AwayGoals']).sum()),'g':int(unmatched['HomeGoals'].sum()+unmatched['AwayGoals'].sum())})
+            fm_sorted = fm.sort_values('Date')
+            detail_rows = []
+            for _, r in fm_sorted.iterrows():
+                hg, ag = int(r['HomeGoals']), int(r['AwayGoals'])
+                res = "H" if hg > ag else ("D" if hg == ag else "A")
+                c = RESULT_COLORS[res]
+                st = str(r.get('stage',''))
+                sl = stage_map.get(st, st.replace('_',' ').title() if st else '小组赛')
+                detail_rows.append(f'<tr><td style="white-space:nowrap">{str(r.get("Date",""))[:10]}</td><td style="font-weight:600">{r["Home"]}</td><td style="text-align:center;font-weight:600">{hg}</td><td style="text-align:center;font-weight:600">{ag}</td><td style="font-weight:600">{r["Away"]}</td><td style="color:{c};font-weight:600">{RESULT_NAMES[res]}</td><td style="color:var(--text3);font-size:11px">{sl}</td></tr>')
+            finished_detail_rows = "\n".join(detail_rows)
+    model_dir_acc = 0; model_score_acc = 0; model_n = 0
+    if predictions is not None and len(predictions) > 0:
+        fp = predictions[predictions['is_finished'] == True]
+        model_n = len(fp)
+        if model_n > 0:
+            if 'correct' in fp.columns: model_dir_acc = fp['correct'].sum()/model_n
+            if 'gd_correct' in fp.columns: model_score_acc = fp['gd_correct'].sum()/model_n
+
+    # === 预测 vs 实际对比统计 ===
+    pred_cm = {'H':{'H':0,'D':0,'A':0},'D':{'H':0,'D':0,'A':0},'A':{'H':0,'D':0,'A':0}}
+    pred_bands = []
+    pred_wrong = []
+    pred_acc = 0; pred_score_acc = 0; pred_total = 0
+    if predictions is not None:
+        fp = predictions[predictions['is_finished'] == True]
+        pred_total = len(fp)
+        if pred_total > 0:
+            pred_acc = int(fp['correct'].sum())/pred_total
+            pred_score_acc = int(fp['score_correct'].sum())/pred_total
+            for _, r in fp.iterrows():
+                pred_cm[r['actual_result']][r['pred_result']] += 1
+            for lo, hi, lb in [(0.5, 1.0, '≥50%'), (0.4, 0.5, '40-50%'), (0.35, 0.4, '35-40%'), (0, 0.35, '<35%')]:
+                sub = fp[(fp['confidence']>=lo) & (fp['confidence']<hi)]
+                if len(sub) > 0:
+                    pred_bands.append({'lb':lb,'n':len(sub),'c':int(sub['correct'].sum()),'a':sub['correct'].sum()/len(sub)})
+            wrong = fp[fp['correct']==False].sort_values('confidence', ascending=False)
+            for _, r in wrong.iterrows():
+                pred_wrong.append({'d':str(r.get('date',''))[:10],'h':r['home_team'],'a':r['away_team'],'hs':int(r['actual_home_score']),'as':int(r['actual_away_score']),'ar':r['actual_result'],'pr':r['pred_result'],'cf':float(r['confidence']),'ph':float(r['pred_H']),'pd':float(r['pred_D']),'pa':float(r['pred_A'])})
+
     # 预测数据
     high_conf_picks = []
     if predictions is not None and len(predictions) > 0:
@@ -791,9 +856,110 @@ tr:hover td{{background:rgba(255,255,255,.02);color:var(--text)}}
     </div>
   </div>
 
-  
+  <!-- 历史数据统计 -->
+  <div class="st" style="grid-template-columns:repeat(4,1fr)">
+    <div class="st-c"><div class="st-v" style="color:var(--accent2)">{total_finished}</div><div class="st-l">已完赛场次</div></div>
+    <div class="st-c"><div class="st-v" style="color:var(--home)">{hw_rate:.1%}</div><div class="st-l">主胜率</div></div>
+    <div class="st-c"><div class="st-v" style="color:var(--draw)">{avg_goals}</div><div class="st-l">场均进球</div></div>
+    <div class="st-c"><div class="st-v" style="color:var(--green)">{model_dir_acc:.1%}</div><div class="st-l">方向准确率</div></div>
+  </div>
+
+  <!-- 预测表现对比 -->
+  <div class="cd">
+    <div class="cd-h"><span class="cd-h-dot"></span><h2>预测表现对比 · {pred_total} 场已完赛</h2><span class="cd-h-b">ACCURACY</span></div>
+    <div class="st" style="grid-template-columns:repeat(4,1fr);margin-bottom:16px">
+      <div class="st-c"><div class="st-v" style="color:var(--green)">{pred_acc:.1%}</div><div class="st-l">方向准确率</div></div>
+      <div class="st-c"><div class="st-v" style="color:var(--away)">{pred_score_acc:.1%}</div><div class="st-l">比分准确率</div></div>
+      <div class="st-c"><div class="st-v" style="color:var(--accent)">{(pred_bands[0]['a'] if pred_bands else 0):.1%}</div><div class="st-l">高置信度准确率(≥50%)</div></div>
+      <div class="st-c"><div class="st-v" style="color:var(--home)">{int(pred_total * (1-pred_acc)) if pred_total > 0 else 0}</div><div class="st-l">预测错误场次</div></div>
+    </div>
+    <div class="l2" style="margin-bottom:12px">
+      <div>
+        <h3 style="font-size:11px;color:var(--text3);text-transform:uppercase;letter-spacing:.06em;margin-bottom:10px">混淆矩阵 · 实际↓ vs 预测→</h3>
+        <div class="tw">
+          <table style="font-size:13px">
+            <tr><th></th><th style="text-align:center;width:60px">主胜</th><th style="text-align:center;width:60px">平局</th><th style="text-align:center;width:60px">客胜</th><th style="text-align:center;width:50px">合计</th></tr>
+            <tr><td style="font-weight:600">主胜</td><td style="background:rgba(34,197,94,.15);color:var(--green);font-weight:700;text-align:center">{pred_cm['H']['H']}</td><td style="background:rgba(245,166,35,.08);color:var(--draw);text-align:center">{pred_cm['H']['D']}</td><td style="background:rgba(239,68,68,.08);color:var(--home);text-align:center">{pred_cm['H']['A']}</td><td style="text-align:center;color:var(--text2)">{sum(pred_cm['H'].values())}</td></tr>
+            <tr><td style="font-weight:600">平局</td><td style="background:rgba(239,68,68,.08);color:var(--home);text-align:center">{pred_cm['D']['H']}</td><td style="background:rgba(34,197,94,.15);color:var(--green);font-weight:700;text-align:center">{pred_cm['D']['D']}</td><td style="background:rgba(239,68,68,.08);color:var(--home);text-align:center">{pred_cm['D']['A']}</td><td style="text-align:center;color:var(--text2)">{sum(pred_cm['D'].values())}</td></tr>
+            <tr><td style="font-weight:600">客胜</td><td style="background:rgba(239,68,68,.08);color:var(--home);text-align:center">{pred_cm['A']['H']}</td><td style="background:rgba(245,166,35,.08);color:var(--draw);text-align:center">{pred_cm['A']['D']}</td><td style="background:rgba(34,197,94,.15);color:var(--green);font-weight:700;text-align:center">{pred_cm['A']['A']}</td><td style="text-align:center;color:var(--text2)">{sum(pred_cm['A'].values())}</td></tr>
+            <tr><td style="font-weight:600;color:var(--text3)">合计</td><td style="text-align:center;color:var(--text2);font-weight:600">{sum(pred_cm[r]['H'] for r in ['H','D','A'])}</td><td style="text-align:center;color:var(--text2);font-weight:600">{sum(pred_cm[r]['D'] for r in ['H','D','A'])}</td><td style="text-align:center;color:var(--text2);font-weight:600">{sum(pred_cm[r]['A'] for r in ['H','D','A'])}</td><td style="text-align:center;color:var(--text3);font-weight:600">{pred_total}</td></tr>
+          </table>
+        </div>
+      </div>
+      <div>
+        <h3 style="font-size:11px;color:var(--text3);text-transform:uppercase;letter-spacing:.06em;margin-bottom:10px">置信度分档准确率</h3>
+        <div style="display:flex;flex-direction:column;gap:8px">
+          {''.join(f'<div><div style="display:flex;justify-content:space-between;font-size:11px;color:var(--text2);margin-bottom:4px"><span>{b["lb"]}</span><span>{b["c"]}/{b["n"]} ({b["a"]:.0%})</span></div><div class="bc"><div class="b" style="width:{b["a"]*100:.0f}%;background:{["var(--green)","var(--accent)","var(--draw)","var(--home)"][i%4]};height:8px;border-radius:5px"></div></div></div>' for i,b in enumerate(pred_bands))}
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="cd-h" style="cursor:pointer;margin-bottom:0;padding-bottom:0;border-bottom:none" onclick="toggleDetail2(this)">
+        <span class="cd-h-dot" style="background:var(--home);width:6px;height:6px;border-radius:50%;flex-shrink:0"></span>
+        <h2 style="font-size:10px;font-weight:600;color:var(--text3);letter-spacing:.06em;text-transform:uppercase">预测错误明细 · {len(pred_wrong)} 场</h2>
+        <span class="cd-h-b" id="detailToggle2">展开 ▼</span>
+      </div>
+      <div class="tw" id="detailTable2" style="display:none;margin-top:10px">
+        <table>
+          <tr><th>日期</th><th>主队</th><th>比分</th><th>客队</th><th>实际</th><th>预测</th><th>概率(H/D/A)</th><th>置信度</th></tr>
+          {''.join(f'<tr><td>{w["d"]}</td><td style="font-weight:600">{w["h"]}</td><td style="text-align:center;font-weight:600">{w["hs"]}-{w["as"]}</td><td style="font-weight:600">{w["a"]}</td><td style="color:{RESULT_COLORS[w["ar"]]};font-weight:600">{RESULT_NAMES[w["ar"]]}</td><td style="color:{RESULT_COLORS[w["pr"]]};font-weight:600">{RESULT_NAMES[w["pr"]]}</td><td style="font-size:11px">{w["ph"]:.0%}/{w["pd"]:.0%}/{w["pa"]:.0%}</td><td>{w["cf"]:.0%}</td></tr>' for w in pred_wrong)}
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- 各阶段数据 + 进球分布 -->
+  <div class="l2" style="margin-bottom:20px">
+    <div class="cd" style="margin-bottom:0">
+      <div class="cd-h"><span class="cd-h-dot"></span><h2>各阶段赛果统计</h2></div>
+      <div class="tw">
+        <table>
+          <tr><th>阶段</th><th>场次</th><th>主胜</th><th>平局</th><th>客胜</th><th>总进球</th><th>场均</th></tr>
+          {''.join(f'<tr><td style="font-weight:600">{s["l"]}</td><td>{s["n"]}</td><td style="color:var(--home)">{s["hw"]}</td><td style="color:var(--draw)">{s["dr"]}</td><td style="color:var(--away)">{s["aw"]}</td><td>{s["g"]}</td><td>{s["g"]/s["n"]:.1f}</td></tr>' for s in stages_data)}
+        </table>
+      </div>
+    </div>
+    <div class="cd" style="margin-bottom:0">
+      <div class="cd-h"><span class="cd-h-dot"></span><h2>进球分布</h2></div>
+      <div class="ch-sm" id="goalsDist"></div>
+    </div>
+  </div>
+
+  <!-- 完赛场次明细 -->
+  <div class="cd">
+    <div class="cd-h" style="cursor:pointer" onclick="toggleDetail(this)">
+      <span class="cd-h-dot" style="background:var(--away)"></span>
+      <h2>完赛场次明细 · {total_finished} 场</h2>
+      <span class="cd-h-b" id="detailToggle">收起 ▲</span>
+    </div>
+    <div class="tw" id="detailTable">
+      <table>
+        <tr><th>日期</th><th>主队</th><th></th><th></th><th>客队</th><th>结果</th><th>阶段</th></tr>
+        {finished_detail_rows}
+      </table>
+    </div>
+  </div>
+
+
 <script>
+var GOALS_DIST = {json.dumps(goals_dist)};
 function togglePos(el){{var c=el.nextElementSibling;if(c){{var o=c.classList.contains('open');c.classList.toggle('open');el.textContent=o?'落位分析 ▶':'落位分析 ▼';}}}}
+function toggleDetail(el){{var t=document.getElementById('detailTable');var b=document.getElementById('detailToggle');if(t.style.display==='none'){{t.style.display='';b.textContent='收起 ▲';}}else{{t.style.display='none';b.textContent='展开 ▼';}}}}
+function toggleDetail2(el){{var t=document.getElementById('detailTable2');var b=document.getElementById('detailToggle2');if(t.style.display==='none'){{t.style.display='';b.textContent='收起 ▲';}}else{{t.style.display='none';b.textContent='展开 ▼';}}}}
+window.addEventListener('DOMContentLoaded',function(){{
+  var gd=document.getElementById('goalsDist');
+  if(gd&&GOALS_DIST.some(function(v){{return v>0}})){{
+    var c=echarts.init(gd);
+    c.setOption({{
+      tooltip:{{trigger:'axis',formatter:function(p){{return p[0].name+'球: '+p[0].value+'场'}}}},
+      grid:{{left:40,right:12,top:8,bottom:24}},
+      xAxis:{{type:'category',data:['0','1','2','3','4','5','6','7','8','8+'],axisLabel:{{color:'#858ca5',fontSize:10}},axisLine:{{lineStyle:{{color:'rgba(255,255,255,.08)'}}}}}},
+      yAxis:{{type:'value',splitLine:{{lineStyle:{{color:'rgba(255,255,255,.04)'}}}},axisLabel:{{color:'#858ca5',fontSize:10}}}},
+      series:[{{type:'bar',data:GOALS_DIST,itemStyle:{{color:'#f5a623',borderRadius:[4,4,0,0]}},barWidth:'65%'}}]
+    }});
+    window.addEventListener('resize',function(){{c.resize()}});
+  }}
+}});
 </script>
 </body>
 </html>'''

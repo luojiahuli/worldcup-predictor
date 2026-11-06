@@ -1,11 +1,11 @@
 {
-  "n_matches": 67,
+  "n_matches": 68,
   "n_param_combinations": 210,
   "best_params": {
     "top5_strength": 0.3,
     "close_threshold": 200,
     "elo_min_weight": 0.3,
-    "score": 0.5981
+    "score": 0.5405
   },
   "top_results": [
     {
@@ -14,9 +14,9 @@
         "close_threshold": 200,
         "elo_min_weight": 0.3
       },
-      "accuracy": 0.6866,
-      "log_loss": 0.8843,
-      "combined_score": 0.5981
+      "accuracy": 0.6324,
+      "log_loss": 0.9189,
+      "combined_score": 0.5405
     },
     {
       "params": {
@@ -24,19 +24,9 @@
         "close_threshold": 175,
         "elo_min_weight": 0.3
       },
-      "accuracy": 0.6866,
-      "log_loss": 0.8867,
-      "combined_score": 0.5979
-    },
-    {
-      "params": {
-        "top5_strength": 0.25,
-        "close_threshold": 200,
-        "elo_min_weight": 0.3
-      },
-      "accuracy": 0.6866,
-      "log_loss": 0.8879,
-      "combined_score": 0.5978
+      "accuracy": 0.6324,
+      "log_loss": 0.9206,
+      "combined_score": 0.5403
     },
     {
       "params": {
@@ -44,9 +34,19 @@
         "close_threshold": 200,
         "elo_min_weight": 0.4
       },
-      "accuracy": 0.6866,
-      "log_loss": 0.8874,
-      "combined_score": 0.5978
+      "accuracy": 0.6324,
+      "log_loss": 0.9217,
+      "combined_score": 0.5402
+    },
+    {
+      "params": {
+        "top5_strength": 0.25,
+        "close_threshold": 200,
+        "elo_min_weight": 0.3
+      },
+      "accuracy": 0.6324,
+      "log_loss": 0.9221,
+      "combined_score": 0.5401
     },
     {
       "params": {
@@ -54,29 +54,9 @@
         "close_threshold": 175,
         "elo_min_weight": 0.3
       },
-      "accuracy": 0.6866,
-      "log_loss": 0.89,
-      "combined_score": 0.5976
-    },
-    {
-      "params": {
-        "top5_strength": 0.3,
-        "close_threshold": 175,
-        "elo_min_weight": 0.4
-      },
-      "accuracy": 0.6866,
-      "log_loss": 0.8895,
-      "combined_score": 0.5976
-    },
-    {
-      "params": {
-        "top5_strength": 0.25,
-        "close_threshold": 200,
-        "elo_min_weight": 0.4
-      },
-      "accuracy": 0.6866,
-      "log_loss": 0.8906,
-      "combined_score": 0.5975
+      "accuracy": 0.6324,
+      "log_loss": 0.9236,
+      "combined_score": 0.54
     },
     {
       "params": {
@@ -84,9 +64,29 @@
         "close_threshold": 150,
         "elo_min_weight": 0.3
       },
-      "accuracy": 0.6866,
-      "log_loss": 0.8904,
-      "combined_score": 0.5975
+      "accuracy": 0.6324,
+      "log_loss": 0.9238,
+      "combined_score": 0.54
+    },
+    {
+      "params": {
+        "top5_strength": 0.3,
+        "close_threshold": 175,
+        "elo_min_weight": 0.4
+      },
+      "accuracy": 0.6324,
+      "log_loss": 0.9232,
+      "combined_score": 0.54
+    },
+    {
+      "params": {
+        "top5_strength": 0.25,
+        "close_threshold": 200,
+        "elo_min_weight": 0.4
+      },
+      "accuracy": 0.6324,
+      "log_loss": 0.9245,
+      "combined_score": 0.5399
     },
     {
       "params": {
@@ -94,9 +94,9 @@
         "close_threshold": 200,
         "elo_min_weight": 0.5
       },
-      "accuracy": 0.6866,
-      "log_loss": 0.8906,
-      "combined_score": 0.5975
+      "accuracy": 0.6324,
+      "log_loss": 0.9245,
+      "combined_score": 0.5399
     },
     {
       "params": {
@@ -104,9 +104,49 @@
         "close_threshold": 200,
         "elo_min_weight": 0.3
       },
-      "accuracy": 0.6866,
-      "log_loss": 0.8917,
-      "combined_score": 0.5974
+      "accuracy": 0.6324,
+      "log_loss": 0.9254,
+      "combined_score": 0.5398
+    },
+    {
+      "params": {
+        "top5_strength": 0.25,
+        "close_threshold": 175,
+        "elo_min_weight": 0.4
+      },
+      "accuracy": 0.6324,
+      "log_loss": 0.9258,
+      "combined_score": 0.5398
+    },
+    {
+      "params": {
+        "top5_strength": 0.3,
+        "close_threshold": 150,
+        "elo_min_weight": 0.4
+      },
+      "accuracy": 0.6324,
+      "log_loss": 0.9259,
+      "combined_score": 0.5398
+    },
+    {
+      "params": {
+        "top5_strength": 0.3,
+        "close_threshold": 175,
+        "elo_min_weight": 0.5
+      },
+      "accuracy": 0.6324,
+      "log_loss": 0.9258,
+      "combined_score": 0.5398
+    },
+    {
+      "params": {
+        "top5_strength": 0.2,
+        "close_threshold": 175,
+        "elo_min_weight": 0.3
+      },
+      "accuracy": 0.6324,
+      "log_loss": 0.9267,
+      "combined_score": 0.5397
     },
     {
       "params": {
@@ -114,59 +154,9 @@
         "close_threshold": 150,
         "elo_min_weight": 0.3
       },
-      "accuracy": 0.6866,
-      "log_loss": 0.8932,
-      "combined_score": 0.5973
-    },
-    {
-      "params": {
-        "top5_strength": 0.25,
-        "close_threshold": 175,
-        "elo_min_weight": 0.4
-      },
-      "accuracy": 0.6866,
-      "log_loss": 0.8924,
-      "combined_score": 0.5973
-    },
-    {
-      "params": {
-        "top5_strength": 0.3,
-        "close_threshold": 150,
-        "elo_min_weight": 0.4
-      },
-      "accuracy": 0.6866,
-      "log_loss": 0.8928,
-      "combined_score": 0.5973
-    },
-    {
-      "params": {
-        "top5_strength": 0.3,
-        "close_threshold": 175,
-        "elo_min_weight": 0.5
-      },
-      "accuracy": 0.6866,
-      "log_loss": 0.8924,
-      "combined_score": 0.5973
-    },
-    {
-      "params": {
-        "top5_strength": 0.2,
-        "close_threshold": 175,
-        "elo_min_weight": 0.3
-      },
-      "accuracy": 0.6866,
-      "log_loss": 0.8934,
-      "combined_score": 0.5972
-    },
-    {
-      "params": {
-        "top5_strength": 0.2,
-        "close_threshold": 200,
-        "elo_min_weight": 0.4
-      },
-      "accuracy": 0.6866,
-      "log_loss": 0.8939,
-      "combined_score": 0.5972
+      "accuracy": 0.6324,
+      "log_loss": 0.9263,
+      "combined_score": 0.5397
     },
     {
       "params": {
@@ -174,9 +164,9 @@
         "close_threshold": 200,
         "elo_min_weight": 0.5
       },
-      "accuracy": 0.6866,
-      "log_loss": 0.8933,
-      "combined_score": 0.5972
+      "accuracy": 0.6324,
+      "log_loss": 0.9269,
+      "combined_score": 0.5397
     },
     {
       "params": {
@@ -184,9 +174,29 @@
         "close_threshold": 125,
         "elo_min_weight": 0.3
       },
-      "accuracy": 0.6866,
-      "log_loss": 0.894,
-      "combined_score": 0.5972
+      "accuracy": 0.6324,
+      "log_loss": 0.9268,
+      "combined_score": 0.5397
+    },
+    {
+      "params": {
+        "top5_strength": 0.2,
+        "close_threshold": 200,
+        "elo_min_weight": 0.4
+      },
+      "accuracy": 0.6324,
+      "log_loss": 0.9274,
+      "combined_score": 0.5396
+    },
+    {
+      "params": {
+        "top5_strength": 0.25,
+        "close_threshold": 175,
+        "elo_min_weight": 0.5
+      },
+      "accuracy": 0.6324,
+      "log_loss": 0.928,
+      "combined_score": 0.5396
     },
     {
       "params": {
@@ -194,19 +204,9 @@
         "close_threshold": 200,
         "elo_min_weight": 0.6
       },
-      "accuracy": 0.6866,
-      "log_loss": 0.8939,
-      "combined_score": 0.5972
-    },
-    {
-      "params": {
-        "top5_strength": 0.25,
-        "close_threshold": 150,
-        "elo_min_weight": 0.4
-      },
-      "accuracy": 0.6866,
-      "log_loss": 0.8951,
-      "combined_score": 0.5971
+      "accuracy": 0.6324,
+      "log_loss": 0.9274,
+      "combined_score": 0.5396
     }
   ],
   "all_results": [
@@ -216,9 +216,9 @@
         "close_threshold": 200,
         "elo_min_weight": 0.3
       },
-      "accuracy": 0.6866,
-      "log_loss": 0.8843,
-      "combined_score": 0.5981
+      "accuracy": 0.6324,
+      "log_loss": 0.9189,
+      "combined_score": 0.5405
     },
     {
       "params": {
@@ -226,19 +226,9 @@
         "close_threshold": 175,
         "elo_min_weight": 0.3
       },
-      "accuracy": 0.6866,
-      "log_loss": 0.8867,
-      "combined_score": 0.5979
-    },
-    {
-      "params": {
-        "top5_strength": 0.25,
-        "close_threshold": 200,
-        "elo_min_weight": 0.3
-      },
-      "accuracy": 0.6866,
-      "log_loss": 0.8879,
-      "combined_score": 0.5978
+      "accuracy": 0.6324,
+      "log_loss": 0.9206,
+      "combined_score": 0.5403
     },
     {
       "params": {
@@ -246,9 +236,19 @@
         "close_threshold": 200,
         "elo_min_weight": 0.4
       },
-      "accuracy": 0.6866,
-      "log_loss": 0.8874,
-      "combined_score": 0.5978
+      "accuracy": 0.6324,
+      "log_loss": 0.9217,
+      "combined_score": 0.5402
+    },
+    {
+      "params": {
+        "top5_strength": 0.25,
+        "close_threshold": 200,
+        "elo_min_weight": 0.3
+      },
+      "accuracy": 0.6324,
+      "log_loss": 0.9221,
+      "combined_score": 0.5401
     },
     {
       "params": {
@@ -256,9 +256,19 @@
         "close_threshold": 175,
         "elo_min_weight": 0.3
       },
-      "accuracy": 0.6866,
-      "log_loss": 0.89,
-      "combined_score": 0.5976
+      "accuracy": 0.6324,
+      "log_loss": 0.9236,
+      "combined_score": 0.54
+    },
+    {
+      "params": {
+        "top5_strength": 0.3,
+        "close_threshold": 150,
+        "elo_min_weight": 0.3
+      },
+      "accuracy": 0.6324,
+      "log_loss": 0.9238,
+      "combined_score": 0.54
     },
     {
       "params": {
@@ -266,9 +276,9 @@
         "close_threshold": 175,
         "elo_min_weight": 0.4
       },
-      "accuracy": 0.6866,
-      "log_loss": 0.8895,
-      "combined_score": 0.5976
+      "accuracy": 0.6324,
+      "log_loss": 0.9232,
+      "combined_score": 0.54
     },
     {
       "params": {
@@ -276,19 +286,9 @@
         "close_threshold": 200,
         "elo_min_weight": 0.4
       },
-      "accuracy": 0.6866,
-      "log_loss": 0.8906,
-      "combined_score": 0.5975
-    },
-    {
-      "params": {
-        "top5_strength": 0.3,
-        "close_threshold": 150,
-        "elo_min_weight": 0.3
-      },
-      "accuracy": 0.6866,
-      "log_loss": 0.8904,
-      "combined_score": 0.5975
+      "accuracy": 0.6324,
+      "log_loss": 0.9245,
+      "combined_score": 0.5399
     },
     {
       "params": {
@@ -296,9 +296,9 @@
         "close_threshold": 200,
         "elo_min_weight": 0.5
       },
-      "accuracy": 0.6866,
-      "log_loss": 0.8906,
-      "combined_score": 0.5975
+      "accuracy": 0.6324,
+      "log_loss": 0.9245,
+      "combined_score": 0.5399
     },
     {
       "params": {
@@ -306,19 +306,9 @@
         "close_threshold": 200,
         "elo_min_weight": 0.3
       },
-      "accuracy": 0.6866,
-      "log_loss": 0.8917,
-      "combined_score": 0.5974
-    },
-    {
-      "params": {
-        "top5_strength": 0.25,
-        "close_threshold": 150,
-        "elo_min_weight": 0.3
-      },
-      "accuracy": 0.6866,
-      "log_loss": 0.8932,
-      "combined_score": 0.5973
+      "accuracy": 0.6324,
+      "log_loss": 0.9254,
+      "combined_score": 0.5398
     },
     {
       "params": {
@@ -326,9 +316,9 @@
         "close_threshold": 175,
         "elo_min_weight": 0.4
       },
-      "accuracy": 0.6866,
-      "log_loss": 0.8924,
-      "combined_score": 0.5973
+      "accuracy": 0.6324,
+      "log_loss": 0.9258,
+      "combined_score": 0.5398
     },
     {
       "params": {
@@ -336,9 +326,9 @@
         "close_threshold": 150,
         "elo_min_weight": 0.4
       },
-      "accuracy": 0.6866,
-      "log_loss": 0.8928,
-      "combined_score": 0.5973
+      "accuracy": 0.6324,
+      "log_loss": 0.9259,
+      "combined_score": 0.5398
     },
     {
       "params": {
@@ -346,9 +336,9 @@
         "close_threshold": 175,
         "elo_min_weight": 0.5
       },
-      "accuracy": 0.6866,
-      "log_loss": 0.8924,
-      "combined_score": 0.5973
+      "accuracy": 0.6324,
+      "log_loss": 0.9258,
+      "combined_score": 0.5398
     },
     {
       "params": {
@@ -356,19 +346,19 @@
         "close_threshold": 175,
         "elo_min_weight": 0.3
       },
-      "accuracy": 0.6866,
-      "log_loss": 0.8934,
-      "combined_score": 0.5972
+      "accuracy": 0.6324,
+      "log_loss": 0.9267,
+      "combined_score": 0.5397
     },
     {
       "params": {
-        "top5_strength": 0.2,
-        "close_threshold": 200,
-        "elo_min_weight": 0.4
+        "top5_strength": 0.25,
+        "close_threshold": 150,
+        "elo_min_weight": 0.3
       },
-      "accuracy": 0.6866,
-      "log_loss": 0.8939,
-      "combined_score": 0.5972
+      "accuracy": 0.6324,
+      "log_loss": 0.9263,
+      "combined_score": 0.5397
     },
     {
       "params": {
@@ -376,9 +366,9 @@
         "close_threshold": 200,
         "elo_min_weight": 0.5
       },
-      "accuracy": 0.6866,
-      "log_loss": 0.8933,
-      "combined_score": 0.5972
+      "accuracy": 0.6324,
+      "log_loss": 0.9269,
+      "combined_score": 0.5397
     },
     {
       "params": {
@@ -386,9 +376,29 @@
         "close_threshold": 125,
         "elo_min_weight": 0.3
       },
-      "accuracy": 0.6866,
-      "log_loss": 0.894,
-      "combined_score": 0.5972
+      "accuracy": 0.6324,
+      "log_loss": 0.9268,
+      "combined_score": 0.5397
+    },
+    {
+      "params": {
+        "top5_strength": 0.2,
+        "close_threshold": 200,
+        "elo_min_weight": 0.4
+      },
+      "accuracy": 0.6324,
+      "log_loss": 0.9274,
+      "combined_score": 0.5396
+    },
+    {
+      "params": {
+        "top5_strength": 0.25,
+        "close_threshold": 175,
+        "elo_min_weight": 0.5
+      },
+      "accuracy": 0.6324,
+      "log_loss": 0.928,
+      "combined_score": 0.5396
     },
     {
       "params": {
@@ -396,39 +406,9 @@
         "close_threshold": 200,
         "elo_min_weight": 0.6
       },
-      "accuracy": 0.6866,
-      "log_loss": 0.8939,
-      "combined_score": 0.5972
-    },
-    {
-      "params": {
-        "top5_strength": 0.25,
-        "close_threshold": 150,
-        "elo_min_weight": 0.4
-      },
-      "accuracy": 0.6866,
-      "log_loss": 0.8951,
-      "combined_score": 0.5971
-    },
-    {
-      "params": {
-        "top5_strength": 0.25,
-        "close_threshold": 175,
-        "elo_min_weight": 0.5
-      },
-      "accuracy": 0.6866,
-      "log_loss": 0.8949,
-      "combined_score": 0.5971
-    },
-    {
-      "params": {
-        "top5_strength": 0.3,
-        "close_threshold": 150,
-        "elo_min_weight": 0.5
-      },
-      "accuracy": 0.6866,
-      "log_loss": 0.8951,
-      "combined_score": 0.5971
+      "accuracy": 0.6324,
+      "log_loss": 0.9274,
+      "combined_score": 0.5396
     },
     {
       "params": {
@@ -436,9 +416,9 @@
         "close_threshold": 200,
         "elo_min_weight": 0.3
       },
-      "accuracy": 0.6866,
-      "log_loss": 0.8955,
-      "combined_score": 0.597
+      "accuracy": 0.6324,
+      "log_loss": 0.9288,
+      "combined_score": 0.5395
     },
     {
       "params": {
@@ -446,9 +426,9 @@
         "close_threshold": 150,
         "elo_min_weight": 0.3
       },
-      "accuracy": 0.6866,
-      "log_loss": 0.8959,
-      "combined_score": 0.597
+      "accuracy": 0.6324,
+      "log_loss": 0.9288,
+      "combined_score": 0.5395
     },
     {
       "params": {
@@ -456,9 +436,69 @@
         "close_threshold": 175,
         "elo_min_weight": 0.4
       },
-      "accuracy": 0.6866,
-      "log_loss": 0.8953,
-      "combined_score": 0.597
+      "accuracy": 0.6324,
+      "log_loss": 0.9284,
+      "combined_score": 0.5395
+    },
+    {
+      "params": {
+        "top5_strength": 0.25,
+        "close_threshold": 125,
+        "elo_min_weight": 0.3
+      },
+      "accuracy": 0.6324,
+      "log_loss": 0.9289,
+      "combined_score": 0.5395
+    },
+    {
+      "params": {
+        "top5_strength": 0.25,
+        "close_threshold": 150,
+        "elo_min_weight": 0.4
+      },
+      "accuracy": 0.6324,
+      "log_loss": 0.9281,
+      "combined_score": 0.5395
+    },
+    {
+      "params": {
+        "top5_strength": 0.3,
+        "close_threshold": 125,
+        "elo_min_weight": 0.4
+      },
+      "accuracy": 0.6324,
+      "log_loss": 0.9286,
+      "combined_score": 0.5395
+    },
+    {
+      "params": {
+        "top5_strength": 0.3,
+        "close_threshold": 150,
+        "elo_min_weight": 0.5
+      },
+      "accuracy": 0.6324,
+      "log_loss": 0.9281,
+      "combined_score": 0.5395
+    },
+    {
+      "params": {
+        "top5_strength": 0.3,
+        "close_threshold": 175,
+        "elo_min_weight": 0.6
+      },
+      "accuracy": 0.6324,
+      "log_loss": 0.9284,
+      "combined_score": 0.5395
+    },
+    {
+      "params": {
+        "top5_strength": 0.15,
+        "close_threshold": 175,
+        "elo_min_weight": 0.3
+      },
+      "accuracy": 0.6324,
+      "log_loss": 0.9298,
+      "combined_score": 0.5394
     },
     {
       "params": {
@@ -466,9 +506,19 @@
         "close_threshold": 200,
         "elo_min_weight": 0.5
       },
-      "accuracy": 0.6866,
-      "log_loss": 0.8961,
-      "combined_score": 0.597
+      "accuracy": 0.6324,
+      "log_loss": 0.9293,
+      "combined_score": 0.5394
+    },
+    {
+      "params": {
+        "top5_strength": 0.25,
+        "close_threshold": 150,
+        "elo_min_weight": 0.5
+      },
+      "accuracy": 0.6324,
+      "log_loss": 0.9299,
+      "combined_score": 0.5394
     },
     {
       "params": {
@@ -476,59 +526,19 @@
         "close_threshold": 200,
         "elo_min_weight": 0.6
       },
-      "accuracy": 0.6866,
-      "log_loss": 0.8961,
-      "combined_score": 0.597
+      "accuracy": 0.6324,
+      "log_loss": 0.9293,
+      "combined_score": 0.5394
     },
     {
       "params": {
         "top5_strength": 0.3,
-        "close_threshold": 125,
-        "elo_min_weight": 0.4
-      },
-      "accuracy": 0.6866,
-      "log_loss": 0.8959,
-      "combined_score": 0.597
-    },
-    {
-      "params": {
-        "top5_strength": 0.3,
-        "close_threshold": 175,
-        "elo_min_weight": 0.6
-      },
-      "accuracy": 0.6866,
-      "log_loss": 0.8953,
-      "combined_score": 0.597
-    },
-    {
-      "params": {
-        "top5_strength": 0.15,
-        "close_threshold": 175,
+        "close_threshold": 100,
         "elo_min_weight": 0.3
       },
-      "accuracy": 0.6866,
-      "log_loss": 0.8968,
-      "combined_score": 0.5969
-    },
-    {
-      "params": {
-        "top5_strength": 0.25,
-        "close_threshold": 125,
-        "elo_min_weight": 0.3
-      },
-      "accuracy": 0.6866,
-      "log_loss": 0.8962,
-      "combined_score": 0.5969
-    },
-    {
-      "params": {
-        "top5_strength": 0.25,
-        "close_threshold": 150,
-        "elo_min_weight": 0.5
-      },
-      "accuracy": 0.6866,
-      "log_loss": 0.8971,
-      "combined_score": 0.5969
+      "accuracy": 0.6324,
+      "log_loss": 0.9297,
+      "combined_score": 0.5394
     },
     {
       "params": {
@@ -536,59 +546,59 @@
         "close_threshold": 200,
         "elo_min_weight": 0.4
       },
-      "accuracy": 0.6866,
-      "log_loss": 0.8972,
-      "combined_score": 0.5968
+      "accuracy": 0.6324,
+      "log_loss": 0.9303,
+      "combined_score": 0.5393
     },
     {
       "params": {
         "top5_strength": 0.2,
-        "close_threshold": 150,
-        "elo_min_weight": 0.4
-      },
-      "accuracy": 0.6866,
-      "log_loss": 0.8975,
-      "combined_score": 0.5968
-    },
-    {
-      "params": {
-        "top5_strength": 0.2,
-        "close_threshold": 175,
-        "elo_min_weight": 0.5
-      },
-      "accuracy": 0.6866,
-      "log_loss": 0.8973,
-      "combined_score": 0.5968
-    },
-    {
-      "params": {
-        "top5_strength": 0.25,
         "close_threshold": 125,
-        "elo_min_weight": 0.4
-      },
-      "accuracy": 0.6866,
-      "log_loss": 0.8978,
-      "combined_score": 0.5968
-    },
-    {
-      "params": {
-        "top5_strength": 0.25,
-        "close_threshold": 175,
-        "elo_min_weight": 0.6
-      },
-      "accuracy": 0.6866,
-      "log_loss": 0.8973,
-      "combined_score": 0.5968
-    },
-    {
-      "params": {
-        "top5_strength": 0.3,
-        "close_threshold": 100,
         "elo_min_weight": 0.3
       },
-      "accuracy": 0.6866,
-      "log_loss": 0.8975,
-      "combined_score": 0.5968
+      "accuracy": 0.6324,
+      "log_loss": 0.9309,
+      "combined_score": 0.5393
+    },
+    {
+      "params": {
+        "top5_strength": 0.2,
+        "close_threshold": 150,
+        "elo_min_weight": 0.4
+      },
+      "accuracy": 0.6324,
+      "log_loss": 0.9303,
+      "combined_score": 0.5393
+    },
+    {
+      "params": {
+        "top5_strength": 0.2,
+        "close_threshold": 175,
+        "elo_min_weight": 0.5
+      },
+      "accuracy": 0.6324,
+      "log_loss": 0.9302,
+      "combined_score": 0.5393
+    },
+    {
+      "params": {
+        "top5_strength": 0.25,
+        "close_threshold": 125,
+        "elo_min_weight": 0.4
+      },
+      "accuracy": 0.6324,
+      "log_loss": 0.9303,
+      "combined_score": 0.5393
+    },
+    {
+      "params": {
+        "top5_strength": 0.25,
+        "close_threshold": 175,
+        "elo_min_weight": 0.6
+      },
+      "accuracy": 0.6324,
+      "log_loss": 0.9302,
+      "combined_score": 0.5393
     },
     {
       "params": {
@@ -596,9 +606,9 @@
         "close_threshold": 125,
         "elo_min_weight": 0.5
       },
-      "accuracy": 0.6866,
-      "log_loss": 0.8978,
-      "combined_score": 0.5968
+      "accuracy": 0.6324,
+      "log_loss": 0.9303,
+      "combined_score": 0.5393
     },
     {
       "params": {
@@ -606,9 +616,9 @@
         "close_threshold": 150,
         "elo_min_weight": 0.6
       },
-      "accuracy": 0.6866,
-      "log_loss": 0.8975,
-      "combined_score": 0.5968
+      "accuracy": 0.6324,
+      "log_loss": 0.9303,
+      "combined_score": 0.5393
     },
     {
       "params": {
@@ -616,9 +626,9 @@
         "close_threshold": 200,
         "elo_min_weight": 0.7
       },
-      "accuracy": 0.6866,
-      "log_loss": 0.8972,
-      "combined_score": 0.5968
+      "accuracy": 0.6324,
+      "log_loss": 0.9303,
+      "combined_score": 0.5393
     },
     {
       "params": {
@@ -626,9 +636,9 @@
         "close_threshold": 150,
         "elo_min_weight": 0.3
       },
-      "accuracy": 0.6866,
-      "log_loss": 0.8988,
-      "combined_score": 0.5967
+      "accuracy": 0.6324,
+      "log_loss": 0.9314,
+      "combined_score": 0.5392
     },
     {
       "params": {
@@ -636,19 +646,19 @@
         "close_threshold": 175,
         "elo_min_weight": 0.4
       },
-      "accuracy": 0.6866,
-      "log_loss": 0.8983,
-      "combined_score": 0.5967
+      "accuracy": 0.6324,
+      "log_loss": 0.9311,
+      "combined_score": 0.5392
     },
     {
       "params": {
         "top5_strength": 0.2,
-        "close_threshold": 125,
-        "elo_min_weight": 0.3
+        "close_threshold": 150,
+        "elo_min_weight": 0.5
       },
-      "accuracy": 0.6866,
-      "log_loss": 0.8984,
-      "combined_score": 0.5967
+      "accuracy": 0.6324,
+      "log_loss": 0.9318,
+      "combined_score": 0.5392
     },
     {
       "params": {
@@ -656,9 +666,9 @@
         "close_threshold": 200,
         "elo_min_weight": 0.6
       },
-      "accuracy": 0.6866,
-      "log_loss": 0.8983,
-      "combined_score": 0.5967
+      "accuracy": 0.6324,
+      "log_loss": 0.9313,
+      "combined_score": 0.5392
     },
     {
       "params": {
@@ -666,9 +676,29 @@
         "close_threshold": 100,
         "elo_min_weight": 0.3
       },
-      "accuracy": 0.6866,
-      "log_loss": 0.8992,
-      "combined_score": 0.5967
+      "accuracy": 0.6324,
+      "log_loss": 0.9313,
+      "combined_score": 0.5392
+    },
+    {
+      "params": {
+        "top5_strength": 0.25,
+        "close_threshold": 125,
+        "elo_min_weight": 0.5
+      },
+      "accuracy": 0.6324,
+      "log_loss": 0.9318,
+      "combined_score": 0.5392
+    },
+    {
+      "params": {
+        "top5_strength": 0.25,
+        "close_threshold": 150,
+        "elo_min_weight": 0.6
+      },
+      "accuracy": 0.6324,
+      "log_loss": 0.9318,
+      "combined_score": 0.5392
     },
     {
       "params": {
@@ -676,9 +706,9 @@
         "close_threshold": 100,
         "elo_min_weight": 0.4
       },
-      "accuracy": 0.6866,
-      "log_loss": 0.8989,
-      "combined_score": 0.5967
+      "accuracy": 0.6324,
+      "log_loss": 0.9311,
+      "combined_score": 0.5392
     },
     {
       "params": {
@@ -686,9 +716,19 @@
         "close_threshold": 175,
         "elo_min_weight": 0.7
       },
-      "accuracy": 0.6866,
-      "log_loss": 0.8983,
-      "combined_score": 0.5967
+      "accuracy": 0.6324,
+      "log_loss": 0.9311,
+      "combined_score": 0.5392
+    },
+    {
+      "params": {
+        "top5_strength": 0.15,
+        "close_threshold": 125,
+        "elo_min_weight": 0.3
+      },
+      "accuracy": 0.6324,
+      "log_loss": 0.933,
+      "combined_score": 0.5391
     },
     {
       "params": {
@@ -696,9 +736,19 @@
         "close_threshold": 150,
         "elo_min_weight": 0.4
       },
-      "accuracy": 0.6866,
-      "log_loss": 0.9,
-      "combined_score": 0.5966
+      "accuracy": 0.6324,
+      "log_loss": 0.9326,
+      "combined_score": 0.5391
+    },
+    {
+      "params": {
+        "top5_strength": 0.2,
+        "close_threshold": 100,
+        "elo_min_weight": 0.3
+      },
+      "accuracy": 0.6324,
+      "log_loss": 0.9329,
+      "combined_score": 0.5391
     },
     {
       "params": {
@@ -706,19 +756,9 @@
         "close_threshold": 125,
         "elo_min_weight": 0.4
       },
-      "accuracy": 0.6866,
-      "log_loss": 0.8997,
-      "combined_score": 0.5966
-    },
-    {
-      "params": {
-        "top5_strength": 0.2,
-        "close_threshold": 150,
-        "elo_min_weight": 0.5
-      },
-      "accuracy": 0.6866,
-      "log_loss": 0.8992,
-      "combined_score": 0.5966
+      "accuracy": 0.6324,
+      "log_loss": 0.9321,
+      "combined_score": 0.5391
     },
     {
       "params": {
@@ -726,149 +766,99 @@
         "close_threshold": 175,
         "elo_min_weight": 0.6
       },
-      "accuracy": 0.6866,
-      "log_loss": 0.8993,
-      "combined_score": 0.5966
+      "accuracy": 0.6324,
+      "log_loss": 0.932,
+      "combined_score": 0.5391
     },
     {
       "params": {
         "top5_strength": 0.25,
+        "close_threshold": 100,
+        "elo_min_weight": 0.4
+      },
+      "accuracy": 0.6324,
+      "log_loss": 0.9324,
+      "combined_score": 0.5391
+    },
+    {
+      "params": {
+        "top5_strength": 0.3,
+        "close_threshold": 75,
+        "elo_min_weight": 0.3
+      },
+      "accuracy": 0.6324,
+      "log_loss": 0.9324,
+      "combined_score": 0.5391
+    },
+    {
+      "params": {
+        "top5_strength": 0.3,
+        "close_threshold": 100,
+        "elo_min_weight": 0.5
+      },
+      "accuracy": 0.6324,
+      "log_loss": 0.9324,
+      "combined_score": 0.5391
+    },
+    {
+      "params": {
+        "top5_strength": 0.3,
+        "close_threshold": 125,
+        "elo_min_weight": 0.6
+      },
+      "accuracy": 0.6324,
+      "log_loss": 0.9321,
+      "combined_score": 0.5391
+    },
+    {
+      "params": {
+        "top5_strength": 0.3,
+        "close_threshold": 150,
+        "elo_min_weight": 0.7
+      },
+      "accuracy": 0.6324,
+      "log_loss": 0.9326,
+      "combined_score": 0.5391
+    },
+    {
+      "params": {
+        "top5_strength": 0.15,
+        "close_threshold": 125,
+        "elo_min_weight": 0.4
+      },
+      "accuracy": 0.6324,
+      "log_loss": 0.9339,
+      "combined_score": 0.539
+    },
+    {
+      "params": {
+        "top5_strength": 0.2,
+        "close_threshold": 100,
+        "elo_min_weight": 0.4
+      },
+      "accuracy": 0.6324,
+      "log_loss": 0.9338,
+      "combined_score": 0.539
+    },
+    {
+      "params": {
+        "top5_strength": 0.2,
         "close_threshold": 125,
         "elo_min_weight": 0.5
       },
-      "accuracy": 0.6866,
-      "log_loss": 0.8994,
-      "combined_score": 0.5966
+      "accuracy": 0.6324,
+      "log_loss": 0.9333,
+      "combined_score": 0.539
     },
     {
       "params": {
-        "top5_strength": 0.25,
+        "top5_strength": 0.2,
         "close_threshold": 150,
         "elo_min_weight": 0.6
       },
-      "accuracy": 0.6866,
-      "log_loss": 0.8992,
-      "combined_score": 0.5966
-    },
-    {
-      "params": {
-        "top5_strength": 0.3,
-        "close_threshold": 125,
-        "elo_min_weight": 0.6
-      },
-      "accuracy": 0.6866,
-      "log_loss": 0.8997,
-      "combined_score": 0.5966
-    },
-    {
-      "params": {
-        "top5_strength": 0.3,
-        "close_threshold": 150,
-        "elo_min_weight": 0.7
-      },
-      "accuracy": 0.6866,
-      "log_loss": 0.9,
-      "combined_score": 0.5966
-    },
-    {
-      "params": {
-        "top5_strength": 0.15,
-        "close_threshold": 125,
-        "elo_min_weight": 0.3
-      },
-      "accuracy": 0.6866,
-      "log_loss": 0.9006,
-      "combined_score": 0.5965
-    },
-    {
-      "params": {
-        "top5_strength": 0.2,
-        "close_threshold": 100,
-        "elo_min_weight": 0.3
-      },
-      "accuracy": 0.6866,
-      "log_loss": 0.9008,
-      "combined_score": 0.5965
-    },
-    {
-      "params": {
-        "top5_strength": 0.2,
-        "close_threshold": 125,
-        "elo_min_weight": 0.5
-      },
-      "accuracy": 0.6866,
-      "log_loss": 0.901,
-      "combined_score": 0.5965
-    },
-    {
-      "params": {
-        "top5_strength": 0.2,
-        "close_threshold": 150,
-        "elo_min_weight": 0.6
-      },
-      "accuracy": 0.6866,
-      "log_loss": 0.9008,
-      "combined_score": 0.5965
-    },
-    {
-      "params": {
-        "top5_strength": 0.25,
-        "close_threshold": 100,
-        "elo_min_weight": 0.4
-      },
-      "accuracy": 0.6866,
-      "log_loss": 0.9003,
-      "combined_score": 0.5965
-    },
-    {
-      "params": {
-        "top5_strength": 0.25,
-        "close_threshold": 125,
-        "elo_min_weight": 0.6
-      },
-      "accuracy": 0.6866,
-      "log_loss": 0.901,
-      "combined_score": 0.5965
-    },
-    {
-      "params": {
-        "top5_strength": 0.3,
-        "close_threshold": 75,
-        "elo_min_weight": 0.3
-      },
-      "accuracy": 0.6866,
-      "log_loss": 0.9004,
-      "combined_score": 0.5965
-    },
-    {
-      "params": {
-        "top5_strength": 0.3,
-        "close_threshold": 100,
-        "elo_min_weight": 0.5
-      },
-      "accuracy": 0.6866,
-      "log_loss": 0.9003,
-      "combined_score": 0.5965
-    },
-    {
-      "params": {
-        "top5_strength": 0.15,
-        "close_threshold": 125,
-        "elo_min_weight": 0.4
-      },
-      "accuracy": 0.6866,
-      "log_loss": 0.9016,
-      "combined_score": 0.5964
-    },
-    {
-      "params": {
-        "top5_strength": 0.2,
-        "close_threshold": 100,
-        "elo_min_weight": 0.4
-      },
-      "accuracy": 0.6866,
-      "log_loss": 0.9017,
-      "combined_score": 0.5964
+      "accuracy": 0.6324,
+      "log_loss": 0.9333,
+      "combined_score": 0.539
     },
     {
       "params": {
@@ -876,9 +866,9 @@
         "close_threshold": 75,
         "elo_min_weight": 0.3
       },
-      "accuracy": 0.6866,
-      "log_loss": 0.9015,
-      "combined_score": 0.5964
+      "accuracy": 0.6324,
+      "log_loss": 0.9336,
+      "combined_score": 0.539
     },
     {
       "params": {
@@ -886,9 +876,19 @@
         "close_threshold": 100,
         "elo_min_weight": 0.5
       },
-      "accuracy": 0.6866,
-      "log_loss": 0.9015,
-      "combined_score": 0.5964
+      "accuracy": 0.6324,
+      "log_loss": 0.9336,
+      "combined_score": 0.539
+    },
+    {
+      "params": {
+        "top5_strength": 0.25,
+        "close_threshold": 125,
+        "elo_min_weight": 0.6
+      },
+      "accuracy": 0.6324,
+      "log_loss": 0.9333,
+      "combined_score": 0.539
     },
     {
       "params": {
@@ -896,9 +896,9 @@
         "close_threshold": 75,
         "elo_min_weight": 0.4
       },
-      "accuracy": 0.6866,
-      "log_loss": 0.9014,
-      "combined_score": 0.5964
+      "accuracy": 0.6324,
+      "log_loss": 0.9334,
+      "combined_score": 0.539
     },
     {
       "params": {
@@ -906,9 +906,9 @@
         "close_threshold": 100,
         "elo_min_weight": 0.6
       },
-      "accuracy": 0.6866,
-      "log_loss": 0.9017,
-      "combined_score": 0.5964
+      "accuracy": 0.6324,
+      "log_loss": 0.9338,
+      "combined_score": 0.539
     },
     {
       "params": {
@@ -916,9 +916,9 @@
         "close_threshold": 125,
         "elo_min_weight": 0.7
       },
-      "accuracy": 0.6866,
-      "log_loss": 0.9016,
-      "combined_score": 0.5964
+      "accuracy": 0.6324,
+      "log_loss": 0.9339,
+      "combined_score": 0.539
     },
     {
       "params": {
@@ -926,19 +926,9 @@
         "close_threshold": 100,
         "elo_min_weight": 0.3
       },
-      "accuracy": 0.6866,
-      "log_loss": 0.9025,
-      "combined_score": 0.5963
-    },
-    {
-      "params": {
-        "top5_strength": 0.15,
-        "close_threshold": 100,
-        "elo_min_weight": 0.4
-      },
-      "accuracy": 0.6866,
-      "log_loss": 0.9032,
-      "combined_score": 0.5963
+      "accuracy": 0.6324,
+      "log_loss": 0.9345,
+      "combined_score": 0.5389
     },
     {
       "params": {
@@ -946,9 +936,9 @@
         "close_threshold": 75,
         "elo_min_weight": 0.3
       },
-      "accuracy": 0.6866,
-      "log_loss": 0.9027,
-      "combined_score": 0.5963
+      "accuracy": 0.6324,
+      "log_loss": 0.9347,
+      "combined_score": 0.5389
     },
     {
       "params": {
@@ -956,9 +946,9 @@
         "close_threshold": 100,
         "elo_min_weight": 0.5
       },
-      "accuracy": 0.6866,
-      "log_loss": 0.9027,
-      "combined_score": 0.5963
+      "accuracy": 0.6324,
+      "log_loss": 0.9348,
+      "combined_score": 0.5389
     },
     {
       "params": {
@@ -966,9 +956,9 @@
         "close_threshold": 125,
         "elo_min_weight": 0.6
       },
-      "accuracy": 0.6866,
-      "log_loss": 0.9023,
-      "combined_score": 0.5963
+      "accuracy": 0.6324,
+      "log_loss": 0.9345,
+      "combined_score": 0.5389
     },
     {
       "params": {
@@ -976,9 +966,9 @@
         "close_threshold": 75,
         "elo_min_weight": 0.4
       },
-      "accuracy": 0.6866,
-      "log_loss": 0.9024,
-      "combined_score": 0.5963
+      "accuracy": 0.6324,
+      "log_loss": 0.9344,
+      "combined_score": 0.5389
     },
     {
       "params": {
@@ -986,9 +976,9 @@
         "close_threshold": 100,
         "elo_min_weight": 0.6
       },
-      "accuracy": 0.6866,
-      "log_loss": 0.9027,
-      "combined_score": 0.5963
+      "accuracy": 0.6324,
+      "log_loss": 0.9348,
+      "combined_score": 0.5389
     },
     {
       "params": {
@@ -996,9 +986,9 @@
         "close_threshold": 50,
         "elo_min_weight": 0.3
       },
-      "accuracy": 0.6866,
-      "log_loss": 0.9025,
-      "combined_score": 0.5963
+      "accuracy": 0.6324,
+      "log_loss": 0.9346,
+      "combined_score": 0.5389
     },
     {
       "params": {
@@ -1006,19 +996,9 @@
         "close_threshold": 75,
         "elo_min_weight": 0.5
       },
-      "accuracy": 0.6866,
-      "log_loss": 0.9024,
-      "combined_score": 0.5963
-    },
-    {
-      "params": {
-        "top5_strength": 0.3,
-        "close_threshold": 100,
-        "elo_min_weight": 0.7
-      },
-      "accuracy": 0.6866,
-      "log_loss": 0.9032,
-      "combined_score": 0.5963
+      "accuracy": 0.6324,
+      "log_loss": 0.9344,
+      "combined_score": 0.5389
     },
     {
       "params": {
@@ -1026,19 +1006,19 @@
         "close_threshold": 75,
         "elo_min_weight": 0.3
       },
-      "accuracy": 0.6866,
-      "log_loss": 0.9039,
-      "combined_score": 0.5962
+      "accuracy": 0.6324,
+      "log_loss": 0.9359,
+      "combined_score": 0.5388
     },
     {
       "params": {
-        "top5_strength": 0.2,
-        "close_threshold": 50,
-        "elo_min_weight": 0.3
+        "top5_strength": 0.15,
+        "close_threshold": 100,
+        "elo_min_weight": 0.4
       },
-      "accuracy": 0.6866,
-      "log_loss": 0.9042,
-      "combined_score": 0.5962
+      "accuracy": 0.6324,
+      "log_loss": 0.9352,
+      "combined_score": 0.5388
     },
     {
       "params": {
@@ -1046,19 +1026,9 @@
         "close_threshold": 75,
         "elo_min_weight": 0.4
       },
-      "accuracy": 0.6866,
-      "log_loss": 0.9034,
-      "combined_score": 0.5962
-    },
-    {
-      "params": {
-        "top5_strength": 0.2,
-        "close_threshold": 75,
-        "elo_min_weight": 0.5
-      },
-      "accuracy": 0.6866,
-      "log_loss": 0.9041,
-      "combined_score": 0.5962
+      "accuracy": 0.6324,
+      "log_loss": 0.9354,
+      "combined_score": 0.5388
     },
     {
       "params": {
@@ -1066,9 +1036,9 @@
         "close_threshold": 100,
         "elo_min_weight": 0.6
       },
-      "accuracy": 0.6866,
-      "log_loss": 0.9037,
-      "combined_score": 0.5962
+      "accuracy": 0.6324,
+      "log_loss": 0.9357,
+      "combined_score": 0.5388
     },
     {
       "params": {
@@ -1076,9 +1046,9 @@
         "close_threshold": 50,
         "elo_min_weight": 0.3
       },
-      "accuracy": 0.6866,
-      "log_loss": 0.9033,
-      "combined_score": 0.5962
+      "accuracy": 0.6324,
+      "log_loss": 0.9354,
+      "combined_score": 0.5388
     },
     {
       "params": {
@@ -1086,9 +1056,9 @@
         "close_threshold": 50,
         "elo_min_weight": 0.4
       },
-      "accuracy": 0.6866,
-      "log_loss": 0.9039,
-      "combined_score": 0.5962
+      "accuracy": 0.6324,
+      "log_loss": 0.9359,
+      "combined_score": 0.5388
     },
     {
       "params": {
@@ -1096,19 +1066,9 @@
         "close_threshold": 75,
         "elo_min_weight": 0.5
       },
-      "accuracy": 0.6866,
-      "log_loss": 0.9032,
-      "combined_score": 0.5962
-    },
-    {
-      "params": {
-        "top5_strength": 0.25,
-        "close_threshold": 75,
-        "elo_min_weight": 0.6
-      },
-      "accuracy": 0.6866,
-      "log_loss": 0.9041,
-      "combined_score": 0.5962
+      "accuracy": 0.6324,
+      "log_loss": 0.9352,
+      "combined_score": 0.5388
     },
     {
       "params": {
@@ -1116,9 +1076,9 @@
         "close_threshold": 50,
         "elo_min_weight": 0.4
       },
-      "accuracy": 0.6866,
-      "log_loss": 0.9032,
-      "combined_score": 0.5962
+      "accuracy": 0.6324,
+      "log_loss": 0.9352,
+      "combined_score": 0.5388
     },
     {
       "params": {
@@ -1126,9 +1086,9 @@
         "close_threshold": 50,
         "elo_min_weight": 0.5
       },
-      "accuracy": 0.6866,
-      "log_loss": 0.9039,
-      "combined_score": 0.5962
+      "accuracy": 0.6324,
+      "log_loss": 0.9359,
+      "combined_score": 0.5388
     },
     {
       "params": {
@@ -1136,9 +1096,19 @@
         "close_threshold": 75,
         "elo_min_weight": 0.6
       },
-      "accuracy": 0.6866,
-      "log_loss": 0.9034,
-      "combined_score": 0.5962
+      "accuracy": 0.6324,
+      "log_loss": 0.9354,
+      "combined_score": 0.5388
+    },
+    {
+      "params": {
+        "top5_strength": 0.3,
+        "close_threshold": 100,
+        "elo_min_weight": 0.7
+      },
+      "accuracy": 0.6324,
+      "log_loss": 0.9352,
+      "combined_score": 0.5388
     },
     {
       "params": {
@@ -1146,9 +1116,9 @@
         "close_threshold": 50,
         "elo_min_weight": 0.3
       },
-      "accuracy": 0.6866,
-      "log_loss": 0.905,
-      "combined_score": 0.5961
+      "accuracy": 0.6324,
+      "log_loss": 0.937,
+      "combined_score": 0.5387
     },
     {
       "params": {
@@ -1156,9 +1126,19 @@
         "close_threshold": 75,
         "elo_min_weight": 0.4
       },
-      "accuracy": 0.6866,
-      "log_loss": 0.9044,
-      "combined_score": 0.5961
+      "accuracy": 0.6324,
+      "log_loss": 0.9364,
+      "combined_score": 0.5387
+    },
+    {
+      "params": {
+        "top5_strength": 0.2,
+        "close_threshold": 50,
+        "elo_min_weight": 0.3
+      },
+      "accuracy": 0.6324,
+      "log_loss": 0.9362,
+      "combined_score": 0.5387
     },
     {
       "params": {
@@ -1166,19 +1146,19 @@
         "close_threshold": 50,
         "elo_min_weight": 0.4
       },
-      "accuracy": 0.6866,
-      "log_loss": 0.9046,
-      "combined_score": 0.5961
+      "accuracy": 0.6324,
+      "log_loss": 0.9366,
+      "combined_score": 0.5387
     },
     {
       "params": {
         "top5_strength": 0.2,
-        "close_threshold": 50,
+        "close_threshold": 75,
         "elo_min_weight": 0.5
       },
-      "accuracy": 0.6866,
-      "log_loss": 0.9051,
-      "combined_score": 0.5961
+      "accuracy": 0.6324,
+      "log_loss": 0.9361,
+      "combined_score": 0.5387
     },
     {
       "params": {
@@ -1186,19 +1166,19 @@
         "close_threshold": 50,
         "elo_min_weight": 0.5
       },
-      "accuracy": 0.6866,
-      "log_loss": 0.9045,
-      "combined_score": 0.5961
+      "accuracy": 0.6324,
+      "log_loss": 0.9365,
+      "combined_score": 0.5387
     },
     {
       "params": {
         "top5_strength": 0.25,
-        "close_threshold": 50,
+        "close_threshold": 75,
         "elo_min_weight": 0.6
       },
-      "accuracy": 0.6866,
-      "log_loss": 0.9051,
-      "combined_score": 0.5961
+      "accuracy": 0.6324,
+      "log_loss": 0.9361,
+      "combined_score": 0.5387
     },
     {
       "params": {
@@ -1206,9 +1186,9 @@
         "close_threshold": 50,
         "elo_min_weight": 0.6
       },
-      "accuracy": 0.6866,
-      "log_loss": 0.9046,
-      "combined_score": 0.5961
+      "accuracy": 0.6324,
+      "log_loss": 0.9366,
+      "combined_score": 0.5387
     },
     {
       "params": {
@@ -1216,9 +1196,9 @@
         "close_threshold": 75,
         "elo_min_weight": 0.7
       },
-      "accuracy": 0.6866,
-      "log_loss": 0.9044,
-      "combined_score": 0.5961
+      "accuracy": 0.6324,
+      "log_loss": 0.9364,
+      "combined_score": 0.5387
     },
     {
       "params": {
@@ -1226,9 +1206,29 @@
         "close_threshold": 50,
         "elo_min_weight": 0.4
       },
-      "accuracy": 0.6866,
-      "log_loss": 0.9054,
-      "combined_score": 0.596
+      "accuracy": 0.6324,
+      "log_loss": 0.9374,
+      "combined_score": 0.5386
+    },
+    {
+      "params": {
+        "top5_strength": 0.2,
+        "close_threshold": 50,
+        "elo_min_weight": 0.5
+      },
+      "accuracy": 0.6324,
+      "log_loss": 0.9371,
+      "combined_score": 0.5386
+    },
+    {
+      "params": {
+        "top5_strength": 0.25,
+        "close_threshold": 50,
+        "elo_min_weight": 0.6
+      },
+      "accuracy": 0.6324,
+      "log_loss": 0.9371,
+      "combined_score": 0.5386
     },
     {
       "params": {
@@ -1236,9 +1236,9 @@
         "close_threshold": 50,
         "elo_min_weight": 0.7
       },
-      "accuracy": 0.6866,
-      "log_loss": 0.9054,
-      "combined_score": 0.596
+      "accuracy": 0.6324,
+      "log_loss": 0.9374,
+      "combined_score": 0.5386
     },
     {
       "params": {
@@ -1246,9 +1246,9 @@
         "close_threshold": 200,
         "elo_min_weight": 0.5
       },
-      "accuracy": 0.6716,
-      "log_loss": 0.8989,
-      "combined_score": 0.5818
+      "accuracy": 0.6176,
+      "log_loss": 0.9318,
+      "combined_score": 0.5245
     },
     {
       "params": {
@@ -1256,9 +1256,19 @@
         "close_threshold": 200,
         "elo_min_weight": 0.7
       },
-      "accuracy": 0.6716,
-      "log_loss": 0.8989,
-      "combined_score": 0.5818
+      "accuracy": 0.6176,
+      "log_loss": 0.9318,
+      "combined_score": 0.5245
+    },
+    {
+      "params": {
+        "top5_strength": 0.1,
+        "close_threshold": 175,
+        "elo_min_weight": 0.3
+      },
+      "accuracy": 0.6176,
+      "log_loss": 0.933,
+      "combined_score": 0.5244
     },
     {
       "params": {
@@ -1266,9 +1276,9 @@
         "close_threshold": 200,
         "elo_min_weight": 0.3
       },
-      "accuracy": 0.6716,
-      "log_loss": 0.8995,
-      "combined_score": 0.5817
+      "accuracy": 0.6176,
+      "log_loss": 0.9323,
+      "combined_score": 0.5244
     },
     {
       "params": {
@@ -1276,9 +1286,9 @@
         "close_threshold": 175,
         "elo_min_weight": 0.5
       },
-      "accuracy": 0.6716,
-      "log_loss": 0.8998,
-      "combined_score": 0.5817
+      "accuracy": 0.6176,
+      "log_loss": 0.9325,
+      "combined_score": 0.5244
     },
     {
       "params": {
@@ -1286,59 +1296,9 @@
         "close_threshold": 175,
         "elo_min_weight": 0.7
       },
-      "accuracy": 0.6716,
-      "log_loss": 0.8998,
-      "combined_score": 0.5817
-    },
-    {
-      "params": {
-        "top5_strength": 0.1,
-        "close_threshold": 175,
-        "elo_min_weight": 0.3
-      },
-      "accuracy": 0.6716,
-      "log_loss": 0.9003,
-      "combined_score": 0.5816
-    },
-    {
-      "params": {
-        "top5_strength": 0.1,
-        "close_threshold": 200,
-        "elo_min_weight": 0.4
-      },
-      "accuracy": 0.6716,
-      "log_loss": 0.9006,
-      "combined_score": 0.5816
-    },
-    {
-      "params": {
-        "top5_strength": 0.15,
-        "close_threshold": 200,
-        "elo_min_weight": 0.6
-      },
-      "accuracy": 0.6716,
-      "log_loss": 0.9006,
-      "combined_score": 0.5816
-    },
-    {
-      "params": {
-        "top5_strength": 0.2,
-        "close_threshold": 200,
-        "elo_min_weight": 0.7
-      },
-      "accuracy": 0.6716,
-      "log_loss": 0.9006,
-      "combined_score": 0.5816
-    },
-    {
-      "params": {
-        "top5_strength": 0.1,
-        "close_threshold": 150,
-        "elo_min_weight": 0.3
-      },
-      "accuracy": 0.6716,
-      "log_loss": 0.9017,
-      "combined_score": 0.5815
+      "accuracy": 0.6176,
+      "log_loss": 0.9325,
+      "combined_score": 0.5244
     },
     {
       "params": {
@@ -1346,9 +1306,19 @@
         "close_threshold": 175,
         "elo_min_weight": 0.4
       },
-      "accuracy": 0.6716,
-      "log_loss": 0.9014,
-      "combined_score": 0.5815
+      "accuracy": 0.6176,
+      "log_loss": 0.9339,
+      "combined_score": 0.5243
+    },
+    {
+      "params": {
+        "top5_strength": 0.1,
+        "close_threshold": 200,
+        "elo_min_weight": 0.4
+      },
+      "accuracy": 0.6176,
+      "log_loss": 0.9333,
+      "combined_score": 0.5243
     },
     {
       "params": {
@@ -1356,9 +1326,9 @@
         "close_threshold": 150,
         "elo_min_weight": 0.5
       },
-      "accuracy": 0.6716,
-      "log_loss": 0.9012,
-      "combined_score": 0.5815
+      "accuracy": 0.6176,
+      "log_loss": 0.9337,
+      "combined_score": 0.5243
     },
     {
       "params": {
@@ -1366,9 +1336,19 @@
         "close_threshold": 175,
         "elo_min_weight": 0.6
       },
-      "accuracy": 0.6716,
-      "log_loss": 0.9014,
-      "combined_score": 0.5815
+      "accuracy": 0.6176,
+      "log_loss": 0.9339,
+      "combined_score": 0.5243
+    },
+    {
+      "params": {
+        "top5_strength": 0.15,
+        "close_threshold": 200,
+        "elo_min_weight": 0.6
+      },
+      "accuracy": 0.6176,
+      "log_loss": 0.9333,
+      "combined_score": 0.5243
     },
     {
       "params": {
@@ -1376,9 +1356,19 @@
         "close_threshold": 175,
         "elo_min_weight": 0.7
       },
-      "accuracy": 0.6716,
-      "log_loss": 0.9014,
-      "combined_score": 0.5815
+      "accuracy": 0.6176,
+      "log_loss": 0.9339,
+      "combined_score": 0.5243
+    },
+    {
+      "params": {
+        "top5_strength": 0.2,
+        "close_threshold": 200,
+        "elo_min_weight": 0.7
+      },
+      "accuracy": 0.6176,
+      "log_loss": 0.9333,
+      "combined_score": 0.5243
     },
     {
       "params": {
@@ -1386,9 +1376,19 @@
         "close_threshold": 150,
         "elo_min_weight": 0.7
       },
-      "accuracy": 0.6716,
-      "log_loss": 0.9012,
-      "combined_score": 0.5815
+      "accuracy": 0.6176,
+      "log_loss": 0.9337,
+      "combined_score": 0.5243
+    },
+    {
+      "params": {
+        "top5_strength": 0.1,
+        "close_threshold": 150,
+        "elo_min_weight": 0.3
+      },
+      "accuracy": 0.6176,
+      "log_loss": 0.9341,
+      "combined_score": 0.5242
     },
     {
       "params": {
@@ -1396,9 +1396,9 @@
         "close_threshold": 150,
         "elo_min_weight": 0.4
       },
-      "accuracy": 0.6716,
-      "log_loss": 0.9025,
-      "combined_score": 0.5814
+      "accuracy": 0.6176,
+      "log_loss": 0.9348,
+      "combined_score": 0.5242
     },
     {
       "params": {
@@ -1406,9 +1406,9 @@
         "close_threshold": 125,
         "elo_min_weight": 0.5
       },
-      "accuracy": 0.6716,
-      "log_loss": 0.9026,
-      "combined_score": 0.5814
+      "accuracy": 0.6176,
+      "log_loss": 0.9348,
+      "combined_score": 0.5242
     },
     {
       "params": {
@@ -1416,9 +1416,9 @@
         "close_threshold": 150,
         "elo_min_weight": 0.6
       },
-      "accuracy": 0.6716,
-      "log_loss": 0.9025,
-      "combined_score": 0.5814
+      "accuracy": 0.6176,
+      "log_loss": 0.9348,
+      "combined_score": 0.5242
     },
     {
       "params": {
@@ -1426,9 +1426,9 @@
         "close_threshold": 150,
         "elo_min_weight": 0.7
       },
-      "accuracy": 0.6716,
-      "log_loss": 0.9025,
-      "combined_score": 0.5814
+      "accuracy": 0.6176,
+      "log_loss": 0.9348,
+      "combined_score": 0.5242
     },
     {
       "params": {
@@ -1436,9 +1436,9 @@
         "close_threshold": 125,
         "elo_min_weight": 0.7
       },
-      "accuracy": 0.6716,
-      "log_loss": 0.9026,
-      "combined_score": 0.5814
+      "accuracy": 0.6176,
+      "log_loss": 0.9348,
+      "combined_score": 0.5242
     },
     {
       "params": {
@@ -1446,9 +1446,9 @@
         "close_threshold": 125,
         "elo_min_weight": 0.3
       },
-      "accuracy": 0.6716,
-      "log_loss": 0.9029,
-      "combined_score": 0.5813
+      "accuracy": 0.6176,
+      "log_loss": 0.9352,
+      "combined_score": 0.5241
     },
     {
       "params": {
@@ -1456,9 +1456,9 @@
         "close_threshold": 125,
         "elo_min_weight": 0.4
       },
-      "accuracy": 0.6716,
-      "log_loss": 0.9036,
-      "combined_score": 0.5813
+      "accuracy": 0.6176,
+      "log_loss": 0.9358,
+      "combined_score": 0.5241
     },
     {
       "params": {
@@ -1466,9 +1466,9 @@
         "close_threshold": 100,
         "elo_min_weight": 0.5
       },
-      "accuracy": 0.6716,
-      "log_loss": 0.9039,
-      "combined_score": 0.5813
+      "accuracy": 0.6176,
+      "log_loss": 0.9359,
+      "combined_score": 0.5241
     },
     {
       "params": {
@@ -1476,9 +1476,9 @@
         "close_threshold": 125,
         "elo_min_weight": 0.6
       },
-      "accuracy": 0.6716,
-      "log_loss": 0.9036,
-      "combined_score": 0.5813
+      "accuracy": 0.6176,
+      "log_loss": 0.9358,
+      "combined_score": 0.5241
     },
     {
       "params": {
@@ -1486,9 +1486,9 @@
         "close_threshold": 125,
         "elo_min_weight": 0.7
       },
-      "accuracy": 0.6716,
-      "log_loss": 0.9036,
-      "combined_score": 0.5813
+      "accuracy": 0.6176,
+      "log_loss": 0.9358,
+      "combined_score": 0.5241
     },
     {
       "params": {
@@ -1496,9 +1496,9 @@
         "close_threshold": 100,
         "elo_min_weight": 0.7
       },
-      "accuracy": 0.6716,
-      "log_loss": 0.9039,
-      "combined_score": 0.5813
+      "accuracy": 0.6176,
+      "log_loss": 0.9359,
+      "combined_score": 0.5241
     },
     {
       "params": {
@@ -1506,9 +1506,9 @@
         "close_threshold": 100,
         "elo_min_weight": 0.3
       },
-      "accuracy": 0.6716,
-      "log_loss": 0.9041,
-      "combined_score": 0.5812
+      "accuracy": 0.6176,
+      "log_loss": 0.9362,
+      "combined_score": 0.524
     },
     {
       "params": {
@@ -1516,79 +1516,9 @@
         "close_threshold": 100,
         "elo_min_weight": 0.4
       },
-      "accuracy": 0.6716,
-      "log_loss": 0.9046,
-      "combined_score": 0.5812
-    },
-    {
-      "params": {
-        "top5_strength": 0.15,
-        "close_threshold": 100,
-        "elo_min_weight": 0.6
-      },
-      "accuracy": 0.6716,
-      "log_loss": 0.9046,
-      "combined_score": 0.5812
-    },
-    {
-      "params": {
-        "top5_strength": 0.2,
-        "close_threshold": 75,
-        "elo_min_weight": 0.6
-      },
-      "accuracy": 0.6716,
-      "log_loss": 0.9048,
-      "combined_score": 0.5812
-    },
-    {
-      "params": {
-        "top5_strength": 0.2,
-        "close_threshold": 100,
-        "elo_min_weight": 0.7
-      },
-      "accuracy": 0.6716,
-      "log_loss": 0.9046,
-      "combined_score": 0.5812
-    },
-    {
-      "params": {
-        "top5_strength": 0.1,
-        "close_threshold": 50,
-        "elo_min_weight": 0.3
-      },
-      "accuracy": 0.6716,
-      "log_loss": 0.9059,
-      "combined_score": 0.5811
-    },
-    {
-      "params": {
-        "top5_strength": 0.1,
-        "close_threshold": 75,
-        "elo_min_weight": 0.3
-      },
-      "accuracy": 0.6716,
-      "log_loss": 0.9051,
-      "combined_score": 0.5811
-    },
-    {
-      "params": {
-        "top5_strength": 0.1,
-        "close_threshold": 75,
-        "elo_min_weight": 0.4
-      },
-      "accuracy": 0.6716,
-      "log_loss": 0.9055,
-      "combined_score": 0.5811
-    },
-    {
-      "params": {
-        "top5_strength": 0.15,
-        "close_threshold": 50,
-        "elo_min_weight": 0.5
-      },
-      "accuracy": 0.6716,
-      "log_loss": 0.9057,
-      "combined_score": 0.5811
+      "accuracy": 0.6176,
+      "log_loss": 0.9367,
+      "combined_score": 0.524
     },
     {
       "params": {
@@ -1596,49 +1526,39 @@
         "close_threshold": 75,
         "elo_min_weight": 0.5
       },
-      "accuracy": 0.6716,
-      "log_loss": 0.9049,
-      "combined_score": 0.5811
+      "accuracy": 0.6176,
+      "log_loss": 0.9369,
+      "combined_score": 0.524
     },
     {
       "params": {
         "top5_strength": 0.15,
-        "close_threshold": 75,
+        "close_threshold": 100,
         "elo_min_weight": 0.6
       },
-      "accuracy": 0.6716,
-      "log_loss": 0.9055,
-      "combined_score": 0.5811
-    },
-    {
-      "params": {
-        "top5_strength": 0.2,
-        "close_threshold": 50,
-        "elo_min_weight": 0.6
-      },
-      "accuracy": 0.6716,
-      "log_loss": 0.9056,
-      "combined_score": 0.5811
+      "accuracy": 0.6176,
+      "log_loss": 0.9367,
+      "combined_score": 0.524
     },
     {
       "params": {
         "top5_strength": 0.2,
         "close_threshold": 75,
-        "elo_min_weight": 0.7
+        "elo_min_weight": 0.6
       },
-      "accuracy": 0.6716,
-      "log_loss": 0.9055,
-      "combined_score": 0.5811
+      "accuracy": 0.6176,
+      "log_loss": 0.9368,
+      "combined_score": 0.524
     },
     {
       "params": {
-        "top5_strength": 0.25,
-        "close_threshold": 50,
+        "top5_strength": 0.2,
+        "close_threshold": 100,
         "elo_min_weight": 0.7
       },
-      "accuracy": 0.6716,
-      "log_loss": 0.9057,
-      "combined_score": 0.5811
+      "accuracy": 0.6176,
+      "log_loss": 0.9367,
+      "combined_score": 0.524
     },
     {
       "params": {
@@ -1646,9 +1566,89 @@
         "close_threshold": 75,
         "elo_min_weight": 0.7
       },
-      "accuracy": 0.6716,
-      "log_loss": 0.9049,
-      "combined_score": 0.5811
+      "accuracy": 0.6176,
+      "log_loss": 0.9369,
+      "combined_score": 0.524
+    },
+    {
+      "params": {
+        "top5_strength": 0.1,
+        "close_threshold": 50,
+        "elo_min_weight": 0.3
+      },
+      "accuracy": 0.6176,
+      "log_loss": 0.9378,
+      "combined_score": 0.5239
+    },
+    {
+      "params": {
+        "top5_strength": 0.1,
+        "close_threshold": 75,
+        "elo_min_weight": 0.3
+      },
+      "accuracy": 0.6176,
+      "log_loss": 0.9371,
+      "combined_score": 0.5239
+    },
+    {
+      "params": {
+        "top5_strength": 0.1,
+        "close_threshold": 75,
+        "elo_min_weight": 0.4
+      },
+      "accuracy": 0.6176,
+      "log_loss": 0.9375,
+      "combined_score": 0.5239
+    },
+    {
+      "params": {
+        "top5_strength": 0.15,
+        "close_threshold": 50,
+        "elo_min_weight": 0.5
+      },
+      "accuracy": 0.6176,
+      "log_loss": 0.9377,
+      "combined_score": 0.5239
+    },
+    {
+      "params": {
+        "top5_strength": 0.15,
+        "close_threshold": 75,
+        "elo_min_weight": 0.6
+      },
+      "accuracy": 0.6176,
+      "log_loss": 0.9375,
+      "combined_score": 0.5239
+    },
+    {
+      "params": {
+        "top5_strength": 0.2,
+        "close_threshold": 50,
+        "elo_min_weight": 0.6
+      },
+      "accuracy": 0.6176,
+      "log_loss": 0.9376,
+      "combined_score": 0.5239
+    },
+    {
+      "params": {
+        "top5_strength": 0.2,
+        "close_threshold": 75,
+        "elo_min_weight": 0.7
+      },
+      "accuracy": 0.6176,
+      "log_loss": 0.9375,
+      "combined_score": 0.5239
+    },
+    {
+      "params": {
+        "top5_strength": 0.25,
+        "close_threshold": 50,
+        "elo_min_weight": 0.7
+      },
+      "accuracy": 0.6176,
+      "log_loss": 0.9377,
+      "combined_score": 0.5239
     },
     {
       "params": {
@@ -1656,9 +1656,9 @@
         "close_threshold": 50,
         "elo_min_weight": 0.4
       },
-      "accuracy": 0.6716,
-      "log_loss": 0.9061,
-      "combined_score": 0.581
+      "accuracy": 0.6176,
+      "log_loss": 0.9381,
+      "combined_score": 0.5238
     },
     {
       "params": {
@@ -1666,9 +1666,9 @@
         "close_threshold": 50,
         "elo_min_weight": 0.6
       },
-      "accuracy": 0.6716,
-      "log_loss": 0.9061,
-      "combined_score": 0.581
+      "accuracy": 0.6176,
+      "log_loss": 0.9381,
+      "combined_score": 0.5238
     },
     {
       "params": {
@@ -1676,9 +1676,9 @@
         "close_threshold": 50,
         "elo_min_weight": 0.7
       },
-      "accuracy": 0.6716,
-      "log_loss": 0.9061,
-      "combined_score": 0.581
+      "accuracy": 0.6176,
+      "log_loss": 0.9381,
+      "combined_score": 0.5238
     },
     {
       "params": {
@@ -1686,9 +1686,9 @@
         "close_threshold": 175,
         "elo_min_weight": 0.5
       },
-      "accuracy": 0.6567,
-      "log_loss": 0.9024,
-      "combined_score": 0.5665
+      "accuracy": 0.6029,
+      "log_loss": 0.9348,
+      "combined_score": 0.5095
     },
     {
       "params": {
@@ -1696,9 +1696,9 @@
         "close_threshold": 200,
         "elo_min_weight": 0.5
       },
-      "accuracy": 0.6567,
-      "log_loss": 0.9018,
-      "combined_score": 0.5665
+      "accuracy": 0.6029,
+      "log_loss": 0.9343,
+      "combined_score": 0.5095
     },
     {
       "params": {
@@ -1706,9 +1706,9 @@
         "close_threshold": 200,
         "elo_min_weight": 0.7
       },
-      "accuracy": 0.6567,
-      "log_loss": 0.9023,
-      "combined_score": 0.5665
+      "accuracy": 0.6029,
+      "log_loss": 0.9349,
+      "combined_score": 0.5095
     },
     {
       "params": {
@@ -1716,9 +1716,9 @@
         "close_threshold": 200,
         "elo_min_weight": 0.3
       },
-      "accuracy": 0.6567,
-      "log_loss": 0.9035,
-      "combined_score": 0.5664
+      "accuracy": 0.6029,
+      "log_loss": 0.9359,
+      "combined_score": 0.5094
     },
     {
       "params": {
@@ -1726,9 +1726,9 @@
         "close_threshold": 150,
         "elo_min_weight": 0.5
       },
-      "accuracy": 0.6567,
-      "log_loss": 0.9033,
-      "combined_score": 0.5664
+      "accuracy": 0.6029,
+      "log_loss": 0.9356,
+      "combined_score": 0.5094
     },
     {
       "params": {
@@ -1736,9 +1736,9 @@
         "close_threshold": 175,
         "elo_min_weight": 0.6
       },
-      "accuracy": 0.6567,
-      "log_loss": 0.9034,
-      "combined_score": 0.5664
+      "accuracy": 0.6029,
+      "log_loss": 0.9358,
+      "combined_score": 0.5094
     },
     {
       "params": {
@@ -1746,9 +1746,9 @@
         "close_threshold": 200,
         "elo_min_weight": 0.6
       },
-      "accuracy": 0.6567,
-      "log_loss": 0.9029,
-      "combined_score": 0.5664
+      "accuracy": 0.6029,
+      "log_loss": 0.9354,
+      "combined_score": 0.5094
     },
     {
       "params": {
@@ -1756,9 +1756,9 @@
         "close_threshold": 175,
         "elo_min_weight": 0.7
       },
-      "accuracy": 0.6567,
-      "log_loss": 0.9029,
-      "combined_score": 0.5664
+      "accuracy": 0.6029,
+      "log_loss": 0.9353,
+      "combined_score": 0.5094
     },
     {
       "params": {
@@ -1766,9 +1766,9 @@
         "close_threshold": 150,
         "elo_min_weight": 0.3
       },
-      "accuracy": 0.6567,
-      "log_loss": 0.9046,
-      "combined_score": 0.5663
+      "accuracy": 0.6029,
+      "log_loss": 0.9368,
+      "combined_score": 0.5093
     },
     {
       "params": {
@@ -1776,9 +1776,9 @@
         "close_threshold": 175,
         "elo_min_weight": 0.3
       },
-      "accuracy": 0.6567,
-      "log_loss": 0.9039,
-      "combined_score": 0.5663
+      "accuracy": 0.6029,
+      "log_loss": 0.9362,
+      "combined_score": 0.5093
     },
     {
       "params": {
@@ -1786,9 +1786,9 @@
         "close_threshold": 175,
         "elo_min_weight": 0.4
       },
-      "accuracy": 0.6567,
-      "log_loss": 0.9045,
-      "combined_score": 0.5663
+      "accuracy": 0.6029,
+      "log_loss": 0.9367,
+      "combined_score": 0.5093
     },
     {
       "params": {
@@ -1796,19 +1796,9 @@
         "close_threshold": 200,
         "elo_min_weight": 0.4
       },
-      "accuracy": 0.6567,
-      "log_loss": 0.9041,
-      "combined_score": 0.5663
-    },
-    {
-      "params": {
-        "top5_strength": 0.05,
-        "close_threshold": 200,
-        "elo_min_weight": 0.5
-      },
-      "accuracy": 0.6567,
-      "log_loss": 0.9047,
-      "combined_score": 0.5663
+      "accuracy": 0.6029,
+      "log_loss": 0.9364,
+      "combined_score": 0.5093
     },
     {
       "params": {
@@ -1816,9 +1806,9 @@
         "close_threshold": 125,
         "elo_min_weight": 0.5
       },
-      "accuracy": 0.6567,
-      "log_loss": 0.9042,
-      "combined_score": 0.5663
+      "accuracy": 0.6029,
+      "log_loss": 0.9364,
+      "combined_score": 0.5093
     },
     {
       "params": {
@@ -1826,9 +1816,9 @@
         "close_threshold": 150,
         "elo_min_weight": 0.6
       },
-      "accuracy": 0.6567,
-      "log_loss": 0.9042,
-      "combined_score": 0.5663
+      "accuracy": 0.6029,
+      "log_loss": 0.9364,
+      "combined_score": 0.5093
     },
     {
       "params": {
@@ -1836,9 +1826,9 @@
         "close_threshold": 175,
         "elo_min_weight": 0.7
       },
-      "accuracy": 0.6567,
-      "log_loss": 0.9045,
-      "combined_score": 0.5663
+      "accuracy": 0.6029,
+      "log_loss": 0.9367,
+      "combined_score": 0.5093
     },
     {
       "params": {
@@ -1846,9 +1836,9 @@
         "close_threshold": 200,
         "elo_min_weight": 0.7
       },
-      "accuracy": 0.6567,
-      "log_loss": 0.9041,
-      "combined_score": 0.5663
+      "accuracy": 0.6029,
+      "log_loss": 0.9364,
+      "combined_score": 0.5093
     },
     {
       "params": {
@@ -1856,9 +1846,9 @@
         "close_threshold": 125,
         "elo_min_weight": 0.7
       },
-      "accuracy": 0.6567,
-      "log_loss": 0.9046,
-      "combined_score": 0.5663
+      "accuracy": 0.6029,
+      "log_loss": 0.9367,
+      "combined_score": 0.5093
     },
     {
       "params": {
@@ -1866,9 +1856,19 @@
         "close_threshold": 150,
         "elo_min_weight": 0.7
       },
-      "accuracy": 0.6567,
-      "log_loss": 0.9038,
-      "combined_score": 0.5663
+      "accuracy": 0.6029,
+      "log_loss": 0.936,
+      "combined_score": 0.5093
+    },
+    {
+      "params": {
+        "top5_strength": 0.05,
+        "close_threshold": 100,
+        "elo_min_weight": 0.3
+      },
+      "accuracy": 0.6029,
+      "log_loss": 0.9379,
+      "combined_score": 0.5092
     },
     {
       "params": {
@@ -1876,9 +1876,9 @@
         "close_threshold": 125,
         "elo_min_weight": 0.3
       },
-      "accuracy": 0.6567,
-      "log_loss": 0.9052,
-      "combined_score": 0.5662
+      "accuracy": 0.6029,
+      "log_loss": 0.9373,
+      "combined_score": 0.5092
     },
     {
       "params": {
@@ -1886,9 +1886,9 @@
         "close_threshold": 125,
         "elo_min_weight": 0.4
       },
-      "accuracy": 0.6567,
-      "log_loss": 0.9056,
-      "combined_score": 0.5662
+      "accuracy": 0.6029,
+      "log_loss": 0.9377,
+      "combined_score": 0.5092
     },
     {
       "params": {
@@ -1896,9 +1896,9 @@
         "close_threshold": 150,
         "elo_min_weight": 0.4
       },
-      "accuracy": 0.6567,
-      "log_loss": 0.905,
-      "combined_score": 0.5662
+      "accuracy": 0.6029,
+      "log_loss": 0.9372,
+      "combined_score": 0.5092
     },
     {
       "params": {
@@ -1906,9 +1906,9 @@
         "close_threshold": 150,
         "elo_min_weight": 0.5
       },
-      "accuracy": 0.6567,
-      "log_loss": 0.9055,
-      "combined_score": 0.5662
+      "accuracy": 0.6029,
+      "log_loss": 0.9376,
+      "combined_score": 0.5092
     },
     {
       "params": {
@@ -1916,9 +1916,29 @@
         "close_threshold": 175,
         "elo_min_weight": 0.5
       },
-      "accuracy": 0.6567,
-      "log_loss": 0.905,
-      "combined_score": 0.5662
+      "accuracy": 0.6029,
+      "log_loss": 0.9372,
+      "combined_score": 0.5092
+    },
+    {
+      "params": {
+        "top5_strength": 0.05,
+        "close_threshold": 200,
+        "elo_min_weight": 0.5
+      },
+      "accuracy": 0.6029,
+      "log_loss": 0.9369,
+      "combined_score": 0.5092
+    },
+    {
+      "params": {
+        "top5_strength": 0.1,
+        "close_threshold": 75,
+        "elo_min_weight": 0.5
+      },
+      "accuracy": 0.6029,
+      "log_loss": 0.9378,
+      "combined_score": 0.5092
     },
     {
       "params": {
@@ -1926,9 +1946,9 @@
         "close_threshold": 100,
         "elo_min_weight": 0.5
       },
-      "accuracy": 0.6567,
-      "log_loss": 0.9051,
-      "combined_score": 0.5662
+      "accuracy": 0.6029,
+      "log_loss": 0.9371,
+      "combined_score": 0.5092
     },
     {
       "params": {
@@ -1936,9 +1956,9 @@
         "close_threshold": 100,
         "elo_min_weight": 0.6
       },
-      "accuracy": 0.6567,
-      "log_loss": 0.9056,
-      "combined_score": 0.5662
+      "accuracy": 0.6029,
+      "log_loss": 0.9376,
+      "combined_score": 0.5092
     },
     {
       "params": {
@@ -1946,9 +1966,9 @@
         "close_threshold": 125,
         "elo_min_weight": 0.6
       },
-      "accuracy": 0.6567,
-      "log_loss": 0.9049,
-      "combined_score": 0.5662
+      "accuracy": 0.6029,
+      "log_loss": 0.937,
+      "combined_score": 0.5092
     },
     {
       "params": {
@@ -1956,9 +1976,9 @@
         "close_threshold": 125,
         "elo_min_weight": 0.7
       },
-      "accuracy": 0.6567,
-      "log_loss": 0.9056,
-      "combined_score": 0.5662
+      "accuracy": 0.6029,
+      "log_loss": 0.9377,
+      "combined_score": 0.5092
     },
     {
       "params": {
@@ -1966,9 +1986,9 @@
         "close_threshold": 150,
         "elo_min_weight": 0.7
       },
-      "accuracy": 0.6567,
-      "log_loss": 0.905,
-      "combined_score": 0.5662
+      "accuracy": 0.6029,
+      "log_loss": 0.9372,
+      "combined_score": 0.5092
     },
     {
       "params": {
@@ -1976,9 +1996,29 @@
         "close_threshold": 100,
         "elo_min_weight": 0.7
       },
-      "accuracy": 0.6567,
-      "log_loss": 0.9054,
-      "combined_score": 0.5662
+      "accuracy": 0.6029,
+      "log_loss": 0.9374,
+      "combined_score": 0.5092
+    },
+    {
+      "params": {
+        "top5_strength": 0.05,
+        "close_threshold": 50,
+        "elo_min_weight": 0.3
+      },
+      "accuracy": 0.6029,
+      "log_loss": 0.9387,
+      "combined_score": 0.5091
+    },
+    {
+      "params": {
+        "top5_strength": 0.05,
+        "close_threshold": 50,
+        "elo_min_weight": 0.4
+      },
+      "accuracy": 0.6029,
+      "log_loss": 0.9388,
+      "combined_score": 0.5091
     },
     {
       "params": {
@@ -1986,9 +2026,9 @@
         "close_threshold": 75,
         "elo_min_weight": 0.3
       },
-      "accuracy": 0.6567,
-      "log_loss": 0.9064,
-      "combined_score": 0.5661
+      "accuracy": 0.6029,
+      "log_loss": 0.9383,
+      "combined_score": 0.5091
     },
     {
       "params": {
@@ -1996,19 +2036,19 @@
         "close_threshold": 75,
         "elo_min_weight": 0.4
       },
-      "accuracy": 0.6567,
-      "log_loss": 0.9065,
-      "combined_score": 0.5661
+      "accuracy": 0.6029,
+      "log_loss": 0.9385,
+      "combined_score": 0.5091
     },
     {
       "params": {
         "top5_strength": 0.05,
-        "close_threshold": 100,
-        "elo_min_weight": 0.3
+        "close_threshold": 75,
+        "elo_min_weight": 0.5
       },
-      "accuracy": 0.6567,
-      "log_loss": 0.9059,
-      "combined_score": 0.5661
+      "accuracy": 0.6029,
+      "log_loss": 0.9387,
+      "combined_score": 0.5091
     },
     {
       "params": {
@@ -2016,9 +2056,9 @@
         "close_threshold": 100,
         "elo_min_weight": 0.4
       },
-      "accuracy": 0.6567,
-      "log_loss": 0.9061,
-      "combined_score": 0.5661
+      "accuracy": 0.6029,
+      "log_loss": 0.9381,
+      "combined_score": 0.5091
     },
     {
       "params": {
@@ -2026,9 +2066,9 @@
         "close_threshold": 100,
         "elo_min_weight": 0.5
       },
-      "accuracy": 0.6567,
-      "log_loss": 0.9064,
-      "combined_score": 0.5661
+      "accuracy": 0.6029,
+      "log_loss": 0.9383,
+      "combined_score": 0.5091
     },
     {
       "params": {
@@ -2036,9 +2076,9 @@
         "close_threshold": 125,
         "elo_min_weight": 0.5
       },
-      "accuracy": 0.6567,
-      "log_loss": 0.9059,
-      "combined_score": 0.5661
+      "accuracy": 0.6029,
+      "log_loss": 0.938,
+      "combined_score": 0.5091
     },
     {
       "params": {
@@ -2046,9 +2086,9 @@
         "close_threshold": 50,
         "elo_min_weight": 0.5
       },
-      "accuracy": 0.6567,
-      "log_loss": 0.9064,
-      "combined_score": 0.5661
+      "accuracy": 0.6029,
+      "log_loss": 0.9383,
+      "combined_score": 0.5091
     },
     {
       "params": {
@@ -2056,19 +2096,19 @@
         "close_threshold": 50,
         "elo_min_weight": 0.6
       },
-      "accuracy": 0.6567,
-      "log_loss": 0.9066,
-      "combined_score": 0.5661
+      "accuracy": 0.6029,
+      "log_loss": 0.9386,
+      "combined_score": 0.5091
     },
     {
       "params": {
         "top5_strength": 0.1,
-        "close_threshold": 75,
-        "elo_min_weight": 0.5
+        "close_threshold": 50,
+        "elo_min_weight": 0.7
       },
-      "accuracy": 0.6567,
-      "log_loss": 0.9058,
-      "combined_score": 0.5661
+      "accuracy": 0.6029,
+      "log_loss": 0.9388,
+      "combined_score": 0.5091
     },
     {
       "params": {
@@ -2076,9 +2116,9 @@
         "close_threshold": 75,
         "elo_min_weight": 0.6
       },
-      "accuracy": 0.6567,
-      "log_loss": 0.9062,
-      "combined_score": 0.5661
+      "accuracy": 0.6029,
+      "log_loss": 0.9382,
+      "combined_score": 0.5091
     },
     {
       "params": {
@@ -2086,9 +2126,9 @@
         "close_threshold": 75,
         "elo_min_weight": 0.7
       },
-      "accuracy": 0.6567,
-      "log_loss": 0.9065,
-      "combined_score": 0.5661
+      "accuracy": 0.6029,
+      "log_loss": 0.9385,
+      "combined_score": 0.5091
     },
     {
       "params": {
@@ -2096,9 +2136,9 @@
         "close_threshold": 100,
         "elo_min_weight": 0.7
       },
-      "accuracy": 0.6567,
-      "log_loss": 0.9061,
-      "combined_score": 0.5661
+      "accuracy": 0.6029,
+      "log_loss": 0.9381,
+      "combined_score": 0.5091
     },
     {
       "params": {
@@ -2106,9 +2146,9 @@
         "close_threshold": 50,
         "elo_min_weight": 0.7
       },
-      "accuracy": 0.6567,
-      "log_loss": 0.9065,
-      "combined_score": 0.5661
+      "accuracy": 0.6029,
+      "log_loss": 0.9385,
+      "combined_score": 0.5091
     },
     {
       "params": {
@@ -2116,29 +2156,9 @@
         "close_threshold": 75,
         "elo_min_weight": 0.7
       },
-      "accuracy": 0.6567,
-      "log_loss": 0.906,
-      "combined_score": 0.5661
-    },
-    {
-      "params": {
-        "top5_strength": 0.05,
-        "close_threshold": 50,
-        "elo_min_weight": 0.3
-      },
-      "accuracy": 0.6567,
-      "log_loss": 0.9067,
-      "combined_score": 0.566
-    },
-    {
-      "params": {
-        "top5_strength": 0.05,
-        "close_threshold": 50,
-        "elo_min_weight": 0.4
-      },
-      "accuracy": 0.6567,
-      "log_loss": 0.9069,
-      "combined_score": 0.566
+      "accuracy": 0.6029,
+      "log_loss": 0.938,
+      "combined_score": 0.5091
     },
     {
       "params": {
@@ -2146,29 +2166,19 @@
         "close_threshold": 50,
         "elo_min_weight": 0.5
       },
-      "accuracy": 0.6567,
-      "log_loss": 0.907,
-      "combined_score": 0.566
+      "accuracy": 0.6029,
+      "log_loss": 0.9389,
+      "combined_score": 0.509
     },
     {
       "params": {
         "top5_strength": 0.05,
-        "close_threshold": 75,
-        "elo_min_weight": 0.5
+        "close_threshold": 175,
+        "elo_min_weight": 0.6
       },
-      "accuracy": 0.6567,
-      "log_loss": 0.9067,
-      "combined_score": 0.566
-    },
-    {
-      "params": {
-        "top5_strength": 0.1,
-        "close_threshold": 50,
-        "elo_min_weight": 0.7
-      },
-      "accuracy": 0.6567,
-      "log_loss": 0.9069,
-      "combined_score": 0.566
+      "accuracy": 0.5882,
+      "log_loss": 0.9376,
+      "combined_score": 0.4945
     },
     {
       "params": {
@@ -2176,9 +2186,29 @@
         "close_threshold": 200,
         "elo_min_weight": 0.6
       },
-      "accuracy": 0.6418,
-      "log_loss": 0.9052,
-      "combined_score": 0.5513
+      "accuracy": 0.5882,
+      "log_loss": 0.9375,
+      "combined_score": 0.4945
+    },
+    {
+      "params": {
+        "top5_strength": 0.05,
+        "close_threshold": 100,
+        "elo_min_weight": 0.6
+      },
+      "accuracy": 0.5882,
+      "log_loss": 0.9386,
+      "combined_score": 0.4944
+    },
+    {
+      "params": {
+        "top5_strength": 0.05,
+        "close_threshold": 100,
+        "elo_min_weight": 0.7
+      },
+      "accuracy": 0.5882,
+      "log_loss": 0.9388,
+      "combined_score": 0.4944
     },
     {
       "params": {
@@ -2186,9 +2216,19 @@
         "close_threshold": 125,
         "elo_min_weight": 0.6
       },
-      "accuracy": 0.6418,
-      "log_loss": 0.9063,
-      "combined_score": 0.5512
+      "accuracy": 0.5882,
+      "log_loss": 0.9383,
+      "combined_score": 0.4944
+    },
+    {
+      "params": {
+        "top5_strength": 0.05,
+        "close_threshold": 125,
+        "elo_min_weight": 0.7
+      },
+      "accuracy": 0.5882,
+      "log_loss": 0.9386,
+      "combined_score": 0.4944
     },
     {
       "params": {
@@ -2196,9 +2236,9 @@
         "close_threshold": 150,
         "elo_min_weight": 0.6
       },
-      "accuracy": 0.6418,
-      "log_loss": 0.9059,
-      "combined_score": 0.5512
+      "accuracy": 0.5882,
+      "log_loss": 0.938,
+      "combined_score": 0.4944
     },
     {
       "params": {
@@ -2206,19 +2246,9 @@
         "close_threshold": 150,
         "elo_min_weight": 0.7
       },
-      "accuracy": 0.6418,
-      "log_loss": 0.9063,
-      "combined_score": 0.5512
-    },
-    {
-      "params": {
-        "top5_strength": 0.05,
-        "close_threshold": 175,
-        "elo_min_weight": 0.6
-      },
-      "accuracy": 0.6418,
-      "log_loss": 0.9055,
-      "combined_score": 0.5512
+      "accuracy": 0.5882,
+      "log_loss": 0.9384,
+      "combined_score": 0.4944
     },
     {
       "params": {
@@ -2226,9 +2256,9 @@
         "close_threshold": 175,
         "elo_min_weight": 0.7
       },
-      "accuracy": 0.6418,
-      "log_loss": 0.906,
-      "combined_score": 0.5512
+      "accuracy": 0.5882,
+      "log_loss": 0.9381,
+      "combined_score": 0.4944
     },
     {
       "params": {
@@ -2236,9 +2266,9 @@
         "close_threshold": 200,
         "elo_min_weight": 0.7
       },
-      "accuracy": 0.6418,
-      "log_loss": 0.9058,
-      "combined_score": 0.5512
+      "accuracy": 0.5882,
+      "log_loss": 0.938,
+      "combined_score": 0.4944
     },
     {
       "params": {
@@ -2246,9 +2276,9 @@
         "close_threshold": 50,
         "elo_min_weight": 0.6
       },
-      "accuracy": 0.6418,
-      "log_loss": 0.9071,
-      "combined_score": 0.5511
+      "accuracy": 0.5882,
+      "log_loss": 0.9391,
+      "combined_score": 0.4943
     },
     {
       "params": {
@@ -2256,9 +2286,9 @@
         "close_threshold": 50,
         "elo_min_weight": 0.7
       },
-      "accuracy": 0.6418,
-      "log_loss": 0.9072,
-      "combined_score": 0.5511
+      "accuracy": 0.5882,
+      "log_loss": 0.9392,
+      "combined_score": 0.4943
     },
     {
       "params": {
@@ -2266,9 +2296,9 @@
         "close_threshold": 75,
         "elo_min_weight": 0.6
       },
-      "accuracy": 0.6418,
-      "log_loss": 0.9069,
-      "combined_score": 0.5511
+      "accuracy": 0.5882,
+      "log_loss": 0.9389,
+      "combined_score": 0.4943
     },
     {
       "params": {
@@ -2276,39 +2306,9 @@
         "close_threshold": 75,
         "elo_min_weight": 0.7
       },
-      "accuracy": 0.6418,
-      "log_loss": 0.9071,
-      "combined_score": 0.5511
-    },
-    {
-      "params": {
-        "top5_strength": 0.05,
-        "close_threshold": 100,
-        "elo_min_weight": 0.6
-      },
-      "accuracy": 0.6418,
-      "log_loss": 0.9066,
-      "combined_score": 0.5511
-    },
-    {
-      "params": {
-        "top5_strength": 0.05,
-        "close_threshold": 100,
-        "elo_min_weight": 0.7
-      },
-      "accuracy": 0.6418,
-      "log_loss": 0.9069,
-      "combined_score": 0.5511
-    },
-    {
-      "params": {
-        "top5_strength": 0.05,
-        "close_threshold": 125,
-        "elo_min_weight": 0.7
-      },
-      "accuracy": 0.6418,
-      "log_loss": 0.9066,
-      "combined_score": 0.5511
+      "accuracy": 0.5882,
+      "log_loss": 0.939,
+      "combined_score": 0.4943
     }
   ],
   "match_data": [
@@ -2550,7 +2550,7 @@
     {
       "home": "Belgium",
       "away": "Senegal",
-      "actual": "H"
+      "actual": "D"
     },
     {
       "home": "United States",
@@ -2640,13 +2640,18 @@
     {
       "home": "England",
       "away": "Norway",
-      "actual": "H"
+      "actual": "D"
     },
     {
       "home": "Argentina",
       "away": "Switzerland",
-      "actual": "H"
+      "actual": "D"
+    },
+    {
+      "home": "France",
+      "away": "Spain",
+      "actual": "A"
     }
   ],
-  "optimized_at": "2026-07-12T22:07:29.108857"
+  "optimized_at": "2026-11-06T14:00:52.562563"
 }
